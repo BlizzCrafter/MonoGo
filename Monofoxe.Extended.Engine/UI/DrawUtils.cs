@@ -8,6 +8,7 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monofoxe.Extended.Engine.Drawing;
 using System.Collections.Generic;
 
 namespace Monofoxe.Extended.UI
@@ -545,7 +546,7 @@ namespace Monofoxe.Extended.UI
             // start drawing
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
                 DepthStencilState.None, RasterizerState.CullCounterClockwise,
-                isDisabled ? Resources.DisabledEffect : null);
+                isDisabled ? Resources.DisabledEffect : null, transformMatrix: GraphicsMgr.VertexBatch.View);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);

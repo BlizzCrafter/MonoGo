@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
+using Monofoxe.Extended.Engine.Drawing;
 
 namespace Monofoxe.Extended.UI
 {
@@ -465,6 +466,15 @@ namespace Monofoxe.Extended.UI
         /// <param name="spriteBatch">SpriteBatch to draw the cursor.</param>
         public void DrawCursor(SpriteBatch spriteBatch)
         {
+            // start drawing for cursor
+            spriteBatch.Begin(
+                SpriteSortMode.Deferred, 
+                BlendState, 
+                SamplerState, 
+                DepthStencilState.None, 
+                RasterizerState.CullCounterClockwise,
+                transformMatrix: GraphicsMgr.VertexBatch.View);
+
             // calculate cursor size
             float cursorSize = CursorScale * GlobalScale * ((float)_cursorWidth / (float)_cursorTexture.Width);
 
@@ -475,6 +485,9 @@ namespace Monofoxe.Extended.UI
                     (int)(cursorPos.X + _cursorOffset.X * cursorSize), (int)(cursorPos.Y + _cursorOffset.Y * cursorSize),
                     (int)(_cursorTexture.Width * cursorSize), (int)(_cursorTexture.Height * cursorSize)),
                 Color.White);
+
+            // end drawing
+            spriteBatch.End();
         }
 
         /// <summary>
