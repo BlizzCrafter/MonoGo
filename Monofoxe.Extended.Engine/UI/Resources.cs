@@ -92,7 +92,7 @@ namespace Monofoxe.Extended.UI
                 if (_loadedTextures[indx] == null)
                 {
                     var path = _basepath + EnumToString(i) + _suffix + StateEnumToString(s);
-                    _loadedTextures[indx] = Resources._content.Load<Texture2D>(path);
+                    _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GeonBitSprites", path)[0].Texture;
                 }
                 return _loadedTextures[indx];
             }
@@ -268,9 +268,6 @@ namespace Monofoxe.Extended.UI
         /// <summary>An effect to draw just a silhouette of the texture.</summary>
         public static Effect SilhouetteEffect;
 
-        /// <summary>Store the content manager instance</summary>
-        internal static ContentManager _content;
-
         /// <summary>
         /// Load all Monofoxe.Extended.UI resources.
         /// </summary>
@@ -279,8 +276,6 @@ namespace Monofoxe.Extended.UI
         static public void LoadContent(ContentManager content, string theme = "default")
         {
             InitialiseCharStringDict();
-
-            _content = content;
 
             // set Texture2D static fields
             HorizontalLineTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Horizontal_Line")[0].Texture;

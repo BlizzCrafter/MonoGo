@@ -8,8 +8,11 @@
 //-----------------------------------------------------------------------------
 #endregion
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine.Resources;
 
 namespace Monofoxe.Extended.UI.Entities
 {
@@ -55,7 +58,7 @@ namespace Monofoxe.Extended.UI.Entities
         public string TextureName
         {
             get { return Texture.Name; }
-            set { Texture = Resources._content.Load<Texture2D>(value); }
+            set { Texture = ResourceHub.GetResource<Sprite>("GeonBitSprites", value)[0].Texture; }
         }
 
         /// <summary>Default styling for images. Note: loaded from UI theme xml file.</summary>
