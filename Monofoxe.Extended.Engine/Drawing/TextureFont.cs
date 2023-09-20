@@ -15,6 +15,7 @@ namespace Monofoxe.Extended.Engine.Drawing
 		/// Unused, because TextureFont can have multiple textures.
 		/// </summary>
 		public Texture2D Texture => null;
+		public SpriteFont SpriteFont => null;
 		
 		public ReadOnlyCollection<char> Characters {get;}
 		

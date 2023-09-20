@@ -20,4 +20,14 @@
 		</PackageReference>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="UI\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="GeonBit.UI.DataTypes">
+	    <HintPath>..\GeonBit.UI.DataTypes.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 </Project>
