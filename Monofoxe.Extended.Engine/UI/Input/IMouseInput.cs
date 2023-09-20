@@ -41,7 +41,7 @@ namespace Monofoxe.Extended.UI
         void Update(Vector2 mousePosition = default);
 
         /// <summary>
-        /// Get current mouse poisition.
+        /// Get current mouse position.
         /// </summary>
         Vector2 MousePosition { get; }
 
