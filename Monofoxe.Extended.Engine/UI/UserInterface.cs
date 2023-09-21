@@ -489,6 +489,7 @@ namespace Monofoxe.Extended.UI
         public void Update()
         {
             // update input managers
+            MouseInputProvider.Update();
             if (MouseInputProvider != KeyboardInputProvider) { KeyboardInputProvider.Update(); }
 
             // unset the drag target if the mouse was released
