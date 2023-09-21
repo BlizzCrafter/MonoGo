@@ -21,13 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{10BACD3F-2B0F-47C5-9D0C-80156103C4C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.Content", "..\Samples\Monofoxe.Extended.Samples.Content\Monofoxe.Extended.Samples.Content.csproj", "{8C3E1EF4-8923-4D05-B128-D01968D77AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.Content", "Monofoxe.Extended.Samples.Content\Monofoxe.Extended.Samples.Content.csproj", "{8C3E1EF4-8923-4D05-B128-D01968D77AC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples", "..\Samples\Monofoxe.Extended.Samples\Monofoxe.Extended.Samples.csproj", "{0720FA7C-FCBC-4310-985F-C1D1E9D2C929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples", "Monofoxe.Extended.Samples\Monofoxe.Extended.Samples.csproj", "{0720FA7C-FCBC-4310-985F-C1D1E9D2C929}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.DesktopGL", "..\Samples\Monofoxe.Extended.Samples.DesktopGL\Monofoxe.Extended.Samples.DesktopGL.csproj", "{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.DesktopGL", "Monofoxe.Extended.Samples.DesktopGL\Monofoxe.Extended.Samples.DesktopGL.csproj", "{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.WindowsDX", "..\Samples\Monofoxe.Extended.Samples.WindowsDX\Monofoxe.Extended.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.WindowsDX", "Monofoxe.Extended.Samples.WindowsDX\Monofoxe.Extended.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
