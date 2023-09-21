@@ -312,11 +312,10 @@ namespace Monofoxe.Extended.UI
         /// <summary>
         /// Initialize UI manager (mostly load resources and set some defaults).
         /// </summary>
-        /// <param name="contentManager">Content manager.</param>
-        static public void Initialize(ContentManager contentManager)
+        static public void Initialize()
         {
             // store the content manager
-            _content = contentManager;
+            _content = new ContentManager(GameMgr.Game.Services);
             _content.RootDirectory = ResourceInfoMgr.ContentDir + "/Graphics/GeonBit.UI/Styles";
 
             // init resources (textures etc)
