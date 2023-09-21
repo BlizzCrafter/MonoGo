@@ -12,10 +12,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.UI.Entities;
 using Microsoft.Xna.Framework.Content;
-using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
-using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine;
 
 namespace Monofoxe.Extended.UI
 {
@@ -67,27 +66,6 @@ namespace Monofoxe.Extended.UI
         /// <summary>Text-input I-beam cursor.</summary>
         IBeam,
     };
-
-    /// <summary>
-    /// Enum with all the built-in themes.
-    /// </summary>
-    public enum BuiltinThemes
-    {
-        /// <summary>
-        /// Old-school style theme with hi-res textures.
-        /// </summary>
-        hd,
-
-        /// <summary>
-        /// Old-school style theme with low-res textures.
-        /// </summary>
-        lowres,
-
-        /// <summary>
-        /// Clean, editor-like theme.
-        /// </summary>
-        editor,
-    }
 
     /// <summary>
     /// Main Monofoxe.Extended.UI class that manage and draw all the UI entities.
@@ -335,14 +313,14 @@ namespace Monofoxe.Extended.UI
         /// Initialize UI manager (mostly load resources and set some defaults).
         /// </summary>
         /// <param name="contentManager">Content manager.</param>
-        /// <param name="theme">Which UI theme to use (see options in Content/Monofoxe.Extended.UI/themes/). This affect the appearance of all textures and effects.</param>
-        static public void Initialize(ContentManager contentManager, string theme = "hd")
+        static public void Initialize(ContentManager contentManager)
         {
             // store the content manager
             _content = contentManager;
+            _content.RootDirectory = ResourceInfoMgr.ContentDir + "/Graphics/GeonBit.UI/Styles";
 
             // init resources (textures etc)
-            Resources.LoadContent(_content, theme);
+            Resources.LoadContent(_content);
 
             // create a default active user interface
             Active = new UserInterface();
@@ -400,16 +378,6 @@ namespace Monofoxe.Extended.UI
 
             // return tooltip object
             return tooltip;
-        }
-
-        /// <summary>
-        /// Initialize UI manager (mostly load resources and set some defaults).
-        /// </summary>
-        /// <param name="contentManager">Content manager.</param>
-        /// <param name="theme">Which UI theme to use. This affect the appearance of all textures and effects.</param>
-        static public void Initialize(ContentManager contentManager, BuiltinThemes theme)
-        {
-            Initialize(contentManager, theme.ToString());
         }
 
         /// <summary>
@@ -472,8 +440,7 @@ namespace Monofoxe.Extended.UI
                 BlendState, 
                 SamplerState, 
                 DepthStencilState.None, 
-                RasterizerState.CullCounterClockwise,
-                transformMatrix: GraphicsMgr.VertexBatch.View);
+                RasterizerState.CullCounterClockwise);
 
             // calculate cursor size
             float cursorSize = CursorScale * GlobalScale * ((float)_cursorWidth / (float)_cursorTexture.Width);

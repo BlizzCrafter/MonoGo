@@ -546,7 +546,7 @@ namespace Monofoxe.Extended.UI
             // start drawing
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
                 DepthStencilState.None, RasterizerState.CullCounterClockwise,
-                isDisabled ? Resources.DisabledEffect : null, transformMatrix: GraphicsMgr.VertexBatch.View);
+                isDisabled ? Resources.DisabledEffect : null);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);

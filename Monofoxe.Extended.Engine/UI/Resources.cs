@@ -272,8 +272,7 @@ namespace Monofoxe.Extended.UI
         /// Load all Monofoxe.Extended.UI resources.
         /// </summary>
         /// <param name="content">Content manager to use.</param>
-        /// <param name="theme">Which theme to load resources from.</param>
-        static public void LoadContent(ContentManager content, string theme = "default")
+        static public void LoadContent(ContentManager content)
         {
             InitialiseCharStringDict();
 
@@ -455,7 +454,6 @@ namespace Monofoxe.Extended.UI
         /// </summary>
         /// <param name="sheet">StyleSheet to load.</param>
         /// <param name="entityName">Entity unique identifier for file names.</param>
-        /// <param name="themeRoot">Path of the current theme root directory.</param>
         /// <param name="content">Content manager to allow us to load xmls.</param>
         private static void LoadDefaultStyles(StyleSheet sheet, string entityName, ContentManager content)
         {
