@@ -31,7 +31,7 @@ namespace Monofoxe.Extended.UI.Entities
         Simple = 2,
 
         /// <summary>Alternative panel skin.</summary>
-        Alternative = 3,
+        Golden = 3,
 
         /// <summary>Special panel skin used for lists and input background.</summary>
         ListBackground = 4,

@@ -54,7 +54,7 @@ namespace Monofoxe.Extended.UI
                     catch (Microsoft.Xna.Framework.Content.ContentLoadException)
                     {
                         // for backward compatibility when alternative was called 'golden'
-                        if (i.ToString() == PanelSkin.Alternative.ToString())
+                        if (i.ToString() == PanelSkin.Golden.ToString())
                         {
                             path = $"{_basepath}Golden{_suffix}";
                             _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GeonBitSprites", path)[0].Texture;
@@ -239,7 +239,7 @@ namespace Monofoxe.Extended.UI
         public static TextureData[] SliderData;
 
         /// <summary>All icon textures.</summary>
-        public static TexturesGetter<IconType> IconTextures = new TexturesGetter<IconType>("Icons/");
+        public static TexturesGetter<IconType> IconTextures = new TexturesGetter<IconType>("");
 
         /// <summary>Icons inventory background texture.</summary>
         public static Texture2D IconBackgroundTexture;
@@ -314,7 +314,7 @@ namespace Monofoxe.Extended.UI
                 catch (Microsoft.Xna.Framework.Content.ContentLoadException ex)
                 {
                     // for backwards compatability from when it was called 'Golden'.
-                    if (skin == PanelSkin.Alternative)
+                    if (skin == PanelSkin.Golden)
                     {
                         PanelData[(int)skin] = content.Load<TextureData>("Panel_Golden_md");
                     }
