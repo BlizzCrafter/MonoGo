@@ -16,6 +16,7 @@ using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
+using System.Diagnostics;
 
 namespace Monofoxe.Extended.UI
 {
@@ -597,8 +598,8 @@ namespace Monofoxe.Extended.UI
         /// <param name="spriteBatch">SpriteBatch to draw on.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            int newScreenWidth = spriteBatch.GraphicsDevice.Viewport.Width;
-            int newScreenHeight = spriteBatch.GraphicsDevice.Viewport.Height;
+            int newScreenWidth = GameMgr.WindowManager.CanvasWidth;
+            int newScreenHeight = GameMgr.WindowManager.CanvasHeight;
 
             // update screen size
             if (ScreenWidth != newScreenWidth || ScreenHeight != newScreenHeight)
@@ -665,7 +666,7 @@ namespace Monofoxe.Extended.UI
             if (RenderTarget != null && !RenderTarget.IsDisposed)
             {
                 // draw render target
-                RenderSurface.Draw();
+                RenderSurface.Draw(Vector2.Zero, Vector2.Zero, new Vector2(1f), Angle.Right, Color.White);
             }
 
             // draw cursor
