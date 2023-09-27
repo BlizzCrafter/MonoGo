@@ -31,7 +31,7 @@ namespace Monofoxe.Extended.Samples
 
         public List<SceneFactory> Factories = new List<SceneFactory>
 		{
-            //new SceneFactory(typeof(UIDemo)),
+            new SceneFactory(typeof(UIDemo)),
 			new SceneFactory(typeof(ShapeDemo)),
 			new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
 			new SceneFactory(typeof(SpriteDemo)),
@@ -40,8 +40,12 @@ namespace Monofoxe.Extended.Samples
 			new SceneFactory(typeof(SceneSystemDemo), SceneSystemDemo.Description),
 			new SceneFactory(typeof(UtilsDemo)),
 			new SceneFactory(typeof(TiledDemo), TiledDemo.Description),
-			new SceneFactory(typeof(VertexBatchDemo)),
-			new SceneFactory(typeof(CoroutinesDemo)),
+            
+            //Currently DEACTIVATED because of color bugs
+			//
+            //new SceneFactory(typeof(VertexBatchDemo)),
+			//new SceneFactory(typeof(CoroutinesDemo)),
+            //
 		};
 
 		public int CurrentSceneID {get; private set;} = 0;
@@ -75,17 +79,23 @@ namespace Monofoxe.Extended.Samples
         {
             UserInterface.Active.Clear();
 
-            //CurrentScene.GetEntityList<Entity>()
-            //    .Where(x => x is IGuiEntity)
-            //    .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
+            CurrentScene?.GetEntityList<Entity>()
+                .Where(x => x is IGuiEntity)
+                .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
 
             var sceneDescription = Description;
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
 
             int panelHeight = 180;
+            var isUIDemo = false;
+            if (CurrentFactory?.Type == typeof(UIDemo))
+            {
+                isUIDemo = true;
+                panelHeight = 65;
+            }
 
-            Panel menuPanel = new Panel(new Vector2(0, panelHeight), PanelSkin.Default, Anchor.BottomCenter);
+            Panel menuPanel = new Panel(new Vector2(0, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
             menuPanel.Padding = Vector2.Zero;
             UserInterface.Active.AddEntity(menuPanel);
 
@@ -93,7 +103,7 @@ namespace Monofoxe.Extended.Samples
             previousExampleButton.OnClick = (EntityUI btn) => { PreviousScene(); };
             menuPanel.AddChild(previousExampleButton);
 
-            if (CurrentScene != null)
+            if (CurrentScene != null && !isUIDemo)
             {
                 //Scene Name
                 {
@@ -145,7 +155,7 @@ namespace Monofoxe.Extended.Samples
 				GameMgr.WindowManager.ToggleFullScreen();
 			}
 
-            FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
+            if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
             UserInterface.Active.Update();
         }
 

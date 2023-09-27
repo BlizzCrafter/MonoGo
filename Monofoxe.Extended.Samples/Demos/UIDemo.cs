@@ -1,8 +1,5 @@
 ﻿using GeonBit.UI.DataTypes;
 using Microsoft.Xna.Framework;
-using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.Drawing;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
 using Monofoxe.Extended.UI;
@@ -12,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-    public class UIDemo : Entity, IGuiEntity
+    public class UIDemo : SurfaceEntity, IGuiEntity
     {
         List<Panel> panels = new List<Panel>();
         Button nextExampleButton;
@@ -33,7 +30,7 @@ namespace Monofoxe.Extended.Samples.Demos
             UserInterface.Active.AddEntity(topPanel);
 
             // add previous example button
-            previousExampleButton = new Button("<- Back", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
+            previousExampleButton = new Button("<- GUI.Back", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
             previousExampleButton.OnClick = (EntityUI btn) => { this.PreviousExample(); };
             topPanel.AddChild(previousExampleButton);
 
@@ -137,7 +134,7 @@ namespace Monofoxe.Extended.Samples.Demos
             topPanel.AddChild(infoBtn);
 
             // add next example button
-            nextExampleButton = new Button("Next ->", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(500, 0));
+            nextExampleButton = new Button("GUI.Next ->", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(500, 0));
             nextExampleButton.OnClick = (EntityUI btn) => { this.NextExample(); };
             nextExampleButton.Identifier = "next_btn";
             topPanel.AddChild(nextExampleButton);

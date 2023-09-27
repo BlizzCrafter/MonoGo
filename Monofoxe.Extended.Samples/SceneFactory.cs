@@ -6,11 +6,11 @@ namespace Monofoxe.Extended.Samples
 	public class SceneFactory
 	{
 		public Scene Scene;
-		private Type _type;
+		public Type Type { get; private set; }
 
 		public SceneFactory(Type type, string description = "")
 		{
-			_type = type;
+			Type = type;
 			Description = description;
 		}
 
@@ -18,9 +18,9 @@ namespace Monofoxe.Extended.Samples
 
 		public void CreateScene()
 		{
-			Scene = SceneMgr.CreateScene(_type.Name);
+			Scene = SceneMgr.CreateScene(Type.Name);
 			Scene.CreateLayer("default");
-			Activator.CreateInstance(_type, Scene["default"]);
+			Activator.CreateInstance(Type, Scene["default"]);
 		}
 
 		public void DestroyScene() =>
