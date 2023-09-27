@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
@@ -9,37 +8,32 @@ using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class SceneSystemDemo : Entity
-	{
-		public static readonly string Description = "WASD - move player."
-			+ Environment.NewLine
-			+ ToggleEnabledButton + " - toggle background layer Update events."
-			+ Environment.NewLine
-			+ ToggleVisibilityButton + " - toggle background layer Draw events.";
+	public class SceneSystemDemo : SurfaceEntity
+    {
+        public static readonly string Description =
+            "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
+            "BG-Layer > {{L_GREEN}}Update{{DEFAULT}}: {{YELLOW}}" + ToggleEnabledButton + "{{L_GREEN}} Draw{{DEFAULT}}: {{YELLOW}}" + ToggleVisibilityButton + "{{DEFAULT}}";
 
-		public const Buttons ToggleVisibilityButton = Buttons.N;
+        public const Buttons ToggleVisibilityButton = Buttons.N;
 		public const Buttons ToggleEnabledButton = Buttons.M;
 
 		Scene _testScene;
 
 		public SceneSystemDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             // Creating new scene.
             _testScene = SceneMgr.CreateScene("SceneDemoDummy");
 			var mainLayer = _testScene.CreateLayer("main");
 			var backgroundLayer = _testScene.CreateLayer("background");
 
-			// Update and Draw events will be executed for this layer first.
-			// This can be counter-intuitive, but this will put the layer on the back.
-			// Because it is being drawn first, everything else will be drawn on top of it.
-			backgroundLayer.Priority = 999;
+            // Update and Draw events will be executed for this layer first.
+            // This can be counter-intuitive, but this will put the layer on the back.
+            // Because it is being drawn first, everything else will be drawn on top of it.
+            backgroundLayer.Priority = 999;
 			
 			// Applying a shader to the thingy.
 			backgroundLayer.PostprocessorEffects.Add(ResourceHub.GetResource<Effect>("Effects", "Seizure"));
-
-			
+						
 			// See ECDemo to learn how those work.
 			new Player(mainLayer, new Vector2(400, 300));
 
@@ -57,11 +51,13 @@ namespace Monofoxe.Extended.Samples.Demos
 				var bot = new Bot(mainLayer);
 				var position = bot.GetComponent<PositionComponent>();
 				position.Position = new Vector2(GameController.Random.Next(100, 700), GameController.Random.Next(100, 500));
-			}
-			
-		}
+            }
 
-		public override void Update()
+            _testScene.OnPreDraw += Scene_OnPreDraw;
+            _testScene.OnPostDraw += Scene_OnPostDraw;
+        }
+
+        public override void Update()
 		{
 			base.Update();
 
@@ -90,7 +86,5 @@ namespace Monofoxe.Extended.Samples.Demos
 			base.Destroy();
 			SceneMgr.DestroyScene(_testScene);
 		}
-
-
 	}
 }

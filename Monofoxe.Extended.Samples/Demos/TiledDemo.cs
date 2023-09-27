@@ -2,6 +2,7 @@
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
+using Monofoxe.Extended.Samples.Misc;
 using Monofoxe.Extended.Samples.Misc.Tiled;
 using Monofoxe.Extended.Tiled;
 using Monofoxe.Extended.Tiled.MapStructure;
@@ -16,13 +17,11 @@ namespace Monofoxe.Extended.Samples.Demos
 	/// Though, note that not all the Tiled features are
 	/// currently supported (like infinite tilemaps or animated tiles.)
 	/// </summary>
-	public class TiledDemo : Entity
-	{
-		public static readonly string Description = BuildCustomMapBuilderButton + " - build map with custom map builder."
-			+ Environment.NewLine
-			+ BuildDefaultMapBuilderButton + " - build map with default map builder."
-			+ Environment.NewLine
-			+ DestroyMapButton + " - destroy currently loaded map.";
+	public class TiledDemo : SurfaceEntity
+    {
+        public static readonly string Description =
+            "Build > {{L_GREEN}}Custom{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + Environment.NewLine +
+            "Destroy > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}";
 
 		MapBuilder _builder;
 
@@ -34,8 +33,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public TiledDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             // TiledMap which is loaded from Content, is just a data structure
             // describing the map. We need to make an actual Scene object with entities on it.
             // You can write your own map builder, or use the default one.
@@ -45,9 +42,12 @@ namespace Monofoxe.Extended.Samples.Demos
 
 			_builder = new SolidMapBuilder(_testMap);
 			_builder.Build();
-		}
 
-		public override void Update()
+            _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
+            _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
+        }
+
+        public override void Update()
 		{
 			base.Update();
 
@@ -60,7 +60,10 @@ namespace Monofoxe.Extended.Samples.Demos
 				}
 				_builder = new SolidMapBuilder(_testMap);
 				_builder.Build();
-			}
+
+                _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
+                _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
+            }
 
 			if (Input.CheckButtonPress(BuildDefaultMapBuilderButton))
 			{
@@ -71,7 +74,10 @@ namespace Monofoxe.Extended.Samples.Demos
 				}
 				_builder = new MapBuilder(_testMap);
 				_builder.Build();
-			}
+
+                _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
+                _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
+            }
 
 
 			if (_builder != null && Input.CheckButtonPress(DestroyMapButton))
@@ -83,7 +89,7 @@ namespace Monofoxe.Extended.Samples.Demos
 		}
 
 
-		public override void Destroy()
+        public override void Destroy()
 		{
 			base.Destroy();
 

@@ -6,12 +6,13 @@ using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
+using Monofoxe.Extended.Samples.Misc;
 using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class SpriteDemo : Entity
-	{
+	public class SpriteDemo : SurfaceEntity
+    {
 		
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
@@ -30,8 +31,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public SpriteDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             _Monofoxe = ResourceHub.GetResource<Sprite>("DefaultSprites", "Test");
 			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
 

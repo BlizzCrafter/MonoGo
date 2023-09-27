@@ -4,11 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
+using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Resources;
 using Monofoxe.Extended.Samples.Resources;
 using Monofoxe.Extended.Tiled;
 using Monofoxe.Extended.Tiled.MapStructure;
 using Monofoxe.Extended.UI;
+using System;
 
 namespace Monofoxe.Extended.Samples
 {
@@ -16,11 +18,11 @@ namespace Monofoxe.Extended.Samples
 	/// This is the main type for your game.
 	/// </summary>
 	public class Game1 : Game
-	{
-		public Game1()
+    {
+        public Game1()
 		{
 			Content.RootDirectory = ResourceInfoMgr.ContentDir;
-			GameMgr.Init(this);
+            GameMgr.Init(this);
 
 			if (GameMgr.CurrentPlatform == Platform.Android)
 			{
@@ -45,8 +47,7 @@ namespace Monofoxe.Extended.Samples
 			GraphicsMgr.Device.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8;
 
 			GraphicsMgr.VertexBatch.DepthStencilState = depth;
-
-			new GameController();
+            new GameController();
 		}
 
 		/// <summary>
@@ -56,8 +57,8 @@ namespace Monofoxe.Extended.Samples
 		protected override void LoadContent()
 		{
 			GraphicsMgr.Init(GraphicsDevice);
-			
-			new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
+
+            new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
             new SpriteGroupResourceBox("GeonBitSprites", "Graphics/GeonBit.UI");
             new DirectoryResourceBox<Effect>("Effects", "Effects");
 			new DirectoryResourceBox<TiledMap>("Maps", "Maps");
@@ -70,12 +71,11 @@ namespace Monofoxe.Extended.Samples
             UserInterface.Active.UseRenderTarget = true;
         }
 
-		
-		/// <summary>
-		/// UnloadContent will be called once per game and is the place to unload
-		/// game-specific content.
-		/// </summary>
-		protected override void UnloadContent()
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// game-specific content.
+        /// </summary>
+        protected override void UnloadContent()
 		{
 			ResourceHub.UnloadAll();
 		}
@@ -97,10 +97,10 @@ namespace Monofoxe.Extended.Samples
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
-		{
-			GameMgr.Draw(gameTime);
+        {
+            GameMgr.Draw(gameTime);
 
 			base.Draw(gameTime);
-		}
-	}
+        }
+    }
 }

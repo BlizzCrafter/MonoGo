@@ -5,12 +5,13 @@ using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
+using Monofoxe.Extended.Samples.Misc;
 using System.Diagnostics;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class VertexBatchDemo : Entity
-	{
+	public class VertexBatchDemo : SurfaceEntity
+    {
 
 
 		VertexBatch _vbatch;
@@ -25,8 +26,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public VertexBatchDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             _Monofoxe = ResourceHub.GetResource<Sprite>("DefaultSprites", "AutismCat");
 			_vbatch = new VertexBatch(
 				GraphicsMgr.Device,

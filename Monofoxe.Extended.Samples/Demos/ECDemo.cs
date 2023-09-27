@@ -1,27 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
 using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class ECDemo : Entity
+	public class ECDemo : SurfaceEntity
 	{
-		public static readonly string Description = "WASD - move player."
-			+ Environment.NewLine
-			+ ToggleEnabledButton + " - toggle bots Update events."
-			+ Environment.NewLine
-			+ ToggleVisibilityButton + " - toggle bots Draw events.";
+		public static readonly string Description =
+            "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
+            "Bots > {{L_GREEN}}Update{{DEFAULT}}: {{YELLOW}}" + ToggleEnabledButton + "{{L_GREEN}} Draw{{DEFAULT}}: {{YELLOW}}" + ToggleVisibilityButton + "{{DEFAULT}}";
 
 		public const Buttons ToggleVisibilityButton = Buttons.N;
 		public const Buttons ToggleEnabledButton = Buttons.M;
 
 		public ECDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             for (var i = 0; i < 20; i += 1)
 			{
 				var bot = new Bot(layer);

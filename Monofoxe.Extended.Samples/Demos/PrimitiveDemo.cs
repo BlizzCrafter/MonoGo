@@ -1,17 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
+using Monofoxe.Extended.Samples.Misc;
 using System;
 
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class PrimitiveDemo : Entity
-	{
-		public static readonly string Description = ToggleWireframeButton + " - toggle wireframe.";
+	public class PrimitiveDemo : SurfaceEntity
+    {
+		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}";
 
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
@@ -36,8 +36,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public PrimitiveDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             // Primitives can only be drawn from instances. There are no static methods.
             _trianglefan = new TriangleFanPrimitive(5);
 

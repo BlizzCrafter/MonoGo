@@ -1,10 +1,10 @@
 ﻿using GeonBit.UI.DataTypes;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
+using Monofoxe.Extended.Samples.Misc;
 using Monofoxe.Extended.UI;
 using Monofoxe.Extended.UI.Entities;
 using Monofoxe.Extended.UI.Utils.Forms;
@@ -12,33 +12,20 @@ using System.Collections.Generic;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-    public class UIDemo : Entity
+    public class UIDemo : Entity, IGuiEntity
     {
-        SpriteBatch _spriteBatch;
-        Surface _renderTargetSurface;
-
-        // all the example panels (screens)
         List<Panel> panels = new List<Panel>();
-
-        // buttons to rotate examples
         Button nextExampleButton;
         Button previousExampleButton;
-
-        // paragraph that shows the currently active entity
         Paragraph targetEntityShow;
-
-        // current example shown
         int currExample = 0;
 
         public UIDemo(Layer layer) : base(layer)
+        {           
+        }
+
+        public void CreateUI()
         {
-            GameMgr.Game.IsMouseVisible = false;
-
-            _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
-            _renderTargetSurface = new Surface(GraphicsMgr.Device.Viewport.Width, GraphicsMgr.Device.Viewport.Height);
-
-            UserInterface.Active.Clear();
-
             // create top panel
             int topPanelHeight = 65;
             Panel topPanel = new Panel(new Vector2(0, topPanelHeight + 2), PanelSkin.None, Anchor.TopCenter);
@@ -64,16 +51,15 @@ namespace Monofoxe.Extended.Samples.Demos
             Button transBtn = new Button("Transform UI", anchor: Anchor.TopCenter, size: new Vector2(240, topPanelHeight), offset: new Vector2(240, 0));
             transBtn.OnClick = (EntityUI entity) =>
             {
-                if (UserInterface.Active.RenderTargetTransformMatrix == null)
+                UserInterface.Active.UseRenderTargetTransformMatrix = !UserInterface.Active.UseRenderTargetTransformMatrix;
+
+                if (UserInterface.Active.UseRenderTargetTransformMatrix)
                 {
                     UserInterface.Active.RenderTargetTransformMatrix = Matrix.CreateScale(0.6f) *
                         Matrix.CreateRotationZ(0.05f) *
                         Matrix.CreateTranslation(new Vector3(150, 150, 0));
                 }
-                else
-                {
-                    UserInterface.Active.RenderTargetTransformMatrix = null;
-                }
+                else UserInterface.Active.RenderTargetTransformMatrix = Matrix.Identity;
             };
             transBtn.ToggleMode = true;
             transBtn.ToolTipText = "Apply transform matrix on the entire UI.";
@@ -160,11 +146,11 @@ namespace Monofoxe.Extended.Samples.Demos
             float zoominFactor = 0.05f;
 
             // scale show
-            Paragraph scaleShow = new Paragraph("100%", Anchor.BottomLeft, offset: new Vector2(10, 70));
+            Paragraph scaleShow = new Paragraph("100%", Anchor.CenterLeft, offset: new Vector2(10, 70));
             UserInterface.Active.AddEntity(scaleShow);
 
             // init zoom-out button
-            Button zoomout = new Button(string.Empty, ButtonSkin.Default, Anchor.BottomLeft, new Vector2(70, 70));
+            Button zoomout = new Button(string.Empty, ButtonSkin.Default, Anchor.CenterLeft, new Vector2(70, 70));
             Icon zoomoutIcon = new Icon(IconType.ZoomOut, Anchor.Center, 0.75f);
             zoomout.AddChild(zoomoutIcon, true);
             zoomout.OnClick = (EntityUI btn) => {
@@ -175,7 +161,7 @@ namespace Monofoxe.Extended.Samples.Demos
             UserInterface.Active.AddEntity(zoomout);
 
             // init zoom-in button
-            Button zoomin = new Button(string.Empty, ButtonSkin.Default, Anchor.BottomLeft, new Vector2(70, 70), new Vector2(70, 0));
+            Button zoomin = new Button(string.Empty, ButtonSkin.Default, Anchor.CenterLeft, new Vector2(70, 70), new Vector2(70, 0));
             Icon zoominIcon = new Icon(IconType.ZoomIn, Anchor.Center, 0.75f);
             zoomin.AddChild(zoominIcon, true);
             zoomin.OnClick = (EntityUI btn) => {
@@ -1107,7 +1093,21 @@ If you liked GeonBit.UI feel free to star the repo on GitHub. :)"));
 
             // once done init, clear events log
             eventsLog.ClearItems();
+        }
 
+        public override void Update()
+        {
+            base.Update();
+
+            if (targetEntityShow != null)
+            {
+                targetEntityShow.Text = "Target Entity: " + (UserInterface.Active.TargetEntity != null ? UserInterface.Active.TargetEntity.GetType().Name : "null");
+            }
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
         }
 
         /// <summary>
@@ -1145,39 +1145,6 @@ If you liked GeonBit.UI feel free to star the repo on GitHub. :)"));
             // disable / enable next and previous buttons
             nextExampleButton.Enabled = currExample != panels.Count - 1;
             previousExampleButton.Enabled = currExample != 0;
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            UserInterface.Active.Update();
-
-            targetEntityShow.Text = "Target Entity: " + (UserInterface.Active.TargetEntity != null ? UserInterface.Active.TargetEntity.GetType().Name : "null");
-        }
-
-        public override void Draw()
-        {
-            base.Draw();
-
-            UserInterface.Active.Draw(_spriteBatch);
-
-            if (UserInterface.Active.UseRenderTarget)
-            {
-                Surface.SetTarget(_renderTargetSurface);
-
-                GraphicsMgr.Device.Clear(Color.CornflowerBlue * 0.5f);
-                UserInterface.Active.DrawMainRenderTarget(_spriteBatch);
-
-                Surface.ResetTarget();
-
-                _renderTargetSurface.Draw();
-            }
-        }
-
-        public override void Destroy()
-        {
-            _renderTargetSurface.Dispose();
         }
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Content;
 using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine;
+using Monofoxe.Extended.Engine.Drawing;
 
 namespace Monofoxe.Extended.UI
 {
@@ -80,6 +81,8 @@ namespace Monofoxe.Extended.UI
         /// The currently active user interface instance.
         /// </summary>
         public static UserInterface Active = null;
+
+        public Surface RenderSurface;
 
         /// <summary>
         /// The object that provide mouse input for GeonBit UI.
@@ -296,7 +299,12 @@ namespace Monofoxe.Extended.UI
         /// <summary>
         /// Optional transformation matrix to apply when drawing with render targets.
         /// </summary>
-        public Matrix? RenderTargetTransformMatrix = null;
+        public Matrix RenderTargetTransformMatrix;
+
+        /// <summary>
+        /// True if you want to use the RenderTargetTransformMatrix.
+        /// </summary>
+        public bool UseRenderTargetTransformMatrix = false;
 
         /// <summary>
         /// If using render targets, should the curser be rendered inside of it?
@@ -615,12 +623,14 @@ namespace Monofoxe.Extended.UI
                         spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
                         spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
                         RenderTargetUsage.PreserveContents);
+
+                    RenderSurface = new Surface(_renderTarget);
                 }
                 // if didn't create a new render target, clear it
                 else
                 {
-                    spriteBatch.GraphicsDevice.SetRenderTarget(_renderTarget);
-                    spriteBatch.GraphicsDevice.Clear(Color.Transparent);
+                    Surface.SetTarget(RenderSurface, RenderTargetTransformMatrix);
+                    GraphicsMgr.Device.Clear(Color.Transparent);
                 }
             }
 
@@ -636,7 +646,11 @@ namespace Monofoxe.Extended.UI
             // reset render target
             if (UseRenderTarget)
             {
-                spriteBatch.GraphicsDevice.SetRenderTarget(null);
+                if (!Surface.SurfaceStackEmpty)
+                {
+                    Surface.ResetTarget();
+                }
+                else spriteBatch.GraphicsDevice.SetRenderTarget(null);
             }
         }
 
@@ -651,9 +665,7 @@ namespace Monofoxe.Extended.UI
             if (RenderTarget != null && !RenderTarget.IsDisposed)
             {
                 // draw render target
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, transformMatrix: RenderTargetTransformMatrix);
-                spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White);
-                spriteBatch.End();
+                RenderSurface.Draw();
             }
 
             // draw cursor
@@ -675,9 +687,9 @@ namespace Monofoxe.Extended.UI
             addVector = addVector ?? Vector2.Zero;
 
             // return transformed cursor position
-            if (UseRenderTarget && RenderTargetTransformMatrix != null && !IncludeCursorInRenderTarget)
+            if (UseRenderTarget && UseRenderTargetTransformMatrix && !IncludeCursorInRenderTarget)
             {
-                var matrix = Matrix.Invert(RenderTargetTransformMatrix.Value);
+                var matrix = Matrix.Invert(RenderTargetTransformMatrix);
                 return MouseInputProvider.TransformMousePosition(matrix) + Vector2.Transform(addVector.Value, matrix);
             }
 
@@ -760,6 +772,5 @@ namespace Monofoxe.Extended.UI
             Deserialize(file);
             file.Close();
         }
-
     }
 }

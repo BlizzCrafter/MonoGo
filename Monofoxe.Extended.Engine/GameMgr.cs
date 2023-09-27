@@ -94,7 +94,7 @@ namespace Monofoxe.Extended.Engine
 		public static void Init(Game game)
 		{
 			Game = game;
-			Game.IsMouseVisible = true;
+			Game.IsMouseVisible = false;
 
 			var keyboardBind = StuffResolver.GetStuff<ITextInputBinder>();
 			keyboardBind?.Init();

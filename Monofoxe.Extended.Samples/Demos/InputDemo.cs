@@ -1,29 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
+using Monofoxe.Extended.Samples.Misc;
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class InputDemo : Entity
+	public class InputDemo : SurfaceEntity
 	{
-		public static readonly string Description = "Press "
-			+ KeyboardTestButton
-			+ "/" + GamepadTestButton
-			+ "/" + MouseTestButton
-			+ " to test input methods."
-			+ Environment.NewLine
-			+ "Type something to see keyboard input."
-			+ Environment.NewLine
-			+ "Connect the gamepad and move sticks to engage rumble.";
+		public static readonly string Description =
+            "Input > {{YELLOW}}" + KeyboardTestButton + " / " + GamepadTestButton + " / " + MouseTestButton + "{{DEFAULT}}" + Environment.NewLine +
+            "Keyboard > {{YELLOW}}Press any Key{{DEFAULT}}" + Environment.NewLine +
+            "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Sticks{{DEFAULT}}";
 
-
-		Color _mainColor = Color.White;
+        Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
 		double _animation = 0;
@@ -39,7 +33,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public InputDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
         }
 
 		public override void Update()
@@ -80,9 +73,9 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public override void Draw()
 		{
-			base.Draw();
+			base.Draw();           
 
-			var startingPosition = new Vector2(64, 64);
+            var startingPosition = new Vector2(64, 64);
 			var position = startingPosition;
 			var spacing = 100;
 
@@ -138,14 +131,11 @@ namespace Monofoxe.Extended.Samples.Demos
 			position -= Vector2.UnitX * 32;
 			RectangleShape.DrawBySize(position + Vector2.UnitY * Input.GamepadGetLeftTrigger(0) * 64, Vector2.One * 8, false);
 			LineShape.Draw(position, position + Vector2.UnitY * 64);
-
-		}
+        }
 
 		public override void Destroy()
 		{
 			Input.GamepadSetVibration(0, 0, 0);
 		}
-
-
 	}
 }

@@ -7,6 +7,7 @@ using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
+using Monofoxe.Extended.Samples.Misc;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -19,8 +20,8 @@ namespace Monofoxe.Extended.Samples.Demos
 
 	// Note that not all the utilities and their functions are shown here.
 
-	public class UtilsDemo : Entity
-	{
+	public class UtilsDemo : SurfaceEntity
+    {
 		
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
@@ -60,8 +61,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public UtilsDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             _grayscale = ResourceHub.GetResource<Effect>("Effects", "Grayscale");
 			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
 

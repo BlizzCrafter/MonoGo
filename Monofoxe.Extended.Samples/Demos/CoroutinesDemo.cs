@@ -11,8 +11,8 @@ using System.Collections;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class CoroutinesDemo : Entity
-	{
+	public class CoroutinesDemo : SurfaceEntity
+    {
 		private Vector2 _ballSpawnerPosition = new Vector2(200, 400);
 		private Vector2 _waitUntilSpawnerPosition = new Vector2(200, 200);
 		private Vector2 _waitWhileSpawnerPosition = new Vector2(400, 200);
@@ -25,8 +25,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public CoroutinesDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             StartCoroutine(BasicUpdateClockCoroutine());
 			StartCoroutine(FixedUpdateClockCoroutine());
 			StartCoroutine(BallSpawnerCoroutine());

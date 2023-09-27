@@ -209,9 +209,10 @@ namespace Monofoxe.Extended.Engine.Drawing
 		/// <summary>
 		/// Sets surface as a render target.
 		/// </summary>
-		public static void SetTarget(Surface surf, Matrix view) =>
+		public static void SetTarget(Surface surf, Matrix view)
+		{
 			SetTarget(surf, view, Matrix.CreateOrthographicOffCenter(0, surf.Width, surf.Height, 0, 0, 1));
-		
+		}
 
 		/// <summary>
 		/// Sets surface as a render target.

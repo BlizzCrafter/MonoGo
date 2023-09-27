@@ -4,12 +4,13 @@ using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
+using Monofoxe.Extended.Samples.Misc;
 using System.Diagnostics;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class ShapeDemo : Entity
-	{
+	public class ShapeDemo : SurfaceEntity
+    {
 		
 		Color _mainColor = Color.White;
 		HsvColor _secondaryColor = new HsvColor(new Color(34, 65, 250));
@@ -17,8 +18,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 		public ShapeDemo(Layer layer) : base(layer)
 		{
-            GameMgr.Game.IsMouseVisible = true;
-
             // You can instantiate shapes instead of using static methods.
             _triangle = new TriangleShape();
 			_triangle.Point1 = new Vector2(32, 32);

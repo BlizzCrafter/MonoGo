@@ -59,6 +59,7 @@ namespace Monofoxe.Extended.Samples
 
 			var switcher = new SceneSwitcher(_guiLayer, cameraController);
 			switcher.CurrentFactory.CreateScene();
+			switcher.CreateUI();
 
 			// Enabling applying postprocessing effects to separate layers.
 			// Note that this will create an additional surface.
