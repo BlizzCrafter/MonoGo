@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Samples.Misc;
-using System.Diagnostics;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -35,7 +33,7 @@ namespace Monofoxe.Extended.Samples.Demos
 			{ 
 				_secondaryColor.H -= 360;
 			}
-			Debug.WriteLine(_secondaryColor.H);
+			//Debug.WriteLine(_secondaryColor.H);
 
 			// This code shows how to draw shapes using static methods and instanced objects.
 			
