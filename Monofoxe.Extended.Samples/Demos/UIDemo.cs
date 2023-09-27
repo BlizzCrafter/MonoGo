@@ -30,7 +30,7 @@ namespace Monofoxe.Extended.Samples.Demos
             UserInterface.Active.AddEntity(topPanel);
 
             // add previous example button
-            previousExampleButton = new Button("<- GUI.Back", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
+            previousExampleButton = new Button("<- GUI.Back", ButtonSkin.Alternative, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
             previousExampleButton.OnClick = (EntityUI btn) => { this.PreviousExample(); };
             topPanel.AddChild(previousExampleButton);
 
@@ -134,7 +134,7 @@ namespace Monofoxe.Extended.Samples.Demos
             topPanel.AddChild(infoBtn);
 
             // add next example button
-            nextExampleButton = new Button("GUI.Next ->", ButtonSkin.Default, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(500, 0));
+            nextExampleButton = new Button("GUI.Next ->", ButtonSkin.Alternative, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(500, 0));
             nextExampleButton.OnClick = (EntityUI btn) => { this.NextExample(); };
             nextExampleButton.Identifier = "next_btn";
             topPanel.AddChild(nextExampleButton);

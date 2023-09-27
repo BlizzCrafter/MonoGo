@@ -299,7 +299,7 @@ namespace Monofoxe.Extended.UI
         /// <summary>
         /// Optional transformation matrix to apply when drawing with render targets.
         /// </summary>
-        public Matrix RenderTargetTransformMatrix;
+        public Matrix RenderTargetTransformMatrix = Matrix.Identity;
 
         /// <summary>
         /// True if you want to use the RenderTargetTransformMatrix.
@@ -629,7 +629,7 @@ namespace Monofoxe.Extended.UI
                 // if didn't create a new render target, clear it
                 else
                 {
-                    Surface.SetTarget(RenderSurface, RenderTargetTransformMatrix);
+                    Surface.SetTarget(RenderSurface);
                     GraphicsMgr.Device.Clear(Color.Transparent);
                 }
             }
@@ -687,7 +687,7 @@ namespace Monofoxe.Extended.UI
             addVector = addVector ?? Vector2.Zero;
 
             // return transformed cursor position
-            if (UseRenderTarget && UseRenderTargetTransformMatrix && !IncludeCursorInRenderTarget)
+            if (UseRenderTarget && UseRenderTargetTransformMatrix)
             {
                 var matrix = Matrix.Invert(RenderTargetTransformMatrix);
                 return MouseInputProvider.TransformMousePosition(matrix) + Vector2.Transform(addVector.Value, matrix);

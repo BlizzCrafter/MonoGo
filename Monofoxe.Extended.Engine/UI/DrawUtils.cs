@@ -546,7 +546,7 @@ namespace Monofoxe.Extended.UI
             // start drawing
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
                 DepthStencilState.None, RasterizerState.CullCounterClockwise,
-                isDisabled ? Resources.DisabledEffect : null);
+                isDisabled ? Resources.DisabledEffect : null, UserInterface.Active.RenderTargetTransformMatrix);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);
@@ -560,7 +560,7 @@ namespace Monofoxe.Extended.UI
         {
             // start drawing silhouette
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
-                DepthStencilState.None, RasterizerState.CullCounterClockwise, Resources.SilhouetteEffect);
+                DepthStencilState.None, RasterizerState.CullCounterClockwise, Resources.SilhouetteEffect, UserInterface.Active.RenderTargetTransformMatrix);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);
