@@ -81,7 +81,7 @@ namespace Monofoxe.Extended.Samples.Demos
 			var startingPosition = new Vector2(100, 100);
 			var position = startingPosition;
 
-			GraphicsMgr.CurrentColor = Color.Pink;
+			GraphicsMgr.CurrentColor = Color.White;
 
 
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.

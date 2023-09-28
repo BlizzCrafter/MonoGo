@@ -40,12 +40,8 @@ namespace Monofoxe.Extended.Samples
 			new SceneFactory(typeof(SceneSystemDemo), SceneSystemDemo.Description),
 			new SceneFactory(typeof(UtilsDemo)),
 			new SceneFactory(typeof(TiledDemo), TiledDemo.Description),
-            
-            //Currently DEACTIVATED because of color bugs
-			//
-            //new SceneFactory(typeof(VertexBatchDemo)),
-			//new SceneFactory(typeof(CoroutinesDemo)),
-            //
+            new SceneFactory(typeof(VertexBatchDemo)),
+			new SceneFactory(typeof(CoroutinesDemo))
 		};
 
 		public int CurrentSceneID {get; private set;} = 0;
@@ -171,58 +167,6 @@ namespace Monofoxe.Extended.Samples
             {
                 UserInterface.Active.DrawMainRenderTarget(_spriteBatch);
             }
-
-            //var canvasSize = GameMgr.WindowManager.CanvasSize;
-
-            //Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
-            //Text.HorAlign = TextAlign.Left;
-            //Text.VerAlign = TextAlign.Top;
-
-            //// Description.
-            //if (CurrentFactory.Description != "")
-            //{
-            //	var padding = 8;
-            //	var textSize = Text.CurrentFont.MeasureString(CurrentFactory.Description);
-            //	var origin = Vector2.UnitX * (canvasSize - (textSize + Vector2.One * padding * 2));
-            //	GraphicsMgr.CurrentColor = _barColor;
-            //	RectangleShape.Draw(origin, origin + textSize + Vector2.One * padding * 2, false);
-            //	GraphicsMgr.CurrentColor = _textColor;
-            //	Text.Draw(CurrentFactory.Description, Vector2.One * padding + origin);
-            //}
-            //// Description.
-
-
-            //// Bottom bar.
-            //GraphicsMgr.VertexBatch.PushViewMatrix();
-            //GraphicsMgr.VertexBatch.View =
-            //	Matrix.CreateTranslation(new Vector3(0, canvasSize.Y - _barHeight, 0)) * GraphicsMgr.VertexBatch.View;
-
-            //GraphicsMgr.CurrentColor = _barColor;
-            //RectangleShape.Draw(Vector2.Zero, canvasSize, false);
-
-            //GraphicsMgr.CurrentColor = _textColor;
-            //Text.Draw(
-            //    "fps: " + GameMgr.Fps
-            //    + " | Current scene: " + CurrentScene.Name
-            //    + Environment.NewLine
-            //    + _prevSceneButton + "/" + _nextSceneButton + " - change scene, "
-            //    + _restartButton + " - restart current scene, "
-            //    + _toggleUIButton + " - toggle UI, "
-            //    + _toggleFullscreenButton + " - toggle fullscreen"
-
-            //    + Environment.NewLine
-            //    + CameraController.UpButton + "/"
-            //    + CameraController.DownButton + "/"
-            //    + CameraController.LeftButton + "/"
-            //    + CameraController.RightButton + " - move camera, "
-            //    + CameraController.ZoomInButton + "/" + CameraController.ZoomOutButton + " - zoom, "
-            //    + CameraController.RotateLeftButton + "/" + CameraController.RotateRightButton + " - rotate"
-            //    ,
-            //    _indent
-            //);
-
-            //GraphicsMgr.VertexBatch.PopViewMatrix();
-            //// Bottom bar.
         }
 
 
