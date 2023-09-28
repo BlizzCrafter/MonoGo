@@ -1,65 +1,66 @@
 ﻿{
 	"root": "../../Monofoxe.Extended.Samples.Content/Content/",
-	"references":
-	[
-		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll"
+	"references": [
+		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll",
+		"../../Libs/GUI.DataTypes.dll"
 	],
-	"content":
-	{
-		"contentList":
-		{
+	"content": {
+		"contentList": {
 			"path": "$Content.npl",
 			"recursive": "False",
 			"action": "build",
 			"importer": "ResourceInfoImporter",
 			"processor": "PassThroughProcessor",
-			"watch":
-			[
+			"watch": [
 				"../../Monofoxe.Extended.Samples.Content/Content/*"
 			]
 		},
-		"music":
-		{
+		"music": {
 			"path": "Audio/Music/*.ogg",
 			"recursive": "True",
 			"action": "copy"
 		},
-		"sounds":
-		{
+		"sounds": {
 			"path": "Audio/Sounds/*.wav",
 			"recursive": "True",
 			"action": "copy"
 		},
-		"defaultSpriteGroup":
-		{
+		"styles": {
+			"path": "Graphics/GUI/Styles/*.xml",
+			"recursive": "false",
+			"action": "build",
+			"importer": "XmlImporter",
+			"processor": "PassThroughProcessor",
+			"watch": [
+				"GUI/Styles/*.xml"
+			]
+		},
+		"defaultSpriteGroup": {
 			"path": "Graphics/*.spritegroup",
 			"recursive": "True",
 			"action": "build",
 			"importer": "SpriteGroupImporter",
 			"processor": "SpriteGroupProcessor",
-			"watch":
-			[
+			"watch": [
 				"Default/*.png",
-				"Default/*.json"
+				"Default/*.json",
+				"GUI/Textures/*.png"
 			]
 		},
-		"effects":
-		{
+		"effects": {
 			"path": "Effects/*.fx",
 			"recursive": "True",
 			"action": "build",
 			"importer": "EffectImporter",
 			"processor": "EffectProcessor"
 		},
-		"tiledMaps":
-		{
+		"tiledMaps": {
 			"path": "Maps/*.tmx",
 			"recursive": "True",
 			"action": "build",
 			"importer": "TiledMapImporter",
 			"processor": "PassThroughProcessor",
-			"watch":
-			[
+			"watch": [
 				"Tilesets/*.tsx",
 				"Tilesets/*.png",
 				"Templates/*.tsx",
@@ -67,22 +68,19 @@
 				"Templates/*.png"
 			]
 		},
-		"tiledMapTextures":
-		{
+		"tiledMapTextures": {
 			"path": "Maps/*.png",
 			"recursive": "True",
 			"action": "build",
 			"importer": "TextureImporter",
 			"processor": "TextureProcessor"
 		},
-		"fonts":
-		{
+		"fonts": {
 			"path": "Fonts/*.spritefont",
 			"recursive": "True",
 			"action": "build",
 			"importer": "FontDescriptionImporter",
 			"processor": "FontDescriptionProcessor"
 		}
-
 	}
 }
