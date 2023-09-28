@@ -60,11 +60,6 @@
 /processor:TextureProcessor
 /build:../../Monofoxe.Extended.Samples.Content/Content/Maps/Templates/TemplatesTileset/player.png;Maps/Templates/TemplatesTileset/player.png
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI.spritegroup;Graphics/GeonBit.UI.spritegroup
-
 #begin ../../Monofoxe.Extended.Samples.Content/Content/Effects/disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -100,522 +95,527 @@
 /processor:EffectProcessor
 /build:../../Monofoxe.Extended.Samples.Content/Content/Effects/Silhouette.fx;Effects/Silhouette.fx
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-Default.xml;Graphics/GeonBit.UI/Styles/Button-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-Default.xml;Graphics/GUI/Styles/Button-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-MouseDown.xml;Graphics/GeonBit.UI/Styles/Button-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-MouseDown.xml;Graphics/GUI/Styles/Button-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button-MouseHover.xml;Graphics/GeonBit.UI/Styles/Button-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button-MouseHover.xml;Graphics/GUI/Styles/Button-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-Default.xml;Graphics/GeonBit.UI/Styles/ButtonParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml;Graphics/GUI/Styles/ButtonParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/ButtonParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Alternative_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Alternative_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Alternative_md.xml;Graphics/GeonBit.UI/Styles/Button_Alternative_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Alternative_md.xml;Graphics/GUI/Styles/Button_Alternative_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Default_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Default_md.xml;Graphics/GeonBit.UI/Styles/Button_Default_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Default_md.xml;Graphics/GUI/Styles/Button_Default_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Fancy_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Button_Fancy_md.xml;Graphics/GeonBit.UI/Styles/Button_Fancy_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Button_Fancy_md.xml;Graphics/GUI/Styles/Button_Fancy_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-Default.xml;Graphics/GeonBit.UI/Styles/CheckBox-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-Default.xml;Graphics/GUI/Styles/CheckBox-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-MouseDown.xml;Graphics/GeonBit.UI/Styles/CheckBox-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml;Graphics/GUI/Styles/CheckBox-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBox-MouseHover.xml;Graphics/GeonBit.UI/Styles/CheckBox-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml;Graphics/GUI/Styles/CheckBox-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-Default.xml;Graphics/GeonBit.UI/Styles/CheckBoxParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml;Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/CheckBoxParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-Default.xml;Graphics/GeonBit.UI/Styles/ColoredRectangle-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml;Graphics/GUI/Styles/ColoredRectangle-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseDown.xml;Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml;Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseHover.xml;Graphics/GeonBit.UI/Styles/ColoredRectangle-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml;Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Default_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Default_md.xml;Graphics/GeonBit.UI/Styles/Cursor_Default_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Default_md.xml;Graphics/GUI/Styles/Cursor_Default_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Ibeam_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Ibeam_md.xml;Graphics/GeonBit.UI/Styles/Cursor_Ibeam_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml;Graphics/GUI/Styles/Cursor_Ibeam_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Pointer_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Cursor_Pointer_md.xml;Graphics/GeonBit.UI/Styles/Cursor_Pointer_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml;Graphics/GUI/Styles/Cursor_Pointer_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-Default.xml;Graphics/GeonBit.UI/Styles/DropDown-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-Default.xml;Graphics/GUI/Styles/DropDown-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-MouseDown.xml;Graphics/GeonBit.UI/Styles/DropDown-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-MouseDown.xml;Graphics/GUI/Styles/DropDown-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDown-MouseHover.xml;Graphics/GeonBit.UI/Styles/DropDown-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDown-MouseHover.xml;Graphics/GUI/Styles/DropDown-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-Default.xml;Graphics/GeonBit.UI/Styles/DropDownParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml;Graphics/GUI/Styles/DropDownParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/DropDownParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-Default.xml;Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/DropDownSelectedParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-Default.xml;Graphics/GeonBit.UI/Styles/Entity-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-Default.xml;Graphics/GUI/Styles/Entity-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-MouseDown.xml;Graphics/GeonBit.UI/Styles/Entity-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-MouseDown.xml;Graphics/GUI/Styles/Entity-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Entity-MouseHover.xml;Graphics/GeonBit.UI/Styles/Entity-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Entity-MouseHover.xml;Graphics/GUI/Styles/Entity-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/example.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/example.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/example.xml;Graphics/GeonBit.UI/Styles/example.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/example.xml;Graphics/GUI/Styles/example.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-Default.xml;Graphics/GeonBit.UI/Styles/Header-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-Default.xml;Graphics/GUI/Styles/Header-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-MouseDown.xml;Graphics/GeonBit.UI/Styles/Header-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-MouseDown.xml;Graphics/GUI/Styles/Header-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Header-MouseHover.xml;Graphics/GeonBit.UI/Styles/Header-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Header-MouseHover.xml;Graphics/GUI/Styles/Header-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-Default.xml;Graphics/GeonBit.UI/Styles/HorizontalLine-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-Default.xml;Graphics/GUI/Styles/HorizontalLine-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-MouseDown.xml;Graphics/GeonBit.UI/Styles/HorizontalLine-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml;Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/HorizontalLine-MouseHover.xml;Graphics/GeonBit.UI/Styles/HorizontalLine-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml;Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-Default.xml;Graphics/GeonBit.UI/Styles/Icon-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-Default.xml;Graphics/GUI/Styles/Icon-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-MouseDown.xml;Graphics/GeonBit.UI/Styles/Icon-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-MouseDown.xml;Graphics/GUI/Styles/Icon-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Icon-MouseHover.xml;Graphics/GeonBit.UI/Styles/Icon-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Icon-MouseHover.xml;Graphics/GUI/Styles/Icon-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-Default.xml;Graphics/GeonBit.UI/Styles/Image-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-Default.xml;Graphics/GUI/Styles/Image-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-MouseDown.xml;Graphics/GeonBit.UI/Styles/Image-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-MouseDown.xml;Graphics/GUI/Styles/Image-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Image-MouseHover.xml;Graphics/GeonBit.UI/Styles/Image-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Image-MouseHover.xml;Graphics/GUI/Styles/Image-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-Default.xml;Graphics/GeonBit.UI/Styles/Label-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-Default.xml;Graphics/GUI/Styles/Label-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-MouseDown.xml;Graphics/GeonBit.UI/Styles/Label-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-MouseDown.xml;Graphics/GUI/Styles/Label-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Label-MouseHover.xml;Graphics/GeonBit.UI/Styles/Label-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Label-MouseHover.xml;Graphics/GUI/Styles/Label-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-Default.xml;Graphics/GeonBit.UI/Styles/Panel-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-Default.xml;Graphics/GUI/Styles/Panel-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-MouseDown.xml;Graphics/GeonBit.UI/Styles/Panel-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-MouseDown.xml;Graphics/GUI/Styles/Panel-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel-MouseHover.xml;Graphics/GeonBit.UI/Styles/Panel-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel-MouseHover.xml;Graphics/GUI/Styles/Panel-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-Default.xml;Graphics/GeonBit.UI/Styles/PanelTabsButton-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml;Graphics/GUI/Styles/PanelTabsButton-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseDown.xml;Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseHover.xml;Graphics/GeonBit.UI/Styles/PanelTabsButton-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-Default.xml;Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Default_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Default_md.xml;Graphics/GeonBit.UI/Styles/Panel_Default_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Default_md.xml;Graphics/GUI/Styles/Panel_Default_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Fancy_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Fancy_md.xml;Graphics/GeonBit.UI/Styles/Panel_Fancy_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Fancy_md.xml;Graphics/GUI/Styles/Panel_Fancy_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Golden_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Golden_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Golden_md.xml;Graphics/GeonBit.UI/Styles/Panel_Golden_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Golden_md.xml;Graphics/GUI/Styles/Panel_Golden_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Listbackground_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Listbackground_md.xml;Graphics/GeonBit.UI/Styles/Panel_Listbackground_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml;Graphics/GUI/Styles/Panel_Listbackground_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Simple_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Simple_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Panel_Simple_md.xml;Graphics/GeonBit.UI/Styles/Panel_Simple_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Panel_Simple_md.xml;Graphics/GUI/Styles/Panel_Simple_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-Default.xml;Graphics/GeonBit.UI/Styles/Paragraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-Default.xml;Graphics/GUI/Styles/Paragraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/Paragraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml;Graphics/GUI/Styles/Paragraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Paragraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/Paragraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml;Graphics/GUI/Styles/Paragraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-Default.xml;Graphics/GeonBit.UI/Styles/ProgressBar-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-Default.xml;Graphics/GUI/Styles/ProgressBar-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-MouseDown.xml;Graphics/GeonBit.UI/Styles/ProgressBar-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml;Graphics/GUI/Styles/ProgressBar-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBar-MouseHover.xml;Graphics/GeonBit.UI/Styles/ProgressBar-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml;Graphics/GUI/Styles/ProgressBar-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-Default.xml;Graphics/GeonBit.UI/Styles/ProgressBarFill-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml;Graphics/GUI/Styles/ProgressBarFill-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseDown.xml;Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml;Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseHover.xml;Graphics/GeonBit.UI/Styles/ProgressBarFill-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml;Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Progressbar_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Progressbar_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Progressbar_md.xml;Graphics/GeonBit.UI/Styles/Progressbar_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Progressbar_md.xml;Graphics/GUI/Styles/Progressbar_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-Default.xml;Graphics/GeonBit.UI/Styles/RadioButton-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-Default.xml;Graphics/GUI/Styles/RadioButton-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-MouseDown.xml;Graphics/GeonBit.UI/Styles/RadioButton-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml;Graphics/GUI/Styles/RadioButton-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButton-MouseHover.xml;Graphics/GeonBit.UI/Styles/RadioButton-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml;Graphics/GUI/Styles/RadioButton-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-Default.xml;Graphics/GeonBit.UI/Styles/RadioButtonParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml;Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/RadioButtonParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Scrollbar_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Scrollbar_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Scrollbar_md.xml;Graphics/GeonBit.UI/Styles/Scrollbar_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Scrollbar_md.xml;Graphics/GUI/Styles/Scrollbar_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-Default.xml;Graphics/GeonBit.UI/Styles/SelectList-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-Default.xml;Graphics/GUI/Styles/SelectList-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-MouseDown.xml;Graphics/GeonBit.UI/Styles/SelectList-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-MouseDown.xml;Graphics/GUI/Styles/SelectList-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectList-MouseHover.xml;Graphics/GeonBit.UI/Styles/SelectList-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectList-MouseHover.xml;Graphics/GUI/Styles/SelectList-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-Default.xml;Graphics/GeonBit.UI/Styles/SelectListParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml;Graphics/GUI/Styles/SelectListParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml;Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/SelectListParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml;Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-Default.xml;Graphics/GeonBit.UI/Styles/Slider-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-Default.xml;Graphics/GUI/Styles/Slider-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-MouseDown.xml;Graphics/GeonBit.UI/Styles/Slider-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-MouseDown.xml;Graphics/GUI/Styles/Slider-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider-MouseHover.xml;Graphics/GeonBit.UI/Styles/Slider-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider-MouseHover.xml;Graphics/GUI/Styles/Slider-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider_Default_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider_Default_md.xml;Graphics/GeonBit.UI/Styles/Slider_Default_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider_Default_md.xml;Graphics/GUI/Styles/Slider_Default_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider_Fancy_md.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/Slider_Fancy_md.xml;Graphics/GeonBit.UI/Styles/Slider_Fancy_md.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/Slider_Fancy_md.xml;Graphics/GUI/Styles/Slider_Fancy_md.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-Default.xml;Graphics/GeonBit.UI/Styles/TextInput-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-Default.xml;Graphics/GUI/Styles/TextInput-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-MouseDown.xml;Graphics/GeonBit.UI/Styles/TextInput-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-MouseDown.xml;Graphics/GUI/Styles/TextInput-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInput-MouseHover.xml;Graphics/GeonBit.UI/Styles/TextInput-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInput-MouseHover.xml;Graphics/GUI/Styles/TextInput-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-Default.xml;Graphics/GeonBit.UI/Styles/TextInputParagraph-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml;Graphics/GUI/Styles/TextInputParagraph-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseDown.xml;Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml;Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseHover.xml;Graphics/GeonBit.UI/Styles/TextInputParagraph-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml;Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-Default.xml;Graphics/GeonBit.UI/Styles/TextInputPlaceholder-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml;Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseDown.xml;Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseHover.xml;Graphics/GeonBit.UI/Styles/TextInputPlaceholder-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ThemeData.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ThemeData.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/ThemeData.xml;Graphics/GeonBit.UI/Styles/ThemeData.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/ThemeData.xml;Graphics/GUI/Styles/ThemeData.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-Default.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-Default.xml;Graphics/GeonBit.UI/Styles/VerticalScrollbar-Default.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml;Graphics/GUI/Styles/VerticalScrollbar-Default.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseDown.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseDown.xml;Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseDown.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseHover.xml
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseHover.xml;Graphics/GeonBit.UI/Styles/VerticalScrollbar-MouseHover.xml
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
+
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup

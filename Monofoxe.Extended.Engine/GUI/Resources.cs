@@ -49,7 +49,7 @@ namespace Monofoxe.Extended.GUI
                     var path = $"{_basepath}{EnumToString(i)}{_suffix}";
                     try
                     {
-                        _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GeonBitSprites", path)[0].Texture;
+                        _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                     }
                     catch (Microsoft.Xna.Framework.Content.ContentLoadException)
                     {
@@ -57,7 +57,7 @@ namespace Monofoxe.Extended.GUI
                         if (i.ToString() == PanelSkin.Golden.ToString())
                         {
                             path = $"{_basepath}Golden{_suffix}";
-                            _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GeonBitSprites", path)[0].Texture;
+                            _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                         }
                         else
                         {
@@ -92,7 +92,7 @@ namespace Monofoxe.Extended.GUI
                 if (_loadedTextures[indx] == null)
                 {
                     var path = _basepath + EnumToString(i) + _suffix + StateEnumToString(s);
-                    _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GeonBitSprites", path)[0].Texture;
+                    _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                 }
                 return _loadedTextures[indx];
             }
@@ -277,15 +277,15 @@ namespace Monofoxe.Extended.GUI
             InitialiseCharStringDict();
 
             // set Texture2D static fields
-            HorizontalLineTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Horizontal_Line")[0].Texture;
-            WhiteTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "White_Texture")[0].Texture;
-            IconBackgroundTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Background")[0].Texture;
-            VerticalScrollbarTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Scrollbar")[0].Texture;
-            VerticalScrollbarMarkTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Scrollbar_Mark")[0].Texture;
-            ArrowDown = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Arrow_Down")[0].Texture;
-            ArrowUp = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Arrow_Up")[0].Texture;
-            ProgressBarTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Progressbar")[0].Texture;
-            ProgressBarFillTexture = ResourceHub.GetResource<Sprite>("GeonBitSprites", "Progressbar_Fill")[0].Texture;
+            HorizontalLineTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Horizontal_Line")[0].Texture;
+            WhiteTexture = ResourceHub.GetResource<Sprite>("GUISprites", "White_Texture")[0].Texture;
+            IconBackgroundTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Background")[0].Texture;
+            VerticalScrollbarTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Scrollbar")[0].Texture;
+            VerticalScrollbarMarkTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Scrollbar_Mark")[0].Texture;
+            ArrowDown = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Down")[0].Texture;
+            ArrowUp = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Up")[0].Texture;
+            ProgressBarTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Progressbar")[0].Texture;
+            ProgressBarFillTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Progressbar_Fill")[0].Texture;
 
             // load cursors metadata
             CursorsData = new CursorTextureData[Enum.GetValues(typeof(CursorType)).Length];

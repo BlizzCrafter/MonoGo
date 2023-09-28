@@ -27,13 +27,13 @@
 			"action": "copy"
 		},
 		"styles": {
-			"path": "Graphics/GeonBit.UI/Styles/*.xml",
+			"path": "Graphics/GUI/Styles/*.xml",
 			"recursive": "false",
 			"action": "build",
 			"importer": "XmlImporter",
 			"processor": "PassThroughProcessor",
 			"watch": [
-				"GeonBit.UI/Styles/*.xml"
+				"GUI/Styles/*.xml"
 			]
 		},
 		"defaultSpriteGroup": {
@@ -45,7 +45,7 @@
 			"watch": [
 				"Default/*.png",
 				"Default/*.json",
-				"GeonBit.UI/Textures/*.png"
+				"GUI/Textures/*.png"
 			]
 		},
 		"effects": {

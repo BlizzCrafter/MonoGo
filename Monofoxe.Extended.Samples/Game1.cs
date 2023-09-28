@@ -56,7 +56,7 @@ namespace Monofoxe.Extended.Samples
 			GraphicsMgr.Init(GraphicsDevice);
 
             new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
-            new SpriteGroupResourceBox("GeonBitSprites", "Graphics/GeonBit.UI");
+            new SpriteGroupResourceBox("GUISprites", "Graphics/GUI");
             new DirectoryResourceBox<Effect>("Effects", "Effects");
 			new DirectoryResourceBox<TiledMap>("Maps", "Maps");
 

@@ -1,9 +1,8 @@
 ﻿{
 	"atlasSize": 512,
 	"texturePadding": 1,
-	"rootDir": "/GeonBit.UI",
-	"singleTexturesWildcards": 
-	[
+	"rootDir": "/GUI",
+	"singleTexturesWildcards": [
 		"/Textures/*"
 	]
 }

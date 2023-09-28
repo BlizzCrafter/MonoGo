@@ -325,7 +325,7 @@ namespace Monofoxe.Extended.GUI
         {
             // store the content manager
             _content = new ContentManager(GameMgr.Game.Services);
-            _content.RootDirectory = ResourceInfoMgr.ContentDir + "/Graphics/GeonBit.UI/Styles";
+            _content.RootDirectory = ResourceInfoMgr.ContentDir + "/Graphics/GUI/Styles";
 
             // init resources (textures etc)
             Resources.LoadContent(_content);

@@ -59,11 +59,6 @@
 /processor:FontDescriptionProcessor
 /build:../../Monofoxe.Extended.Samples.Content/Content/Fonts/Arial.spritefont;Fonts/Arial.spritefont
 
-#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GeonBit.UI.spritegroup;Graphics/GeonBit.UI.spritegroup
-
 #begin ../../Monofoxe.Extended.Samples.Content/Content/Effects/Disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -88,3 +83,8 @@
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /build:../../Monofoxe.Extended.Samples.Content/Content/Fonts/Regular.spritefont;Fonts/Regular.spritefont
+
+#begin ../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../Monofoxe.Extended.Samples.Content/Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup
