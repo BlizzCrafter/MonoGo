@@ -1,16 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
-using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Resources;
 using Monofoxe.Extended.Samples.Resources;
 using Monofoxe.Extended.Tiled;
 using Monofoxe.Extended.Tiled.MapStructure;
-using Monofoxe.Extended.UI;
-using System;
+using Monofoxe.Extended.GUI;
 
 namespace Monofoxe.Extended.Samples
 {

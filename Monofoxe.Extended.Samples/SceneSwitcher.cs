@@ -1,15 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.Cameras;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
-using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Demos;
 using Monofoxe.Extended.Samples.Misc;
-using Monofoxe.Extended.UI;
-using Monofoxe.Extended.UI.Entities;
+using Monofoxe.Extended.GUI;
+using Monofoxe.Extended.GUI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

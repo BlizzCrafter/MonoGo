@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="UI\" />
+	  <Folder Include="GUI\" />
 	</ItemGroup>
 
 	<ItemGroup>

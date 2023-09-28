@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
-using Monofoxe.Extended.UI;
-using Monofoxe.Extended.UI.Entities;
-using Monofoxe.Extended.UI.Utils.Forms;
+using Monofoxe.Extended.GUI;
+using Monofoxe.Extended.GUI.Entities;
+using Monofoxe.Extended.GUI.Utils.Forms;
 using System.Collections.Generic;
 
 namespace Monofoxe.Extended.Samples.Demos
@@ -398,21 +398,21 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     {
                         panel.AddChild(new LineSpace(2));
                         var entity = panel.AddChild(new Paragraph(@"Float Up-Down animator"));
-                        entity.AttachAnimator(new UI.Animators.FloatUpDownAnimator());
+                        entity.AttachAnimator(new GUI.Animators.FloatUpDownAnimator());
                     }
 
                     // wave animation
                     {
                         panel.AddChild(new LineSpace(2));
                         var entity = panel.AddChild(new RichParagraph(@"Wave text animator"));
-                        entity.AttachAnimator(new UI.Animators.TextWaveAnimator());
+                        entity.AttachAnimator(new GUI.Animators.TextWaveAnimator());
                     }
 
                     // fade out
                     {
                         panel.AddChild(new LineSpace(2));
                         var entity = panel.AddChild(new Button(@"Fade Out (click to see)"));
-                        var animator = entity.AttachAnimator(new UI.Animators.FadeOutAnimator() { Enabled = false });
+                        var animator = entity.AttachAnimator(new GUI.Animators.FadeOutAnimator() { Enabled = false });
                         entity.OnClick += (EntityUI ent) =>
                         {
                             animator.Enabled = true;
@@ -423,7 +423,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     {
                         panel.AddChild(new LineSpace(2));
                         var entity = panel.AddChild(new RichParagraph(@""));
-                        var animator = entity.AttachAnimator(new UI.Animators.TypeWriterAnimator()
+                        var animator = entity.AttachAnimator(new GUI.Animators.TypeWriterAnimator()
                         {
                             TextToType = @"This is a type writer animation, text will appear as if someone is typing it in real time. {{YELLOW}}Click on the paragraph to reset animation."
                         });
@@ -796,9 +796,9 @@ Maybe something interesting in tab3?"));
                     // button to create simple message box
                     {
                         var btn = new Button("Show Simple Message", ButtonSkin.Default);
-                        btn.OnClick += (UI.Entities.EntityUI entity) =>
+                        btn.OnClick += (GUI.Entities.EntityUI entity) =>
                         {
-                            UI.Utils.MessageBox.ShowMsgBox("Hello World!", "This is a simple message box. It doesn't say much, really.");
+                            GUI.Utils.MessageBox.ShowMsgBox("Hello World!", "This is a simple message box. It doesn't say much, really.");
                         };
                         panel.AddChild(btn);
                     }
@@ -807,11 +807,11 @@ Maybe something interesting in tab3?"));
                     panel.AddChild(new Paragraph("Or you can create custom message and buttons:"));
                     {
                         var btn = new Button("Show Custom Message", ButtonSkin.Default);
-                        btn.OnClick += (UI.Entities.EntityUI entity) =>
+                        btn.OnClick += (GUI.Entities.EntityUI entity) =>
                         {
-                            UI.Utils.MessageBox.ShowMsgBox("Custom Message!", "In this message there are two custom buttons.\n\nYou can set different actions per button. For example, click on 'Surprise' and see what happens!", new UI.Utils.MessageBox.MsgBoxOption[] {
-                                new UI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
-                                new UI.Utils.MessageBox.MsgBoxOption("Surprise", () => { UI.Utils.MessageBox.ShowMsgBox("Files Removed Successfully", "Win32 was successfully removed from this computer. Please restart to complete OS destruction."); return true; })
+                            GUI.Utils.MessageBox.ShowMsgBox("Custom Message!", "In this message there are two custom buttons.\n\nYou can set different actions per button. For example, click on 'Surprise' and see what happens!", new GUI.Utils.MessageBox.MsgBoxOption[] {
+                                new GUI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
+                                new GUI.Utils.MessageBox.MsgBoxOption("Surprise", () => { GUI.Utils.MessageBox.ShowMsgBox("Files Removed Successfully", "Win32 was successfully removed from this computer. Please restart to complete OS destruction."); return true; })
                                 });
                         };
                         panel.AddChild(btn);
@@ -825,8 +825,8 @@ Maybe something interesting in tab3?"));
                         {
                             var textInput = new TextInput(false);
                             textInput.PlaceholderText = "Enter your name";
-                            UI.Utils.MessageBox.ShowMsgBox("Message With Extra!", "In this message box we attached an extra entity from outside (a simple text input).\n\nPretty neat, huh?", new UI.Utils.MessageBox.MsgBoxOption[] {
-                                new UI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
+                            GUI.Utils.MessageBox.ShowMsgBox("Message With Extra!", "In this message box we attached an extra entity from outside (a simple text input).\n\nPretty neat, huh?", new GUI.Utils.MessageBox.MsgBoxOption[] {
+                                new GUI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
                                 }, new EntityUI[] { textInput });
                         };
                         panel.AddChild(btn);
@@ -858,9 +858,9 @@ Maybe something interesting in tab3?"));
                             new FormFieldData(FormFieldType.Section, "newsection", "New Form Section") { },
                             new FormFieldData(FormFieldType.DropDown, "dropdown1", "DropDown field") { Choices = new string[] {"option1", "option2", "option3" } },
                         }, null);
-                        UI.Utils.MessageBox.ShowMsgBox("Example Form", "", "Close Form And Show Values", extraEntities: new EntityUI[] { newForm.FormPanel }, onDone: () =>
+                        GUI.Utils.MessageBox.ShowMsgBox("Example Form", "", "Close Form And Show Values", extraEntities: new EntityUI[] { newForm.FormPanel }, onDone: () =>
                         {
-                            UI.Utils.MessageBox.ShowMsgBox("Form Values", string.Format(
+                            GUI.Utils.MessageBox.ShowMsgBox("Form Values", string.Format(
                                 "Text Field: '{5}{0}{6}'\r\n" +
                                 "Slider: '{5}{1}{6}'\r\n" +
                                 "Radio Buttons: '{5}{2}{6}'\r\n" +
@@ -889,34 +889,34 @@ Maybe something interesting in tab3?"));
                     panel.AddChild(new HorizontalLine());
                     panel.AddChild(new Paragraph("GeonBit.UI comes with a utility to generate a classic top menu:"));
 
-                    var layout = new UI.Utils.MenuBar.MenuLayout();
+                    var layout = new GUI.Utils.MenuBar.MenuLayout();
                     layout.AddMenu("File", 180);
-                    layout.AddItemToMenu("File", "New", () => { UI.Utils.MessageBox.ShowMsgBox("Something New!", "Lets make something new."); });
-                    layout.AddItemToMenu("File", "Save", () => { UI.Utils.MessageBox.ShowMsgBox("Something Saved!", "Your thing was saved successfully."); });
-                    layout.AddItemToMenu("File", "Load", () => { UI.Utils.MessageBox.ShowMsgBox("Something Loaded!", "Your thing was loaded successfully."); });
-                    layout.AddItemToMenu("File", "Exit", () => { UI.Utils.MessageBox.ShowMsgBox("Not Yet", "We still have much to see."); });
+                    layout.AddItemToMenu("File", "New", () => { GUI.Utils.MessageBox.ShowMsgBox("Something New!", "Lets make something new."); });
+                    layout.AddItemToMenu("File", "Save", () => { GUI.Utils.MessageBox.ShowMsgBox("Something Saved!", "Your thing was saved successfully."); });
+                    layout.AddItemToMenu("File", "Load", () => { GUI.Utils.MessageBox.ShowMsgBox("Something Loaded!", "Your thing was loaded successfully."); });
+                    layout.AddItemToMenu("File", "Exit", () => { GUI.Utils.MessageBox.ShowMsgBox("Not Yet", "We still have much to see."); });
                     layout.AddMenu("Display", 220);
                     layout.AddItemToMenu("Display", "Zoom In", () => { UserInterface.Active.GlobalScale += 0.1f; });
                     layout.AddItemToMenu("Display", "Zoom Out", () => { UserInterface.Active.GlobalScale -= 0.1f; });
                     layout.AddItemToMenu("Display", "Reset Zoom", () => { UserInterface.Active.GlobalScale = 1f; });
                     layout.AddMenu("Interactive", 270);
-                    layout.AddItemToMenu("Interactive", "Click Me", (UI.Utils.MenuBar.MenuCallbackContext context) =>
+                    layout.AddItemToMenu("Interactive", "Click Me", (GUI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
                         context.Entity.ChangeItem(context.ItemIndex, "I was clicked!");
                     });
-                    layout.AddItemToMenu("Interactive", "Toggle Me", (UI.Utils.MenuBar.MenuCallbackContext context) =>
+                    layout.AddItemToMenu("Interactive", "Toggle Me", (GUI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
                         context.Entity.Tag = context.Entity.Tag == "on" ? "off" : "on";
                         context.Entity.ChangeItem(context.ItemIndex, (context.Entity.Tag == "on" ? "{{L_GREEN}}" : "") + "Toggle Me");
                     });
 
-                    var menuBar = UI.Utils.MenuBar.Create(layout);
+                    var menuBar = GUI.Utils.MenuBar.Create(layout);
                     menuBar.Anchor = Anchor.Auto;
                     panel.AddChild(menuBar);
                     panel.AddChild(new LineSpace(24));
 
                     panel.AddChild(new Paragraph("Usually this menu cover the top of the screen and not be inside another panel. Like with most entities in GeonBit.UI, you can also set its skin:"));
-                    menuBar = UI.Utils.MenuBar.Create(layout, PanelSkin.Fancy);
+                    menuBar = GUI.Utils.MenuBar.Create(layout, PanelSkin.Fancy);
                     menuBar.Anchor = Anchor.Auto;
                     panel.AddChild(menuBar);
                 }

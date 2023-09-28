@@ -1,5 +1,4 @@
 ﻿using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
