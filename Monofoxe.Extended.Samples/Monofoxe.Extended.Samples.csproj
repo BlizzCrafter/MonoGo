@@ -13,8 +13,8 @@
 	  <ProjectReference Include="..\..\Monofoxe.Extended\Monofoxe.Extended.Tiled\Monofoxe.Extended.Tiled.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Reference Include="GeonBit.UI.DataTypes">
-	    <HintPath>..\Monofoxe.Extended.Samples.WindowsDX\Content\GeonBit.UI.DataTypes.dll</HintPath>
+	  <Reference Include="GUI.DataTypes">
+	    <HintPath>..\Libs\GUI.DataTypes.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 

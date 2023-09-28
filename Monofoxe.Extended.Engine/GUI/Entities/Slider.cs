@@ -8,7 +8,7 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using GeonBit.UI.DataTypes;
+using GUI.DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

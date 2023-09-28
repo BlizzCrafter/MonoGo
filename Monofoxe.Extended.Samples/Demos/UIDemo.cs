@@ -1,4 +1,4 @@
-﻿using GeonBit.UI.DataTypes;
+﻿using GUI.DataTypes;
 using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;

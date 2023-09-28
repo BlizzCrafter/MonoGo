@@ -13,7 +13,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 using System.Collections.Generic;
-using GeonBit.UI.DataTypes;
+using GUI.DataTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

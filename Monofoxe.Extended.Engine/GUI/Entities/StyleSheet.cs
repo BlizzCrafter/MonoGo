@@ -8,9 +8,8 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using System.Text;
 using System.Collections.Generic;
-using GeonBit.UI.DataTypes;
+using GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {

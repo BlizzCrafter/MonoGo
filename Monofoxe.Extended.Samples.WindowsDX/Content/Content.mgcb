@@ -11,7 +11,7 @@
 #-------------------------------- References --------------------------------#
 
 /reference:../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll
-/reference:GeonBit.UI.DataTypes.dll
+/reference:../../Libs/GUI.DataTypes.dll
 
 #---------------------------------- Content ---------------------------------#
 

@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
-using GeonBit.UI.DataTypes;
+using GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {

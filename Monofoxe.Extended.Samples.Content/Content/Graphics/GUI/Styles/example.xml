@@ -14,7 +14,7 @@ Note:
 - The above means that all properties should be set for all entities default state.
 -->
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-  <Asset Type="GeonBit.UI.DataTypes.DefaultStyles">
+  <Asset Type="GUI.DataTypes.DefaultStyles">
     <!-- entity scale (or font size for paragraphs) -->
     <Scale>1</Scale>
     <!-- fill color or tint for images -->

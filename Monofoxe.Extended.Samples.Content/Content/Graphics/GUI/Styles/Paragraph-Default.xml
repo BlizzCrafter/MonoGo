@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-  <Asset Type="GeonBit.UI.DataTypes.DefaultStyles">
+  <Asset Type="GUI.DataTypes.DefaultStyles">
     <Scale>1</Scale>
     <FillColor>FFFFFFFF</FillColor>
     <OutlineColor>FF000000</OutlineColor>

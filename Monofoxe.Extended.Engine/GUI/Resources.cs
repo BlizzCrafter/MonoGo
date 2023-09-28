@@ -16,10 +16,9 @@ using Monofoxe.Extended.GUI.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using GeonBit.UI.DataTypes;
+using GUI.DataTypes;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
-using System.IO;
 
 namespace Monofoxe.Extended.GUI
 {

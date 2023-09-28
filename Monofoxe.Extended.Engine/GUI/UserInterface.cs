@@ -16,7 +16,7 @@ using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
-using System.Diagnostics;
+using GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI
 {
@@ -419,7 +419,7 @@ namespace Monofoxe.Extended.GUI
         /// <param name="type">What type of cursor to show.</param>
         public void SetCursor(CursorType type)
         {
-            GeonBit.UI.DataTypes.CursorTextureData data = Resources.CursorsData[(int)type];
+            CursorTextureData data = Resources.CursorsData[(int)type];
             SetCursor(Resources.Cursors[type], data.DrawWidth, new Point(data.OffsetX, data.OffsetY));
         }
 

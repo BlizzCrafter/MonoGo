@@ -1,9 +1,8 @@
 ﻿{
 	"root": "../../Monofoxe.Extended.Samples.Content/Content/",
-	"references":
-	[
+	"references": [
 		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll",
-		"GeonBit.UI.DataTypes.dll"
+		"../../Libs/GUI.DataTypes.dll"
 	],
 	"content": {
 		"contentList": {
