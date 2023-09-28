@@ -6,6 +6,8 @@ using Monofoxe.Extended.GUI;
 using Monofoxe.Extended.GUI.Entities;
 using Monofoxe.Extended.GUI.Utils.Forms;
 using System.Collections.Generic;
+using System.Reflection;
+using Monofoxe.Extended.Engine.EC;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -181,16 +183,19 @@ namespace Monofoxe.Extended.Samples.Demos
                     UserInterface.Active.AddEntity(panel);
 
                     // add title and text
-                    var welcomeText = new RichParagraph(@"Welcome to {{RED}}GeonBit{{MAGENTA}}.UI{{DEFAULT}}!
+                    var welcomeText = new RichParagraph(@"Welcome to {{MFE_ORANGE}}Monofoxe{{MFE_YELLOW}}.Extended{{DEFAULT}}!
 
-GeonBit.UI is the UI system of the GeonBit project.
-It provide a simple yet extensive UI for MonoGame based projects.
+Monofoxe.Extended is an advanced version of the Monofoxe Engine (built with {{MG}}MonoGame{{DEFAULT}}).
 
-To start the demo, please click the {{ITALIC}}'Next'{{DEFAULT}} button on the top bar.
+It currently extends Monofoxe with a powerful graphical user interface ({{MFE_YELLOW}}GUI{{DEFAULT}}). 
+
+Stay tuned for more things to come! (probably {{MFE_ORANGE}}:){{DEFAULT}})
+
+Please click the {{BUTTON_ALT_BOLD}}GUI.Next{{DEFAULT}} button at the top to see more GUI-DEMOS or the {{BUTTON_BOLD}}Next{{DEFAULT}} button below to see more SAMPLE-DEMOS of the engine.
 
 ");
                     panel.AddChild(welcomeText);
-                    panel.AddChild(new Paragraph("V" + UserInterface.VERSION, Anchor.BottomRight)).FillColor = Color.Yellow;
+                    panel.AddChild(new Paragraph("v" + Assembly.GetAssembly(typeof(Entity)).GetName().Version, Anchor.BottomRight)).FillColor = Color.Yellow;
                 }
 
                 // example: features list
@@ -203,7 +208,7 @@ To start the demo, please click the {{ITALIC}}'Next'{{DEFAULT}} button on the to
                     // add title and text
                     panel.AddChild(new Header("Widgets Types"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph(@"GeonBit.UI implements the following widgets:
+                    panel.AddChild(new Paragraph(@"The following widgets are available:
 
 - Paragraphs
 - Headers
@@ -233,7 +238,7 @@ To start the demo, please click the {{ITALIC}}'Next'{{DEFAULT}} button on the to
                     // add title and text
                     panel.AddChild(new Header("Basic Concepts"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph(@"Panels are the basic containers of GeonBit.UI. They are like window forms.
+                    panel.AddChild(new Paragraph(@"Panels are basic containers. They are like window forms.
 
 To position elements inside panels or other widgets, you set an anchor and offset. An anchor is a pre-defined position in parent element, like top-left corner, center, etc. and offset is just the distance from that point.
 
@@ -274,7 +279,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // add title and text
                     panel.AddChild(new Header("Buttons"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with 3 button skins:"));
+                    panel.AddChild(new Paragraph("3 button skins included:"));
 
                     // add default buttons
                     panel.AddChild(new Button("Default", ButtonSkin.Default));
@@ -329,7 +334,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // title and text
                     panel.AddChild(new Header("Panels"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with 4 alternative panel skins:"));
+                    panel.AddChild(new Paragraph("4 alternative panel skins included:"));
                     int panelHeight = 80;
                     {
                         Panel intPanel = new Panel(new Vector2(0, panelHeight), PanelSkin.Fancy, Anchor.Auto);
@@ -627,7 +632,7 @@ Here's a button, to test clicking while scrolled:"));
                     // icons title
                     panel.AddChild(new Header("Icons"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with some built-in icons:"));
+                    panel.AddChild(new Paragraph("Built-in icons:"));
 
                     foreach (IconType icon in System.Enum.GetValues(typeof(IconType)))
                     {
@@ -791,7 +796,7 @@ Maybe something interesting in tab3?"));
                     // add title and text
                     panel.AddChild(new Header("Message Box"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with a utility to create simple message boxes:"));
+                    panel.AddChild(new Paragraph("It's easy to create simple message boxes:"));
 
                     // button to create simple message box
                     {
@@ -887,7 +892,7 @@ Maybe something interesting in tab3?"));
                     // add title and text
                     panel.AddChild(new Header("Top Menu"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with a utility to generate a classic top menu:"));
+                    panel.AddChild(new Paragraph("Also a classical top menu is possible:"));
 
                     var layout = new GUI.Utils.MenuBar.MenuLayout();
                     layout.AddMenu("File", 180);
@@ -915,7 +920,7 @@ Maybe something interesting in tab3?"));
                     panel.AddChild(menuBar);
                     panel.AddChild(new LineSpace(24));
 
-                    panel.AddChild(new Paragraph("Usually this menu cover the top of the screen and not be inside another panel. Like with most entities in GeonBit.UI, you can also set its skin:"));
+                    panel.AddChild(new Paragraph("Usually this menu cover the top of the screen and not be inside another panel. Like with most entities, you can also set its skin:"));
                     menuBar = GUI.Utils.MenuBar.Create(layout, PanelSkin.Fancy);
                     menuBar.Anchor = Anchor.Auto;
                     panel.AddChild(menuBar);
@@ -998,7 +1003,7 @@ Maybe something interesting in tab3?"));
                     // add title and text
                     panel.AddChild(new Header("Cursor"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph("GeonBit.UI comes with 3 basic cursor types:"));
+                    panel.AddChild(new Paragraph("3 basic cursor types included:"));
 
                     // default cursor show
                     {
@@ -1074,13 +1079,15 @@ Maybe something interesting in tab3?"));
                     UserInterface.Active.AddEntity(panel);
 
                     // add title and text
-                    panel.AddChild(new Header("End Of Demo"));
+                    panel.AddChild(new Header("End Of GUI-DEMO"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph(@"That's it for now! There is still much to learn about GeonBit.UI, but these examples were enough to get you going.
+                    panel.AddChild(new RichParagraph(@"That was only the GUI-DEMO! There is still much to learn about {{MFE_ORANGE}}Monofoxe{{MFE_YELLOW}}.Extended{{DEFAULT}}.
 
-To learn more, please visit the git repo, read the docs, or go through some source code.
+Try more samples by clicking the {{BUTTON_BOLD}}Next{{DEFAULT}} button below.
 
-If you liked GeonBit.UI feel free to star the repo on GitHub. :)"));
+If you like this engine then don't forget to star the repo on GitHub.
+
+{{MFE_ORANGE}}:){{DEFAULT}}"));
                 }
 
                 // init panels and buttons

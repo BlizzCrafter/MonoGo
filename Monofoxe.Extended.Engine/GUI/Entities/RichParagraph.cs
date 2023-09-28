@@ -151,6 +151,13 @@ namespace Monofoxe.Extended.GUI.Entities
             AddInstruction("BOLD", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold));
             AddInstruction("REGULAR", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Regular));
             AddInstruction("ITALIC", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Italic));
+
+            // custom
+            AddInstruction("BUTTON_ALT_BOLD", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, fillColor: new Color(72, 201, 176)));
+            AddInstruction("BUTTON_BOLD", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, fillColor: new Color(100, 187, 233)));
+            AddInstruction("MG", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(231, 60, 0)));
+            AddInstruction("MFE_ORANGE", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(247, 178, 59)));
+            AddInstruction("MFE_YELLOW", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(255, 234, 60)));
         }
     }
 
