@@ -64,8 +64,6 @@ namespace Monofoxe.Extended.Samples
 		{
 			_cameraController = cameraController;
             _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
-
-            CreateUI();
         }
 
         public void CreateUI()
