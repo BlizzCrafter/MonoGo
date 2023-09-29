@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
 using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class ECDemo : SurfaceEntity
+	public class ECDemo : Entity
 	{
 		public static readonly string Description =
             "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +

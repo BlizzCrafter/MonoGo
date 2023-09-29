@@ -7,7 +7,6 @@ using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
-using Monofoxe.Extended.Samples.Misc;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -20,7 +19,7 @@ namespace Monofoxe.Extended.Samples.Demos
 
 	// Note that not all the utilities and their functions are shown here.
 
-	public class UtilsDemo : SurfaceEntity
+	public class UtilsDemo : Entity
     {
 		
 		Color _mainColor = Color.White;

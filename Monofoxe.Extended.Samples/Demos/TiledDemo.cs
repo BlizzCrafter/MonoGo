@@ -1,7 +1,7 @@
 ﻿using Monofoxe.Extended.Engine;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
-using Monofoxe.Extended.Samples.Misc;
 using Monofoxe.Extended.Samples.Misc.Tiled;
 using Monofoxe.Extended.Tiled;
 using Monofoxe.Extended.Tiled.MapStructure;
@@ -16,7 +16,7 @@ namespace Monofoxe.Extended.Samples.Demos
 	/// Though, note that not all the Tiled features are
 	/// currently supported (like infinite tilemaps or animated tiles.)
 	/// </summary>
-	public class TiledDemo : SurfaceEntity
+	public class TiledDemo : Entity
     {
         public static readonly string Description =
             "Build > {{L_GREEN}}Custom{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + Environment.NewLine +
@@ -41,9 +41,6 @@ namespace Monofoxe.Extended.Samples.Demos
 
 			_builder = new SolidMapBuilder(_testMap);
 			_builder.Build();
-
-            _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
-            _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
         }
 
         public override void Update()
@@ -59,9 +56,6 @@ namespace Monofoxe.Extended.Samples.Demos
 				}
 				_builder = new SolidMapBuilder(_testMap);
 				_builder.Build();
-
-                _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
-                _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
             }
 
 			if (Input.CheckButtonPress(BuildDefaultMapBuilderButton))
@@ -73,9 +67,6 @@ namespace Monofoxe.Extended.Samples.Demos
 				}
 				_builder = new MapBuilder(_testMap);
 				_builder.Build();
-
-                _builder.MapScene.OnPreDraw += Scene_OnPreDraw;
-                _builder.MapScene.OnPostDraw += Scene_OnPostDraw;
             }
 
 

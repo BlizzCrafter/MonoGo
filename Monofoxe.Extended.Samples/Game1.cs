@@ -8,6 +8,7 @@ using Monofoxe.Extended.Samples.Resources;
 using Monofoxe.Extended.Tiled;
 using Monofoxe.Extended.Tiled.MapStructure;
 using Monofoxe.Extended.GUI;
+using System;
 
 namespace Monofoxe.Extended.Samples
 {
@@ -45,6 +46,8 @@ namespace Monofoxe.Extended.Samples
 
 			GraphicsMgr.VertexBatch.DepthStencilState = depth;
             new GameController();
+
+			RenderMgr.Initialize();
 		}
 
 		/// <summary>
@@ -65,7 +68,6 @@ namespace Monofoxe.Extended.Samples
             UserInterface.Initialize();
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
-            UserInterface.Active.UseRenderTarget = true;
         }
 
         /// <summary>
@@ -98,6 +100,13 @@ namespace Monofoxe.Extended.Samples
             GameMgr.Draw(gameTime);
 
 			base.Draw(gameTime);
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+			RenderMgr.Destroy();
+
+            base.OnExiting(sender, args);
         }
     }
 }

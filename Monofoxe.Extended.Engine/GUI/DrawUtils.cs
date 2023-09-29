@@ -30,12 +30,6 @@ namespace Monofoxe.Extended.GUI
         /// <param name="target"></param>
         public void PushRenderTarget(RenderTarget2D target)
         {
-            // sanity check - make sure we are in use-render-target mode
-            if (!UserInterface.Active.UseRenderTarget)
-            {
-                throw new Exceptions.InvalidStateException("UserInterface.Active.UseRenderTarget must be 'true' to use render-target features!");
-            }
-
             // add render target
             _renderTargets.Push(target);
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine.Utils.Coroutines;
@@ -10,7 +11,7 @@ using System.Collections;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class CoroutinesDemo : SurfaceEntity
+	public class CoroutinesDemo : Entity
     {
 		private Vector2 _ballSpawnerPosition = new Vector2(200, 400);
 		private Vector2 _waitUntilSpawnerPosition = new Vector2(200, 200);

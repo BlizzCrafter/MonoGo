@@ -5,12 +5,11 @@ using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
-using Monofoxe.Extended.Samples.Misc;
 using System.Diagnostics;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class VertexBatchDemo : SurfaceEntity
+	public class VertexBatchDemo : Entity
     {
 
 

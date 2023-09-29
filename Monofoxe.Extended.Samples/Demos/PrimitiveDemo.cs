@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
-using Monofoxe.Extended.Samples.Misc;
 using System;
 
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class PrimitiveDemo : SurfaceEntity
+	public class PrimitiveDemo : Entity
     {
 		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}";
 

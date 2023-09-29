@@ -30,22 +30,21 @@ namespace Monofoxe.Extended.Samples
         public List<SceneFactory> Factories = new List<SceneFactory>
 		{
             new SceneFactory(typeof(UIDemo)),
-			new SceneFactory(typeof(ShapeDemo)),
-			new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
-			new SceneFactory(typeof(SpriteDemo)),
-			new SceneFactory(typeof(InputDemo), InputDemo.Description),
-			new SceneFactory(typeof(ECDemo), ECDemo.Description),
-			new SceneFactory(typeof(SceneSystemDemo), SceneSystemDemo.Description),
-			new SceneFactory(typeof(UtilsDemo)),
-			new SceneFactory(typeof(TiledDemo), TiledDemo.Description),
+            new SceneFactory(typeof(ShapeDemo)),
+            new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
+            new SceneFactory(typeof(SpriteDemo)),
+            new SceneFactory(typeof(InputDemo), InputDemo.Description),
+            new SceneFactory(typeof(ECDemo), ECDemo.Description),
+            new SceneFactory(typeof(SceneSystemDemo), SceneSystemDemo.Description),
+            new SceneFactory(typeof(UtilsDemo)),
+            new SceneFactory(typeof(TiledDemo), TiledDemo.Description),
             new SceneFactory(typeof(VertexBatchDemo)),
-			new SceneFactory(typeof(CoroutinesDemo))
-		};
+            new SceneFactory(typeof(CoroutinesDemo))
+        };
 
 		public int CurrentSceneID {get; private set;} = 0;
 		public Scene CurrentScene => CurrentFactory.Scene;
 		public SceneFactory CurrentFactory => Factories[CurrentSceneID];
-        public Surface CurrentSurface => CurrentScene?.GetEntityList<SurfaceEntity>().First().RenderTargetSurface;
 
         int _barHeight = 64;
 		Color _barColor = Color.Black * 0.5f;
@@ -150,6 +149,7 @@ namespace Monofoxe.Extended.Samples
 			}
 
             if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
+            
             UserInterface.Active.Update();
         }
 
@@ -158,13 +158,6 @@ namespace Monofoxe.Extended.Samples
             base.Draw();
 
             UserInterface.Active.Draw(_spriteBatch);
-
-            CurrentSurface.Draw();
-
-            if (UserInterface.Active.UseRenderTarget)
-            {
-                UserInterface.Active.DrawMainRenderTarget(_spriteBatch);
-            }
         }
 
 

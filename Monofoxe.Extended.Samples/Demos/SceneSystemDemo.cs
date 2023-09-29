@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
@@ -8,7 +9,7 @@ using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class SceneSystemDemo : SurfaceEntity
+	public class SceneSystemDemo : Entity
     {
         public static readonly string Description =
             "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
@@ -52,9 +53,6 @@ namespace Monofoxe.Extended.Samples.Demos
 				var position = bot.GetComponent<PositionComponent>();
 				position.Position = new Vector2(GameController.Random.Next(100, 700), GameController.Random.Next(100, 500));
             }
-
-            _testScene.OnPreDraw += Scene_OnPreDraw;
-            _testScene.OnPostDraw += Scene_OnPostDraw;
         }
 
         public override void Update()

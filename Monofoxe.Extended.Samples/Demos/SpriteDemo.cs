@@ -2,15 +2,15 @@
 using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
-using Monofoxe.Extended.Samples.Misc;
 using System;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-	public class SpriteDemo : SurfaceEntity
+	public class SpriteDemo : Entity
     {
 		
 		Color _mainColor = Color.White;

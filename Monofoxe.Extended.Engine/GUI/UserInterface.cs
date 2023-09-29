@@ -139,16 +139,6 @@ namespace Monofoxe.Extended.GUI
             };
 
         /// <summary>
-        /// If true, will draw the UI on a render target before drawing on screen.
-        /// This mode is required for some of the features.
-        /// </summary>
-        public bool UseRenderTarget
-        {
-            get { return _useRenderTarget; }
-            set { _useRenderTarget = value; DisposeRenderTarget(); }
-        }
-
-        /// <summary>
         /// Get the main render target all the UI draws on.
         /// </summary>
         public RenderTarget2D RenderTarget
@@ -609,71 +599,43 @@ namespace Monofoxe.Extended.GUI
                 Root.MarkAsDirty();
             }
 
-            // if using rendering targets
-            if (UseRenderTarget)
+            // check if screen size changed or don't have a render target yet. if so, create the render target.
+            if (_renderTarget == null ||
+                _renderTarget.Width != ScreenWidth ||
+                _renderTarget.Height != ScreenHeight)
             {
-                // check if screen size changed or don't have a render target yet. if so, create the render target.
-                if (_renderTarget == null ||
-                    _renderTarget.Width != ScreenWidth ||
-                    _renderTarget.Height != ScreenHeight)
-                {
-                    // recreate render target
-                    DisposeRenderTarget();
-                    _renderTarget = new RenderTarget2D(spriteBatch.GraphicsDevice,
-                        ScreenWidth, ScreenHeight, false,
-                        spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
-                        spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
-                        RenderTargetUsage.PreserveContents);
+                // recreate render target
+                DisposeRenderTarget();
+                _renderTarget = new RenderTarget2D(spriteBatch.GraphicsDevice,
+                    ScreenWidth, ScreenHeight, false,
+                    spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                    spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
+                    RenderTargetUsage.PreserveContents);
 
-                    RenderSurface = new Surface(_renderTarget);
-                }
-                // if didn't create a new render target, clear it
-                else
-                {
-                    Surface.SetTarget(RenderSurface);
-                    GraphicsMgr.Device.Clear(Color.Transparent);
-                }
+                RenderMgr.GUISurface = new Surface(_renderTarget);
+            }
+            // if didn't create a new render target, clear it
+            else
+            {
+                Surface.SetTarget(RenderMgr.GUISurface);
+                GraphicsMgr.Device.Clear(Color.Transparent);
             }
 
             // draw root panel
             Root.Draw(spriteBatch);
 
             // draw cursor (unless using render targets and should draw cursor outside of it)
-            if (ShowCursor && (IncludeCursorInRenderTarget || !UseRenderTarget))
+            if (ShowCursor && (IncludeCursorInRenderTarget))
             {
                 DrawCursor(spriteBatch);
             }
 
             // reset render target
-            if (UseRenderTarget)
+            if (!Surface.SurfaceStackEmpty)
             {
-                if (!Surface.SurfaceStackEmpty)
-                {
-                    Surface.ResetTarget();
-                }
-                else spriteBatch.GraphicsDevice.SetRenderTarget(null);
+                Surface.ResetTarget();
             }
-        }
-
-        /// <summary>
-        /// Finalize the draw frame and draw all the UI on screen.
-        /// This function only works if we are in UseRenderTarget mode.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch to draw on.</param>
-        public void DrawMainRenderTarget(SpriteBatch spriteBatch)
-        {
-            // draw the main render target
-            if (RenderTarget != null && !RenderTarget.IsDisposed)
-            {
-                // draw render target
-                RenderSurface.Draw(Vector2.Zero, Vector2.Zero, new Vector2(1f), Angle.Right, Color.White);
-            }
-
-            // draw cursor
-            if (ShowCursor && !IncludeCursorInRenderTarget)
-            {
-                DrawCursor(spriteBatch);
-            }
+            else spriteBatch.GraphicsDevice.SetRenderTarget(null);
         }
 
         /// <summary>
@@ -688,7 +650,7 @@ namespace Monofoxe.Extended.GUI
             addVector = addVector ?? Vector2.Zero;
 
             // return transformed cursor position
-            if (UseRenderTarget && UseRenderTargetTransformMatrix)
+            if (UseRenderTargetTransformMatrix)
             {
                 var matrix = Matrix.Invert(RenderTargetTransformMatrix);
                 return MouseInputProvider.TransformMousePosition(matrix) + Vector2.Transform(addVector.Value, matrix);

@@ -11,7 +11,7 @@ using Monofoxe.Extended.Engine.EC;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
-    public class UIDemo : SurfaceEntity, IGuiEntity
+    public class UIDemo : Entity, IGuiEntity
     {
         List<Panel> panels = new List<Panel>();
         Button nextExampleButton;
