@@ -70,10 +70,6 @@ namespace Monofoxe.Extended.Samples
         {
             UserInterface.Active.Clear();
 
-            CurrentScene?.GetEntityList<Entity>()
-                .Where(x => x is IGuiEntity)
-                .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
-
             var sceneDescription = Description;
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
@@ -115,6 +111,11 @@ namespace Monofoxe.Extended.Samples
             nextExampleButton.OnClick = (EntityUI btn) => { NextScene(); };
             nextExampleButton.Identifier = "next_btn";
             menuPanel.AddChild(nextExampleButton);
+
+            // Create other GUIs last so that we don't steal input focus their.
+            CurrentScene?.GetEntityList<Entity>()
+                .Where(x => x is IGuiEntity)
+                .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
         }
 
 		public override void Update()
