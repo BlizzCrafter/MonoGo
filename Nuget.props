@@ -1,0 +1,16 @@
+<Project>
+	<PropertyGroup>
+		<Version>$(MonofoxeExtendedVersion)</Version>
+		<Authors>Marcel Härtel</Authors>
+		<Product>Monofoxe.Extended Engine</Product>
+		<Description>Monofoxe.Extended is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended funtionalities like a GUI-System.</Description>
+		<PackageProjectUrl>https://github.com/Martenfur/Monofoxe/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Martenfur/Monofoxe/</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>logo_nolabel_transparent.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)\logo\logo_nolabel_transparent.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+</Project>

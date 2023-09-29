@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+	<DocumentationFile>..\bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Monofoxe.Extended.Engine\Monofoxe.Extended.Engine.csproj" />
+    <ProjectReference Include="..\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,31 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Pipeline", "Monofoxe.Extended.Pipeline\Monofoxe.Extended.Pipeline.csproj", "{D59079B2-CC07-4783-9C7F-05E78EBBC5FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Pipeline", "Engine\Monofoxe.Extended.Pipeline\Monofoxe.Extended.Pipeline.csproj", "{D59079B2-CC07-4783-9C7F-05E78EBBC5FD}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Monofoxe.Extended.Tiled.MapStructure", "Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Monofoxe.Extended.Tiled.MapStructure", "Engine\Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine", "Monofoxe.Extended.Engine\Monofoxe.Extended.Engine.csproj", "{70699800-5172-413D-BB6F-0D80CB9FCD13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine", "Engine\Monofoxe.Extended.Engine\Monofoxe.Extended.Engine.csproj", "{70699800-5172-413D-BB6F-0D80CB9FCD13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Tiled", "Monofoxe.Extended.Tiled\Monofoxe.Extended.Tiled.csproj", "{E615232A-8EDD-43BB-84D0-3BA376ACA7E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Tiled", "Engine\Monofoxe.Extended.Tiled\Monofoxe.Extended.Tiled.csproj", "{E615232A-8EDD-43BB-84D0-3BA376ACA7E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Tests", "Monofoxe.Extended.Tests\Monofoxe.Extended.Tests.csproj", "{799409E8-B82F-4DBF-BBDE-B9EF253B2404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Tests", "Engine\Monofoxe.Extended.Tests\Monofoxe.Extended.Tests.csproj", "{799409E8-B82F-4DBF-BBDE-B9EF253B2404}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine.WindowsDX", "Monofoxe.Extended.Engine.WindowsDX\Monofoxe.Extended.Engine.WindowsDX.csproj", "{A1593C65-09C3-4294-A153-A43509D989AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine.WindowsDX", "Engine\Monofoxe.Extended.Engine.WindowsDX\Monofoxe.Extended.Engine.WindowsDX.csproj", "{A1593C65-09C3-4294-A153-A43509D989AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine.DesktopGL", "Monofoxe.Extended.Engine.DesktopGL\Monofoxe.Extended.Engine.DesktopGL.csproj", "{491EFCE4-315C-40AB-AC26-28F7A6190E9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Engine.DesktopGL", "Engine\Monofoxe.Extended.Engine.DesktopGL\Monofoxe.Extended.Engine.DesktopGL.csproj", "{491EFCE4-315C-40AB-AC26-28F7A6190E9A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{B86C69D3-FFCE-488F-891F-6EAAAD2513FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{10BACD3F-2B0F-47C5-9D0C-80156103C4C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.Content", "Monofoxe.Extended.Samples.Content\Monofoxe.Extended.Samples.Content.csproj", "{8C3E1EF4-8923-4D05-B128-D01968D77AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.Content", "Samples\Monofoxe.Extended.Samples.Content\Monofoxe.Extended.Samples.Content.csproj", "{8C3E1EF4-8923-4D05-B128-D01968D77AC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples", "Monofoxe.Extended.Samples\Monofoxe.Extended.Samples.csproj", "{0720FA7C-FCBC-4310-985F-C1D1E9D2C929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples", "Samples\Monofoxe.Extended.Samples\Monofoxe.Extended.Samples.csproj", "{0720FA7C-FCBC-4310-985F-C1D1E9D2C929}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.DesktopGL", "Monofoxe.Extended.Samples.DesktopGL\Monofoxe.Extended.Samples.DesktopGL.csproj", "{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.DesktopGL", "Samples\Monofoxe.Extended.Samples.DesktopGL\Monofoxe.Extended.Samples.DesktopGL.csproj", "{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.WindowsDX", "Monofoxe.Extended.Samples.WindowsDX\Monofoxe.Extended.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.WindowsDX", "Samples\Monofoxe.Extended.Samples.WindowsDX\Monofoxe.Extended.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.GUI.Data", "Engine\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj", "{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.GUI", "Engine\Monofoxe.Extended.GUI\Monofoxe.Extended.GUI.csproj", "{91344146-7138-4BB6-8AFF-DB9114BB0DED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,8 +103,8 @@ Global
 		SolutionGuid = {B5534B27-AF0B-4FD7-80A1-0E7BCBFC9C46}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{785e8147-0e69-45df-92f7-b4f315739d0c}*SharedItemsImports = 13
-		Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{d59079b2-cc07-4783-9c7f-05e78ebbc5fd}*SharedItemsImports = 5
-		Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{e615232a-8edd-43bb-84d0-3ba376aca7e6}*SharedItemsImports = 5
+		Engine\Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{785e8147-0e69-45df-92f7-b4f315739d0c}*SharedItemsImports = 13
+		Engine\Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{d59079b2-cc07-4783-9c7f-05e78ebbc5fd}*SharedItemsImports = 5
+		Engine\Monofoxe.Extended.Tiled.MapStructure\Monofoxe.Extended.Tiled.MapStructure.projitems*{e615232a-8edd-43bb-84d0-3ba376aca7e6}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
