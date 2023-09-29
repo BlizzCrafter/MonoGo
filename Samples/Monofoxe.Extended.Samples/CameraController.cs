@@ -4,6 +4,7 @@ using Monofoxe.Extended.Engine.Cameras;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Engine.Utils;
+using System.Diagnostics;
 
 namespace Monofoxe.Extended.Samples
 {
@@ -50,6 +51,7 @@ namespace Monofoxe.Extended.Samples
 				Input.CheckButton(UpButton).ToInt() - Input.CheckButton(DownButton).ToInt(),
 				0
 			);
+			movementVector3 *= -1; // Invert the movement vector for a more natural "camera-experience".
 			movementVector3 = Vector3.Transform(
 				movementVector3, 
 				Matrix.CreateRotationZ(Camera.Rotation.RadiansF)
