@@ -19,7 +19,7 @@ namespace Monofoxe.Extended.Samples
         public static readonly string Description =
             "Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
             "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}" + Environment.NewLine +
-            "Restart > {{YELLOW}}" + _restartButton + "{{DEFAULT}}";
+            "Restart > {{YELLOW}}" + _restartButton + "{{DEFAULT}} GUI > {{YELLOW}}" + _toggleUIButton + "{{DEFAULT}}";
 
         SpriteBatch _spriteBatch;
 
