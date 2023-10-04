@@ -12,7 +12,7 @@
 namespace Monofoxe.Extended.GUI.Entities.TextValidators
 {
     /// <summary>
-    /// Monofoxe.Extended.UI.Entities.TextValidators contains different text validators and processors you can attach to TextInput entities.
+    /// Monofoxe.Extended.GUI.Entities.TextValidators contains different text validators and processors you can attach to TextInput entities.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     class NamespaceDoc

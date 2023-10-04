@@ -1,9 +1,9 @@
 ﻿#region File Description
 //-----------------------------------------------------------------------------
-// Define the keyboard-based input interface. This is the object Monofoxe.Extended.UI uses
+// Define the keyboard-based input interface. This is the object Monofoxe.Extended.GUI uses
 // to detect typing and key pressing.
 // To support alternative keyboard-like input, inherit from this interface and
-// and provide your alternative instance to the interface manager of Monofoxe.Extended.UI.
+// and provide your alternative instance to the interface manager of Monofoxe.Extended.GUI.
 //
 // Author: Ronen Ness.
 // Since: 2018.
@@ -31,7 +31,7 @@ namespace Monofoxe.Extended.GUI
     };
 
     /// <summary>
-    /// Define the interface Monofoxe.Extended.UI uses to get keyboard and typing input from users.
+    /// Define the interface Monofoxe.Extended.GUI uses to get keyboard and typing input from users.
     /// </summary>
     public interface IKeyboardInput
     {

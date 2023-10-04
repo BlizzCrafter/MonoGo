@@ -1,7 +1,7 @@
 ﻿#region File Description
 //-----------------------------------------------------------------------------
 // This file define the main class that manage and draw the UI.
-// To use Monofoxe.Extended.UI you first need to create an instance of this class and
+// To use Monofoxe.Extended.GUI you first need to create an instance of this class and
 // update / draw it every frame.
 //
 // Author: Ronen Ness.
@@ -22,8 +22,8 @@ using System.IO;
 namespace Monofoxe.Extended.GUI
 {
     /// <summary>
-    /// Monofoxe.Extended.UI is part of the GeonBit project, and provide a simple yet extensive UI framework for MonoGame based projects.
-    /// This is the main Monofoxe.Extended.UI namespace. It contains the UserInterface manager and other important helpers.
+    /// Monofoxe.Extended.GUI provides a simple yet extensive UI framework for MonoGame based projects.
+    /// This is the main Monofoxe.Extended.GUI namespace. It contains the UserInterface manager and other important helpers.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     class NamespaceDoc
@@ -71,12 +71,12 @@ namespace Monofoxe.Extended.GUI
     };
 
     /// <summary>
-    /// Main Monofoxe.Extended.UI class that manage and draw all the UI entities.
+    /// Main Monofoxe.Extended.GUI class that manage and draw all the UI entities.
     /// This is the main manager you use to update, draw, and add entities to.
     /// </summary>
     public class UserInterface : System.IDisposable
     {
-        /// <summary>Current Monofoxe.Extended.UI version identifier.</summary>
+        /// <summary>Current Monofoxe.Extended.GUI version identifier.</summary>
         public const string VERSION = "4.1.0.1";
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Monofoxe.Extended.GUI
         internal bool _isDeserializing = false;
 
         /// <summary>
-        /// If true, Monofoxe.Extended.UI will not raise exceptions on sanity checks, validations, and errors which are not critical.
+        /// If true, Monofoxe.Extended.GUI will not raise exceptions on sanity checks, validations, and errors which are not critical.
         /// For example, trying to select a value that doesn't exist from a list would do nothing instead of throwing exception.
         /// </summary>
         public bool SilentSoftErrors = false;
@@ -127,7 +127,7 @@ namespace Monofoxe.Extended.GUI
 
         /// <summary>
         /// Create a default paragraph instance.
-        /// Monofoxe.Extended.UI entities use this method when need to create a paragraph, so you can override this to change which paragraph type the built-in
+        /// Monofoxe.Extended.GUI entities use this method when need to create a paragraph, so you can override this to change which paragraph type the built-in
         /// entities will use by-default (for example Buttons text, SelectList items, etc.).
         /// </summary>
         static public DefaultParagraphGenerator DefaultParagraph =

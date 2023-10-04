@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 namespace Monofoxe.Extended.GUI.Utils
 {
     /// <summary>
-    /// Monofoxe.Extended.UI.Utils contain different utilities and helper classes to use Monofoxe.Extended.UI.
+    /// Monofoxe.Extended.GUI.Utils contain different utilities and helper classes to use Monofoxe.Extended.GUI.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     class NamespaceDoc

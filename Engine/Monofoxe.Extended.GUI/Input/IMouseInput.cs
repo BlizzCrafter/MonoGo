@@ -1,10 +1,10 @@
 ﻿#region File Description
 //-----------------------------------------------------------------------------
-// Define the mouse-based input interface. This is the object Monofoxe.Extended.UI uses
+// Define the mouse-based input interface. This is the object Monofoxe.Extended.GUI uses
 // to detect clicks, drags, mouse pointing on entities, etc.
 // To support things like touch input, inherit from this interface and
 // emulate mouse inputs from touch (and provide your instance to the interface
-// manager of Monofoxe.Extended.UI).
+// manager of Monofoxe.Extended.GUI).
 //
 // Author: Ronen Ness.
 // Since: 2018.
@@ -31,7 +31,7 @@ namespace Monofoxe.Extended.GUI
     };
 
     /// <summary>
-    /// Define the interface Monofoxe.Extended.UI uses to get mouse or mouse-like input from users.
+    /// Define the interface Monofoxe.Extended.GUI uses to get mouse or mouse-like input from users.
     /// </summary>
     public interface IMouseInput
     {

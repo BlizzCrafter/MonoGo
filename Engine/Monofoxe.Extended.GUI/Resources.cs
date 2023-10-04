@@ -1,7 +1,7 @@
 ﻿#region File Description
 //-----------------------------------------------------------------------------
 // This file pre-load and hold all the resources (textures, fonts, etc..) that
-// Monofoxe.Extended.UI needs. If you edit and add new files to content, you probably
+// Monofoxe.Extended.GUI needs. If you edit and add new files to content, you probably
 // need to update this file as well.
 //
 // Author: Ronen Ness.
@@ -167,7 +167,7 @@ namespace Monofoxe.Extended.GUI
         /// <summary>
         /// Create the texture getter with base path.
         /// </summary>
-        /// <param name="path">Resource path, under Monofoxe.Extended.UI content.</param>
+        /// <param name="path">Resource path, under Monofoxe.Extended.GUI content.</param>
         /// <param name="suffix">Suffix to add to the texture path after the enum part.</param>
         /// <param name="usesStates">If true, it means these textures may also use entity states, eg mouse hover / down / default.</param>
         public TexturesGetter(string path, string suffix = null, bool usesStates = true)
@@ -268,7 +268,7 @@ namespace Monofoxe.Extended.GUI
         public static Effect SilhouetteEffect;
 
         /// <summary>
-        /// Load all Monofoxe.Extended.UI resources.
+        /// Load all Monofoxe.Extended.GUI resources.
         /// </summary>
         /// <param name="content">Content manager to use.</param>
         static public void LoadContent(ContentManager content)

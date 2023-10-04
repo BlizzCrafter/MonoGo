@@ -20,7 +20,7 @@ using Monofoxe.Extended.GUI.Data;
 namespace Monofoxe.Extended.GUI.Entities
 {
     /// <summary>
-    /// Monofoxe.Extended.UI.Entities contains all the UI elements you can create and use in your layouts.
+    /// Monofoxe.Extended.GUI.Entities contains all the UI elements you can create and use in your layouts.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     class NamespaceDoc

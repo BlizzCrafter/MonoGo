@@ -1,6 +1,6 @@
 ﻿#region File Description
 //-----------------------------------------------------------------------------
-// Helper utility that implements default mouse and keyboard input for Monofoxe.Extended.UI.
+// Helper utility that implements default mouse and keyboard input for Monofoxe.Extended.GUI.
 // You can create your own mouse/keyboard inputs to replace this.
 //
 // Author: Ronen Ness.
@@ -15,8 +15,8 @@ using Monofoxe.Extended.Engine.Utils;
 namespace Monofoxe.Extended.GUI
 {
     /// <summary>
-    /// Implement Mouse Input and Keyboard Input for Monofoxe.Extended.UI + provide some helpful utils you can use externally.
-    /// This is the object we provide to Monofoxe.Extended.UI by default, if no other input providers were set by user.
+    /// Implement Mouse Input and Keyboard Input for Monofoxe.Extended.GUI + provide some helpful utils you can use externally.
+    /// This is the object we provide to Monofoxe.Extended.GUI by default, if no other input providers were set by user.
     /// </summary>
     public class DefaultInputProvider : IMouseInput, IKeyboardInput
     {
@@ -86,7 +86,7 @@ namespace Monofoxe.Extended.GUI
 
         /// <summary>
         /// Update current states.
-        /// If used outside Monofoxe.Extended.UI, this function should be called first thing inside your game 'Update()' function,
+        /// If used outside Monofoxe.Extended.GUI, this function should be called first thing inside your game 'Update()' function,
         /// and before you make any use of this class.
         /// </summary>
         public void Update(Vector2 mousePosition = default)
