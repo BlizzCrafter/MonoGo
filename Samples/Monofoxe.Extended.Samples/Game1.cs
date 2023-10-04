@@ -65,7 +65,7 @@ namespace Monofoxe.Extended.Samples
 
 			new Fonts();
 
-            UserInterface.Initialize("/Graphics/GUI/Styles");
+            UserInterface.Initialize("Graphics/GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
         }

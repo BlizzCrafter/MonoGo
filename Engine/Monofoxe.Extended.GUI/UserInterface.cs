@@ -17,6 +17,7 @@ using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.GUI.Data;
+using System.IO;
 
 namespace Monofoxe.Extended.GUI
 {
@@ -315,7 +316,7 @@ namespace Monofoxe.Extended.GUI
         {
             // store the content manager
             _content = new ContentManager(GameMgr.Game.Services);
-            _content.RootDirectory = ResourceInfoMgr.ContentDir + styleSheetsPath;
+            _content.RootDirectory = Path.Combine(ResourceInfoMgr.ContentDir, styleSheetsPath);
 
             // init resources (textures etc)
             Resources.LoadContent(_content);
