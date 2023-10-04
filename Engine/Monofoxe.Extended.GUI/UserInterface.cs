@@ -311,11 +311,11 @@ namespace Monofoxe.Extended.GUI
         /// <summary>
         /// Initialize UI manager (mostly load resources and set some defaults).
         /// </summary>
-        static public void Initialize()
+        static public void Initialize(string styleSheetsPath)
         {
             // store the content manager
             _content = new ContentManager(GameMgr.Game.Services);
-            _content.RootDirectory = ResourceInfoMgr.ContentDir + "/Graphics/GUI/Styles";
+            _content.RootDirectory = ResourceInfoMgr.ContentDir + styleSheetsPath;
 
             // init resources (textures etc)
             Resources.LoadContent(_content);
