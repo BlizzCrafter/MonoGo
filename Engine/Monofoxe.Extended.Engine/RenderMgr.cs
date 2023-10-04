@@ -1,4 +1,5 @@
-﻿using Monofoxe.Extended.Engine.Drawing;
+﻿using Microsoft.Xna.Framework;
+using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.SceneSystem;
 
 namespace Monofoxe.Extended.Engine
@@ -18,6 +19,7 @@ namespace Monofoxe.Extended.Engine
 
             SceneMgr.OnPreDraw += SceneMgr_OnPreDraw;
             SceneMgr.OnPostDraw += SceneMgr_OnPostDraw;
+            SceneMgr.OnPreDrawGUI += SceneMgr_OnPreDrawGUI;
             SceneMgr.OnPostDrawGUI += SceneMgr_OnPostDrawGUI;
         }
 
@@ -25,6 +27,12 @@ namespace Monofoxe.Extended.Engine
         {
             Surface.SetTarget(SceneSurface, GraphicsMgr.VertexBatch.View);
             GraphicsMgr.Device.Clear(GraphicsMgr.CurrentCamera.BackgroundColor);
+        }
+
+        private static void SceneMgr_OnPreDrawGUI()
+        {
+            Surface.SetTarget(GUISurface);
+            GraphicsMgr.Device.Clear(Color.Transparent);
         }
 
         private static void SceneMgr_OnPostDraw()

@@ -614,12 +614,6 @@ namespace Monofoxe.Extended.GUI
 
                 RenderMgr.GUISurface = new Surface(_renderTarget);
             }
-            // if didn't create a new render target, clear it
-            else
-            {
-                Surface.SetTarget(RenderMgr.GUISurface);
-                GraphicsMgr.Device.Clear(Color.Transparent);
-            }
 
             // draw root panel
             Root.Draw(spriteBatch);
@@ -629,13 +623,8 @@ namespace Monofoxe.Extended.GUI
             {
                 DrawCursor(spriteBatch);
             }
-
-            // reset render target
-            if (!Surface.SurfaceStackEmpty)
-            {
-                Surface.ResetTarget();
-            }
-            else spriteBatch.GraphicsDevice.SetRenderTarget(null);
+                
+            spriteBatch.GraphicsDevice.SetRenderTarget(null);
         }
 
         /// <summary>
