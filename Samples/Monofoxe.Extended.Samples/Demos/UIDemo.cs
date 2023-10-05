@@ -8,6 +8,8 @@ using Monofoxe.Extended.GUI.Utils.Forms;
 using System.Collections.Generic;
 using System.Reflection;
 using Monofoxe.Extended.Engine.EC;
+using Monofoxe.Extended.Engine.Drawing;
+using Monofoxe.Extended.Engine.Resources;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -144,13 +146,17 @@ namespace Monofoxe.Extended.Samples.Demos
             // init all examples
             if (true)
             {
-
                 // example: welcome message
                 {
                     // create panel and add to list of panels and manager
-                    Panel panel = new Panel(new Vector2(520, -1));
+                    Panel panel = new Panel(new Vector2(1200, -1), PanelSkin.None);
                     panels.Add(panel);
                     UserInterface.Active.AddEntity(panel);
+
+                    Image title = new Image(ResourceHub.GetResource<Sprite>("DefaultSprites", "Logo")[0].Texture, new Vector2(240, 240), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
+                    title.ShadowColor = new Color(0, 0, 0, 128);
+                    title.ShadowOffset = Vector2.One * -2;
+                    panel.AddChild(title);
 
                     // add title and text
                     var welcomeText = new RichParagraph(@"Welcome to {{MFE_ORANGE}}Monofoxe{{MFE_YELLOW}}.Extended{{DEFAULT}}!
@@ -1059,6 +1065,8 @@ If you like this engine then don't forget to star the repo on GitHub.
 
 {{MFE_ORANGE}}:){{DEFAULT}}"));
                 }
+
+                eventsPanel.BringToFront();
 
                 // init panels and buttons
                 UpdateAfterExampleChange();
