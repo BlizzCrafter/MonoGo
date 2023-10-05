@@ -1050,7 +1050,7 @@ Maybe something interesting in tab3?"));
                 // example: epilogue
                 {
                     // create panel and add to list of panels and manager
-                    Panel panel = new Panel(new Vector2(520, 400));
+                    Panel panel = new Panel(new Vector2(520, 400), PanelSkin.None);
                     panels.Add(panel);
                     UserInterface.Active.AddEntity(panel);
 
