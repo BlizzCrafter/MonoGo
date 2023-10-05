@@ -31,7 +31,7 @@ namespace Monofoxe.Extended.Samples
 			MainCamera.BackgroundColor = new Color(38, 38, 38);
 
 			GameMgr.WindowManager.CanvasSize = MainCamera.Size;
-			GameMgr.WindowManager.Window.AllowUserResizing = true;
+			GameMgr.WindowManager.Window.AllowUserResizing = false;
 			GameMgr.WindowManager.ApplyChanges();
 			GameMgr.WindowManager.CenterWindow();
 			GameMgr.WindowManager.CanvasMode = CanvasMode.Fill;

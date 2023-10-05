@@ -8,7 +8,6 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Extended.Engine.Drawing;
 using System.Collections.Generic;
 
 namespace Monofoxe.Extended.GUI
@@ -540,7 +539,7 @@ namespace Monofoxe.Extended.GUI
             // start drawing
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
                 DepthStencilState.None, RasterizerState.CullCounterClockwise,
-                isDisabled ? Resources.DisabledEffect : null, UserInterface.Active.RenderTargetTransformMatrix);
+                isDisabled ? Resources.DisabledEffect : null);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);
@@ -554,7 +553,7 @@ namespace Monofoxe.Extended.GUI
         {
             // start drawing silhouette
             spriteBatch.Begin(SpriteSortMode.Deferred, UserInterface.Active.BlendState, UserInterface.Active.SamplerState,
-                DepthStencilState.None, RasterizerState.CullCounterClockwise, Resources.SilhouetteEffect, UserInterface.Active.RenderTargetTransformMatrix);
+                DepthStencilState.None, RasterizerState.CullCounterClockwise, Resources.SilhouetteEffect);
 
             // update drawing target
             UpdateRenderTarget(spriteBatch);

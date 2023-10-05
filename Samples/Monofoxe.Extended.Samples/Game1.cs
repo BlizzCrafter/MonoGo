@@ -22,7 +22,7 @@ namespace Monofoxe.Extended.Samples
 			Content.RootDirectory = ResourceInfoMgr.ContentDir;
             GameMgr.Init(this);
 
-			if (GameMgr.CurrentPlatform == Platform.Android)
+            if (GameMgr.CurrentPlatform == Platform.Android)
 			{
 				GameMgr.WindowManager.SetFullScreen(true); // Has to be exactly here, apparently.
 			}
@@ -48,7 +48,7 @@ namespace Monofoxe.Extended.Samples
             new GameController();
 
 			RenderMgr.Initialize();
-		}
+        }
 
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
@@ -98,6 +98,8 @@ namespace Monofoxe.Extended.Samples
 		protected override void Draw(GameTime gameTime)
         {
             GameMgr.Draw(gameTime);
+
+			UserInterface.Active.DrawCursor();
 
 			base.Draw(gameTime);
         }

@@ -10,6 +10,7 @@ using System.Reflection;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
+using Monofoxe.Extended.Engine;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -56,11 +57,11 @@ namespace Monofoxe.Extended.Samples.Demos
 
                 if (UserInterface.Active.UseRenderTargetTransformMatrix)
                 {
-                    UserInterface.Active.RenderTargetTransformMatrix = Matrix.CreateScale(0.6f) *
+                    RenderMgr.GUITransformMatrix = Matrix.CreateScale(0.6f) *
                         Matrix.CreateRotationZ(0.05f) *
                         Matrix.CreateTranslation(new Vector3(150, 150, 0));
                 }
-                else UserInterface.Active.RenderTargetTransformMatrix = Matrix.Identity;
+                else RenderMgr.GUITransformMatrix = Matrix.Identity;
             };
             transBtn.ToggleMode = true;
             transBtn.ToolTipText = "Apply transform matrix on the entire UI.";

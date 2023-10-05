@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Monofoxe.Extended.Engine;
-using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Demos;
@@ -20,8 +18,6 @@ namespace Monofoxe.Extended.Samples
             "Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
             "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}" + Environment.NewLine +
             "Restart > {{YELLOW}}" + _restartButton + "{{DEFAULT}} GUI > {{YELLOW}}" + _toggleUIButton + "{{DEFAULT}}";
-
-        SpriteBatch _spriteBatch;
 
         Button nextExampleButton;
         Button previousExampleButton;
@@ -63,7 +59,6 @@ namespace Monofoxe.Extended.Samples
         public SceneSwitcher(Layer layer, CameraController cameraController) : base(layer)
 		{
 			_cameraController = cameraController;
-            _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
         }
 
         public void CreateUI()
@@ -156,7 +151,7 @@ namespace Monofoxe.Extended.Samples
         {
             base.Draw();
 
-            UserInterface.Active.Draw(_spriteBatch);
+            UserInterface.Active.Draw();
         }
 
 

@@ -84,8 +84,6 @@ namespace Monofoxe.Extended.GUI
         /// </summary>
         public static UserInterface Active = null;
 
-        public Surface RenderSurface;
-
         /// <summary>
         /// The object that provide mouse input for GeonBit UI.
         /// By default it uses internal implementation that uses MonoGame mouse input.
@@ -101,6 +99,9 @@ namespace Monofoxe.Extended.GUI
         /// with your own object that emulates keyboard input.
         /// </summary>
         public IKeyboardInput KeyboardInputProvider;
+
+        // spriteBatch
+        static SpriteBatch _spriteBatch;
 
         // content manager
         static ContentManager _content;
@@ -289,11 +290,6 @@ namespace Monofoxe.Extended.GUI
         public bool ShowCursor = true;
 
         /// <summary>
-        /// Optional transformation matrix to apply when drawing with render targets.
-        /// </summary>
-        public Matrix RenderTargetTransformMatrix = Matrix.Identity;
-
-        /// <summary>
         /// True if you want to use the RenderTargetTransformMatrix.
         /// </summary>
         public bool UseRenderTargetTransformMatrix = false;
@@ -314,6 +310,9 @@ namespace Monofoxe.Extended.GUI
         /// </summary>
         static public void Initialize(string styleSheetsPath)
         {
+            // store the spriteBatch
+            _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
+
             // store the content manager
             _content = new ContentManager(GameMgr.Game.Services);
             _content.RootDirectory = Path.Combine(ResourceInfoMgr.ContentDir, styleSheetsPath);
@@ -425,35 +424,6 @@ namespace Monofoxe.Extended.GUI
             _cursorTexture = texture;
             _cursorWidth = drawWidth;
             _cursorOffset = offset ?? Point.Zero;
-        }
-
-        /// <summary>
-        /// Draw the cursor.
-        /// </summary>
-        /// <param name="spriteBatch">SpriteBatch to draw the cursor.</param>
-        public void DrawCursor(SpriteBatch spriteBatch)
-        {
-            // start drawing for cursor
-            spriteBatch.Begin(
-                SpriteSortMode.Deferred, 
-                BlendState, 
-                SamplerState, 
-                DepthStencilState.None, 
-                RasterizerState.CullCounterClockwise);
-
-            // calculate cursor size
-            float cursorSize = CursorScale * GlobalScale * ((float)_cursorWidth / (float)_cursorTexture.Width);
-
-            // get cursor position and draw it
-            Vector2 cursorPos = MouseInputProvider.MousePosition;
-            spriteBatch.Draw(_cursorTexture,
-                new Rectangle(
-                    (int)(cursorPos.X + _cursorOffset.X * cursorSize), (int)(cursorPos.Y + _cursorOffset.Y * cursorSize),
-                    (int)(_cursorTexture.Width * cursorSize), (int)(_cursorTexture.Height * cursorSize)),
-                Color.White);
-
-            // end drawing
-            spriteBatch.End();
         }
 
         /// <summary>
@@ -586,8 +556,7 @@ namespace Monofoxe.Extended.GUI
         /// Note: if UseRenderTarget is true, this function should be called FIRST in your draw function.
         /// If UseRenderTarget is false, this function should be called LAST in your draw function.
         /// </summary>
-        /// <param name="spriteBatch">SpriteBatch to draw on.</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
             int newScreenWidth = GameMgr.WindowManager.CanvasWidth;
             int newScreenHeight = GameMgr.WindowManager.CanvasHeight;
@@ -607,25 +576,50 @@ namespace Monofoxe.Extended.GUI
             {
                 // recreate render target
                 DisposeRenderTarget();
-                _renderTarget = new RenderTarget2D(spriteBatch.GraphicsDevice,
+                _renderTarget = new RenderTarget2D(_spriteBatch.GraphicsDevice,
                     ScreenWidth, ScreenHeight, false,
-                    spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
-                    spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
+                    _spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                    _spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
                     RenderTargetUsage.PreserveContents);
 
                 RenderMgr.GUISurface = new Surface(_renderTarget);
             }
 
             // draw root panel
-            Root.Draw(spriteBatch);
+            Root.Draw(_spriteBatch);
 
-            // draw cursor (unless using render targets and should draw cursor outside of it)
-            if (ShowCursor && (IncludeCursorInRenderTarget))
+            _spriteBatch.GraphicsDevice.SetRenderTarget(null);
+        }
+
+        /// <summary>
+        /// Draw the cursor.
+        /// </summary>
+        public void DrawCursor()
+        {
+            if (ShowCursor)
             {
-                DrawCursor(spriteBatch);
+                // start drawing for cursor
+                _spriteBatch.Begin(
+                    SpriteSortMode.Deferred,
+                    BlendState,
+                    SamplerState,
+                    DepthStencilState.None,
+                    RasterizerState.CullCounterClockwise);
+
+                // calculate cursor size
+                float cursorSize = CursorScale * GlobalScale * ((float)_cursorWidth / (float)_cursorTexture.Width);
+
+                // get cursor position and draw it
+                Vector2 cursorPos = MouseInputProvider.MousePosition;
+                _spriteBatch.Draw(_cursorTexture,
+                    new Rectangle(
+                        (int)(cursorPos.X + _cursorOffset.X * cursorSize), (int)(cursorPos.Y + _cursorOffset.Y * cursorSize),
+                        (int)(_cursorTexture.Width * cursorSize), (int)(_cursorTexture.Height * cursorSize)),
+                    Color.White);
+
+                // end drawing
+                _spriteBatch.End();
             }
-                
-            spriteBatch.GraphicsDevice.SetRenderTarget(null);
         }
 
         /// <summary>
@@ -640,14 +634,17 @@ namespace Monofoxe.Extended.GUI
             addVector = addVector ?? Vector2.Zero;
 
             // return transformed cursor position
-            if (UseRenderTargetTransformMatrix)
+
+            if (RenderMgr.GUITransformMatrix != Matrix.Identity)
             {
-                var matrix = Matrix.Invert(RenderTargetTransformMatrix);
-                return MouseInputProvider.TransformMousePosition(matrix) + Vector2.Transform(addVector.Value, matrix);
+                var matrix = Matrix.Invert(RenderMgr.GUITransformMatrix);
+                var transformed = MouseInputProvider.TransformMousePosition(matrix) + Vector2.Transform(addVector.Value, matrix);
+
+                return transformed;
             }
 
             // return raw cursor pos
-            return MouseInputProvider.MousePosition + addVector.Value;
+            return Input.ScreenMousePosition + addVector.Value;
         }
 
         /// <summary>

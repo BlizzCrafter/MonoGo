@@ -9,6 +9,8 @@ namespace Monofoxe.Extended.Engine
         public static Surface SceneSurface { get; set; }
         public static Surface GUISurface { get; set; }
 
+        public static Matrix GUITransformMatrix = Matrix.Identity;
+
         public static void Initialize()
         {
             var screenWidth = GameMgr.WindowManager.CanvasWidth;
@@ -51,7 +53,14 @@ namespace Monofoxe.Extended.Engine
             }
 
             SceneSurface.Draw();
-            GUISurface.Draw();
+
+            if (GUITransformMatrix == Matrix.Identity) GUISurface.Draw();
+            else
+            {
+                GraphicsMgr.VertexBatch.PushViewMatrix(GUITransformMatrix);
+                GUISurface.Draw();
+                GraphicsMgr.VertexBatch.PopViewMatrix();
+            }
         }
 
         public static void Destroy()
