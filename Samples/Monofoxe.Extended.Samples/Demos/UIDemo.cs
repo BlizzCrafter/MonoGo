@@ -140,38 +140,8 @@ namespace Monofoxe.Extended.Samples.Demos
             nextExampleButton.OnClick = (EntityUI btn) => { this.NextExample(); };
             nextExampleButton.Identifier = "next_btn";
             topPanel.AddChild(nextExampleButton);
-
-            // zoom in / out factor
-            float zoominFactor = 0.05f;
-
-            // scale show
-            Paragraph scaleShow = new Paragraph("100%", Anchor.CenterLeft, offset: new Vector2(10, 70));
-            UserInterface.Active.AddEntity(scaleShow);
-
-            // init zoom-out button
-            Button zoomout = new Button(string.Empty, ButtonSkin.Default, Anchor.CenterLeft, new Vector2(70, 70));
-            Icon zoomoutIcon = new Icon(IconType.ZoomOut, Anchor.Center, 0.75f);
-            zoomout.AddChild(zoomoutIcon, true);
-            zoomout.OnClick = (EntityUI btn) => {
-                if (UserInterface.Active.GlobalScale > 0.5f)
-                    UserInterface.Active.GlobalScale -= zoominFactor;
-                scaleShow.Text = ((int)System.Math.Round(UserInterface.Active.GlobalScale * 100f)).ToString() + "%";
-            };
-            UserInterface.Active.AddEntity(zoomout);
-
-            // init zoom-in button
-            Button zoomin = new Button(string.Empty, ButtonSkin.Default, Anchor.CenterLeft, new Vector2(70, 70), new Vector2(70, 0));
-            Icon zoominIcon = new Icon(IconType.ZoomIn, Anchor.Center, 0.75f);
-            zoomin.AddChild(zoominIcon, true);
-            zoomin.OnClick = (EntityUI btn) => {
-                if (UserInterface.Active.GlobalScale < 1.45f)
-                    UserInterface.Active.GlobalScale += zoominFactor;
-                scaleShow.Text = ((int)System.Math.Round(UserInterface.Active.GlobalScale * 100f)).ToString() + "%";
-            };
-            UserInterface.Active.AddEntity(zoomin);
-
+            
             // init all examples
-
             if (true)
             {
 
