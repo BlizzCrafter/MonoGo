@@ -47,7 +47,7 @@ namespace Monofoxe.Extended.Samples
 			GraphicsMgr.VertexBatch.DepthStencilState = depth;
             new GameController();
 
-			RenderMgr.Initialize();
+			RenderMgr.Init();
         }
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace Monofoxe.Extended.Samples
 
 			new Fonts();
 
-            UserInterface.Initialize("Graphics/GUI/Styles");
+            UserInterface.Init("Graphics/GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
         }

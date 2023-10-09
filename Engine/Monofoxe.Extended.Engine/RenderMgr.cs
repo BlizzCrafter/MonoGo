@@ -11,7 +11,7 @@ namespace Monofoxe.Extended.Engine
 
         public static Matrix GUITransformMatrix = Matrix.Identity;
 
-        public static void Initialize()
+        public static void Init()
         {
             var screenWidth = GameMgr.WindowManager.CanvasWidth;
             var screenHeight = GameMgr.WindowManager.CanvasHeight;

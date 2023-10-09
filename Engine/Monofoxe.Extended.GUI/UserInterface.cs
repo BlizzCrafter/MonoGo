@@ -308,7 +308,7 @@ namespace Monofoxe.Extended.GUI
         /// <summary>
         /// Initialize UI manager (mostly load resources and set some defaults).
         /// </summary>
-        static public void Initialize(string styleSheetsPath)
+        static public void Init(string styleSheetsPath)
         {
             // store the spriteBatch
             _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
