@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Monofoxe.Extended.GUI.Entities.TextValidators;
 using Monofoxe.Extended.Engine.Utils;
-using Monofoxe.Extended.GUI.Data;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -121,7 +120,7 @@ namespace Monofoxe.Extended.GUI.Entities
             // default size of multiline text input is 4 times bigger
             if (multiline)
             {
-                SetStyleProperty(StylePropertyIds.DefaultSize, new StyleProperty(EntityDefaultSize * new Vector2(1, 4)));
+                SetStyleProperty(StylePropertyIds.DefaultSize, new DataTypes.StyleProperty(EntityDefaultSize * new Vector2(1, 4)));
             }
 
             // set limit by size - default true in single-line, default false in multi-line
@@ -485,8 +484,8 @@ namespace Monofoxe.Extended.GUI.Entities
                     }
 
                     // set scrollbar max and steps
-                    _scrollbar.Max = (uint)System.Math.Max(linesInText - linesFit, 2);
-                    _scrollbar.StepsCount = _scrollbar.Max;
+                    _scrollbar.Max = System.Math.Max(linesInText - linesFit, 2);
+                    _scrollbar.StepsCount = (uint)(_scrollbar.Max - _scrollbar.Min);
                     _scrollbar.Visible = true;
 
                     // update text to fit scrollbar. first, rebuild the text with just the visible segment

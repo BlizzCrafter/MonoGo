@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Monofoxe.Extended.Engine\Monofoxe.Extended.Engine.csproj" />
-    <ProjectReference Include="..\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj" />
   </ItemGroup>
 
 </Project>

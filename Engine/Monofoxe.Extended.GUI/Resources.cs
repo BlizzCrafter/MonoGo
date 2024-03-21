@@ -15,10 +15,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using System.IO;
+using Monofoxe.Extended.GUI.Entities;
+using Monofoxe.Extended.GUI.DataTypes;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
-using Monofoxe.Extended.GUI.Entities;
-using Monofoxe.Extended.GUI.Data;
 
 namespace Monofoxe.Extended.GUI
 {
@@ -45,17 +46,17 @@ namespace Monofoxe.Extended.GUI
                 int indx = GetIndex(i);
                 if (_loadedTextures[indx] == null)
                 {
-                    var path = $"{_basepath}{EnumToString(i)}{_suffix}";
+                    var path = $"{Resources.Instance._root}{_basepath}{EnumToString(i)}{_suffix}";
                     try
                     {
                         _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                     }
-                    catch (Microsoft.Xna.Framework.Content.ContentLoadException)
+                    catch (ContentLoadException)
                     {
                         // for backward compatibility when alternative was called 'golden'
                         if (i.ToString() == PanelSkin.Golden.ToString())
                         {
-                            path = $"{_basepath}Golden{_suffix}";
+                            path = $"{Resources.Instance._root}{_basepath}Golden{_suffix}";
                             _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                         }
                         else
@@ -90,7 +91,7 @@ namespace Monofoxe.Extended.GUI
                 int indx = GetIndex(i, s);
                 if (_loadedTextures[indx] == null)
                 {
-                    var path = _basepath + EnumToString(i) + _suffix + StateEnumToString(s);
+                    var path = Resources.Instance._root + _basepath + EnumToString(i) + _suffix + StateEnumToString(s);
                     _loadedTextures[indx] = ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
                 }
                 return _loadedTextures[indx];
@@ -158,9 +159,6 @@ namespace Monofoxe.Extended.GUI
         // suffix to add to the end of texture path
         string _suffix;
 
-        // do we use states like down / hover / default for these textures?
-        bool _usesStates;
-
         // textures types count
         int _typesCount;
 
@@ -174,108 +172,127 @@ namespace Monofoxe.Extended.GUI
         {
             _basepath = path;
             _suffix = suffix ?? string.Empty;
-            _usesStates = usesStates;
             _typesCount = Enum.GetValues(typeof(TEnum)).Length;
             _loadedTextures = new Texture2D[usesStates ? _typesCount * 3 : _typesCount];
         }
     }
 
     /// <summary>
-    /// A static class to init and store all UI resources (textures, effects, fonts, etc.)
+    /// A class to init and store all UI resources (textures, effects, fonts, etc.)
     /// </summary>
-    public static class Resources
+    public class Resources
     {
+        /// <summary>
+        /// Resources singleton instance.
+        /// </summary>
+        public static Resources Instance { get; private set; }
+
+        /// <summary>
+        /// Reset resources manager.
+        /// </summary>
+        public static void Reset()
+        {
+            Instance = new Resources();
+        }
 
         /// <summary>Lookup for char > string conversion</summary>
-        private static Dictionary<char, string> charStringDict = new Dictionary<char, string>();
+        private Dictionary<char, string> charStringDict = new Dictionary<char, string>();
 
         /// <summary>Just a plain white texture, used internally.</summary>
-        public static Texture2D WhiteTexture;
+        public Texture2D WhiteTexture;
 
         /// <summary>Cursor textures.</summary>
-        public static TexturesGetter<CursorType> Cursors = new TexturesGetter<CursorType>("Cursor_");
+        public TexturesGetter<CursorType> Cursors = new TexturesGetter<CursorType>("Cursor_");
 
         /// <summary>Metadata about cursor textures.</summary>
-        public static CursorTextureData[] CursorsData;
+        public CursorTextureData[] CursorsData;
 
         /// <summary>All panel skin textures.</summary>
-        public static TexturesGetter<PanelSkin> PanelTextures = new TexturesGetter<PanelSkin>("Panel_");
+        public TexturesGetter<PanelSkin> PanelTextures = new TexturesGetter<PanelSkin>("Panel_");
 
         /// <summary>Metadata about panel textures.</summary>
-        public static TextureData[] PanelData;
+        public TextureData[] PanelData;
 
         /// <summary>Button textures (accessed as [skin, state]).</summary>
-        public static TexturesGetter<ButtonSkin> ButtonTextures = new TexturesGetter<ButtonSkin>("Button_");
+        public TexturesGetter<ButtonSkin> ButtonTextures = new TexturesGetter<ButtonSkin>("Button_");
 
         /// <summary>Metadata about button textures.</summary>
-        public static TextureData[] ButtonData;
+        public TextureData[] ButtonData;
 
         /// <summary>CheckBox textures.</summary>
-        public static TexturesGetter<EntityState> CheckBoxTextures = new TexturesGetter<EntityState>("Checkbox");
+        public TexturesGetter<EntityState> CheckBoxTextures = new TexturesGetter<EntityState>("Checkbox");
 
         /// <summary>Radio button textures.</summary>
-        public static TexturesGetter<EntityState> RadioTextures = new TexturesGetter<EntityState>("Radio");
+        public TexturesGetter<EntityState> RadioTextures = new TexturesGetter<EntityState>("Radio");
 
         /// <summary>ProgressBar texture.</summary>
-        public static Texture2D ProgressBarTexture;
+        public Texture2D ProgressBarTexture;
 
         /// <summary>Metadata about progressbar texture.</summary>
-        public static TextureData ProgressBarData;
+        public TextureData ProgressBarData;
 
         /// <summary>ProgressBar fill texture.</summary>
-        public static Texture2D ProgressBarFillTexture;
+        public Texture2D ProgressBarFillTexture;
 
         /// <summary>HorizontalLine texture.</summary>
-        public static Texture2D HorizontalLineTexture;
+        public Texture2D HorizontalLineTexture;
 
         /// <summary>Sliders base textures.</summary>
-        public static TexturesGetter<SliderSkin> SliderTextures = new TexturesGetter<SliderSkin>("Slider_");
+        public TexturesGetter<SliderSkin> SliderTextures = new TexturesGetter<SliderSkin>("Slider_");
 
         /// <summary>Sliders mark textures (the sliding piece that shows current value).</summary>
-        public static TexturesGetter<SliderSkin> SliderMarkTextures = new TexturesGetter<SliderSkin>("Slider_", "_Mark");
+        public TexturesGetter<SliderSkin> SliderMarkTextures = new TexturesGetter<SliderSkin>("Slider_", "_Mark");
 
         /// <summary>Metadata about slider textures.</summary>
-        public static TextureData[] SliderData;
+        public TextureData[] SliderData;
 
         /// <summary>All icon textures.</summary>
-        public static TexturesGetter<IconType> IconTextures = new TexturesGetter<IconType>("");
+        public TexturesGetter<IconType> IconTextures = new TexturesGetter<IconType>("");
 
         /// <summary>Icons inventory background texture.</summary>
-        public static Texture2D IconBackgroundTexture;
+        public Texture2D IconBackgroundTexture;
 
         /// <summary>Vertical scrollbar base texture.</summary>
-        public static Texture2D VerticalScrollbarTexture;
+        public Texture2D VerticalScrollbarTexture;
 
         /// <summary>Vertical scrollbar mark texture.</summary>
-        public static Texture2D VerticalScrollbarMarkTexture;
+        public Texture2D VerticalScrollbarMarkTexture;
 
         /// <summary>Metadata about scrollbar texture.</summary>
-        public static TextureData VerticalScrollbarData;
+        public TextureData VerticalScrollbarData;
 
         /// <summary>Arrow-down texture (used in dropdown).</summary>
-        public static Texture2D ArrowDown;
+        public Texture2D ArrowDown;
 
         /// <summary>Arrow-up texture (used in dropdown).</summary>
-        public static Texture2D ArrowUp;
+        public Texture2D ArrowUp;
 
         /// <summary>Default font types.</summary>
-        public static SpriteFont[] Fonts;
+        public SpriteFont[] Fonts;
 
         /// <summary>Effect for disabled entities (greyscale).</summary>
-        public static Effect DisabledEffect;
+        public Effect DisabledEffect;
 
         /// <summary>An effect to draw just a silhouette of the texture.</summary>
-        public static Effect SilhouetteEffect;
+        public Effect SilhouetteEffect;
+
+        /// <summary>Store the content manager instance</summary>
+        internal ContentManager _content;
+
+        /// <summary>Root for Monofoxe.Extended.GUI content</summary>
+        internal string _root;
 
         /// <summary>
         /// Load all Monofoxe.Extended.GUI resources.
         /// </summary>
         /// <param name="content">Content manager to use.</param>
-        static public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content)
         {
             InitialiseCharStringDict();
 
-            // set Texture2D static fields
+            _content = content;
+
+            // set Texture2D fields
             HorizontalLineTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Horizontal_Line")[0].Texture;
             WhiteTexture = ResourceHub.GetResource<Sprite>("GUISprites", "White_Texture")[0].Texture;
             IconBackgroundTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Background")[0].Texture;
@@ -291,7 +308,7 @@ namespace Monofoxe.Extended.GUI
             foreach (CursorType cursor in Enum.GetValues(typeof(CursorType)))
             {
                 string cursorName = cursor.ToString();
-                CursorsData[(int)cursor] = content.Load<CursorTextureData>("Cursor_" + cursorName + "_md");
+                CursorsData[(int)cursor] = LoadXmlCursorData("Cursor_" + cursorName + "_md");
             }
 
             // load panels
@@ -308,14 +325,14 @@ namespace Monofoxe.Extended.GUI
                 string skinName = skin.ToString();
                 try
                 {
-                    PanelData[(int)skin] = content.Load<TextureData>("Panel_" + skinName + "_md");
+                    PanelData[(int)skin] = LoadXmlTextureData("Panel_" + skinName + "_md");
                 }
-                catch (Microsoft.Xna.Framework.Content.ContentLoadException ex)
+                catch (ContentLoadException ex)
                 {
                     // for backwards compatability from when it was called 'Golden'.
                     if (skin == PanelSkin.Golden)
                     {
-                        PanelData[(int)skin] = content.Load<TextureData>("Panel_Golden_md");
+                        PanelData[(int)skin] = LoadXmlTextureData("Panel_Golden_md");
                     }
                     else
                     {
@@ -325,14 +342,14 @@ namespace Monofoxe.Extended.GUI
             }
 
             // load scrollbar metadata
-            VerticalScrollbarData = content.Load<TextureData>("Scrollbar_md");
+            VerticalScrollbarData = LoadXmlTextureData("Scrollbar_md");
 
             // load slider metadata
             SliderData = new TextureData[Enum.GetValues(typeof(SliderSkin)).Length];
             foreach (SliderSkin skin in Enum.GetValues(typeof(SliderSkin)))
             {
                 string skinName = skin.ToString();
-                SliderData[(int)skin] = content.Load<TextureData>("Slider_" + skinName + "_md");
+                SliderData[(int)skin] = LoadXmlTextureData("Slider_" + skinName + "_md");
             }
 
             // load fonts
@@ -340,7 +357,6 @@ namespace Monofoxe.Extended.GUI
             foreach (FontStyle style in Enum.GetValues(typeof(FontStyle)))
             {
                 Fonts[(int)style] = ResourceHub.GetResource<IFont>("Fonts", style.ToString()).SpriteFont;
-                Fonts[(int)style].LineSpacing += 2;
             }
 
             // load buttons metadata
@@ -348,53 +364,62 @@ namespace Monofoxe.Extended.GUI
             foreach (ButtonSkin skin in Enum.GetValues(typeof(ButtonSkin)))
             {
                 string skinName = skin.ToString();
-                ButtonData[(int)skin] = content.Load<TextureData>("Button_" + skinName + "_md");
+                ButtonData[(int)skin] = LoadXmlTextureData("Button_" + skinName + "_md");
             }
 
             // load progress bar metadata
-            ProgressBarData = content.Load<TextureData>("Progressbar_md");
+            ProgressBarData = LoadXmlTextureData("Progressbar_md");
 
             // load effects
             DisabledEffect = ResourceHub.GetResource<Effect>("Effects", "Disabled");
             SilhouetteEffect = ResourceHub.GetResource<Effect>("Effects", "Silhouette");
 
             // load default styleSheets
-            LoadDefaultStyles( EntityUI.DefaultStyle, "Entity", content);
-            LoadDefaultStyles( Paragraph.DefaultStyle, "Paragraph", content);
-            LoadDefaultStyles( Button.DefaultStyle, "Button", content);
-            LoadDefaultStyles( Button.DefaultParagraphStyle, "ButtonParagraph", content);
-            LoadDefaultStyles( CheckBox.DefaultStyle, "CheckBox", content);
-            LoadDefaultStyles( CheckBox.DefaultParagraphStyle, "CheckBoxParagraph", content);
-            LoadDefaultStyles( ColoredRectangle.DefaultStyle, "ColoredRectangle", content);
-            LoadDefaultStyles( DropDown.DefaultStyle, "DropDown", content);
-            LoadDefaultStyles( DropDown.DefaultParagraphStyle, "DropDownParagraph", content);
-            LoadDefaultStyles( DropDown.DefaultSelectedParagraphStyle, "DropDownSelectedParagraph", content);
-            LoadDefaultStyles( Header.DefaultStyle, "Header", content);
-            LoadDefaultStyles( HorizontalLine.DefaultStyle, "HorizontalLine", content);
-            LoadDefaultStyles( Icon.DefaultStyle, "Icon", content);
-            LoadDefaultStyles( Image.DefaultStyle, "Image", content);
-            LoadDefaultStyles( Label.DefaultStyle, "Label", content);
-            LoadDefaultStyles( Panel.DefaultStyle, "Panel", content);
-            LoadDefaultStyles( ProgressBar.DefaultStyle, "ProgressBar", content);
-            LoadDefaultStyles( ProgressBar.DefaultFillStyle, "ProgressBarFill", content);
-            LoadDefaultStyles( RadioButton.DefaultStyle, "RadioButton", content);
-            LoadDefaultStyles( RadioButton.DefaultParagraphStyle, "RadioButtonParagraph", content);
-            LoadDefaultStyles( SelectList.DefaultStyle, "SelectList", content);
-            LoadDefaultStyles( SelectList.DefaultParagraphStyle, "SelectListParagraph", content);
-            LoadDefaultStyles( Slider.DefaultStyle, "Slider", content);
-            LoadDefaultStyles( TextInput.DefaultStyle, "TextInput", content);
-            LoadDefaultStyles( TextInput.DefaultParagraphStyle, "TextInputParagraph", content);
-            LoadDefaultStyles( TextInput.DefaultPlaceholderStyle, "TextInputPlaceholder", content);
-            LoadDefaultStyles( VerticalScrollbar.DefaultStyle, "VerticalScrollbar", content);
-            LoadDefaultStyles( PanelTabs.DefaultButtonStyle, "PanelTabsButton", content);
-            LoadDefaultStyles( PanelTabs.DefaultButtonParagraphStyle, "PanelTabsButtonParagraph", content);
+            LoadDefaultStyles( EntityUI.DefaultStyle, "Entity");
+            LoadDefaultStyles( Paragraph.DefaultStyle, "Paragraph");
+            LoadDefaultStyles( Button.DefaultStyle, "Button");
+            LoadDefaultStyles( Button.DefaultParagraphStyle, "ButtonParagraph");
+            LoadDefaultStyles( CheckBox.DefaultStyle, "CheckBox");
+            LoadDefaultStyles( CheckBox.DefaultParagraphStyle, "CheckBoxParagraph");
+            LoadDefaultStyles( ColoredRectangle.DefaultStyle, "ColoredRectangle");
+            LoadDefaultStyles( DropDown.DefaultStyle, "DropDown");
+            try
+            {
+                LoadDefaultStyles(DropDown.DefaultSelectedPanelStyle, "DropDownSelectedPanel");
+            }
+            catch (ContentLoadException)
+            {
+                LoadDefaultStyles(DropDown.DefaultSelectedPanelStyle, "Panel");
+                DropDown.DefaultSelectedPanelStyle.SetStyleProperty("DefaultSize", new StyleProperty(Vector2.Zero));
+            }
+            LoadDefaultStyles(DropDown.DefaultParagraphStyle, "DropDownParagraph");
+            LoadDefaultStyles(DropDown.DefaultSelectedParagraphStyle, "DropDownSelectedParagraph");
+            LoadDefaultStyles(Header.DefaultStyle, "Header");
+            LoadDefaultStyles(HorizontalLine.DefaultStyle, "HorizontalLine");
+            LoadDefaultStyles(Icon.DefaultStyle, "Icon");
+            LoadDefaultStyles(Image.DefaultStyle, "Image");
+            LoadDefaultStyles(Label.DefaultStyle, "Label");
+            LoadDefaultStyles(Panel.DefaultStyle, "Panel");
+            LoadDefaultStyles(ProgressBar.DefaultStyle, "ProgressBar");
+            LoadDefaultStyles(ProgressBar.DefaultFillStyle, "ProgressBarFill");
+            LoadDefaultStyles(RadioButton.DefaultStyle, "RadioButton");
+            LoadDefaultStyles(RadioButton.DefaultParagraphStyle, "RadioButtonParagraph");
+            LoadDefaultStyles(SelectList.DefaultStyle, "SelectList");
+            LoadDefaultStyles(SelectList.DefaultParagraphStyle, "SelectListParagraph");
+            LoadDefaultStyles(Slider.DefaultStyle, "Slider");
+            LoadDefaultStyles(TextInput.DefaultStyle, "TextInput");
+            LoadDefaultStyles(TextInput.DefaultParagraphStyle, "TextInputParagraph");
+            LoadDefaultStyles(TextInput.DefaultPlaceholderStyle, "TextInputPlaceholder");
+            LoadDefaultStyles(VerticalScrollbar.DefaultStyle, "VerticalScrollbar");
+            LoadDefaultStyles(PanelTabs.DefaultButtonStyle, "PanelTabsButton");
+            LoadDefaultStyles(PanelTabs.DefaultButtonParagraphStyle, "PanelTabsButtonParagraph");
         }
 
 
         /// <summary>
         /// Creates Dictionary containing char > string lookup
         /// </summary>
-        private static void InitialiseCharStringDict()
+        private void InitialiseCharStringDict()
         {
             charStringDict.Clear();
 
@@ -412,40 +437,69 @@ namespace Monofoxe.Extended.GUI
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        public static string GetStringForChar(char c)
+        public string GetStringForChar(char c)
         {
             if (!charStringDict.ContainsKey(c)) { return c.ToString(); }
             return charStringDict[c];
+        }
+        /// <summary>
+        /// Load xml file either directly from xml file, or from the content manager.
+        /// </summary>
+        /// <param name="name">XML file name.</param>
+        /// <returns>T instance loaded from xml file or content manager.</returns>
+        private T LoadXml<T>(string name) where T : new()
+        {
+            // try to load xml directly from full path
+            string fullPath = Path.Combine(_content.RootDirectory, name + ".xml");
+            if (File.Exists(fullPath))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                using (var reader = File.OpenText(fullPath))
+                {
+                    XmlDeserializationEvents eventsHandler = new XmlDeserializationEvents()
+                    {
+                        OnUnknownAttribute = (object sender, XmlAttributeEventArgs e) => { throw new Exception("Error parsing file '" + fullPath + "': invalid attribute '" + e.Attr.Name + "' at line " + e.LineNumber); },
+                        OnUnknownElement = (object sender, XmlElementEventArgs e) => { throw new Exception("Error parsing file '" + fullPath + "': invalid element '" + e.Element.Name + "' at line " + e.LineNumber); },
+                        OnUnknownNode = (object sender, XmlNodeEventArgs e) => { throw new Exception("Error parsing file '" + fullPath + "': invalid element '" + e.Name + "' at line " + e.LineNumber); },
+                        OnUnreferencedObject = (object sender, UnreferencedObjectEventArgs e) => { throw new Exception("Error parsing file '" + fullPath + "': unreferenced object '" + e.UnreferencedObject.ToString() + "'"); },
+                    };
+                    return (T)serializer.Deserialize(System.Xml.XmlReader.Create(reader), eventsHandler);
+                }
+            }
+
+            // if xml file not found, try to load xnb instead
+            var ret = _content.Load<T>(name);
+            return ret;
+        }
+
+        /// <summary>
+        /// Load xml texture data either directly from xml file, or from the content manager.
+        /// </summary>
+        /// <param name="name">XML name.</param>
+        /// <returns>Texture data loaded from xml or xnb.</returns>
+        private TextureData LoadXmlTextureData(string name)
+        {
+            return LoadXml<TextureData>(name);
+        }
+
+        /// <summary>
+        /// Load xml cursor data either directly from xml file, or from the content manager.
+        /// </summary>
+        /// <param name="name">XML name.</param>
+        /// <returns>Cursor texture data loaded from xml or xnb.</returns>
+        private CursorTextureData LoadXmlCursorData(string name)
+        {
+            return LoadXml<CursorTextureData>(name);
         }
 
         /// <summary>
         /// Load xml styles either directly from xml file, or from the content manager.
         /// </summary>
         /// <param name="name">XML name.</param>
-        /// <param name="content">Content manager.</param>
         /// <returns>Default styles loaded from xml or xnb.</returns>
-        private static DefaultStyles LoadXmlStyles(string name, ContentManager content)
+        private DefaultStyles LoadXmlStyles(string name)
         {
-            // try to load xml directly from full path
-            string fullPath = System.IO.Path.Combine(content.RootDirectory, name + ".xml");
-            if (System.IO.File.Exists(fullPath))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(DefaultStyles));
-                using (var reader = System.IO.File.OpenText(fullPath))
-                {
-                    XmlDeserializationEvents eventsHandler = new XmlDeserializationEvents()
-                    {
-                        OnUnknownAttribute = (object sender, XmlAttributeEventArgs e) => { throw new System.Exception("Error parsing file '" + fullPath + "': invalid attribute '" + e.Attr.Name + "' at line " + e.LineNumber); },
-                        OnUnknownElement = (object sender, XmlElementEventArgs e) => { throw new System.Exception("Error parsing file '" + fullPath + "': invalid element '" + e.Element.Name + "' at line " + e.LineNumber); },
-                        OnUnknownNode = (object sender, XmlNodeEventArgs e) => { throw new System.Exception("Error parsing file '" + fullPath + "': invalid element '" + e.Name + "' at line " + e.LineNumber); },
-                        OnUnreferencedObject = (object sender, UnreferencedObjectEventArgs e) => { throw new System.Exception("Error parsing file '" + fullPath + "': unreferenced object '" + e.UnreferencedObject.ToString() + "'"); },
-                    };
-                    return (DefaultStyles)serializer.Deserialize(System.Xml.XmlReader.Create(reader), eventsHandler);
-                }
-            }
-
-            // if xml file not found, try to load xnb instead
-            return content.Load<DefaultStyles>(name);
+            return LoadXml<DefaultStyles>(name);
         }
 
         /// <summary>
@@ -453,17 +507,26 @@ namespace Monofoxe.Extended.GUI
         /// </summary>
         /// <param name="sheet">StyleSheet to load.</param>
         /// <param name="entityName">Entity unique identifier for file names.</param>
-        /// <param name="content">Content manager to allow us to load xmls.</param>
-        private static void LoadDefaultStyles(StyleSheet sheet, string entityName, ContentManager content)
+        private void LoadDefaultStyles(StyleSheet sheet, string entityName)
         {
             // load default styles
-            FillDefaultStyles(sheet, EntityState.Default, LoadXmlStyles($"{entityName}-Default", content));
+            FillDefaultStyles(sheet, EntityState.Default, LoadXmlStyles($"{entityName}-Default"));
 
             // load mouse-hover styles
-            FillDefaultStyles(sheet, EntityState.MouseHover, LoadXmlStyles($"{entityName}-MouseHover", content));
+            FillDefaultStyles(sheet, EntityState.MouseHover, LoadXmlStyles($"{entityName}-MouseHover"));
 
             // load mouse-down styles
-            FillDefaultStyles(sheet, EntityState.MouseDown, LoadXmlStyles($"{entityName}-MouseDown", content));
+            FillDefaultStyles(sheet, EntityState.MouseDown, LoadXmlStyles($"{entityName}-MouseDown"));
+        }
+
+        /// <summary>
+        /// Load texture from path.
+        /// </summary>
+        /// <param name="path">Texture path, under theme folder.</param>
+        /// <returns>Texture instance.</returns>
+        public Texture2D LoadTexture(string path)
+        {
+            return ResourceHub.GetResource<Sprite>("GUISprites", path)[0].Texture;
         }
 
         /// <summary>
@@ -472,7 +535,7 @@ namespace Monofoxe.Extended.GUI
         /// <param name="sheet">StyleSheet to fill.</param>
         /// <param name="state">State to fill values for.</param>
         /// <param name="styles">Default styles, as loaded from xml file.</param>
-        private static void FillDefaultStyles(StyleSheet sheet, EntityState state, DefaultStyles styles)
+        private void FillDefaultStyles(StyleSheet sheet, EntityState state, DefaultStyles styles)
         {
             if (styles.FillColor != null) { sheet[$"{state}.FillColor"] = new StyleProperty((Color)styles.FillColor); }
             if (styles.FontStyle != null) { sheet[$"{state}.FontStyle"] = new StyleProperty((int)styles.FontStyle); }

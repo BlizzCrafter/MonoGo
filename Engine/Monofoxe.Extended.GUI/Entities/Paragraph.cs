@@ -15,8 +15,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monofoxe.Extended.GUI.DataTypes;
 using System.Text;
-using Monofoxe.Extended.GUI.Data;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -64,6 +64,16 @@ namespace Monofoxe.Extended.GUI.Entities
         /// Extra padding for background color.
         /// </summary>
         public Point BackgroundColorPadding = new Point(10, 10);
+
+        /// <summary>
+        /// Optional offset for paragraph background color.
+        /// </summary>
+        public Point BackgroundColorOffset = new Point(0, 0);
+
+        /// <summary>
+        /// Rotate the paragraph.
+        /// </summary>
+        public float Rotation;
 
         /// <summary>
         /// An optional font you can set to override the default fonts.
@@ -159,7 +169,7 @@ namespace Monofoxe.Extended.GUI.Entities
         }
 
         /// <summary>Base font size. Change this property to affect the size of all paragraphs and other text entities.</summary>
-        public static float BaseSize = 1f;
+        public static float BaseSize { get; set; } = 1f;
 
         /// <summary>
         /// Create the paragraph.
@@ -174,7 +184,9 @@ namespace Monofoxe.Extended.GUI.Entities
         {
             Text = text;
             UpdateStyle(DefaultStyle);
-            if (scale != null) { SetStyleProperty(StylePropertyIds.Scale, new StyleProperty((float)scale)); }
+            if (scale.HasValue) { 
+                SetStyleProperty(StylePropertyIds.Scale, new StyleProperty((float)scale)); 
+            }
             UpdateFontPropertiesIfNeeded();
         }
 
@@ -191,7 +203,9 @@ namespace Monofoxe.Extended.GUI.Entities
             this(text, anchor, size, offset)
         {
             SetStyleProperty(StylePropertyIds.FillColor, new StyleProperty(color));
-            if (scale != null) { SetStyleProperty(StylePropertyIds.Scale, new StyleProperty((float)scale)); }
+            if (scale.HasValue) { 
+                SetStyleProperty(StylePropertyIds.Scale, new StyleProperty((float)scale)); 
+            }
             UpdateFontPropertiesIfNeeded();
         }
 
@@ -217,7 +231,6 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <returns>Actual size, in pixels, of a single character.</returns>
         public Vector2 GetCharacterActualSize()
         {
-            SpriteFont font = GetCurrFont();
             float scale = Scale * BaseSize * GlobalScale;
             return SingleCharacterSize * scale;
         }
@@ -332,9 +345,6 @@ namespace Monofoxe.Extended.GUI.Entities
                 }
             }
 
-            // remove the extra space that was appended to the end during the process and return wrapped text.
-            //ret = ret.Remove(ret.Length - 1, 1);
-
             // special case - if last word was just the size of the line, it will add a useless trailing \n and create double line breaks.
             // remove that extra line break.
             if (ret.Length > 0 && ret[ret.Length - 1] == '\n')
@@ -381,7 +391,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <returns>Current font.</returns>
         protected SpriteFont GetCurrFont()
         {
-            return FontOverride ?? Resources.Fonts[(int)TextStyle];
+            return FontOverride ?? Resources.Instance.Fonts[(int)TextStyle];
         }
 
         /// <summary>
@@ -559,7 +569,9 @@ namespace Monofoxe.Extended.GUI.Entities
 
                 // fix height for box background and scaling
                 if (BackgroundColorUseBoxSize)
+                {
                     rect.Height = (int)(rect.Height / GlobalScale);
+                }
 
                 // add padding
                 var padding = new Point(
@@ -568,8 +580,12 @@ namespace Monofoxe.Extended.GUI.Entities
                 rect.Location -= padding;
                 rect.Size += padding + padding;
 
+                // add offset
+                rect.X += BackgroundColorOffset.X;
+                rect.Y += BackgroundColorOffset.Y;
+
                 // draw background color
-                spriteBatch.Draw(Resources.WhiteTexture, rect, backColor);
+                spriteBatch.Draw(Resources.Instance.WhiteTexture, rect, backColor);
             }
 
             // draw outilnes
@@ -584,7 +600,7 @@ namespace Monofoxe.Extended.GUI.Entities
 
             // draw text itself
             spriteBatch.DrawString(_currFont, _processedText, _position, fillCol,
-                0, _fontOrigin, _actualScale, SpriteEffects.None, 0.5f);
+                Rotation, _fontOrigin, _actualScale, SpriteEffects.None, 0.5f);
 
             // call base draw function
             base.DrawEntity(spriteBatch, phase);
@@ -619,21 +635,21 @@ namespace Monofoxe.Extended.GUI.Entities
             if (outlineWidth <= MaxOutlineWidthToOptimize)
             {
                 spriteBatch.DrawString(font, text, position + Vector2.One * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(font, text, position - Vector2.One * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
             }
             // for really thick outline we need to cover the other corners as well
             else
             {
                 spriteBatch.DrawString(font, text, position + Vector2.UnitX * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(font, text, position - Vector2.UnitX * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(font, text, position + Vector2.UnitY * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
                 spriteBatch.DrawString(font, text, position - Vector2.UnitY * outlineWidth, outlineColor,
-                    0, origin, scale, SpriteEffects.None, 0.5f);
+                    Rotation, origin, scale, SpriteEffects.None, 0.5f);
             }
         }
     }

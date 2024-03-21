@@ -48,6 +48,9 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <summary>Default styling for dropdown labels. Note: loaded from UI theme xml file.</summary>
         public static StyleSheet DefaultParagraphStyle = new StyleSheet();
 
+        /// <summary>Default styling for the dropdown panel when its closed (where the currently-selected label is shown).</summary>
+        public static StyleSheet DefaultSelectedPanelStyle = new StyleSheet();
+
         /// <summary>Default styling for the dropdown currently-selected label. Note: loaded from UI theme xml file.</summary>
         public static StyleSheet DefaultSelectedParagraphStyle = new StyleSheet();
 
@@ -111,9 +114,13 @@ namespace Monofoxe.Extended.GUI.Entities
         }
 
         /// <summary>
-        /// Default height, in pixels, of the selected text panel.
+        /// Default height, in pixels, of the dropdown selected text panel (the panel when its closed).
+        /// This value will be used only if the stylesheet for DefaultClosePanelStyle don't set a size.Y property.
         /// </summary>
-        public static int SelectedPanelHeight = 67;
+        public static int DefaultSelectedTextPanelHeight = 67;
+
+        // closed panel height in pixels
+        int _selectedPanelHeight;
 
         /// <summary>
         /// If true, will auto-set the internal list height based on number of options.
@@ -152,11 +159,15 @@ namespace Monofoxe.Extended.GUI.Entities
             // to get collision right when list is opened
             UseActualSizeForCollision = true;
 
+            // set dropdown closed panel height
+            _selectedPanelHeight = (int)DefaultSelectedPanelStyle.GetStyleProperty("DefaultSize", EntityState.Default).asVector.Y;
+            if (_selectedPanelHeight <= 1) { _selectedPanelHeight = DefaultSelectedTextPanelHeight; }
+
             if (!UserInterface.Active._isDeserializing)
             {
-
                 // create the panel and paragraph used to show currently selected value (what's shown when drop-down is closed)
-                _selectedTextPanel = new Panel(new Vector2(0, SelectedPanelHeight), skin, Anchor.TopLeft);
+                _selectedTextPanel = new Panel(new Vector2(0, _selectedPanelHeight), skin, Anchor.TopLeft);
+                _selectedTextPanel.UpdateStyle(DefaultSelectedPanelStyle);
                 _selectedTextParagraph = UserInterface.DefaultParagraph(string.Empty, Anchor.CenterLeft);
                 _selectedTextParagraph.UseActualSizeForCollision = false;
                 _selectedTextParagraph.UpdateStyle(SelectList.DefaultParagraphStyle);
@@ -168,7 +179,7 @@ namespace Monofoxe.Extended.GUI.Entities
                 _selectedTextPanel.Identifier = "_selectedTextPanel";
 
                 // create the arrow down icon
-                _arrowDownImage = new Image(Resources.ArrowDown, new Vector2(ArrowSize, ArrowSize), ImageDrawMode.Stretch, Anchor.CenterRight, new Vector2(-10, 0));
+                _arrowDownImage = new Image(Resources.Instance.ArrowDown, new Vector2(ArrowSize, ArrowSize), ImageDrawMode.Stretch, Anchor.CenterRight, new Vector2(-10, 0));
                 _selectedTextPanel.AddChild(_arrowDownImage, true);
                 _arrowDownImage._hiddenInternalEntity = true;
                 _arrowDownImage.Identifier = "_arrowDownImage";
@@ -178,7 +189,7 @@ namespace Monofoxe.Extended.GUI.Entities
                 _selectList = new SelectList(new Vector2(0f, size.Y), Anchor.TopCenter, Vector2.Zero, listSkin ?? skin);
 
                 // update list offset and space before
-                _selectList.Offset = new Vector2(0, SelectedPanelHeight);
+                _selectList.Offset = new Vector2(0, _selectedPanelHeight);
                 _selectList.SpaceBefore = Vector2.Zero;
                 _selectList._hiddenInternalEntity = true;
                 _selectList.Identifier = "_selectList";
@@ -355,8 +366,8 @@ namespace Monofoxe.Extended.GUI.Entities
             {
                 _selectList.UpdateDestinationRectsIfDirty();
                 rect = _selectList.GetActualDestRect();
-                rect.Height += SelectedPanelHeight;
-                rect.Y -= SelectedPanelHeight;
+                rect.Height += _selectedPanelHeight;
+                rect.Y -= _selectedPanelHeight;
             }
             // if list is not currently visible, use the header size
             else
@@ -391,7 +402,7 @@ namespace Monofoxe.Extended.GUI.Entities
                 return;
 
             // update arrow image
-            _arrowDownImage.Texture = ListVisible ? Resources.ArrowUp : Resources.ArrowDown;
+            _arrowDownImage.Texture = ListVisible ? Resources.Instance.ArrowUp : Resources.Instance.ArrowDown;
 
             // focus on selectlist
             _selectList.IsFocused = true;

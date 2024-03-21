@@ -2,7 +2,6 @@
 using Monofoxe.Extended.Engine.SceneSystem;
 using Monofoxe.Extended.Samples.Misc;
 using Monofoxe.Extended.GUI;
-using Monofoxe.Extended.GUI.Data;
 using Monofoxe.Extended.GUI.Entities;
 using Monofoxe.Extended.GUI.Utils.Forms;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using Monofoxe.Extended.Engine.EC;
 using Monofoxe.Extended.Engine.Drawing;
 using Monofoxe.Extended.Engine.Resources;
 using Monofoxe.Extended.Engine;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.Samples.Demos
 {
@@ -28,6 +28,8 @@ namespace Monofoxe.Extended.Samples.Demos
 
         public void CreateUI()
         {
+            #region Demo Content
+
             // create top panel
             int topPanelHeight = 65;
             Panel topPanel = new Panel(new Vector2(0, topPanelHeight + 2), PanelSkin.None, Anchor.TopCenter);
@@ -143,7 +145,7 @@ namespace Monofoxe.Extended.Samples.Demos
             nextExampleButton.OnClick = (EntityUI btn) => { this.NextExample(); };
             nextExampleButton.Identifier = "next_btn";
             topPanel.AddChild(nextExampleButton);
-            
+
             // init all examples
             if (true)
             {
@@ -884,12 +886,12 @@ Maybe something interesting in tab3?"));
                     layout.AddMenu("Interactive", 270);
                     layout.AddItemToMenu("Interactive", "Click Me", (GUI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
-                        context.Entity.ChangeItem(context.ItemIndex, "I was clicked!");
+                        context.EntityUI.ChangeItem(context.ItemIndex, "I was clicked!");
                     });
                     layout.AddItemToMenu("Interactive", "Toggle Me", (GUI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
-                        context.Entity.Tag = context.Entity.Tag == "on" ? "off" : "on";
-                        context.Entity.ChangeItem(context.ItemIndex, (context.Entity.Tag == "on" ? "{{L_GREEN}}" : "") + "Toggle Me");
+                        context.EntityUI.Tag = context.EntityUI.Tag == "on" ? "off" : "on";
+                        context.EntityUI.ChangeItem(context.ItemIndex, (context.EntityUI.Tag == "on" ? "{{L_GREEN}}" : "") + "Toggle Me");
                     });
 
                     var menuBar = GUI.Utils.MenuBar.Create(layout);
@@ -1076,6 +1078,8 @@ If you like this engine then don't forget to star the repo on GitHub.
 
             // once done init, clear events log
             eventsLog.ClearItems();
+
+            #endregion Demo Content
         }
 
         public override void Update()

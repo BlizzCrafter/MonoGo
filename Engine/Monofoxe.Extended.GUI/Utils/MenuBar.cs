@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 using System.Collections.Generic;
+using Monofoxe.Extended.GUI.Entities;
 using Microsoft.Xna.Framework;
 
 
@@ -35,7 +36,7 @@ namespace Monofoxe.Extended.GUI.Utils
             /// <summary>
             /// Menu dropdown entity.
             /// </summary>
-            public Entities.DropDown Entity;
+            public Entities.DropDown EntityUI;
         }
 
         /// <summary>
@@ -133,7 +134,9 @@ namespace Monofoxe.Extended.GUI.Utils
         static public Entities.Panel Create(MenuLayout layout, Entities.PanelSkin skin = Entities.PanelSkin.Simple)
         {
             // create the root panel
-            var rootPanel = new Entities.Panel(new Vector2(0, Entities.DropDown.SelectedPanelHeight), skin, Entities.Anchor.TopLeft);
+            var height = (int)Entities.DropDown.DefaultSelectedPanelStyle.GetStyleProperty("DefaultSize", EntityState.Default).asVector.Y;
+            if (height <= 1) { height = Entities.DropDown.DefaultSelectedTextPanelHeight; }
+            var rootPanel = new Entities.Panel(new Vector2(0, height), skin, Entities.Anchor.TopLeft);
             rootPanel.PriorityBonus = 10000;
             rootPanel.Padding = Vector2.Zero;
 
@@ -162,7 +165,7 @@ namespace Monofoxe.Extended.GUI.Utils
                     var callback = menu.Actions[i];
                     if (callback != null)
                     {
-                        var context = new MenuCallbackContext() { ItemIndex = i, ItemText = menu.Items[i], Entity = dropdown };
+                        var context = new MenuCallbackContext() { ItemIndex = i, ItemText = menu.Items[i], EntityUI = dropdown };
                         dropdown.OnSelectedSpecificItem(menu.Items[i], () => { callback(context); });
                     }
                 }

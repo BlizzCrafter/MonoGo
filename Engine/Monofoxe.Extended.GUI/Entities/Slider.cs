@@ -10,7 +10,6 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Extended.GUI.Data;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -44,10 +43,10 @@ namespace Monofoxe.Extended.GUI.Entities
         SliderSkin _skin;
 
         /// <summary>Min slider value.</summary>
-        protected uint _min;
+        protected int _min;
 
         /// <summary>Max slider value.</summary>
-        protected uint _max;
+        protected int _max;
 
         /// <summary>How many steps (ticks) are in range.</summary>
         protected uint _stepsCount = 0;
@@ -73,7 +72,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="skin">Slider skin (texture).</param>
         /// <param name="anchor">Position anchor.</param>
         /// <param name="offset">Offset from anchor position.</param>
-        public Slider(uint min, uint max, Vector2 size, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
+        public Slider(int min, int max, Vector2 size, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
             base(size, anchor, offset)
         {
             // store style
@@ -84,7 +83,7 @@ namespace Monofoxe.Extended.GUI.Entities
             Max = max;
 
             // set default steps count
-            _stepsCount = Max - Min;
+            _stepsCount = (uint)(Max - Min);
 
             // set starting value to center
             _value = (int)(Min + (Max - Min) / 2);
@@ -101,7 +100,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="skin">Slider skin (texture).</param>
         /// <param name="anchor">Position anchor.</param>
         /// <param name="offset">Offset from anchor position.</param>
-        public Slider(uint min, uint max, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
+        public Slider(int min, int max, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
             this(min, max, USE_DEFAULT_SIZE, skin, anchor, offset)
         {
         }
@@ -211,7 +210,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <summary>
         /// Slider min value (inclusive).
         /// </summary>
-        public uint Min
+        public int Min
         {
             get { return _min; }
             set { if (_min != value) { _min = value; if (Value < _min) Value = (int)_min; } }
@@ -220,7 +219,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <summary>
         /// Slider max value (inclusive).
         /// </summary>
-        public uint Max
+        public int Max
         {
             get { return _max; }
             set { if (_max != value) { _max = value; if (Value > _max) Value = (int)_max; } }
@@ -295,11 +294,11 @@ namespace Monofoxe.Extended.GUI.Entities
         override protected void DrawEntity(SpriteBatch spriteBatch, DrawPhase phase)
         {
             // get textures based on skin
-            Texture2D texture = Resources.SliderTextures[_skin];
-            Texture2D markTexture = Resources.SliderMarkTextures[_skin];
+            Texture2D texture = Resources.Instance.SliderTextures[_skin];
+            Texture2D markTexture = Resources.Instance.SliderMarkTextures[_skin];
 
             // get slider metadata
-            TextureData data = Resources.SliderData[(int)_skin];
+            DataTypes.TextureData data = Resources.Instance.SliderData[(int)_skin];
             float frameWidth = data.FrameWidth;
 
             // draw slider body

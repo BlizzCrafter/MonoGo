@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Monofoxe.Extended.GUI.Utils;
 
+
 namespace Monofoxe.Extended.GUI.Entities
 {
     // data we attach to paragraphs that are part of this selection list
@@ -62,9 +63,23 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <summary>Scale items in list.</summary>
         public float ItemsScale = 1f;
 
-        /// <summary>Special callback to execute when list size changes.</summary>
+        /// <summary>Invoked when list size changes.</summary>
         [System.Xml.Serialization.XmlIgnore]
         public EventCallback OnListChange = null;
+
+        /// <summary>Invoked when the user select the same value in the list again.</summary>
+        [System.Xml.Serialization.XmlIgnore]
+        public EventCallback OnSameValueSelected = null;
+
+        /// <summary>
+        /// If icons are set, this factor will scale them.
+        /// </summary>
+        public float IconsScale = 1f;
+
+        /// <summary>
+        /// Icons offset from text.
+        /// </summary>
+        public static int IconsOffsetX = 10;
 
         /// <summary>
         /// If true and an item in the list is too long for its width, the list will cut its value to fit width.
@@ -75,6 +90,9 @@ namespace Monofoxe.Extended.GUI.Entities
         /// String to append when clipping items width.
         /// </summary>
         public string AddWhenClipping = "..";
+
+        // icons to add next to paragraphs
+        Dictionary<int, string> _icons = new Dictionary<int, string>();
 
         /// <summary>When set to true, users cannot change the currently selected value.
         /// Note: unlike the basic entity "Locked" that prevent all input from entity and its children,
@@ -95,15 +113,15 @@ namespace Monofoxe.Extended.GUI.Entities
         public SerializableDictionary<int, bool> LockedItems = new SerializableDictionary<int, bool>();
 
         // list of values
-        List<string> _list = new List<string>();
+        List<string> _valuesList = new List<string>();
 
         /// <summary>
         /// Get / set all items.
         /// </summary>
         public string[] Items
         {
-            get { return _list.ToArray(); }
-            set { _list.Clear(); _list.AddRange(value);  OnListChanged(); }
+            get { return _valuesList.ToArray(); }
+            set { _valuesList.Clear(); _valuesList.AddRange(value);  OnListChanged(); }
         }
 
         /// <summary>
@@ -176,7 +194,7 @@ namespace Monofoxe.Extended.GUI.Entities
             }
 
             // make sure selected index is valid
-            if (SelectedIndex >= _list.Count)
+            if (SelectedIndex >= _valuesList.Count)
             {
                 Unselect();
             }
@@ -192,9 +210,9 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="newValue">New value to set.</param>
         public void ChangeItem(int index, string newValue)
         {
-            if (_list[index] != newValue)
+            if (_valuesList[index] != newValue)
             {
-                _list[index] = newValue;
+                _valuesList[index] = newValue;
                 OnListChanged();
             }
         }
@@ -215,12 +233,12 @@ namespace Monofoxe.Extended.GUI.Entities
 
             // find and change value
             bool didChange = false;
-            for (var i = 0; i < _list.Count; ++i)
+            for (var i = 0; i < _valuesList.Count; ++i)
             {
-                if (_list[i] == oldValue)
+                if (_valuesList[i] == oldValue)
                 {
                     didChange = true;
-                    _list[i] = newValue;
+                    _valuesList[i] = newValue;
                     if (onlyFirst) { break; }
                 }
             }
@@ -233,6 +251,49 @@ namespace Monofoxe.Extended.GUI.Entities
         }
 
         /// <summary>
+        /// Clear all icons currently attached to items.
+        /// </summary>
+        public void ClearIcons()
+        {
+            _icons.Clear();
+        }
+
+        /// <summary>
+        /// Set icon for a given item index.
+        /// </summary>
+        /// <param name="texturePath">Icon texture path, under theme folder. Set to null to remove icons.</param>
+        /// <param name="index">Item index to attach icon to.</param>
+        public void SetIcon(string texturePath, int index)
+        {
+            if (texturePath == null)
+            {
+                if (_icons.ContainsKey(index)) { _icons.Remove(index); }
+            }
+            else
+            {
+                _icons[index] = texturePath;
+            }
+        }
+
+        /// <summary>
+        /// Set icon for a given item text.
+        /// </summary>
+        /// <param name="texturePath">Icon texture path, under theme folder. Set to null to remove icons.</param>
+        /// <param name="itemText">Item text to attach icon to.</param>
+        public void SetIcon(string texturePath, string itemText)
+        {
+            var index = 0;
+            foreach (var item in _valuesList)
+            {
+                if (item == itemText)
+                {
+                    SetIcon(texturePath, index);
+                }
+                index++;
+            }
+        }
+
+        /// <summary>
         /// Add value to list.
         /// </summary>
         /// <remarks>Values can be duplicated, however, this will cause annoying behavior when trying to delete or select by value (will always pick the first found).</remarks>
@@ -240,7 +301,7 @@ namespace Monofoxe.Extended.GUI.Entities
         public void AddItem(string value)
         {
             if (MaxItems != 0 && Count >= MaxItems) { return; }
-            _list.Add(value);
+            _valuesList.Add(value);
             OnListChanged();
         }
 
@@ -253,7 +314,7 @@ namespace Monofoxe.Extended.GUI.Entities
         public void AddItem(string value, int index)
         {
             if (MaxItems != 0 && Count >= MaxItems) { return; }
-            _list.Insert(index, value);
+            _valuesList.Insert(index, value);
             OnListChanged();
         }
         
@@ -263,7 +324,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="value">Value to remove.</param>
         public void RemoveItem(string value)
         {
-            _list.Remove(value);
+            _valuesList.Remove(value);
             OnListChanged();
         }
 
@@ -273,7 +334,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="index">Index of the item to remove.</param>
         public void RemoveItem(int index)
         {
-            _list.RemoveAt(index);
+            _valuesList.RemoveAt(index);
             OnListChanged();
         }
 
@@ -282,7 +343,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// </summary>
         public void ClearItems()
         {
-            _list.Clear();
+            _valuesList.Clear();
             OnListChanged();
         }
 
@@ -291,7 +352,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// </summary>
         public int Count
         {
-            get { return _list.Count; }
+            get { return _valuesList.Count; }
         }
 
         /// <summary>
@@ -299,7 +360,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// </summary>
         public bool Empty
         {
-            get { return _list.Count == 0; }
+            get { return _valuesList.Count == 0; }
         }
 
         /// <summary>
@@ -317,7 +378,7 @@ namespace Monofoxe.Extended.GUI.Entities
         public void MatchHeightToList()
         {
             // no items? nothing to do
-            if (_list.Count == 0) return;
+            if (_valuesList.Count == 0) return;
 
             // if there are no initialized paragraphs, build them
             if (_paragraphs.Count == 0)
@@ -333,7 +394,7 @@ namespace Monofoxe.Extended.GUI.Entities
             }
 
             // get height of a single paragraph and calculate size from it
-            var height = _list.Count * (_paragraphs[0].GetCharacterActualSize().Y / GlobalScale + _paragraphs[0].SpaceAfter.Y) + Padding.Y * 2;
+            var height = _valuesList.Count * (_paragraphs[0].GetCharacterActualSize().Y / GlobalScale + _paragraphs[0].SpaceAfter.Y) + Padding.Y * 2;
             Size = new Vector2(Size.X, height);
         }
 
@@ -355,7 +416,7 @@ namespace Monofoxe.Extended.GUI.Entities
         {
             if (_scrollbar != null && _scrollbar.Visible)
             {
-                _scrollbar.Value = _list.Count;
+                _scrollbar.Value = _valuesList.Count;
             }
         }
 
@@ -446,10 +507,13 @@ namespace Monofoxe.Extended.GUI.Entities
                 // add callback to selection
                 paragraph.OnClick += (EntityUI entity) =>
                 {
-                    ParagraphData data = (ParagraphData)entity.AttachedData;
-                    if (!data.list.LockSelection)
+                    if (entity.Parent != null) // <-- this happens if clearing children while update so we need to test it
                     {
-                        data.list.Select(data.relativeIndex, true);
+                        ParagraphData data = (ParagraphData)entity.AttachedData;
+                        if (!data.list.LockSelection)
+                        {
+                            data.list.Select(data.relativeIndex, true);
+                        }
                     }
                 };
 
@@ -457,7 +521,7 @@ namespace Monofoxe.Extended.GUI.Entities
                 paragraph.UpdateDestinationRects();
 
                 // if out of list bounderies remove this paragraph and stop
-                if ((paragraph.GetActualDestRect().Bottom > _destRect.Bottom - _scaledPadding.Y) || i > _list.Count)
+                if ((paragraph.GetActualDestRect().Bottom > _destRect.Bottom - _scaledPadding.Y) || i > _valuesList.Count)
                 {
                     RemoveChild(paragraph);
                     _paragraphs.Remove(paragraph);
@@ -466,15 +530,15 @@ namespace Monofoxe.Extended.GUI.Entities
             }
 
             // add scrollbar last, but only if needed
-            if (_paragraphs.Count > 0 && _paragraphs.Count < _list.Count)
+            if (_paragraphs.Count > 0 && _paragraphs.Count < _valuesList.Count)
             {
                 // add scrollbar to list
                 AddChild(_scrollbar, false);
 
                 // calc max scroll value
-                _scrollbar.Max = (uint)(_list.Count - _paragraphs.Count);
+                _scrollbar.Max = (_valuesList.Count - _paragraphs.Count);
                 if (_scrollbar.Max < 2) { _scrollbar.Max = 2; }
-                _scrollbar.StepsCount = _scrollbar.Max;
+                _scrollbar.StepsCount = (uint)(_scrollbar.Max - _scrollbar.Min);
                 _scrollbar.Visible = true;
             } 
             // if no scrollbar is needed, hide it
@@ -560,7 +624,19 @@ namespace Monofoxe.Extended.GUI.Entities
         protected void Select(string value)
         {
             // value not changed? skip
-            if (!AllowReselectValue && value == _value) { return; }
+            if (!AllowReselectValue && value == _value) 
+            {
+                // invoke select same value event
+                if ((value == _value) && (value != null))
+                {
+                    OnSameValueSelected?.Invoke(this);
+                }
+                // stop here
+                return; 
+            }
+
+            // store previous value
+            var prevValue = _value;
 
             // special case - value is null
             if (value == null)
@@ -572,11 +648,11 @@ namespace Monofoxe.Extended.GUI.Entities
             }
 
             // find index in list
-            _index = _list.IndexOf(value);
+            _index = _valuesList.IndexOf(value);
             if (_index == -1)
             {
                 _value = null;
-                if (UserInterface.Active.SilentSoftErrors) return;
+                if (UserInterface.Active.SilentSoftErrors) { return; }
                 throw new Exceptions.NotFoundException("Value to set not found in list!");
             }
 
@@ -585,6 +661,12 @@ namespace Monofoxe.Extended.GUI.Entities
 
             // call on-value-change event
             DoOnValueChange();
+
+            // trigger same-value selected event
+            if ((value == prevValue) && (value != null))
+            {
+                OnSameValueSelected?.Invoke(this);
+            }
         }
 
         /// <summary>
@@ -624,22 +706,40 @@ namespace Monofoxe.Extended.GUI.Entities
                 index += _scrollbar.Value;
             }
 
+            // store previous index. we use it to test same-selection.
+            var prevIndex = _index;
+
             // index not changed? skip
-            if (!AllowReselectValue && index == _index) { return; }
+            if (!AllowReselectValue && index == _index) 
+            {
+                // invoke select same value event
+                if (index == prevIndex)
+                {
+                    OnSameValueSelected?.Invoke(this);
+                }
+                // stop here
+                return; 
+            }
 
             // make sure legal index
-            if (index >= -1 && index >= _list.Count)
+            if ((index >= -1) && (index >= _valuesList.Count))
             {
-                if (UserInterface.Active.SilentSoftErrors) return;
+                if (UserInterface.Active.SilentSoftErrors) { return; }
                 throw new Exceptions.NotFoundException("Invalid list index to select!");
             }
 
             // pick based on index
-            _value = index > -1 ? _list[index] : null;
+            _value = index > -1 ? _valuesList[index] : null;
             _index = index;
 
             // call on-value-change event
             DoOnValueChange();
+
+            // invoke select same value event
+            if (index == prevIndex)
+            {
+                OnSameValueSelected?.Invoke(this);
+            }
         }
 
         /// <summary>
@@ -671,12 +771,37 @@ namespace Monofoxe.Extended.GUI.Entities
                 var par = _paragraphs[i];
 
                 // if we got an item to show for this paragraph index:
-                if (item_index < _list.Count)
+                if (item_index < _valuesList.Count)
                 {
                     // set paragraph text, make visible, and remove background.
-                    par.Text = _list[item_index];
+                    par.Text = _valuesList[item_index];
                     par.BackgroundColor.A = 0;
                     par.Visible = true;
+
+                    // set icon
+                    if (_icons.TryGetValue(item_index, out string texturePath))
+                    {
+                        // check if need to create a new icon
+                        if ((par.Children.Count == 0) || ((par.Find("__ListIcon__")?.AttachedData as string) != texturePath))
+                        {
+                            par.ClearChildren();
+                            var icon = new Image(texturePath, anchor: Anchor.CenterLeft);
+                            icon.AttachedData = texturePath;
+                            icon.Identifier = "__ListIcon__";
+                            par.AddChild(icon);
+                            var ratio = ((float)icon.Texture.Width / (float)icon.Texture.Height);
+                            var height = par.Size.Y * IconsScale;
+                            icon.Size = new Vector2(height * ratio, height);
+                            icon.Offset = new Vector2(-(icon.Size.X * 2 + IconsOffsetX), 0);
+                            par.Offset = new Vector2(icon.Size.X, 0);
+                            par.BackgroundColorOffset = new Point((int)-icon.Size.X, 0);
+                        }
+                    }
+                    // remove previously set icons
+                    else if (par.Children.Count > 0)
+                    {
+                        par.Find("__ListIcon__")?.RemoveFromParent();
+                    }
 
                     // check if we need to trim size
                     if (ClipTextIfOverflow)
@@ -723,7 +848,7 @@ namespace Monofoxe.Extended.GUI.Entities
                 {
                     // add background to selected paragraph
                     Paragraph paragraph = _paragraphs[i];
-                    Rectangle destRect = paragraph.GetActualDestRect();
+                    paragraph.GetActualDestRect();
                     paragraph.State = EntityState.MouseDown;
                     paragraph.BackgroundColor = GetActiveStyle("SelectedHighlightColor").asColor;
                 }

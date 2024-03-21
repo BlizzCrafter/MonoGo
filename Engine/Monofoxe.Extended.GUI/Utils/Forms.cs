@@ -1,5 +1,4 @@
-﻿using Monofoxe.Extended.GUI;
-using Monofoxe.Extended.GUI.Entities;
+﻿using Monofoxe.Extended.GUI.Entities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -244,7 +243,7 @@ namespace Monofoxe.Extended.GUI.Utils.Forms
 
                 // create slider input
                 case FormFieldType.Slider:
-                    var slider = new Slider((uint)fieldData.Min, (uint)fieldData.Max);
+                    var slider = new Slider(fieldData.Min, fieldData.Max);
                     if (fieldData.DefaultValue is int)
                     {
                         slider.Value = (int)fieldData.DefaultValue;

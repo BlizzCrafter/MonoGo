@@ -9,6 +9,7 @@
 #endregion
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {

@@ -15,7 +15,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Extended.GUI.Data;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -170,7 +170,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <summary>
         /// Make an entity type serializable.
         /// </summary>
-        /// <param name="type">Entity type to make serializable.</param>
+        /// <param name="type">EntityUI type to make serializable.</param>
         public static void MakeSerializable(System.Type type)
         {
             _serializableTypes.Add(type);
@@ -328,7 +328,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// </summary>
         public bool UseActualSizeForCollision = true;
 
-        /// <summary>Entity size (in pixels). Value of 0 will take parent's full size. -1 will take defaults.</summary>
+        /// <summary>EntityUI size (in pixels). Value of 0 will take parent's full size. -1 will take defaults.</summary>
         protected Vector2 _size;
 
         /// <summary>Offset, in pixels, from the anchor position.</summary>
@@ -529,7 +529,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// Create the entity.
         /// </summary>
         /// <param name="size">Entity size, in pixels.</param>
-        /// <param name="anchor">Poisition anchor.</param>
+        /// <param name="anchor">Position anchor.</param>
         /// <param name="offset">Offset from anchor position.</param>
         public EntityUI(Vector2? size = null, Anchor anchor = Anchor.Auto, Vector2? offset = null)
         {
@@ -947,7 +947,7 @@ namespace Monofoxe.Extended.GUI.Entities
         }
 
         /// <summary>
-        /// Entity outline color - this is just a sugarcoat to access the default outline color style property.
+        /// EntityUI outline color - this is just a sugarcoat to access the default outline color style property.
         /// </summary>
         [System.Xml.Serialization.XmlIgnore]
         public Color OutlineColor
@@ -1215,22 +1215,22 @@ namespace Monofoxe.Extended.GUI.Entities
 
             // first draw whole dest rect
             var destRectCol = new Color(0f, 1f, 0.25f, 0.05f);
-            spriteBatch.Draw(Resources.WhiteTexture, _destRect, destRectCol);
+            spriteBatch.Draw(Resources.Instance.WhiteTexture, _destRect, destRectCol);
 
             // now draw internal dest rect
             var internalCol = new Color(1f, 0.5f, 0f, 0.5f);
-            spriteBatch.Draw(Resources.WhiteTexture, _destRectInternal, internalCol);
+            spriteBatch.Draw(Resources.Instance.WhiteTexture, _destRectInternal, internalCol);
 
             // draw space before
             var spaceColor = new Color(0f, 0f, 0.5f, 0.5f);
             if (SpaceBefore.X > 0)
             {
-                spriteBatch.Draw(Resources.WhiteTexture,
+                spriteBatch.Draw(Resources.Instance.WhiteTexture,
                     new Rectangle((int)(_destRect.Left - _scaledSpaceBefore.X), _destRect.Y, (int)_scaledSpaceBefore.X, _destRect.Height), spaceColor);
             }
             if (SpaceBefore.Y > 0)
             {
-                spriteBatch.Draw(Resources.WhiteTexture,
+                spriteBatch.Draw(Resources.Instance.WhiteTexture,
                     new Rectangle(_destRect.X, (int)(_destRect.Top - _scaledSpaceBefore.Y), _destRect.Width, (int)_scaledSpaceBefore.Y), spaceColor);
             }
 
@@ -1238,12 +1238,12 @@ namespace Monofoxe.Extended.GUI.Entities
             spaceColor = new Color(0.5f, 0f, 0.5f, 0.5f);
             if (SpaceAfter.X > 0)
             {
-                spriteBatch.Draw(Resources.WhiteTexture,
+                spriteBatch.Draw(Resources.Instance.WhiteTexture,
                     new Rectangle(_destRect.Right, _destRect.Y, (int)_scaledSpaceAfter.X, _destRect.Height), spaceColor);
             }
             if (SpaceAfter.Y > 0)
             {
-                spriteBatch.Draw(Resources.WhiteTexture,
+                spriteBatch.Draw(Resources.Instance.WhiteTexture,
                     new Rectangle(_destRect.X, _destRect.Bottom, _destRect.Width, (int)_scaledSpaceAfter.Y), spaceColor);
             }
 

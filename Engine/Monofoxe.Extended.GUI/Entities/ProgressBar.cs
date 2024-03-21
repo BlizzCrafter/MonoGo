@@ -56,7 +56,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="size">Entity size.</param>
         /// <param name="anchor">Position anchor.</param>
         /// <param name="offset">Offset from anchor position.</param>
-        public ProgressBar(uint min, uint max, Vector2 size, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
+        public ProgressBar(int min, int max, Vector2 size, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
             base(min, max, size, SliderSkin.Default, anchor, offset)
         {
             // update default styles
@@ -66,7 +66,7 @@ namespace Monofoxe.Extended.GUI.Entities
             {
                 // create the fill part
                 Padding = Vector2.Zero;
-                ProgressFill = new Image(Resources.ProgressBarFillTexture, Vector2.Zero, ImageDrawMode.Stretch, Anchor.CenterLeft);
+                ProgressFill = new Image(Resources.Instance.ProgressBarFillTexture, Vector2.Zero, ImageDrawMode.Stretch, Anchor.CenterLeft);
                 ProgressFill.UpdateStyle(DefaultFillStyle);
                 ProgressFill._hiddenInternalEntity = true;
                 ProgressFill.Identifier = "_progress_fill";
@@ -88,7 +88,7 @@ namespace Monofoxe.Extended.GUI.Entities
         /// <param name="max">Max value.</param>
         /// <param name="anchor">Position anchor.</param>
         /// <param name="offset">Offset from anchor position.</param>
-        public ProgressBar(uint min, uint max, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
+        public ProgressBar(int min, int max, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
             this(min, max, USE_DEFAULT_SIZE, anchor, offset)
         { }
 
@@ -119,10 +119,10 @@ namespace Monofoxe.Extended.GUI.Entities
         override protected void DrawEntity(SpriteBatch spriteBatch, DrawPhase phase)
         {
             // get progressbar frame width
-            float progressbarFrameWidth = Resources.ProgressBarData.FrameWidth;
+            float progressbarFrameWidth = Resources.Instance.ProgressBarData.FrameWidth;
 
             // draw progress bar frame
-            Texture2D barTexture = Resources.ProgressBarTexture;
+            Texture2D barTexture = Resources.Instance.ProgressBarTexture;
             UserInterface.Active.DrawUtils.DrawSurface(spriteBatch, barTexture, _destRect, new Vector2(progressbarFrameWidth, 0f), 1, FillColor);
 
             // calc frame actual height and scaling factor (this is needed to calc frame width in pixels)

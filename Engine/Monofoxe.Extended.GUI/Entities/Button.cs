@@ -14,9 +14,10 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Extended.GUI.Data;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -240,10 +241,10 @@ namespace Monofoxe.Extended.GUI.Entities
             if (Checked) { state = EntityState.MouseDown; }
            
             // get texture based on skin and state
-            Texture2D texture = _customSkin == null ? Resources.ButtonTextures[_skin, state] : _customSkin[(int)state];
+            Texture2D texture = _customSkin == null ? Resources.Instance.ButtonTextures[_skin, state] : _customSkin[(int)state];
 
             // get frame width
-            TextureData data = Resources.ButtonData[(int)_skin];
+            TextureData data = Resources.Instance.ButtonData[(int)_skin];
             Vector2 frameSize = _customSkin == null ? new Vector2(data.FrameWidth, data.FrameHeight) : _customFrame;
 
             // draw the button background with frame

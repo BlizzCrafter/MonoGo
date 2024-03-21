@@ -10,7 +10,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.Engine\Monofoxe.Extended.Engine.csproj" />
-	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj" />
 	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.GUI\Monofoxe.Extended.GUI.csproj" />
 	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.Tiled\Monofoxe.Extended.Tiled.csproj" />
 	</ItemGroup>

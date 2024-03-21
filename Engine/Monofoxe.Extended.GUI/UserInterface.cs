@@ -16,7 +16,6 @@ using System.Xml.Serialization;
 using Monofoxe.Extended.Engine.Utils;
 using Monofoxe.Extended.Engine;
 using Monofoxe.Extended.Engine.Drawing;
-using Monofoxe.Extended.GUI.Data;
 using System.IO;
 
 namespace Monofoxe.Extended.GUI
@@ -77,15 +76,15 @@ namespace Monofoxe.Extended.GUI
     public class UserInterface : System.IDisposable
     {
         /// <summary>Current Monofoxe.Extended.GUI version identifier.</summary>
-        public const string VERSION = "4.1.0.1";
+        public const string VERSION = "4.3.0.2";
 
         /// <summary>
         /// The currently active user interface instance.
         /// </summary>
-        public static UserInterface Active = null;
+        public static UserInterface Active = null!;
 
         /// <summary>
-        /// The object that provide mouse input for GeonBit UI.
+        /// The object that provide mouse input for Monofoxe.Extended.GUI.
         /// By default it uses internal implementation that uses MonoGame mouse input.
         /// If you want to use things like Touch input, you can override and replace this instance
         /// with your own object that emulates mouse input from different sources.
@@ -93,7 +92,7 @@ namespace Monofoxe.Extended.GUI
         public IMouseInput MouseInputProvider;
 
         /// <summary>
-        /// The object that provide keyboard and typing input for GeonBit UI.
+        /// The object that provide keyboard and typing input for Monofoxe.Extended.GUI.
         /// By default it uses internal implementation that uses MonoGame keyboard input.
         /// If you want to use alternative typing methods, you can override and replace this instance
         /// with your own object that emulates keyboard input.
@@ -108,9 +107,6 @@ namespace Monofoxe.Extended.GUI
 
         // the main render target we render everything on
         RenderTarget2D _renderTarget = null;
-
-        // are we currently in use-render-target mode
-        private bool _useRenderTarget = false;
 
         // are we currently during deserialization phase?
         internal bool _isDeserializing = false;
@@ -189,10 +185,10 @@ namespace Monofoxe.Extended.GUI
         public DrawUtils DrawUtils = null;
 
         /// <summary>Current active entity, eg last entity user interacted with.</summary>
-        public EntityUI ActiveEntity = null;
+        public EntityUI ActiveEntity { get; internal set; } = null!;
 
         /// <summary>The current target entity, eg what cursor points on. Can be null if cursor don't point on any entity.</summary>
-        public EntityUI TargetEntity { get; private set; }
+        public EntityUI TargetEntity { get; private set; } = null!;
 
         /// <summary>Callback to execute when mouse button is pressed over an entity (called once when button is pressed).</summary>
         public EventCallback OnMouseDown = null;
@@ -295,12 +291,6 @@ namespace Monofoxe.Extended.GUI
         public bool UseRenderTargetTransformMatrix = false;
 
         /// <summary>
-        /// If using render targets, should the curser be rendered inside of it?
-        /// If false, cursor will draw outside the render target, when presenting it.
-        /// </summary>
-        public bool IncludeCursorInRenderTarget = true;
-
-        /// <summary>
         /// The function used to generate tooltip text on entities.
         /// </summary>
         public GenerateTooltipFunc GenerateTooltipFunc = DefaultGenerateTooltipFunc;
@@ -318,7 +308,8 @@ namespace Monofoxe.Extended.GUI
             _content.RootDirectory = Path.Combine(ResourceInfoMgr.ContentDir, styleSheetsPath);
 
             // init resources (textures etc)
-            Resources.LoadContent(_content);
+            Resources.Reset();
+            Resources.Instance.LoadContent(_content);
 
             // create a default active user interface
             Active = new UserInterface();
@@ -409,8 +400,8 @@ namespace Monofoxe.Extended.GUI
         /// <param name="type">What type of cursor to show.</param>
         public void SetCursor(CursorType type)
         {
-            CursorTextureData data = Resources.CursorsData[(int)type];
-            SetCursor(Resources.Cursors[type], data.DrawWidth, new Point(data.OffsetX, data.OffsetY));
+            DataTypes.CursorTextureData data = Resources.Instance.CursorsData[(int)type];
+            SetCursor(Resources.Instance.Cursors[type], data.DrawWidth, new Point(data.OffsetX, data.OffsetY));
         }
 
         /// <summary>
@@ -569,18 +560,18 @@ namespace Monofoxe.Extended.GUI
                 Root.MarkAsDirty();
             }
 
-            // check if screen size changed or don't have a render target yet. if so, create the render target.
-            if (_renderTarget == null ||
-                _renderTarget.Width != ScreenWidth ||
-                _renderTarget.Height != ScreenHeight)
-            {
-                // recreate render target
-                DisposeRenderTarget();
-                _renderTarget = new RenderTarget2D(_spriteBatch.GraphicsDevice,
-                    ScreenWidth, ScreenHeight, false,
-                    _spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
-                    _spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
-                    RenderTargetUsage.PreserveContents);
+                // check if screen size changed or don't have a render target yet. if so, create the render target.
+                if (_renderTarget == null ||
+                    _renderTarget.Width != ScreenWidth ||
+                    _renderTarget.Height != ScreenHeight)
+                {
+                    // recreate render target
+                    DisposeRenderTarget();
+                    _renderTarget = new RenderTarget2D(_spriteBatch.GraphicsDevice,
+                        ScreenWidth, ScreenHeight, false,
+                        _spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                        _spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
+                        RenderTargetUsage.PreserveContents);
 
                 RenderMgr.GUISurface = new Surface(_renderTarget);
             }
@@ -589,7 +580,7 @@ namespace Monofoxe.Extended.GUI
             Root.Draw(_spriteBatch);
 
             _spriteBatch.GraphicsDevice.SetRenderTarget(null);
-        }
+            }
 
         /// <summary>
         /// Draw the cursor.

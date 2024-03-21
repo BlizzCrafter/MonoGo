@@ -1,8 +1,7 @@
 ﻿{
 	"root": "../../Monofoxe.Extended.Samples.Content/Content/",
 	"references": [
-		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll",
-		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.GUI.Data.dll"
+		"../../Monofoxe.Extended.Samples.Content/bin/Monofoxe.Extended.Pipeline.dll"
 	],
 	"content": {
 		"contentList": {
@@ -28,7 +27,7 @@
 		"styles": {
 			"path": "Graphics/GUI/Styles/*.xml",
 			"recursive": "false",
-			"action": "build",
+			"action": "copy",
 			"importer": "XmlImporter",
 			"processor": "PassThroughProcessor",
 			"watch": [

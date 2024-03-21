@@ -11,6 +11,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -120,14 +121,14 @@ namespace Monofoxe.Extended.GUI.Entities
 				outlineDest.Y -= outlineWidth;
 				outlineDest.Width += outlineWidth * 2;
 				outlineDest.Height += outlineWidth * 2;
-				spriteBatch.Draw(Resources.WhiteTexture, outlineDest, OutlineColor);
+				spriteBatch.Draw(Resources.Instance.WhiteTexture, outlineDest, OutlineColor);
 			}
 
             // get fill color
             Color fill = FillColor;
 
             // draw the rectangle
-            spriteBatch.Draw(Resources.WhiteTexture, _destRect, fill);
+            spriteBatch.Draw(Resources.Instance.WhiteTexture, _destRect, fill);
 
             // call base draw function
             base.DrawEntity(spriteBatch, phase);

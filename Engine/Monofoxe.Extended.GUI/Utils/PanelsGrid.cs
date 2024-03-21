@@ -1,5 +1,4 @@
-﻿using Monofoxe.Extended.GUI;
-using Monofoxe.Extended.GUI.Entities;
+﻿using Monofoxe.Extended.GUI.Entities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 

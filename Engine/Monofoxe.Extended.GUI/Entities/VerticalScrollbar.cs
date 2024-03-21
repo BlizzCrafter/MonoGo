@@ -126,9 +126,9 @@ namespace Monofoxe.Extended.GUI.Entities
             }
 
             // get textures based on type
-            Texture2D texture = Resources.VerticalScrollbarTexture;
-            Texture2D markTexture = Resources.VerticalScrollbarMarkTexture;
-            float FrameHeight = Resources.VerticalScrollbarData.FrameHeight;
+            Texture2D texture = Resources.Instance.VerticalScrollbarTexture;
+            Texture2D markTexture = Resources.Instance.VerticalScrollbarMarkTexture;
+            float FrameHeight = Resources.Instance.VerticalScrollbarData.FrameHeight;
 
             // draw scrollbar body
             UserInterface.Active.DrawUtils.DrawSurface(spriteBatch, texture, _destRect, new Vector2(0f, FrameHeight), 1, FillColor);
@@ -206,11 +206,11 @@ namespace Monofoxe.Extended.GUI.Entities
                 // set new max value
                 if (newMax != Max)
                 {
-                    Max = (uint)newMax;
+                    Max = newMax;
                 }
 
                 // set steps count
-                StepsCount = (Max - Min) / 80;
+                StepsCount = (uint)(Max - Min) / 80;
             }
         }
 

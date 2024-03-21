@@ -101,12 +101,7 @@ namespace Monofoxe.Extended.GUI
 
             // get mouse position
             _oldMousePos = _newMousePos;
-            var mousePos = new Vector2(_newMouseState.X, _newMouseState.Y);
-            if (mousePosition != default)
-            {
-                mousePos = new Vector2(mousePosition.X, mousePosition.Y);
-            }
-            _newMousePos = new Vector2(mousePos.X, mousePos.Y);
+            _newMousePos = new Vector2(_newMouseState.X, _newMouseState.Y);
 
             // get mouse wheel state
             int prevMouseWheel = MouseWheel;
@@ -466,7 +461,7 @@ namespace Monofoxe.Extended.GUI
         }
 
         /// <summary>
-        /// Get current mouse poisition.
+        /// Get current mouse Position.
         /// </summary>
         public Vector2 MousePosition
         {

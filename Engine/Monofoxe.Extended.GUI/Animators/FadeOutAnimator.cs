@@ -1,4 +1,6 @@
-﻿using Monofoxe.Extended.Engine.Utils;
+﻿using Microsoft.Xna.Framework;
+using Monofoxe.Extended.Engine.Utils;
+
 
 namespace Monofoxe.Extended.GUI.Animators
 {

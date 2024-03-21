@@ -79,7 +79,7 @@ namespace Monofoxe.Extended.GUI.Entities
         {
             EntityState state = _entityState;
             if (state != EntityState.MouseDown && (bool)Checked) { state = EntityState.MouseDown; }
-            return Resources.RadioTextures[state];
+            return Resources.Instance.RadioTextures[state];
         }
 
         /// <summary>

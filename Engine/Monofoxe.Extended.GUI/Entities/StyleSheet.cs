@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 #endregion
 using System.Collections.Generic;
-using Monofoxe.Extended.GUI.Data;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {

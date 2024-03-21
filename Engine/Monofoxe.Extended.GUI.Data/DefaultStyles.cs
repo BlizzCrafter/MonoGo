@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace Monofoxe.Extended.GUI.Data
 {
     /// <summary>
-    /// Font styles (should match the font styles defined in GeonBit.UI engine).
+    /// Font styles (should match the font styles defined in Monofoxe.Extended.GUI engine).
     /// </summary>
     public enum _FontStyle
     {

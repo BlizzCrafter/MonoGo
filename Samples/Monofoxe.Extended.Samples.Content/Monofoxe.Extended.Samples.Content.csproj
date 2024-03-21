@@ -14,7 +14,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj" />
 	  <ProjectReference Include="..\..\Engine\Monofoxe.Extended.Pipeline\Monofoxe.Extended.Pipeline.csproj" />
 	</ItemGroup>
 </Project>

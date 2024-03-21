@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.Samples.WindowsDX", "Samples\Monofoxe.Extended.Samples.WindowsDX\Monofoxe.Extended.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.GUI.Data", "Engine\Monofoxe.Extended.GUI.Data\Monofoxe.Extended.GUI.Data.csproj", "{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monofoxe.Extended.GUI", "Engine\Monofoxe.Extended.GUI\Monofoxe.Extended.GUI.csproj", "{91344146-7138-4BB6-8AFF-DB9114BB0DED}"
 EndProject
 Global
@@ -79,10 +77,6 @@ Global
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3C53B46-C4D6-4351-A8F4-3F19DB79261B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91344146-7138-4BB6-8AFF-DB9114BB0DED}.Release|Any CPU.ActiveCfg = Release|Any CPU

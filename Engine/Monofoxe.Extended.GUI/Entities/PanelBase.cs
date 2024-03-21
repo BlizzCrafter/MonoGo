@@ -8,7 +8,7 @@
 #endregion
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Extended.GUI.Data;
+using Monofoxe.Extended.GUI.DataTypes;
 
 namespace Monofoxe.Extended.GUI.Entities
 {
@@ -210,8 +210,8 @@ namespace Monofoxe.Extended.GUI.Entities
             if (_skin != PanelSkin.None)
             {
                 // get texture based on skin
-                Texture2D texture = _customTexture ?? Resources.PanelTextures[_skin];
-                TextureData data = Resources.PanelData[(int)_skin];
+                Texture2D texture = _customTexture ?? Resources.Instance.PanelTextures[_skin];
+                TextureData data = Resources.Instance.PanelData[(int)_skin];
                 Vector2 frameSize = _customFrame ?? new Vector2(data.FrameWidth, data.FrameHeight);
 
                 // draw panel

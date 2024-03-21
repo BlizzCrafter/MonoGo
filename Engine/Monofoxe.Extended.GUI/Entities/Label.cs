@@ -8,7 +8,6 @@
 // Since: 2016.
 //-----------------------------------------------------------------------------
 #endregion
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace Monofoxe.Extended.GUI.Entities

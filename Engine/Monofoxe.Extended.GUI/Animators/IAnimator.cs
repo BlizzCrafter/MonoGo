@@ -1,4 +1,6 @@
-﻿namespace Monofoxe.Extended.GUI.Animators
+﻿
+
+namespace Monofoxe.Extended.GUI.Animators
 {
     /// <summary>
     /// Animator that can animate different entities.

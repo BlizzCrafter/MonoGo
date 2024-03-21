@@ -400,7 +400,7 @@ namespace Monofoxe.Extended.GUI.Entities
                         // set font style
                         if (styleInstruction.FontStyle.HasValue)
                         {
-                            currFont = Resources.Fonts[(int)styleInstruction.FontStyle.Value];
+                            currFont = Resources.Instance.Fonts[(int)styleInstruction.FontStyle.Value];
                         }
 
                         // set outline width
@@ -429,7 +429,7 @@ namespace Monofoxe.Extended.GUI.Entities
                     }
 
                     // get current char as string
-                    var currText = Resources.GetStringForChar(currCharacter);
+                    var currText = Resources.Instance.GetStringForChar(currCharacter);
 
                     // do per-character manipulations
                     Vector2 offset = Vector2.Zero;
