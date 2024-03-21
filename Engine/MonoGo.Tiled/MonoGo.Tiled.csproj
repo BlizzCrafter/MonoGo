@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<Description>Tiled Map Editor integration for Monofoxe.Extended.</Description>
+		<Description>Tiled Map Editor integration for MonoGo.</Description>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<OutputPath>..\bin\$(Configuration)\</OutputPath>

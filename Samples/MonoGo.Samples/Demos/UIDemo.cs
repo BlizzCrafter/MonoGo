@@ -156,19 +156,17 @@ namespace MonoGo.Samples.Demos
                     panels.Add(panel);
                     UserInterface.Active.AddEntity(panel);
 
-                    Image title = new Image(ResourceHub.GetResource<Sprite>("DefaultSprites", "Logo")[0].Texture, new Vector2(240, 240), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
-                    title.ShadowColor = new Color(0, 0, 0, 128);
+                    Image title = new Image(ResourceHub.GetResource<Sprite>("DefaultSprites", "Logo")[0].Texture, new Vector2(256, 256), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
+                    title.ShadowColor = new Color(0, 0, 0, 32);
                     title.ShadowOffset = Vector2.One * -2;
                     panel.AddChild(title);
 
                     // add title and text
-                    var welcomeText = new RichParagraph(@"Welcome to {{MFE_ORANGE}}Monofoxe{{MFE_YELLOW}}.Extended{{DEFAULT}}!
+                    var welcomeText = new RichParagraph(@"Welcome to {{MG_WHITE}}Mono{{MG_RED}}Go{{DEFAULT}}!
 
-MonoGo is an advanced version of the Monofoxe Engine (built with {{MG}}MonoGame{{DEFAULT}}).
+This special game engine is built ontop of {{MG}}MonoGame{{DEFAULT}},the powerfull framework which is running under the hood of many games (Stardew Valley, Celeste).
 
-It currently extends Monofoxe with a powerful graphical user interface ({{MFE_YELLOW}}GUI{{DEFAULT}}). 
-
-Stay tuned for more things to come! (probably {{MFE_ORANGE}}:){{DEFAULT}})
+Stay tuned for more things to come! (probably {{MG_YELLOW}}:){{DEFAULT}})
 
 Please click the {{BUTTON_ALT_BOLD}}GUI.Next{{DEFAULT}} button at the top to see more GUI-DEMOS or the {{BUTTON_BOLD}}Next{{DEFAULT}} button below to see more SAMPLE-DEMOS of the engine.
 
@@ -1060,13 +1058,15 @@ Maybe something interesting in tab3?"));
                     // add title and text
                     panel.AddChild(new Header("End Of GUI-DEMO"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new RichParagraph(@"That was only the GUI-DEMO! There is still much to learn about {{MFE_ORANGE}}Monofoxe{{MFE_YELLOW}}.Extended{{DEFAULT}}.
+                    panel.AddChild(new RichParagraph(@"That was only the GUI-DEMO! There is still much to learn about {{MG_WHITE}}Mono{{MG_RED}}Go{{DEFAULT}}.
 
 Try more samples by clicking the {{BUTTON_BOLD}}Next{{DEFAULT}} button below.
 
 If you like this engine then don't forget to star the repo on GitHub.
 
-{{MFE_ORANGE}}:){{DEFAULT}}"));
+Have a nice day! {{MG_YELLOW}}:){{DEFAULT}}
+
+:: BlizzCrafter"));
                 }
 
                 eventsPanel.BringToFront();

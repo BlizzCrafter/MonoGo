@@ -14,7 +14,7 @@ namespace MonoGo.Samples.Misc
 		public bool Move = false;
 
 		public Angle Direction;
-		public float Speed = 120;
+		public float Speed = 150;
 
 		public Sprite Sprite;
 

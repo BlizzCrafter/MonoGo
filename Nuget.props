@@ -7,10 +7,10 @@
 		<PackageProjectUrl>https://github.com/Martenfur/Monofoxe/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Martenfur/Monofoxe/</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageIcon>logo_nolabel_transparent.png</PackageIcon>
+		<PackageIcon>Logo_BG_x192.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)\logo\logo_nolabel_transparent.png" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\Logo\Logo_BG_x192.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>

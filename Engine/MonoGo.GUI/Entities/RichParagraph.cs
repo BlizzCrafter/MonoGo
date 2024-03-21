@@ -156,8 +156,9 @@ namespace MonoGo.GUI.Entities
             AddInstruction("BUTTON_ALT_BOLD", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, fillColor: new Color(72, 201, 176)));
             AddInstruction("BUTTON_BOLD", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, fillColor: new Color(100, 187, 233)));
             AddInstruction("MG", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(231, 60, 0)));
-            AddInstruction("MFE_ORANGE", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(247, 178, 59)));
-            AddInstruction("MFE_YELLOW", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(255, 234, 60)));
+            AddInstruction("MG_WHITE", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(0.8f, 0.8f, 0.8f)));
+            AddInstruction("MG_RED", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(231, 60, 0)));
+            AddInstruction("MG_YELLOW", new RichParagraphStyleInstruction(fontStyle: Entities.FontStyle.Bold, outlineWidth: 2, outlineColor: Color.Black * 0.75f, fillColor: new Color(230, 178, 0)));
         }
     }
 

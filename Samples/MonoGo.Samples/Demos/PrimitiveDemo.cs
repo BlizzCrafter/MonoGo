@@ -32,7 +32,7 @@ namespace MonoGo.Samples.Demos
 		bool _useWireframe = false;
 		public const Buttons ToggleWireframeButton = Buttons.W;
 
-		Sprite _autismCatSprite;
+		Sprite _BlizzCrafterSprite;
 
 		public PrimitiveDemo(Layer layer) : base(layer)
 		{
@@ -63,8 +63,8 @@ namespace MonoGo.Samples.Demos
 
 			// You can set the texture for a primitive. Preferrably it shouldn't be in texture atlas.
 			// If in atlas, textures wouldn't be able to repeat.
-			_autismCatSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "AutismCat");
-			_mesh.SetTextureFromFrame(_autismCatSprite[0]);
+			_BlizzCrafterSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
+			_mesh.SetTextureFromFrame(_BlizzCrafterSprite[0]);
 			
 			var vIndex = 0;
 			for(var k = 0; k < _mesh.Height; k += 1)
@@ -152,8 +152,8 @@ namespace MonoGo.Samples.Demos
 			_mesh.Position = position;
 
 			var cell = new Vector2(
-				_autismCatSprite.Width / (float)_mesh.Width,
-				_autismCatSprite.Height / (float)_mesh.Height
+				_BlizzCrafterSprite.Width / (float)_mesh.Width,
+				_BlizzCrafterSprite.Height / (float)_mesh.Height
 			) * _meshRepeat;
 			var c = 0;
 			for(var k = 0; k < _mesh.Height; k += 1)

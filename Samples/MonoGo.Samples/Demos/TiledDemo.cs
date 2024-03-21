@@ -19,7 +19,7 @@ namespace MonoGo.Samples.Demos
 	public class TiledDemo : Entity
     {
         public static readonly string Description =
-            "Build > {{L_GREEN}}Custom{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + Environment.NewLine +
+            "Build > {{L_GREEN}}Custom (Collision){{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + Environment.NewLine +
             "Destroy > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}";
 
 		MapBuilder _builder;

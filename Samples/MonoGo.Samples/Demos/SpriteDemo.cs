@@ -11,8 +11,7 @@ using System;
 namespace MonoGo.Samples.Demos
 {
 	public class SpriteDemo : Entity
-    {
-		
+    {		
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
@@ -20,17 +19,15 @@ namespace MonoGo.Samples.Demos
 		double _animationSpeed = 0.25;
 
 		SpriteBatch _batch;
-
 		Surface _surface;
-
 		Effect _seizure;
 
-        Sprite _Monofoxe;
+        Sprite _test;
 		Sprite _fireSprite;
 
 		public SpriteDemo(Layer layer) : base(layer)
 		{
-            _Monofoxe = ResourceHub.GetResource<Sprite>("DefaultSprites", "Test");
+            _test = ResourceHub.GetResource<Sprite>("DefaultSprites", "Test");
 			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
 
 			_batch = new SpriteBatch(GraphicsMgr.Device);
@@ -60,7 +57,7 @@ namespace MonoGo.Samples.Demos
 
 			
 			// Sprites can't have static methods.
-			_Monofoxe.Draw(position);
+			_test.Draw(position);
 
 			position += Vector2.UnitX * spacing * 2;
 
@@ -93,7 +90,7 @@ namespace MonoGo.Samples.Demos
 			position += Vector2.UnitX * spacing;
 
 			// You also can draw only a part of the sprite.
-			_Monofoxe.Draw(
+			_test.Draw(
 				new RectangleF(position.X, position.Y, 64, 64),
 				0,
 				new RectangleF(64, 64, 64, 64),
@@ -107,8 +104,8 @@ namespace MonoGo.Samples.Demos
 
 
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.
-			var texture = _Monofoxe[0].Texture;
-			var texturePosition = _Monofoxe[0].TexturePosition; // This will give you texture's position on the atlas.
+			var texture = _test[0].Texture;
+			var texturePosition = _test[0].TexturePosition; // This will give you texture's position on the atlas.
 
 			// We can also use default Monogame's SpriteBatch (or anything, for that matter).
 

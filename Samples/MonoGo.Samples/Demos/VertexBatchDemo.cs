@@ -11,11 +11,9 @@ namespace MonoGo.Samples.Demos
 {
 	public class VertexBatchDemo : Entity
     {
-
-
 		VertexBatch _vbatch;
 
-		Sprite _Monofoxe;
+		Sprite _BlizzCrafter;
 		
 		VertexPositionColorTexture[] _triangleListVertices;
 		short[] _triangleListIndices;
@@ -25,7 +23,7 @@ namespace MonoGo.Samples.Demos
 
 		public VertexBatchDemo(Layer layer) : base(layer)
 		{
-            _Monofoxe = ResourceHub.GetResource<Sprite>("DefaultSprites", "AutismCat");
+            _BlizzCrafter = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
 			_vbatch = new VertexBatch(
 				GraphicsMgr.Device,
 				null,
@@ -84,7 +82,7 @@ namespace MonoGo.Samples.Demos
 
 
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.
-			var texture = _Monofoxe[0].Texture;
+			var texture = _BlizzCrafter[0].Texture;
 
 			var sw = new Stopwatch();
 
