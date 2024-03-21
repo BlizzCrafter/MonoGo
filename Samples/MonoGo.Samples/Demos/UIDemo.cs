@@ -162,13 +162,13 @@ namespace MonoGo.Samples.Demos
                     panel.AddChild(title);
 
                     // add title and text
-                    var welcomeText = new RichParagraph(@"Welcome to {{MG_WHITE}}Mono{{MG_RED}}Go{{DEFAULT}}!
+                    var welcomeText = new RichParagraph(@"Welcome to {{MG_YELLOW}}Mono{{MG_RED}}Go{{DEFAULT}}!
 
-This special game engine is built ontop of {{MG}}MonoGame{{DEFAULT}},the powerfull framework which is running under the hood of many games (Stardew Valley, Celeste).
+This special game engine is built ontop of {{MG}}MonoGame{{DEFAULT}},the powerfull gamedev framework which is running under the hood of many fantastic games like {{MG_FANCY}}Stardew Valley{{DEFAULT}} and {{MG_FANCY}}Celeste{{DEFAULT}}.
 
 Stay tuned for more things to come! (probably {{MG_YELLOW}}:){{DEFAULT}})
 
-Please click the {{BUTTON_ALT_BOLD}}GUI.Next{{DEFAULT}} button at the top to see more GUI-DEMOS or the {{BUTTON_BOLD}}Next{{DEFAULT}} button below to see more SAMPLE-DEMOS of the engine.
+Please click the {{MG_RED}}GUI.Next{{DEFAULT}} button at the top to see more GUI-DEMOS or the {{MG_YELLOW}}Next{{DEFAULT}} button below to see more SAMPLE-DEMOS of the engine.
 
 ");
                     panel.AddChild(welcomeText);
@@ -984,7 +984,7 @@ Maybe something interesting in tab3?"));
 
                     // default cursor show
                     {
-                        Button btn = new Button("Default", ButtonSkin.Default);
+                        Button btn = new Button("Default", ButtonSkin.Alternative);
                         btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
@@ -992,7 +992,7 @@ Maybe something interesting in tab3?"));
 
                     // pointer cursor show
                     {
-                        Button btn = new Button("Pointer", ButtonSkin.Default);
+                        Button btn = new Button("Pointer", ButtonSkin.Alternative);
                         btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
                         btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
@@ -1000,7 +1000,7 @@ Maybe something interesting in tab3?"));
 
                     // ibeam cursor show
                     {
-                        Button btn = new Button("IBeam", ButtonSkin.Default);
+                        Button btn = new Button("IBeam", ButtonSkin.Alternative);
                         btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.IBeam); };
                         btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
@@ -1058,15 +1058,15 @@ Maybe something interesting in tab3?"));
                     // add title and text
                     panel.AddChild(new Header("End Of GUI-DEMO"));
                     panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new RichParagraph(@"That was only the GUI-DEMO! There is still much to learn about {{MG_WHITE}}Mono{{MG_RED}}Go{{DEFAULT}}.
+                    panel.AddChild(new RichParagraph(@"That was only the GUI-DEMO! There is still much to learn about {{MG_YELLOW}}Mono{{MG_RED}}Go{{DEFAULT}}.
 
-Try more samples by clicking the {{BUTTON_BOLD}}Next{{DEFAULT}} button below.
+Try more samples by clicking the {{MG_YELLOW}}Next{{DEFAULT}} button below.
 
 If you like this engine then don't forget to star the repo on GitHub.
 
-Have a nice day! {{MG_YELLOW}}:){{DEFAULT}}
+Have a nice day!
 
-:: BlizzCrafter"));
+:: {{MG_FANCY}}BlizzCrafter{{DEFAULT}} =)"));
                 }
 
                 eventsPanel.BringToFront();
