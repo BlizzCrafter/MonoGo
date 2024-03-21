@@ -1,1 +1,1 @@
-# Monofoxe.Extended
+# MonoGo

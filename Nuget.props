@@ -1,9 +1,9 @@
 <Project>
 	<PropertyGroup>
-		<Version>$(MonofoxeExtendedVersion)</Version>
+		<Version>$(MonoGoVersion)</Version>
 		<Authors>Marcel Härtel</Authors>
-		<Product>Monofoxe.Extended Engine</Product>
-		<Description>Monofoxe.Extended is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended funtionalities like a GUI-System.</Description>
+		<Product>MonoGo Engine</Product>
+		<Description>MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended funtionalities like a GUI-System.</Description>
 		<PackageProjectUrl>https://github.com/Martenfur/Monofoxe/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Martenfur/Monofoxe/</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

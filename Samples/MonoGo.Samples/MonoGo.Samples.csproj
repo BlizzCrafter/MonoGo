@@ -1,0 +1,20 @@
+﻿<Project InitialTargets="BuildContentProject" Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303">
+			<PrivateAssets>All</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Engine\MonoGo.Engine\MonoGo.Engine.csproj" />
+	  <ProjectReference Include="..\..\Engine\MonoGo.GUI\MonoGo.GUI.csproj" />
+	  <ProjectReference Include="..\..\Engine\MonoGo.Tiled\MonoGo.Tiled.csproj" />
+	</ItemGroup>
+
+	<Target Name="BuildContentProject">
+		<Exec Command="dotnet build &quot;../MonoGo.Samples.Content/MonoGo.Samples.Content.csproj&quot;" />
+	</Target>
+</Project>
