@@ -11,6 +11,7 @@ using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine;
 using MonoGo.GUI.DataTypes;
+using MonoGo.GUI.Entities.TextValidators;
 
 namespace MonoGo.Samples.Demos
 {
@@ -201,6 +202,7 @@ Please click the {{MG_RED}}GUI.Next{{DEFAULT}} button at the top to see more GUI
 - Sliders & Progressbars
 - Text input
 - Tooltip Text
+- File dialogs
 - And more...
 "));
                 }
@@ -468,6 +470,37 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     panel.AddChild(list);
                 }
 
+                // list title
+                {
+                    Panel panel = new Panel(new Vector2(450, -1));
+                    panels.Add(panel);
+                    UserInterface.Active.AddEntity(panel);
+
+                    panel.AddChild(new Header("SelectList with Icons"));
+                    panel.AddChild(new HorizontalLine());
+                    panel.AddChild(new Paragraph("You can also attach icons to items in lists:"));
+
+                    SelectList list = new SelectList(new Vector2(0, 280));
+                    list.AddItem("Warrior");
+                    list.AddItem("Mage");
+                    list.AddItem("Rogue");
+                    list.AddItem("Paladin");
+                    list.AddItem("Cleric");
+                    list.AddItem("Barbarian");
+                    list.AddItem("Necromancer");
+
+                    list.IconsScale *= 1.2f;
+                    list.SetIcon(IconType.Sword.ToString(), "Warrior");
+                    list.SetIcon(IconType.MagicWand.ToString(), "Mage");
+                    list.SetIcon(IconType.Trap.ToString(), "Rogue");
+                    list.SetIcon(IconType.Axe.ToString(), "Barbarian");
+                    list.SetIcon(IconType.MagicBook.ToString(), "Cleric");
+                    list.SetIcon(IconType.Helmet.ToString(), "Paladin");
+                    list.SetIcon(IconType.Book.ToString(), "Necromancer");
+
+                    panel.AddChild(list);
+                }
+
                 // example: list as tables
                 {
                     // create panel and add to list of panels and manager
@@ -668,6 +701,69 @@ Here's a button, to test clicking while scrolled:"));
                     panel.AddChild(hideCheckbox);
                 }
 
+                // example: text validators
+                {
+                    // create panel and add to list of panels and manager
+                    Panel panel = new Panel(new Vector2(650, -1));
+                    panels.Add(panel);
+                    UserInterface.Active.AddEntity(panel);
+
+                    // add title and text
+                    panel.AddChild(new Header("Text Validators"));
+                    panel.AddChild(new HorizontalLine());
+                    panel.AddChild(new Paragraph(@"Use validators to check for text inputs:"));
+
+                    List<TextInput> _withSpaces = new();
+
+                    // english characters
+                    EnglishCharactersOnly englishValidator;
+                    {
+                        panel.AddChild(new Label("English Characters Only:"));
+                        var textInput = new TextInput(false);
+                        textInput.Validators.Add(new EnglishCharactersOnly(true));
+                        _withSpaces.Add(textInput);
+                        englishValidator = textInput.Validators[0] as EnglishCharactersOnly;
+                        panel.AddChild(textInput);
+                    }
+
+                    // slug
+                    SlugValidator slugValidator;
+                    {
+                        panel.AddChild(new Label("Slug Validator:"));
+                        var textInput = new TextInput(false);
+                        textInput.Validators.Add(new SlugValidator(true));
+                        _withSpaces.Add(textInput);
+                        slugValidator = textInput.Validators[0] as SlugValidator;
+                        panel.AddChild(textInput);
+                    }
+
+                    // Numbers only - no decimal
+                    {
+                        panel.AddChild(new Label("Whole Numbers Only:"));
+                        var textInput = new TextInput(false);
+                        textInput.Validators.Add(new NumbersOnly(false));
+                        panel.AddChild(textInput);
+                    }
+
+                    // Numbers only - with decimal
+                    {
+                        panel.AddChild(new Label("Numbers Only:"));
+                        var textInput = new TextInput(false);
+                        textInput.Validators.Add(new NumbersOnly(true));
+                        panel.AddChild(textInput);
+                    }
+
+                    // allow spaces
+                    var allowSpaces = new CheckBox("Allow Spaces", isChecked: true);
+                    panel.AddChild(allowSpaces);
+                    allowSpaces.OnValueChange = (EntityUI _) =>
+                    {
+                        englishValidator.AllowSpaces = allowSpaces.Checked;
+                        slugValidator.AllowSpaces = allowSpaces.Checked;
+                        foreach (var e in _withSpaces) { e.Value = e.Value.Replace(" ", ""); }
+                    };
+                }
+
                 // example: tooltip text
                 {
                     // create panel and add to list of panels and manager
@@ -857,6 +953,47 @@ Maybe something interesting in tab3?"));
                                 ));
                         });
                     };
+                }
+
+                // example: file dialog
+                {
+                    // create panel and add to list of panels and manager
+                    Panel panel = new Panel(new Vector2(560, -1));
+                    panels.Add(panel);
+                    UserInterface.Active.AddEntity(panel);
+
+                    // add title and text
+                    panel.AddChild(new Header("File Dialogs"));
+                    panel.AddChild(new HorizontalLine());
+                    panel.AddChild(new Paragraph("The GUI system also provides file dialogs. For example, save file dialog: \n"));
+
+                    // add save file button
+                    {
+                        var btn = panel.AddChild(new Button(@"Open Save File Dialog"));
+                        btn.OnClick += (EntityUI ent) =>
+                        {
+                            GUI.Utils.MessageBox.OpenSaveFileDialog("", (GUI.Utils.FileDialogResponse res) =>
+                            {
+                                GUI.Utils.MessageBox.ShowMsgBox("File Selected!", $"Selected file: '{res.FullPath}'.\n\nIn this example we just show a message box, in a real project we would use this path to save the file.");
+                                return true;
+                            }, message: "It won't actually save anything so don't worry about picking existing files.");
+                        };
+                    }
+
+                    panel.AddChild(new Paragraph("And click below to open load file dialog: \n"));
+
+                    // add load file button
+                    {
+                        var btn = panel.AddChild(new Button(@"Open Load File Dialog"));
+                        btn.OnClick += (EntityUI ent) =>
+                        {
+                            GUI.Utils.MessageBox.OpenLoadFileDialog("", (GUI.Utils.FileDialogResponse res) =>
+                            {
+                                GUI.Utils.MessageBox.ShowMsgBox("File Selected!", $"Selected file: '{res.FullPath}'.\n\nIn this example we just show a message box, in a real project we would use this path to load the file.");
+                                return true;
+                            }, message: "It won't actually load anything so don't worry about picking any file.");
+                        };
+                    }
                 }
 
                 // example: top menu
