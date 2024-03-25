@@ -1028,7 +1028,7 @@ Maybe something interesting in tab3?"));
                     // change progressbar color
                     panel.AddChild(new Paragraph("Different ProgressBar colors:"));
                     ProgressBar pb = new ProgressBar();
-                    pb.ProgressFill.FillColor = Color.Red;
+                    pb.ProgressFill.FillColor = new Color(231, 60, 0);
                     pb.Caption.Text = "Optional caption...";
                     panel.AddChild(pb);
 
@@ -1079,7 +1079,7 @@ Have a nice day!
             // once done init, clear events log
             eventsLog.ClearItems();
 
-            #endregion Demo Content
+            #endregion Demo Content*/
         }
 
         public override void Update()

@@ -11,11 +11,11 @@
   <DefaultSize xsi:nil="true" />
   <Scale xsi:nil="true" />
   <FillColor>
-    <B>255</B>
-    <G>255</G>
+    <B>216</B>
+    <G>232</G>
     <R>0</R>
     <A>255</A>
-    <PackedValue>4294967040</PackedValue>
+    <PackedValue>4292405248</PackedValue>
   </FillColor>
   <OutlineColor xsi:nil="true" />
   <OutlineWidth xsi:nil="true" />
