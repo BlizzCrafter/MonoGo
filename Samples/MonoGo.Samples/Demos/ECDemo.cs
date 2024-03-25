@@ -32,7 +32,6 @@ namespace MonoGo.Samples.Demos
 			layer.ReorderEntityToTop(player);
 			//layer.ReorderEntityToBottom(player); // Will have no effect.
 			//layer.ReorderEntity(player, 2); // Player will be updated and drawn only after two entities above him.
-
 		}
 
 		public override void Update()
@@ -56,9 +55,6 @@ namespace MonoGo.Samples.Demos
 					bot.Enabled = !bot.Enabled;
 				}
 			}
-
 		}
-		
-
 	}
 }

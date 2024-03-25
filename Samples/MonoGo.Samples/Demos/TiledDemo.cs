@@ -18,11 +18,12 @@ namespace MonoGo.Samples.Demos
 	/// </summary>
 	public class TiledDemo : Entity
     {
-        public static readonly string Description =
-            "Build > {{L_GREEN}}Custom (Collision){{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + Environment.NewLine +
-            "Destroy > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}";
+		public static readonly string Description =
+			"Build > {{L_GREEN}}Collision{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + " Delete > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}" + Environment.NewLine +
+			"Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
+			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}";
 
-		MapBuilder _builder;
+        MapBuilder _builder;
 
 		public const Buttons BuildCustomMapBuilderButton = Buttons.B;
 		public const Buttons BuildDefaultMapBuilderButton = Buttons.N;
@@ -74,8 +75,7 @@ namespace MonoGo.Samples.Demos
 			{
 				_builder.Destroy();
 				_builder = null;
-			}
-			
+			}			
 		}
 
 
@@ -88,7 +88,5 @@ namespace MonoGo.Samples.Demos
 				_builder.Destroy();
 			}
 		}
-
-
 	}
 }

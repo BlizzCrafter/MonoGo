@@ -86,7 +86,6 @@ namespace MonoGo.Samples.Demos
 				Color.Red
 			);
 
-
 			position += Vector2.UnitX * spacing;
 
 			// You also can draw only a part of the sprite.
@@ -98,10 +97,8 @@ namespace MonoGo.Samples.Demos
 				Color.White
 			);
 
-
 			position += Vector2.UnitY * spacing * 1.5f;
 			position.X = 0;
-
 
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.
 			var texture = _test[0].Texture;
@@ -131,7 +128,6 @@ namespace MonoGo.Samples.Demos
 			// After you're done, you can draw anything you like without switching graphics mode again.
 			RectangleShape.Draw(position, position + new Vector2(texture.Width, texture.Height), true);
 
-
 			position += Vector2.UnitX * 512;
 
 			GraphicsMgr.CurrentColor = Color.Red;
@@ -151,8 +147,7 @@ namespace MonoGo.Samples.Demos
 			Text.Draw("This text is drawn using default" + Environment.NewLine + "Monogame spritefont.", position);
 			position += Vector2.UnitY * 48;
 			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "FancyFont");
-			Text.Draw("This text is drawn using custom" + Environment.NewLine + "font made from a sprite.", position, Vector2.One * 1.1f, Vector2.Zero, new Angle(-10));
-			
+			Text.Draw("This text is drawn using custom" + Environment.NewLine + "font made from a sprite.", position, Vector2.One * 1.1f, Vector2.Zero, new Angle(-10));			
 		}
 
 		/// <summary>
@@ -172,12 +167,9 @@ namespace MonoGo.Samples.Demos
 			Surface.ResetTarget();
 		}
 
-
 		public override void Destroy()
 		{
 			_surface.Dispose(); // Don't forget to dispose surfaces.
 		}
-
-
 	}
 }

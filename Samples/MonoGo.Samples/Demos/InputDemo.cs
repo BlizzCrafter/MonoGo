@@ -15,7 +15,7 @@ namespace MonoGo.Samples.Demos
 		public static readonly string Description =
             "Input > {{YELLOW}}" + KeyboardTestButton + " / " + GamepadTestButton + " / " + MouseTestButton + "{{DEFAULT}}" + Environment.NewLine +
             "Keyboard > {{YELLOW}}Press any Key{{DEFAULT}}" + Environment.NewLine +
-            "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Sticks{{DEFAULT}}";
+            "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Triggers{{DEFAULT}}";
 
         Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
@@ -29,7 +29,6 @@ namespace MonoGo.Samples.Demos
 		public const Buttons KeyboardTestButton = Buttons.A;
 		public const Buttons GamepadTestButton = Buttons.GamepadA;
 		public const Buttons MouseTestButton = Buttons.MouseLeft;
-
 
 		public InputDemo(Layer layer) : base(layer)
 		{
@@ -89,11 +88,9 @@ namespace MonoGo.Samples.Demos
 			// This method can be used in Update, when no camera is active.
 			CircleShape.Draw(GraphicsMgr.CurrentCamera.GetRelativeMousePosition(), 12, true);
 
-
 			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
 
 			Text.Draw("Keyboard input: " + _keyboardInput.ToString(), position);
-
 
 			// Gamepad, mouse and keyboard buttons are using the same method. 
 			position += Vector2.UnitY * 64;
@@ -102,7 +99,6 @@ namespace MonoGo.Samples.Demos
 			CircleShape.Draw(position, 16, Input.CheckButton(GamepadTestButton));
 			position += Vector2.UnitX * 64;
 			CircleShape.Draw(position, 16, Input.CheckButton(MouseTestButton));
-
 
 			position = new Vector2(200, 200);
 
@@ -114,7 +110,6 @@ namespace MonoGo.Samples.Demos
 			{
 				Text.Draw("Gamepad is not connected.", position);
 			}
-
 
 			// Sticks.
 			position += Vector2.UnitY * 96;

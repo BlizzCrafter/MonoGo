@@ -8,8 +8,7 @@ using MonoGo.Engine.Utils;
 namespace MonoGo.Samples.Demos
 {
 	public class ShapeDemo : Entity
-    {
-		
+    {		
 		Color _mainColor = Color.White;
 		HsvColor _secondaryColor = new HsvColor(new Color(34, 65, 250));
 		TriangleShape _triangle; 
@@ -48,9 +47,7 @@ namespace MonoGo.Samples.Demos
 			GraphicsMgr.CurrentColor = _secondaryColor.ToColor();
 			CircleShape.Draw(position, 32, true); // Outline.
 
-
 			position += Vector2.UnitX * spacing;
-
 
 			CircleShape.CircleVerticesCount = 8; // Changing the amount of circle vertices.
 
@@ -63,10 +60,8 @@ namespace MonoGo.Samples.Demos
 			CircleShape.CircleVerticesCount = 32;
 			// Circles.
 
-
 			position += Vector2.UnitY * spacing;
 			position.X = startingPosition.X;
-
 
 			// Rectangles.
 			
@@ -100,13 +95,10 @@ namespace MonoGo.Samples.Demos
 			);
 			// Rectangles.
 
-
 			position += Vector2.UnitY * spacing;
 			position.X = startingPosition.X;
 
-
 			// Triangles.
-
 			_triangle.Position = position;
 			_triangle.Draw(); // Drawing an instantiated triangle.
 
@@ -122,23 +114,13 @@ namespace MonoGo.Samples.Demos
 			// Be aware of culling. This triangle, for example, will be culled.
 			// You can disable culling, if you don't want to deal with it.
 			TriangleShape.Draw(new Vector2(-24, -24), new Vector2(24, 24), new Vector2(24, -24), false);
-
-			// Triangles.
-
-
-
+			
 			// Lines.
-
 			position += Vector2.UnitX * spacing;
 			LineShape.Draw(position - Vector2.One * 24, position + Vector2.One * 24);
 
 			position += Vector2.UnitX * spacing / 2f;
 			ThickLineShape.Draw(position - Vector2.One * 24, position + Vector2.One * 24, 5);
-
-			// Lines.
-
-
 		}
-
 	}
 }

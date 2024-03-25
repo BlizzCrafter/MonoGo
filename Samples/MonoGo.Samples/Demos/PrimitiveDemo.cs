@@ -11,12 +11,13 @@ namespace MonoGo.Samples.Demos
 {
 	public class PrimitiveDemo : Entity
     {
-		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}";
+		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}" + Environment.NewLine +
+			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
+            "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}";
 
-		Color _mainColor = Color.White;
-		Color _secondaryColor = Color.Violet;
-		Color _secondaryColor2 = Color.CadetBlue;
-
+		Color _mainColor = new Color(238, 170, 0);
+		Color _secondaryColor = new Color(231, 60, 0);
+		Color _secondaryColor2 = new Color(196, 0, 230);
 
 		TriangleFanPrimitive _trianglefan;
 		TriangleStripPrimitive _trianglestrip;
@@ -25,9 +26,7 @@ namespace MonoGo.Samples.Demos
 		float _meshRepeat = 2;
 
 		LineStripPrimitive _linestrip;
-
 		CustomTrianglePrimitive _custom;
-
 
 		bool _useWireframe = false;
 		public const Buttons ToggleWireframeButton = Buttons.W;
@@ -39,14 +38,12 @@ namespace MonoGo.Samples.Demos
             // Primitives can only be drawn from instances. There are no static methods.
             _trianglefan = new TriangleFanPrimitive(5);
 
-			_trianglefan.Vertices[0] = new Vertex(new Vector2(0, 0));
-			_trianglefan.Vertices[1] = new Vertex(new Vector2(16, 0));
-			_trianglefan.Vertices[2] = new Vertex(new Vector2(40, 10));
-			_trianglefan.Vertices[3] = new Vertex(new Vector2(64, 64));
-			_trianglefan.Vertices[4] = new Vertex(new Vector2(0, 32));
+			_trianglefan.Vertices[0] = new Vertex(new Vector2(0, 0), new Color(0, 232, 216));
+			_trianglefan.Vertices[1] = new Vertex(new Vector2(16, 0), new Color(0, 232, 216));
+			_trianglefan.Vertices[2] = new Vertex(new Vector2(40, 10), new Color(0, 232, 216));
+			_trianglefan.Vertices[3] = new Vertex(new Vector2(64, 64), new Color(0, 232, 216));
+			_trianglefan.Vertices[4] = new Vertex(new Vector2(0, 32), new Color(0, 232, 216));
 			
-
-
 			_trianglestrip = new TriangleStripPrimitive(8);
 			_trianglestrip.Vertices[0] = new Vertex(new Vector2(0, 0), _mainColor);
 			_trianglestrip.Vertices[1] = new Vertex(new Vector2(32, 32), _secondaryColor);
@@ -57,7 +54,6 @@ namespace MonoGo.Samples.Demos
 			_trianglestrip.Vertices[6] = new Vertex(new Vector2(64+64, 0),  _secondaryColor2);
 			_trianglestrip.Vertices[7] = new Vertex(new Vector2(96+64, 32), _mainColor);
 		
-
 			_mesh = new MeshPrimitive(16, 16);
 			_mesh.Position = new Vector2(0, 100);
 
@@ -71,7 +67,6 @@ namespace MonoGo.Samples.Demos
 			{
 				for(var i = 0; i < _mesh.Width; i += 1)
 				{
-
 					_mesh.Vertices[vIndex] = 
 						new Vertex(
 							Vector2.Zero, // Positions will be set later.
@@ -83,14 +78,12 @@ namespace MonoGo.Samples.Demos
 				}
 			}
 
-
 			_linestrip = new LineStripPrimitive(16);
 			
 			for(var i = 0; i < 16; i += 1)
 			{
-				_linestrip.Vertices[i] = new Vertex(Vector2.Zero, new Color(16 * i, 8 * i, 4 * i));
+				_linestrip.Vertices[i] = new Vertex(Vector2.Zero, new Color(16 * i, 0, 16 * i));
 			}
-
 
 			// You can make your own custom primitives. 
 			// CustomTrianglePrimitive and CustomLinePrimitive give you
@@ -98,13 +91,12 @@ namespace MonoGo.Samples.Demos
 			// One vertex can be used multiple times in an index array.
 			_custom = new CustomTrianglePrimitive(4);
 
-			_custom.Vertices[0] = new Vertex(new Vector2(0, 0), Color.Green);
+			_custom.Vertices[0] = new Vertex(new Vector2(0, 0), new Color(238, 170, 0));
 			_custom.Vertices[1] = new Vertex(new Vector2(32, 0));
 			_custom.Vertices[2] = new Vertex(new Vector2(32, 32));
-			_custom.Vertices[3] = new Vertex(new Vector2(64, 32), Color.Blue);
+			_custom.Vertices[3] = new Vertex(new Vector2(64, 32), new Color(231, 60, 0));
 			
-			_custom.Indices = new short[]{0, 1, 2, 1, 3, 2};
-			
+			_custom.Indices = new short[]{0, 1, 2, 1, 3, 2};			
 		}
 
 		public override void Update()
@@ -135,18 +127,14 @@ namespace MonoGo.Samples.Demos
 			_trianglefan.Draw();
 			// Trianglefan.
 
-
 			position += Vector2.UnitX * spacing;
-
 
 			// Trianglestrip.
 			_trianglestrip.Position = position;
 			_trianglestrip.Draw();
 			// Trianglestrip.
 
-
 			position += Vector2.UnitX * spacing * 2;
-
 
 			// Mesh.
 			_mesh.Position = position;
@@ -171,10 +159,8 @@ namespace MonoGo.Samples.Demos
 			_mesh.Draw();
 			// Mesh.
 
-
 			position += Vector2.UnitY * spacing * 2;
 			position.X = startingPosition.X;
-
 
 			// Linestrip.
 			var vertex = _linestrip.Vertices[0];
@@ -202,23 +188,17 @@ namespace MonoGo.Samples.Demos
 			_linestrip.Draw();
 			// Linestrip.
 
-
 			position += Vector2.UnitX * spacing;
-
 
 			// Custom.
 			_custom.Position = position;
 			_custom.Draw();
 			// Custom.
 
-
 			if (_useWireframe)
 			{
 				GraphicsMgr.VertexBatch.RasterizerState = GameController.DefaultRasterizer;
 			}
-
 		}
-		
-
 	}
 }

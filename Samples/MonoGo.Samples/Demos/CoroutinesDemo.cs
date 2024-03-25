@@ -27,12 +27,10 @@ namespace MonoGo.Samples.Demos
 		{
             StartCoroutine(BasicUpdateClockCoroutine());
 			StartCoroutine(FixedUpdateClockCoroutine());
-			StartCoroutine(BallSpawnerCoroutine());
-			
+			StartCoroutine(BallSpawnerCoroutine());			
 
 			StartCoroutine(WaitUntilCoroutine());
 			StartCoroutine(WaitWhileCoroutine());
-
 
 			StartJob(LargeJob(), 0.1f);
 		}
@@ -262,6 +260,5 @@ namespace MonoGo.Samples.Demos
 				);
 			}
 		}
-
 	}
 }

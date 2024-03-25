@@ -18,10 +18,8 @@ namespace MonoGo.Samples.Demos
 	}
 
 	// Note that not all the utilities and their functions are shown here.
-
 	public class UtilsDemo : Entity
-    {
-		
+    {		
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
@@ -32,7 +30,6 @@ namespace MonoGo.Samples.Demos
 		TimeKeeper _slowTimeKeeper;
 
 		Alarm _autoAlarm;
-
 		Alarm _slowAlarm;
 
 		double _alarmPeriod = 1;
@@ -53,16 +50,12 @@ namespace MonoGo.Samples.Demos
 		RandomExt _random;
 
 		Effect _grayscale;
-
 		Sprite _fireSprite;
-
-
 
 		public UtilsDemo(Layer layer) : base(layer)
 		{
             _grayscale = ResourceHub.GetResource<Effect>("Effects", "Grayscale");
 			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
-
 
 			// Animation.
 
@@ -80,7 +73,6 @@ namespace MonoGo.Samples.Demos
 			_fireAnimation.Start(true);
 			// Animation.
 
-
 			// Alarms.
 			_slowTimeKeeper = new TimeKeeper();
 			// Slowing down time for this time keeper.
@@ -96,7 +88,6 @@ namespace MonoGo.Samples.Demos
 			_slowAlarm.TriggerEvent += AlarmTrigger;
 			// Alarms.
 
-
 			// Camera.
 			_camera = new Camera2D(400, 600);
 			_camera.PortPosition = new Vector2(400, 0);
@@ -105,9 +96,7 @@ namespace MonoGo.Samples.Demos
 			_camera.PostprocessingMode = PostprocessingMode.Camera;
 			// Camera.
 
-
 			_random = new RandomExt();
-
 
 			// State machine.
 			// State machines are very useful for animation and complex logic.
@@ -155,7 +144,6 @@ namespace MonoGo.Samples.Demos
 
 			_slowAlarmSwitch = !_slowAlarmSwitch;
 		}
-
 
 		#region State machine.
 
@@ -205,7 +193,6 @@ namespace MonoGo.Samples.Demos
 
 		#endregion State machine.
 
-
 		public override void Update()
 		{
 			base.Update();
@@ -222,7 +209,6 @@ namespace MonoGo.Samples.Demos
 			{
 				_autoAlarmSwitch = !_autoAlarmSwitch;
 			}
-
 
 			// You can count time by hand. Not that you should, it just
 			// shows how time keepers are used internally.
@@ -257,11 +243,9 @@ namespace MonoGo.Samples.Demos
 			position += Vector2.UnitX * spacing;
 			CircleShape.Draw(position, 8, _autoAlarmSwitch);
 
-
 			GraphicsMgr.CurrentColor = Color.Sienna;
 			position += Vector2.UnitX * 32;
 			CircleShape.Draw(position, 8, _slowAlarmSwitch);
-
 
 			GraphicsMgr.CurrentColor = Color.Thistle;
 			position += Vector2.UnitX * 32;
@@ -277,7 +261,6 @@ namespace MonoGo.Samples.Demos
 			{
 				CircleShape.Draw(position, 8, _isOutline);
 			}
-
 
 			DrawDampers();
 		}
@@ -317,7 +300,5 @@ namespace MonoGo.Samples.Demos
 			base.Destroy();
 			_camera.Dispose();
 		}
-
-
 	}
 }

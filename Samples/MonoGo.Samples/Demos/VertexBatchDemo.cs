@@ -13,7 +13,7 @@ namespace MonoGo.Samples.Demos
     {
 		VertexBatch _vbatch;
 
-		Sprite _BlizzCrafter;
+		Sprite _player;
 		
 		VertexPositionColorTexture[] _triangleListVertices;
 		short[] _triangleListIndices;
@@ -23,7 +23,7 @@ namespace MonoGo.Samples.Demos
 
 		public VertexBatchDemo(Layer layer) : base(layer)
 		{
-            _BlizzCrafter = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
+            _player = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
 			_vbatch = new VertexBatch(
 				GraphicsMgr.Device,
 				null,
@@ -61,14 +61,11 @@ namespace MonoGo.Samples.Demos
 				2, 3,
 				3, 0
 			};
-
-
 		}
 
 		public override void Update()
 		{
 			base.Update();
-
 		}
 
 		public override void Draw()
@@ -80,9 +77,8 @@ namespace MonoGo.Samples.Demos
 
 			GraphicsMgr.CurrentColor = Color.White;
 
-
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.
-			var texture = _BlizzCrafter[0].Texture;
+			var texture = _player[0].Texture;
 
 			var sw = new Stopwatch();
 
@@ -90,9 +86,7 @@ namespace MonoGo.Samples.Demos
 			_vbatch.View = GraphicsMgr.VertexBatch.View;
 			_vbatch.Projection = GraphicsMgr.VertexBatch.Projection;
 
-
 			sw.Start();
-
 
 			_vbatch.Texture = texture;
 			for (var x = 0; x < 0; x += 1)
@@ -142,26 +136,15 @@ namespace MonoGo.Samples.Demos
 				Vector4.Zero
 			);
 
-
 			_vbatch.Texture = null;
 			_vbatch.AddPrimitive(PrimitiveType.LineList, _lineListVertices, _lineListIndices);
-
 			_vbatch.AddPrimitive(PrimitiveType.TriangleList, _triangleListVertices, _triangleListIndices);
-
-
 			_vbatch.Texture = texture;
-
 			_vbatch.FlushBatch();
-
-
 		}
-
-
 
 		public override void Destroy()
 		{
 		}
-
-
 	}
 }
