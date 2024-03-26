@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace MonoGo.Engine.Utils
+namespace Monofoxe.Engine.Utils
 {
 	/// <summary>
 	/// Calculates elapsed time based on multiplier.

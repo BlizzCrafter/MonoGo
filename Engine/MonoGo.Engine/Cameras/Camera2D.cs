@@ -16,7 +16,7 @@ namespace MonoGo.Engine.Cameras
 		}
 
 
-		public Camera2D(int w, int h, int priority = 0) : base(w, h, priority)
+		public Camera2D(Vector2 size, int priority = 0) : base(size, priority)
 		{
 		}
 

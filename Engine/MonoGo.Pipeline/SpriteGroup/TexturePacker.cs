@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoGo.Pipeline.SpriteGroup
+namespace Monofoxe.Pipeline.SpriteGroup
 {
 	/// <summary>
 	/// Packs set of spritesheets into texture atlasses.

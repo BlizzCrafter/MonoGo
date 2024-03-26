@@ -4,8 +4,10 @@ using MonoGo.Engine.Utils;
 
 namespace MonoGo.Engine.Drawing
 {
-	public class Text : Drawable
+	public class Text
 	{
+		public Vector2 Position;
+
 		public Vector2 Scale;
 
 		public Vector2 Origin;
@@ -35,7 +37,7 @@ namespace MonoGo.Engine.Drawing
 		// Text.
 
 
-		public override void Draw()
+		public void Draw()
 		{
 			var oldColor = GraphicsMgr.CurrentColor;
 			GraphicsMgr.CurrentColor = Color;
@@ -50,7 +52,7 @@ namespace MonoGo.Engine.Drawing
 		{
 			if (CurrentFont == null)
 			{
-				throw new NullReferenceException("CurrentFont is null! Did you forgot to set a font?");
+				throw new NullReferenceException("CurrentFont is null! Did you forget to set a font?");
 			}
 			
 			CurrentFont.Draw(text, position, HorAlign, VerAlign);

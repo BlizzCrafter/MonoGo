@@ -1,4 +1,4 @@
-﻿namespace MonoGo.Engine
+﻿namespace Monofoxe.Engine
 {
 	/// <summary>
 	/// Binds Input.TextInput to the platform-specific text input provider.

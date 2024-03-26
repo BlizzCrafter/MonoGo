@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	/// <summary>
 	/// <see cref="Color"/> extensions

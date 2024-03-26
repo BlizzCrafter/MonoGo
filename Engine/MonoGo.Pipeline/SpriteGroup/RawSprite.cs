@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace MonoGo.Pipeline.SpriteGroup
+namespace Monofoxe.Pipeline.SpriteGroup
 {
 	public class RawSprite
 	{

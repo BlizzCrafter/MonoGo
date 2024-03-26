@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using MonoGo.Engine.EC;
+using Monofoxe.Engine.EC;
 
-namespace MonoGo.Engine.Utils
+namespace Monofoxe.Engine.Utils
 {
 	public delegate void StateMachineDelegate<T>(StateMachine<T> caller, Entity owner);
 

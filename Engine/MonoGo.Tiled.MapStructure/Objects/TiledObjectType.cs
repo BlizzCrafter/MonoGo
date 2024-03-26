@@ -1,5 +1,5 @@
 ﻿
-namespace MonoGo.Tiled.MapStructure.Objects
+namespace Monofoxe.Tiled.MapStructure.Objects
 {
 	/// <summary>
 	/// Used internally by Reader and Writer. 

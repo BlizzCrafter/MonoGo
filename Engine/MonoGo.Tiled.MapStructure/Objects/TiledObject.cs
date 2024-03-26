@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace MonoGo.Tiled.MapStructure.Objects
+namespace Monofoxe.Tiled.MapStructure.Objects
 {
 	/// <summary>
 	/// Base tiled object.

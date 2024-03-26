@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 
-namespace MonoGo.Pipeline.SpriteGroup
+namespace Monofoxe.Pipeline.SpriteGroup
 {
 	/// <summary>
 	/// Atlas writer. Gets sprite data from processor and writes it into a file. 
@@ -89,7 +89,7 @@ namespace MonoGo.Pipeline.SpriteGroup
 
 
 		public override string GetRuntimeReader(TargetPlatform targetPlatform) =>
-			"MonoGo.Engine.ContentReaders.SpriteGroupReader, MonoGo.Engine";
+			"Monofoxe.Engine.ContentReaders.SpriteGroupReader, Monofoxe.Engine";
 
 	}
 }

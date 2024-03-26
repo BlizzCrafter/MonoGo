@@ -16,8 +16,6 @@ namespace MonoGo.Engine.Drawing
 
 		public Texture2D Texture => _spriteFont.Texture;
 
-		public SpriteFont SpriteFont => _spriteFont;
-
 		public ReadOnlyCollection<char> Characters => _spriteFont.Characters;
 
 		public char? DefaultCharacter

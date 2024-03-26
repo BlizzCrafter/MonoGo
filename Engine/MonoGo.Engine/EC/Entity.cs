@@ -78,6 +78,13 @@ namespace MonoGo.Engine.EC
 		private Dictionary<Type, Component> _componentDictionary;
 		private SafeList<Component> _componentList;
 
+		
+		/// <summary>
+		/// If camera's RenderMask does not have any bits in common with entity's RenderMask, 
+		/// the entity will not be rendered for that camera.
+		/// </summary>
+		public RenderMask RenderMask = RenderMask.Default;
+
 
 		public Entity(Layer layer)
 		{

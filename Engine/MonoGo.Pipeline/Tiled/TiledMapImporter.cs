@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Xml;
 using Microsoft.Xna.Framework.Content.Pipeline;
-using MonoGo.Tiled.MapStructure;
+using Monofoxe.Tiled.MapStructure;
 
-namespace MonoGo.Pipeline.Tiled
+namespace Monofoxe.Pipeline.Tiled
 {
 	[ContentImporter(".tmx", DefaultProcessor = "PassThroughProcessor",
-	DisplayName = "Tiled Map Importer - MonoGo")]
+	DisplayName = "Tiled Map Importer - Monofoxe")]
 	public class TiledMapImporter : ContentImporter<TiledMap>
 	{
 		/// <summary>

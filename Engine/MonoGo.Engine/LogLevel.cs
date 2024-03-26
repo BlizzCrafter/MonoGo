@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	[Flags]
 	public enum LogLevel : uint

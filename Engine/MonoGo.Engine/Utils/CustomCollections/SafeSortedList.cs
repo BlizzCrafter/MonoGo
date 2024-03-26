@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MonoGo.Engine.Utils.CustomCollections
+namespace Monofoxe.Engine.Utils.CustomCollections
 {
 	/// <summary> 
 	/// Safe sorted list. Makes possible to safely remove from and add items to the list during enumeration.

@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using MonoGo.Engine.Utils;
+using Monofoxe.Engine.Utils;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	/// <summary>
 	/// Vector2 extensions.
@@ -35,7 +35,7 @@ namespace MonoGo.Engine
 		/// Returns vector with the same direction and length of 1. 
 		/// If original vector is (0;0), returns zero vector.
 		/// </summary>
-		public static Vector2 GetSafeNormalize(this Vector2 v)
+		public static Vector2 SafeNormalize(this Vector2 v)
 		{
 			if (v == Vector2.Zero)
 			{

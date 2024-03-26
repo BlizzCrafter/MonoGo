@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.Drawing;
-using MonoGo.Engine.SceneSystem;
+using Monofoxe.Engine.Drawing;
+using Monofoxe.Engine.SceneSystem;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("MonoGo.Engine.WindowsDX")]
-[assembly: InternalsVisibleTo("MonoGo.Engine.DesktopGL")]
+[assembly: InternalsVisibleTo("Monofoxe.Engine.WindowsDX")]
+[assembly: InternalsVisibleTo("Monofoxe.Engine.DesktopGL")]
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 
 	public static class GameMgr
@@ -94,7 +94,7 @@ namespace MonoGo.Engine
 		public static void Init(Game game)
 		{
 			Game = game;
-			Game.IsMouseVisible = false;
+			Game.IsMouseVisible = true;
 
 			var keyboardBind = StuffResolver.GetStuff<ITextInputBinder>();
 			keyboardBind?.Init();

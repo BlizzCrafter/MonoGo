@@ -2,7 +2,7 @@
 
 using System;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	/// <summary>
 	/// Represents a closed interval defined by a minimum and a maximum value of a give type.

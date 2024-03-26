@@ -19,7 +19,7 @@ using System.Text.Json;
  * To add library to pipeline project, reference
  * dll with project name.
  */
-namespace MonoGo.Pipeline.SpriteGroup
+namespace Monofoxe.Pipeline.SpriteGroup
 {
 
 	/// <summary>
@@ -27,7 +27,7 @@ namespace MonoGo.Pipeline.SpriteGroup
 	/// which will be passed to AtlasProcessor.
 	/// </summary>
 	[ContentImporter(".spritegroup", DefaultProcessor = "SpriteGroupProcessor",
-	DisplayName = "Sprite Group Importer - MonoGo")]
+	DisplayName = "Sprite Group Importer - Monofoxe")]
 	public class SpriteGroupImporter : ContentImporter<SpriteGroupData>
 	{
 

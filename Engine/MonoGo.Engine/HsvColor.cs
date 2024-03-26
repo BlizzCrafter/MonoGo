@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	public struct HsvColor : IEquatable<HsvColor>, IComparable<HsvColor>
 	{

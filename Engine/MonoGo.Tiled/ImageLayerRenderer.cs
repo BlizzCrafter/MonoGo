@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.Drawing;
-using MonoGo.Engine.EC;
-using MonoGo.Engine.SceneSystem;
+using Monofoxe.Engine.Drawing;
+using Monofoxe.Engine.EC;
+using Monofoxe.Engine.SceneSystem;
 
-namespace MonoGo.Engine.Utils.Tilemaps
+namespace Monofoxe.Engine.Utils.Tilemaps
 {
 	/// <summary>
 	/// Component for Tiled image layers.

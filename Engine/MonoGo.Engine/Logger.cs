@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	public delegate void LoggerDelegate(string log, LogLevel level);
 

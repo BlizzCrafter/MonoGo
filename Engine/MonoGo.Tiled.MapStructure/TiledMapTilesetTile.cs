@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGo.Tiled.MapStructure.Objects;
+using Monofoxe.Tiled.MapStructure.Objects;
 
 
-namespace MonoGo.Tiled.MapStructure
+namespace Monofoxe.Tiled.MapStructure
 {
 	public struct TiledMapTilesetTile
 	{

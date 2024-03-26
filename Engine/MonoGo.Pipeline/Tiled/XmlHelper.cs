@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Xml;
 using Microsoft.Xna.Framework;
 
-namespace MonoGo.Pipeline.Tiled
+namespace Monofoxe.Pipeline.Tiled
 {
 	static class XmlHelper
 	{

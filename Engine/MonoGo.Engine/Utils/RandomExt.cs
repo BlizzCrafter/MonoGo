@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MonoGo.Engine.Utils
+namespace Monofoxe.Engine.Utils
 {
 	/// <summary>
 	/// Extends System.Random.

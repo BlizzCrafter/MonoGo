@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MonoGo.Engine;
-using MonoGo.Engine.Drawing;
-using MonoGo.Engine.EC;
-using MonoGo.Engine.SceneSystem;
-using MonoGo.Engine.Utils.Tilemaps;
-using MonoGo.Tiled.MapStructure;
+using Monofoxe.Engine;
+using Monofoxe.Engine.Drawing;
+using Monofoxe.Engine.EC;
+using Monofoxe.Engine.SceneSystem;
+using Monofoxe.Engine.Utils.Tilemaps;
+using Monofoxe.Tiled.MapStructure;
 
-namespace MonoGo.Tiled
+namespace Monofoxe.Tiled
 {
 	/// <summary>
 	/// Basic map builder class. Creates a map from Tiled data structures.

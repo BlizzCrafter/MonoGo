@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	public static class NumericsVectorExtensions
 	{

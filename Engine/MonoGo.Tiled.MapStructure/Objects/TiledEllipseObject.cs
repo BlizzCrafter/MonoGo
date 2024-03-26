@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MonoGo.Tiled.MapStructure.Objects
+namespace Monofoxe.Tiled.MapStructure.Objects
 {
 	public class TiledEllipseObject : TiledObject
 	{

@@ -1,5 +1,5 @@
 ﻿
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	public enum Platform
 	{

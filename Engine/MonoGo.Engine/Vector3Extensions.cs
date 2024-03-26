@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 	/// <summary>
 	/// Vector3 extensions.
@@ -40,7 +40,7 @@ namespace MonoGo.Engine
 		/// Returns vector with the same direction and length of 1. 
 		/// If original vector is (0;0;0), returns zero vector.
 		/// </summary>
-		public static Vector3 GetSafeNormalize(this Vector3 v)
+		public static Vector3 SafeNormalize(this Vector3 v)
 		{
 			if (v == Vector3.Zero)
 			{

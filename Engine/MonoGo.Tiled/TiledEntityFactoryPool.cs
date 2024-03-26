@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using MonoGo.Engine;
-using MonoGo.Engine.EC;
-using MonoGo.Engine.SceneSystem;
-using MonoGo.Tiled.MapStructure.Objects;
+using Monofoxe.Engine;
+using Monofoxe.Engine.EC;
+using Monofoxe.Engine.SceneSystem;
+using Monofoxe.Tiled.MapStructure.Objects;
 
-namespace MonoGo.Tiled
+namespace Monofoxe.Tiled
 {
 	/// <summary>
 	/// Stores an instance of each class which implements ITiledEntityFactory.

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoGo.Engine.Drawing;
+using Monofoxe.Engine.Drawing;
 
-namespace MonoGo.Engine
+namespace Monofoxe.Engine
 {
 
 	public static class Input

@@ -1,5 +1,5 @@
 ﻿
-namespace MonoGo.Tiled.MapStructure
+namespace Monofoxe.Tiled.MapStructure
 {
 	/// <summary>
 	/// TIled map tiles orientaion.

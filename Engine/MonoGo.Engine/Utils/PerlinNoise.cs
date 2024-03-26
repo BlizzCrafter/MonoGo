@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGo.Engine.Utils
+namespace Monofoxe.Engine.Utils
 {
 
 	public enum NoiseType

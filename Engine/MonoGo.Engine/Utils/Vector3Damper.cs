@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace MonoGo.Engine.Utils
+namespace Monofoxe.Engine.Utils
 {
 	/// <summary>
 	/// Smooth damper based on second order motion. 
@@ -132,12 +132,13 @@ namespace MonoGo.Engine.Utils
 
 		public Vector3 Update(Vector3 value)
 		{
-			var dt = (float)Time.Time();
-
-			// Estimating velocity.
-			var speed = (value - _oldValue) / dt;
+			float num = (float)Time.Time();
+			var speed = Vector3.Zero;
+			if (num != 0)
+			{
+				speed = (value - _oldValue) / num;
+			}
 			_oldValue = value;
-
 			return Update(value, speed);
 		}
 

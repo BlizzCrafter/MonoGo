@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework.Content.Pipeline;
 // https://github.com/Ragath/MonoGame.AssetInfo
 
 
-namespace MonoGo.Pipeline.ResourceInfo
+namespace Monofoxe.Pipeline.ResourceInfo
 {
 	/// <summary>
 	/// Asset info importer. Reads .mcgb file and extracts all asset paths.
 	/// </summary>
-	[ContentImporter(".npl", DisplayName = "Resource Info Importer - MonoGo", DefaultProcessor = "PassThroughProcessor")]
+	[ContentImporter(".npl", DisplayName = "Resource Info Importer - Monofoxe", DefaultProcessor = "PassThroughProcessor")]
 	public class ResourceInfoImporter : ContentImporter<string[]>
 	{
 		private const string _buildTag = "/build:";
