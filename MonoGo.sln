@@ -105,6 +105,7 @@ Global
 		SolutionGuid = {B5534B27-AF0B-4FD7-80A1-0E7BCBFC9C46}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{785e8147-0e69-45df-92f7-b4f315739d0c}*SharedItemsImports = 13
 		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{d59079b2-cc07-4783-9c7f-05e78ebbc5fd}*SharedItemsImports = 5
 		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{e615232a-8edd-43bb-84d0-3ba376aca7e6}*SharedItemsImports = 5
 	EndGlobalSection
