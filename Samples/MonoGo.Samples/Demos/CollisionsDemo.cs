@@ -56,7 +56,6 @@ namespace MonoGo.Samples.Demos
 			_polygon.Add(new Vector2(-32, -32).ToMeters());
 			_polygon.Add(new Vector2(32, -32).ToMeters());
 			_polygon.Add(new Vector2(32, 32).ToMeters());
-			_polygon.Add(new Vector2(32, 32).ToMeters());
 			_polygon.Add(new Vector2(-32, 32).ToMeters());
 
 			_polygon.Position = new Vector2(200, 100).ToMeters();
