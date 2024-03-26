@@ -17,7 +17,7 @@ namespace MonoGo.Samples
         public static readonly string Description =
             "Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
             "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}" + Environment.NewLine +
-            "Restart > {{YELLOW}}" + _restartButton + "{{DEFAULT}} GUI > {{YELLOW}}" + _toggleUIButton + "{{DEFAULT}}";
+            "Restart:{{YELLOW}}" + _restartButton + "{{DEFAULT}} GUI:{{YELLOW}}" + _toggleUIButton + "{{DEFAULT}} Fullscreen:{{YELLOW}}" + _toggleFullscreenButton + "{{DEFAULT}} Exit:{{YELLOW}}" + _exitButton;
 
         Button nextExampleButton;
         Button previousExampleButton;
@@ -49,13 +49,14 @@ namespace MonoGo.Samples
 
 		Vector2 _indent = new Vector2(8, 4);
 
-		const Buttons _nextSceneButton = Buttons.E;
-		const Buttons _prevSceneButton = Buttons.Q;
-		const Buttons _restartButton = Buttons.R;
-		const Buttons _toggleUIButton = Buttons.T;
-		const Buttons _toggleFullscreenButton = Buttons.F;
+        const Buttons _prevSceneButton = Buttons.F1;
+        const Buttons _nextSceneButton = Buttons.F2;
+		const Buttons _restartButton = Buttons.F3;
+		const Buttons _toggleUIButton = Buttons.F4;
+		const Buttons _toggleFullscreenButton = Buttons.F5;
+        const Buttons _exitButton = Buttons.Escape;
 
-		CameraController _cameraController;
+        CameraController _cameraController;
 
         public SceneSwitcher(Layer layer, CameraController cameraController) : base(layer)
 		{
@@ -142,6 +143,11 @@ namespace MonoGo.Samples
 			{
 				GameMgr.WindowManager.ToggleFullScreen();
 			}
+
+            if (Input.CheckButtonPress(_exitButton))
+            {
+                GameMgr.ExitGame();
+            }
 
             if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
             
