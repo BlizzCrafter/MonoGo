@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
 	/// <summary>
 	/// Gradually rotates the angle towards the target.

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Monofoxe.Tiled.MapStructure.Objects
+namespace MonoGo.Tiled.MapStructure.Objects
 {
 	/// <summary>
 	/// Base tiled object.
 	/// </summary>
 	public class TiledObject
-	{
-		
+	{		
 		public string Name;
 		public string Type;
 		public int ID;
@@ -33,6 +32,5 @@ namespace Monofoxe.Tiled.MapStructure.Objects
 			Visible = obj.Visible;
 			Properties = new Dictionary<string, string>(obj.Properties);
 		}
-
 	}
 }

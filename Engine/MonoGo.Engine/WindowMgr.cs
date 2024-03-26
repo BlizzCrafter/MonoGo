@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Merging of GraphicsDeviveManager and WindowManager.

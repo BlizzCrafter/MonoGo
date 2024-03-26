@@ -1,4 +1,4 @@
-﻿namespace Monofoxe.Engine
+﻿namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Canvas drawing modes for WindowMgr.

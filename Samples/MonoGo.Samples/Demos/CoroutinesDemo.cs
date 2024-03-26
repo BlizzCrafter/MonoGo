@@ -8,11 +8,10 @@ using MonoGo.Engine.Utils.Coroutines;
 using MonoGo.Samples.Misc;
 using System.Collections;
 
-
 namespace MonoGo.Samples.Demos
 {
 	public class CoroutinesDemo : Entity
-    {
+	{
 		private Vector2 _ballSpawnerPosition = new Vector2(200, 400);
 		private Vector2 _waitUntilSpawnerPosition = new Vector2(200, 200);
 		private Vector2 _waitWhileSpawnerPosition = new Vector2(400, 200);
@@ -25,10 +24,10 @@ namespace MonoGo.Samples.Demos
 
 		public CoroutinesDemo(Layer layer) : base(layer)
 		{
-            StartCoroutine(BasicUpdateClockCoroutine());
+			StartCoroutine(BasicUpdateClockCoroutine());
 			StartCoroutine(FixedUpdateClockCoroutine());
-			StartCoroutine(BallSpawnerCoroutine());			
-
+			StartCoroutine(BallSpawnerCoroutine());
+			
 			StartCoroutine(WaitUntilCoroutine());
 			StartCoroutine(WaitWhileCoroutine());
 
@@ -226,12 +225,12 @@ namespace MonoGo.Samples.Demos
 		{
 			var clockSize = 32;
 
-			CircleShape.Draw(_basicUpdateClockPosition, 32, true);
+			CircleShape.Draw(_basicUpdateClockPosition, 32, ShapeFill.Outline);
 			LineShape.Draw(
 				_basicUpdateClockPosition,
 				_basicUpdateClockPosition + _basicUpdateClock.ToVector2() * clockSize
 			);
-			CircleShape.Draw(_fixedUpdateClockPosition, 32, true);
+			CircleShape.Draw(_fixedUpdateClockPosition, 32, ShapeFill.Outline);
 			LineShape.Draw(
 				_fixedUpdateClockPosition,
 				_fixedUpdateClockPosition + _fixedUpdateClock.ToVector2() * clockSize
@@ -244,11 +243,11 @@ namespace MonoGo.Samples.Demos
 			GraphicsMgr.CurrentColor = _sequenceColor;
 			if (_sequenceStage == 1)
 			{
-				CircleShape.Draw(_sequencePosition, 32, false);
+				CircleShape.Draw(_sequencePosition, 32, ShapeFill.Solid);
 			}
 			if (_sequenceStage == 2)
 			{
-				RectangleShape.DrawBySize(_sequencePosition, Vector2.One * 32, false);
+				RectangleShape.DrawBySize(_sequencePosition, Vector2.One * 32, ShapeFill.Solid);
 			}
 			if (_sequenceStage == 3)
 			{
@@ -256,7 +255,7 @@ namespace MonoGo.Samples.Demos
 					_sequencePosition - Vector2.UnitY * 32,
 					_sequencePosition + Vector2.UnitX * 32,
 					_sequencePosition - Vector2.UnitX * 32,
-					false
+					ShapeFill.Solid
 				);
 			}
 		}

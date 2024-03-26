@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace Monofoxe.Pipeline.SpriteGroup.AST
+namespace MonoGo.Pipeline.SpriteGroup.AST
 {
   /// <summary>
   /// This class just goes char by char parsing the text

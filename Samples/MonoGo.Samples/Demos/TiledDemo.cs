@@ -17,13 +17,13 @@ namespace MonoGo.Samples.Demos
 	/// currently supported (like infinite tilemaps or animated tiles.)
 	/// </summary>
 	public class TiledDemo : Entity
-    {
+	{
 		public static readonly string Description =
 			"Build > {{L_GREEN}}Collision{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + " Delete > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}" + Environment.NewLine +
 			"Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
 			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}";
 
-        MapBuilder _builder;
+		MapBuilder _builder;
 
 		public const Buttons BuildCustomMapBuilderButton = Buttons.B;
 		public const Buttons BuildDefaultMapBuilderButton = Buttons.N;
@@ -33,18 +33,18 @@ namespace MonoGo.Samples.Demos
 
 		public TiledDemo(Layer layer) : base(layer)
 		{
-            // TiledMap which is loaded from Content, is just a data structure
-            // describing the map. We need to make an actual Scene object with entities on it.
-            // You can write your own map builder, or use the default one.
-            // Default map builder can also be expanded.
+			// TiledMap which is loaded from Content, is just a data structure
+			// describing the map. We need to make an actual Scene object with entities on it.
+			// You can write your own map builder, or use the default one.
+			// Default map builder can also be expanded.
 
-            _testMap = ResourceHub.GetResource<TiledMap>("Maps", "Test");
+			_testMap = ResourceHub.GetResource<TiledMap>("Maps", "Test");
 
 			_builder = new SolidMapBuilder(_testMap);
 			_builder.Build();
-        }
+		}
 
-        public override void Update()
+		public override void Update()
 		{
 			base.Update();
 
@@ -57,7 +57,7 @@ namespace MonoGo.Samples.Demos
 				}
 				_builder = new SolidMapBuilder(_testMap);
 				_builder.Build();
-            }
+			}
 
 			if (Input.CheckButtonPress(BuildDefaultMapBuilderButton))
 			{
@@ -68,18 +68,18 @@ namespace MonoGo.Samples.Demos
 				}
 				_builder = new MapBuilder(_testMap);
 				_builder.Build();
-            }
+			}
 
 
 			if (_builder != null && Input.CheckButtonPress(DestroyMapButton))
 			{
 				_builder.Destroy();
 				_builder = null;
-			}			
+			}
 		}
 
 
-        public override void Destroy()
+		public override void Destroy()
 		{
 			base.Destroy();
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MonoGo.Engine.Utils.Coroutines;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.Utils.CustomCollections;
+using MonoGo.Engine.Cameras;
 
 namespace MonoGo.Engine.EC
 {
@@ -12,8 +13,7 @@ namespace MonoGo.Engine.EC
 	/// Can hold components, or implement its own logic.
 	/// </summary>
 	public class Entity
-	{
-		
+	{		
 		/// <summary>
 		/// Depth of Draw event. Objects with the lowest depth draw the last.
 		/// </summary>
@@ -30,7 +30,6 @@ namespace MonoGo.Engine.EC
 			}
 		}
 		private int _depth;
-
 
 		/// <summary>
 		/// Tells f object was destroyed.
@@ -49,7 +48,6 @@ namespace MonoGo.Engine.EC
 		/// </summary>
 		public bool Visible = true;
 		
-
 		/// <summary>
 		/// Layer that entity is currently on.
 		/// </summary>
@@ -77,22 +75,19 @@ namespace MonoGo.Engine.EC
 		// during foreach while keeping GetComponent faste.
 		private Dictionary<Type, Component> _componentDictionary;
 		private SafeList<Component> _componentList;
-
-		
+				
 		/// <summary>
 		/// If camera's RenderMask does not have any bits in common with entity's RenderMask, 
 		/// the entity will not be rendered for that camera.
 		/// </summary>
 		public RenderMask RenderMask = RenderMask.Default;
 
-
 		public Entity(Layer layer)
 		{
 			_componentDictionary = new Dictionary<Type, Component>();
 			_componentList = new SafeList<Component>();
 			Layer = layer;
-		}
-		
+		}		
 
 		#region Events.
 
@@ -167,8 +162,6 @@ namespace MonoGo.Engine.EC
 		}
 
 		#endregion Events.
-
-
 
 		#region Components.
 
@@ -284,7 +277,6 @@ namespace MonoGo.Engine.EC
 
 		#endregion Components.
 
-
 		/// <summary>
 		/// Starts a new coroutine.
 		/// </summary>
@@ -298,7 +290,6 @@ namespace MonoGo.Engine.EC
 			return c.StartCoroutine(routine);
 		}
 
-
 		public void StopCoroutine(Coroutine coroutine)
 		{
 			if (!HasComponent<CCoroutineRunner>())
@@ -308,7 +299,6 @@ namespace MonoGo.Engine.EC
 			var c = GetComponent<CCoroutineRunner>();
 			c.StopCoroutine(coroutine);
 		}
-
 
 		/// <summary>
 		/// Starts a new job with a certain time budget.
@@ -329,10 +319,8 @@ namespace MonoGo.Engine.EC
 			return c.StartJob(routine, millisecondBudget);
 		}
 
-
 		public void StopJob(Job job) =>
 			StopCoroutine(job);
-
 
 		/// <summary>
 		/// Destroys entity and all of its components.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 	public class InspectableButtonAttribute : Attribute

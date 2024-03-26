@@ -1,4 +1,4 @@
-﻿namespace Monofoxe.Engine
+﻿namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Extends basic C# number types. 

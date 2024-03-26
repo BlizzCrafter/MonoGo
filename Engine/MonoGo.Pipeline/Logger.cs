@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Monofoxe.Pipeline
+namespace MonoGo.Pipeline
 {
 	/// <summary>
 	/// Simple logger class. Writes info into a log file.

@@ -1,5 +1,5 @@
 ﻿
-namespace Monofoxe.Tiled.MapStructure
+namespace MonoGo.Tiled.MapStructure
 {
 	/// <summary>
 	/// Tile flip flags are stored in the tile value itself as 3 highest bits.

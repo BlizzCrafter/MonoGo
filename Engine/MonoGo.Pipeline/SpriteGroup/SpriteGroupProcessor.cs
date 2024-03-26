@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content.Pipeline;
 
-namespace Monofoxe.Pipeline.SpriteGroup
+namespace MonoGo.Pipeline.SpriteGroup
 {
-	[ContentProcessor(DisplayName = "Sprite Group Processor - Monofoxe")]
+	[ContentProcessor(DisplayName = "Sprite Group Processor - MonoGo")]
 	public class SpriteGroupProcessor : ContentProcessor<SpriteGroupData, (List<RawSprite>, List<Bmp>)>
 	{
 		public override (List<RawSprite>, List<Bmp>) Process(SpriteGroupData groupData, ContentProcessorContext context)

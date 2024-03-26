@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Monofoxe.Engine.EC;
+using MonoGo.Engine.EC;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
 	public delegate void StateMachineDelegate<T>(StateMachine<T> caller, Entity owner);
 
@@ -42,13 +42,10 @@ namespace Monofoxe.Engine.Utils
 		/// </summary>
 		public T PreviousState {get; protected set;}
 
-
 		/// <summary>
 		/// State machine owner.
 		/// </summary>
 		public Entity Owner;
-
-
 
 		public StateMachine(T startingState, Entity owner) 
 		{

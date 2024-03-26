@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
-
 	public enum NoiseType
 	{
 		Carmody,
@@ -11,7 +10,6 @@ namespace Monofoxe.Engine.Utils
 
 	public static class PerlinNoise
 	{
-
 		// Random seed
 		private static int _seed = new Random((int)DateTime.Now.Ticks).Next();
 		public static int Seed
@@ -24,7 +22,6 @@ namespace Monofoxe.Engine.Utils
 				_recalculatePermutations(); // Gustavson
 			}
 		}
-
 
 		/* Based off the Simplex implementation by Stephen Carmody
 		 * http://stephencarmody.wikispaces.com/Simplex+Noise
@@ -154,7 +151,6 @@ namespace Monofoxe.Engine.Utils
 		/// </summary>
 		/// <param name="x">X position</param>
 		/// <param name="y">Y position</param>
-		/// <param name="z">Z position</param>
 		/// <param name="doReseed">Force reseeding of the permutations array</param>
 		/// <param name="doNormalize">Normalize to [0 .. 1] instead</param>
 		/// <returns>A value in the range of about [-1 .. 1]</returns>
@@ -281,15 +277,16 @@ namespace Monofoxe.Engine.Utils
 			return 70.0f * (n0 + n1 + n2);
 		}
 
-		/// <summary>
-		/// Gustavson's implementation of a 3D Simplex Noise generator
-		/// </summary>
-		/// <param name="xin">X position</param>
-		/// <param name="yin">Y Position</param>
-		/// <param name="zin">Z position</param>
-		/// <param name="doRecalculate">Force recalculations of permutations (can also be done by setting the NoiseHelper.Seed property)</param>
-		/// <returns>A value in the range of about -1.0 .. 1.0</returns>
-		public static float GustavsonNoise(float xin, float yin, float zin, bool doRecalculate = false, bool doNormalize = true)
+        /// <summary>
+        /// Gustavson's implementation of a 3D Simplex Noise generator
+        /// </summary>
+        /// <param name="xin">X position</param>
+        /// <param name="yin">Y Position</param>
+        /// <param name="zin">Z position</param>
+        /// <param name="doRecalculate">Force recalculations of permutations (can also be done by setting the NoiseHelper.Seed property)</param>
+        /// <param name="doNormalize"></param>
+        /// <returns>A value in the range of about -1.0 .. 1.0</returns>
+        public static float GustavsonNoise(float xin, float yin, float zin, bool doRecalculate = false, bool doNormalize = true)
 		{
 			if (doRecalculate)
 				_recalculatePermutations();

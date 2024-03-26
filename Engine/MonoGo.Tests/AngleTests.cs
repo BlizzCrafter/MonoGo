@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Monofoxe.Engine.Utils;
+using MonoGo.Engine.Utils;
 using Moq;
 using NUnit.Framework;
 using System;

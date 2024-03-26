@@ -1,5 +1,5 @@
 ﻿
-namespace Monofoxe.Tiled.MapStructure.Objects
+namespace MonoGo.Tiled.MapStructure.Objects
 {
 	public class TiledTileObject : TiledObject
 	{

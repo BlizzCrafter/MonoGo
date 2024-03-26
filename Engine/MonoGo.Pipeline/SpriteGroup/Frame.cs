@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework;
 
-namespace Monofoxe.Pipeline.SpriteGroup
+namespace MonoGo.Pipeline.SpriteGroup
 {
 	public class Frame
 	{

@@ -26,7 +26,7 @@ namespace MonoGo.Samples.Misc.Tiled
 
 			var entity = new Player(layer, tile.Position);
 
-			// Adding a collider componebt
+			// Adding a collider component
 			entity.AddComponent(new TileCollisionComponent());
 
 			return entity;

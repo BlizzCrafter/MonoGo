@@ -1,22 +1,20 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
 	/// <summary>
 	/// Calculates elapsed time based on multiplier.
 	/// Should be used for fps adjusting and slowing down\speeding up time.
 	/// </summary>
 	public class TimeKeeper
-	{
-		
+	{		
 		/// <summary>
 		/// Global TimeKeeper instance.
 		/// </summary>
 		public static readonly TimeKeeper Global = new TimeKeeper();
 
 		internal static double _elapsedTime;
-
 
 		/// <summary>
 		/// If more than one, time will speed up.
@@ -36,14 +34,12 @@ namespace Monofoxe.Engine.Utils
 		}
 		private double _timeMultiplier = 1; 
 		
-
 		/// <summary>
 		/// Returns elapsed time, multiplied by global time multiplier.
 		/// </summary>
 		public double Time() => 
 			_elapsedTime * _timeMultiplier;
 	
-
 		/// <summary>
 		/// Returns elapsed time, multiplied by global time multiplier.
 		/// 
@@ -60,8 +56,7 @@ namespace Monofoxe.Engine.Utils
 		/// </summary>
 		public double Time(double speed, double acceleration) => 
 			(speed + Time(Math.Abs(acceleration) * 0.5)) * _elapsedTime * _timeMultiplier;
-		
-		
+				
 		
 		/// <summary>
 		/// Returns elapsed time, multiplied by global time multiplier.
@@ -79,7 +74,6 @@ namespace Monofoxe.Engine.Utils
 			(float)Time((double)speed, acceleration);
 
 
-
 		/// <summary>
 		/// Returns elapsed time, multiplied by global time multiplier.
 		/// 
@@ -95,7 +89,6 @@ namespace Monofoxe.Engine.Utils
 		/// Use this for accelerating values.
 		/// </summary>
 		public Vector2 Time(Vector2 speed, Vector2 acceleration) => 
-			new Vector2(Time(speed.X, acceleration.X), Time(speed.Y, acceleration.Y));
-		
+			new Vector2(Time(speed.X, acceleration.X), Time(speed.Y, acceleration.Y));		
 	}
 }

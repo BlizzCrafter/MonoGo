@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Monofoxe.Tiled.MapStructure.Objects
+namespace MonoGo.Tiled.MapStructure.Objects
 {
 	public class TiledTextObject : TiledObject
 	{

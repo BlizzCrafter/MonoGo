@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
 using Microsoft.Xna.Framework;
-using Monofoxe.Tiled.MapStructure;
-using Monofoxe.Tiled.MapStructure.Objects;
+using MonoGo.Tiled.MapStructure;
+using MonoGo.Tiled.MapStructure.Objects;
 using System.IO;
 
-namespace Monofoxe.Pipeline.Tiled
+namespace MonoGo.Pipeline.Tiled
 {
 
 	static class TilesetParser

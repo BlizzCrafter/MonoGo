@@ -1,14 +1,11 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Engine.Drawing;
-using System;
-using System.Collections.Generic;
+using MonoGo.Engine.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
-	public interface IAlphaBlendEffectLoader
+    public interface IAlphaBlendEffectLoader
 	{ 
 		Effect Load();
 	}

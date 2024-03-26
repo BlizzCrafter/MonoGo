@@ -17,7 +17,7 @@ namespace MonoGo.Samples.Demos
             "Keyboard > {{YELLOW}}Press any Key{{DEFAULT}}" + Environment.NewLine +
             "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Triggers{{DEFAULT}}";
 
-        Color _mainColor = Color.White;
+		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
 		double _animation = 0;
@@ -32,7 +32,7 @@ namespace MonoGo.Samples.Demos
 
 		public InputDemo(Layer layer) : base(layer)
 		{
-        }
+		}
 
 		public override void Update()
 		{
@@ -67,26 +67,24 @@ namespace MonoGo.Samples.Demos
 				Input.GamepadGetLeftTrigger(0),
 				Input.GamepadGetRightTrigger(0)
 			);
-
 		}
 
 		public override void Draw()
 		{
-			base.Draw();           
+			base.Draw();
 
-            var startingPosition = new Vector2(64, 64);
+			var startingPosition = new Vector2(64, 64);
 			var position = startingPosition;
-			var spacing = 100;
 
 			GraphicsMgr.CurrentColor = _mainColor;
 
 			// This position only accounts for screen transformation.
 			// When the camera will move, it will offset.
-			CircleShape.Draw(Input.ScreenMousePosition, 8, true);
+			CircleShape.Draw(Input.ScreenMousePosition, 8, ShapeFill.Outline);
 
 			// You can also get mouse position from any camera.
 			// This method can be used in Update, when no camera is active.
-			CircleShape.Draw(GraphicsMgr.CurrentCamera.GetRelativeMousePosition(), 12, true);
+			CircleShape.Draw(GraphicsMgr.CurrentCamera.GetRelativeMousePosition(), 12, ShapeFill.Outline);
 
 			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
 
@@ -94,11 +92,32 @@ namespace MonoGo.Samples.Demos
 
 			// Gamepad, mouse and keyboard buttons are using the same method. 
 			position += Vector2.UnitY * 64;
-			CircleShape.Draw(position, 16, Input.CheckButton(KeyboardTestButton));
+			if (Input.CheckButton(KeyboardTestButton))
+			{ 
+				CircleShape.Draw(position, 16, ShapeFill.Solid);
+			}
+			else
+			{ 
+				CircleShape.Draw(position, 16, ShapeFill.Outline);
+			}
 			position += Vector2.UnitX * 64;
-			CircleShape.Draw(position, 16, Input.CheckButton(GamepadTestButton));
+			if (Input.CheckButton(GamepadTestButton))
+			{
+				CircleShape.Draw(position, 16, ShapeFill.Solid);
+			}
+			else
+			{
+				CircleShape.Draw(position, 16, ShapeFill.Outline);
+			}
 			position += Vector2.UnitX * 64;
-			CircleShape.Draw(position, 16, Input.CheckButton(MouseTestButton));
+			if (Input.CheckButton(MouseTestButton))
+			{
+				CircleShape.Draw(position, 16, ShapeFill.Solid);
+			}
+			else
+			{
+				CircleShape.Draw(position, 16, ShapeFill.Outline);
+			}
 
 			position = new Vector2(200, 200);
 
@@ -113,20 +132,20 @@ namespace MonoGo.Samples.Demos
 
 			// Sticks.
 			position += Vector2.UnitY * 96;
-			CircleShape.Draw(position, 64, true);
-			CircleShape.Draw(position + Input.GamepadGetLeftStick(0) * 64 * new Vector2(1, -1), 16, false);
+			CircleShape.Draw(position, 64, ShapeFill.Outline);
+			CircleShape.Draw(position + Input.GamepadGetLeftStick(0) * 64 * new Vector2(1, -1), 16, ShapeFill.Solid);
 			position += Vector2.UnitX * (128 + 64);
-			CircleShape.Draw(position, 64, true);
-			CircleShape.Draw(position + Input.GamepadGetRightStick(0) * 64 * new Vector2(1, -1), 16, false);
+			CircleShape.Draw(position, 64, ShapeFill.Outline);
+			CircleShape.Draw(position + Input.GamepadGetRightStick(0) * 64 * new Vector2(1, -1), 16, ShapeFill.Solid);
 
 			// Triggers.
 			position -= Vector2.UnitX * (64 + 16);
-			RectangleShape.DrawBySize(position + Vector2.UnitY * Input.GamepadGetRightTrigger(0) * 64, Vector2.One * 8, false);
+			RectangleShape.DrawBySize(position + Vector2.UnitY * Input.GamepadGetRightTrigger(0) * 64, Vector2.One * 8, ShapeFill.Solid);
 			LineShape.Draw(position, position + Vector2.UnitY * 64);
 			position -= Vector2.UnitX * 32;
-			RectangleShape.DrawBySize(position + Vector2.UnitY * Input.GamepadGetLeftTrigger(0) * 64, Vector2.One * 8, false);
+			RectangleShape.DrawBySize(position + Vector2.UnitY * Input.GamepadGetLeftTrigger(0) * 64, Vector2.One * 8, ShapeFill.Solid);
 			LineShape.Draw(position, position + Vector2.UnitY * 64);
-        }
+		}
 
 		public override void Destroy()
 		{

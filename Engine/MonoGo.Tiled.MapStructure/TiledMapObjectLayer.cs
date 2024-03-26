@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Monofoxe.Tiled.MapStructure.Objects;
+using MonoGo.Tiled.MapStructure.Objects;
 
-namespace Monofoxe.Tiled.MapStructure
+namespace MonoGo.Tiled.MapStructure
 {
 	public class TiledMapObjectLayer : TiledMapLayer
 	{

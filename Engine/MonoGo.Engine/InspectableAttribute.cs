@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
 	public class InspectableAttribute : Attribute

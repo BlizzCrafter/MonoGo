@@ -1,8 +1,8 @@
-﻿using Monofoxe.Engine.EC;
-using Monofoxe.Engine.SceneSystem;
-using Monofoxe.Tiled.MapStructure.Objects;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.SceneSystem;
+using MonoGo.Tiled.MapStructure.Objects;
 
-namespace Monofoxe.Tiled
+namespace MonoGo.Tiled
 {
 	/// <summary>
 	/// Factory interface for entities. 

@@ -549,8 +549,8 @@ namespace MonoGo.GUI
         /// </summary>
         public void Draw()
         {
-            int newScreenWidth = GameMgr.WindowManager.CanvasWidth;
-            int newScreenHeight = GameMgr.WindowManager.CanvasHeight;
+            int newScreenWidth = (int)GameMgr.WindowManager.CanvasSize.X;
+            int newScreenHeight = (int)GameMgr.WindowManager.CanvasSize.Y;
 
             // update screen size
             if (ScreenWidth != newScreenWidth || ScreenHeight != newScreenHeight)

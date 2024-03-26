@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Describes a 2D-rectangle. 

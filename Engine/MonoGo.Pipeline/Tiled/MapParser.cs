@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml;
 using Microsoft.Xna.Framework;
-using Monofoxe.Tiled.MapStructure;
+using MonoGo.Tiled.MapStructure;
 
-namespace Monofoxe.Pipeline.Tiled
+namespace MonoGo.Pipeline.Tiled
 {
 	static class MapParser
 	{

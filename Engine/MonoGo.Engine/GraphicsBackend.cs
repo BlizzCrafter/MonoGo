@@ -1,5 +1,5 @@
 ﻿
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	public enum GraphicsBackend
 	{

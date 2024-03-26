@@ -15,8 +15,9 @@ namespace MonoGo.Engine.Drawing
 		/// Unused, because TextureFont can have multiple textures.
 		/// </summary>
 		public Texture2D Texture => null;
-		
-		public ReadOnlyCollection<char> Characters {get;}
+        public SpriteFont SpriteFont => null;
+
+        public ReadOnlyCollection<char> Characters {get;}
 		
 		public char? DefaultCharacter {get; set;}
 		
@@ -24,8 +25,7 @@ namespace MonoGo.Engine.Drawing
 		
 		public float Spacing {get; set;}
 
-		
-		private Dictionary<char, SpriteFont.Glyph> _glyphs;
+        private Dictionary<char, SpriteFont.Glyph> _glyphs;
 		private Dictionary<char, Frame> _frames;
 
 		public TextureFont(Sprite sprite, int spacing, int lineSpacing, string characters, bool monowidth, char defaultCharacter = 'a')

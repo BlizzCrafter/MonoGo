@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monofoxe.Pipeline.SpriteGroup.AST
+namespace MonoGo.Pipeline.SpriteGroup.AST
 {
   class UnaryOperationNode : Node
 	{

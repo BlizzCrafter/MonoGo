@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Monofoxe.Pipeline.SpriteGroup
+namespace MonoGo.Pipeline.SpriteGroup
 {
 	/// <summary>
 	/// Grid with cells which can have different sizes. 

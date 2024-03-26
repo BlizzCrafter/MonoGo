@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Monofoxe.Engine.Drawing;
+using MonoGo.Engine.Drawing;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
-
 	public static class Input
 	{
 		#region Mouse.

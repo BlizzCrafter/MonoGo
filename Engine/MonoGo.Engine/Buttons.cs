@@ -1,4 +1,4 @@
-﻿namespace Monofoxe.Engine
+﻿namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Combined enums from keyboard, gamepad and mouse.

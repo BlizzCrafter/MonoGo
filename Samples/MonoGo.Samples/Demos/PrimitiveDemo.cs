@@ -6,11 +6,10 @@ using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
 using System;
 
-
 namespace MonoGo.Samples.Demos
 {
 	public class PrimitiveDemo : Entity
-    {
+	{
 		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}" + Environment.NewLine +
 			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
             "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}";
@@ -34,9 +33,9 @@ namespace MonoGo.Samples.Demos
 		Sprite _BlizzCrafterSprite;
 
 		public PrimitiveDemo(Layer layer) : base(layer)
-		{
-            // Primitives can only be drawn from instances. There are no static methods.
-            _trianglefan = new TriangleFanPrimitive(5);
+		{	
+			// Primitives can only be drawn from instances. There are no static methods.
+			_trianglefan = new TriangleFanPrimitive(5);
 
 			_trianglefan.Vertices[0] = new Vertex(new Vector2(0, 0), new Color(0, 232, 216));
 			_trianglefan.Vertices[1] = new Vertex(new Vector2(16, 0), new Color(0, 232, 216));
@@ -96,7 +95,7 @@ namespace MonoGo.Samples.Demos
 			_custom.Vertices[2] = new Vertex(new Vector2(32, 32));
 			_custom.Vertices[3] = new Vertex(new Vector2(64, 32), new Color(231, 60, 0));
 			
-			_custom.Indices = new short[]{0, 1, 2, 1, 3, 2};			
+			_custom.Indices = new short[]{0, 1, 2, 1, 3, 2};
 		}
 
 		public override void Update()
@@ -140,8 +139,8 @@ namespace MonoGo.Samples.Demos
 			_mesh.Position = position;
 
 			var cell = new Vector2(
-				_BlizzCrafterSprite.Width / (float)_mesh.Width,
-				_BlizzCrafterSprite.Height / (float)_mesh.Height
+                _BlizzCrafterSprite.Size.X / _mesh.Width,
+                _BlizzCrafterSprite.Size.Y / _mesh.Height
 			) * _meshRepeat;
 			var c = 0;
 			for(var k = 0; k < _mesh.Height; k += 1)
@@ -179,7 +178,7 @@ namespace MonoGo.Samples.Demos
 				var delta = _linestrip.Vertices[i - 1].Position - vertex.Position;
 				if (delta.Length() > 8)
 				{
-					var e = delta.GetSafeNormalize();
+					var e = delta.SafeNormalize();
 					vertex.Position = _linestrip.Vertices[i - 1].Position - e * 8;
 					_linestrip.Vertices[i] = vertex;
 				}

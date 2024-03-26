@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
 	/// <summary>
 	/// Extends System.Random.
@@ -41,8 +41,6 @@ namespace Monofoxe.Engine.Utils
 			Seed = seed;
 		}
 
-
-
 		/// <summary>
 		/// Returns a random number in range [0, Int32.MaxValue).
 		/// </summary>
@@ -60,7 +58,6 @@ namespace Monofoxe.Engine.Utils
 		/// </summary>
 		public int Next(int minValue, int maxValue) => 
 			Random.Next(minValue, maxValue);
-
 
 
 		/// <summary>
@@ -82,13 +79,11 @@ namespace Monofoxe.Engine.Utils
 			minValue + Random.NextDouble() * (maxValue - minValue);
 		
 
-
 		/// <summary>
 		/// Fills the elements of a specified array of bytes with random numbers.
 		/// </summary>
 		public void NextBytes(byte[] buffer) => 
 			Random.NextBytes(buffer);
-
 
 
 		/// <summary>
@@ -104,13 +99,11 @@ namespace Monofoxe.Engine.Utils
 			new Angle(Random.NextDouble() * 360).ToVector2();
 
 
-
 		/// <summary>
 		/// Returns a random element out of given arguments.
 		/// </summary>
 		public T Choose<T>(params T[] args) =>
 			args[Random.Next(args.Length)];
-
 
 		/// <summary>
 		/// Returns list of numbers from minValue to maxValue in random order.

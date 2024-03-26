@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Monofoxe.Tiled.MapStructure
+namespace MonoGo.Tiled.MapStructure
 {
 	/// <summary>
 	/// Data structure for Tiled map.

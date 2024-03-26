@@ -19,14 +19,14 @@ namespace MonoGo.Samples.Demos
 
 	// Note that not all the utilities and their functions are shown here.
 	public class UtilsDemo : Entity
-    {		
+	{
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
 		double _animationSpeed = 1;
-		
+
 		Animation _fireAnimation;
-		
+
 		TimeKeeper _slowTimeKeeper;
 
 		Alarm _autoAlarm;
@@ -54,7 +54,7 @@ namespace MonoGo.Samples.Demos
 
 		public UtilsDemo(Layer layer) : base(layer)
 		{
-            _grayscale = ResourceHub.GetResource<Effect>("Effects", "Grayscale");
+			_grayscale = ResourceHub.GetResource<Effect>("Effects", "Grayscale");
 			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
 
 			// Animation.
@@ -89,7 +89,7 @@ namespace MonoGo.Samples.Demos
 			// Alarms.
 
 			// Camera.
-			_camera = new Camera2D(400, 600);
+			_camera = new Camera2D(new Vector2(400, 600));
 			_camera.PortPosition = new Vector2(400, 0);
 			_camera.BackgroundColor = Color.Black;
 			_camera.PostprocessorEffects.Add(_grayscale);
@@ -101,7 +101,7 @@ namespace MonoGo.Samples.Demos
 			// State machine.
 			// State machines are very useful for animation and complex logic.
 			_stateMachine = new StateMachine<TestStates>(TestStates.Green, this);
-			
+
 			// Filling up the state machine with events.
 			_stateMachine.AddState(TestStates.Green, Green, GreenEnter, GreenExit);
 			_stateMachine.AddState(TestStates.Blue, Blue);
@@ -140,7 +140,7 @@ namespace MonoGo.Samples.Demos
 			// This demo shows comparison of Stop and Loop modes.
 			// You will notice that circles will start blinking out of sync
 			// over time.
-			alarm.Start(); 
+			alarm.Start();
 
 			_slowAlarmSwitch = !_slowAlarmSwitch;
 		}
@@ -198,7 +198,7 @@ namespace MonoGo.Samples.Demos
 			base.Update();
 
 			// All of those are not entities, so they have to be updated manually.
-			
+
 			// It needs to be updated automatically.
 			_fireAnimation.Update();
 
@@ -236,30 +236,65 @@ namespace MonoGo.Samples.Demos
 			var spacing = 100;
 
 			GraphicsMgr.CurrentColor = Color.White;
-			
+
 			_fireSprite.Draw(position, _fireAnimation.Progress, Vector2.Zero, Vector2.One, Angle.Right, Color.White);
-			
+
 			GraphicsMgr.CurrentColor = Color.SeaGreen;
 			position += Vector2.UnitX * spacing;
-			CircleShape.Draw(position, 8, _autoAlarmSwitch);
+			if (_autoAlarmSwitch)
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Outline);
+			}
+			else
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Solid);
+			}
 
 			GraphicsMgr.CurrentColor = Color.Sienna;
 			position += Vector2.UnitX * 32;
-			CircleShape.Draw(position, 8, _slowAlarmSwitch);
+			if (_slowAlarmSwitch)
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Outline);
+			}
+			else
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Solid);
+			}
 
 			GraphicsMgr.CurrentColor = Color.Thistle;
 			position += Vector2.UnitX * 32;
-			CircleShape.Draw(position, 8, _counterSwitch);
+			if (_counterSwitch)
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Outline);
+			}
+			else
+			{
+				CircleShape.Draw(position, 8, ShapeFill.Solid);
+			}
 
 			position += Vector2.UnitX * 32;
 			GraphicsMgr.CurrentColor = _color;
 			if (_isRectangle)
 			{
-				RectangleShape.DrawBySize(position, Vector2.One * 16, _isOutline);
+				if (_isOutline)
+				{
+					RectangleShape.DrawBySize(position, Vector2.One * 16, ShapeFill.Outline);
+				}
+				else
+				{
+					RectangleShape.DrawBySize(position, Vector2.One * 16, ShapeFill.Solid);
+				}
 			}
 			else
 			{
-				CircleShape.Draw(position, 8, _isOutline);
+				if (_isOutline)
+				{
+					CircleShape.Draw(position, 8, ShapeFill.Outline);
+				}
+				else
+				{
+					CircleShape.Draw(position, 8, ShapeFill.Solid);
+				}
 			}
 
 			DrawDampers();
@@ -268,7 +303,7 @@ namespace MonoGo.Samples.Demos
 		private FloatDamper _floatDamper1 = new FloatDamper(0, 1, 1, 0);
 		private FloatDamper _floatDamper2 = new FloatDamper(0, 1, 1f, 5);
 		private FloatDamper _floatDamper3 = new FloatDamper(0, 1, 0.2f, -2);
-		
+
 		private Vector2Damper _positionDamper = new Vector2Damper(Vector2.Zero, 5, 0.2f, -2);
 		private AngleDamper _angleDamper = new AngleDamper(Angle.Right, 1, 0.2f, -2);
 		private Vector2 _baseAnglePos = new Vector2(200, 350);
@@ -287,11 +322,11 @@ namespace MonoGo.Samples.Demos
 		private void DrawDampers()
 		{
 			GraphicsMgr.CurrentColor = Color.White;
-			CircleShape.Draw(new Vector2(_floatDamper1.Value, 200), 8, false);
-			CircleShape.Draw(new Vector2(_floatDamper2.Value, 230), 8, false);
-			CircleShape.Draw(new Vector2(_floatDamper3.Value, 260), 8, false);
+			CircleShape.Draw(new Vector2(_floatDamper1.Value, 200), 8, ShapeFill.Solid);
+			CircleShape.Draw(new Vector2(_floatDamper2.Value, 230), 8, ShapeFill.Solid);
+			CircleShape.Draw(new Vector2(_floatDamper3.Value, 260), 8, ShapeFill.Solid);
 
-			CircleShape.Draw(_positionDamper.Value, 8, false);
+			CircleShape.Draw(_positionDamper.Value, 8, ShapeFill.Solid);
 			LineShape.Draw(_baseAnglePos, _baseAnglePos + _angleDamper.Value.ToVector2() * 50);
 		}
 

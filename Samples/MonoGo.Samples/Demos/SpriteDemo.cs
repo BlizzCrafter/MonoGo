@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine;
+using MonoGo.Engine.Utils;
+using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Resources;
@@ -11,7 +13,7 @@ using System;
 namespace MonoGo.Samples.Demos
 {
 	public class SpriteDemo : Entity
-    {		
+	{
 		Color _mainColor = Color.White;
 		Color _secondaryColor = Color.Violet;
 
@@ -80,7 +82,7 @@ namespace MonoGo.Samples.Demos
 			_fireSprite.Draw(
 				position,
 				0.4f, 
-				new Vector2(_fireSprite.Width, _fireSprite.Height) / 2, 
+				_fireSprite.Size / 2, 
 				new Vector2(1, 2) * (float)Math.Sin(_animation * Math.PI * 2 * 2), 
 				new Angle(360 * _animation), 
 				Color.Red
@@ -88,16 +90,16 @@ namespace MonoGo.Samples.Demos
 
 			position += Vector2.UnitX * spacing;
 
-			// You also can draw only a part of the sprite.
-			_test.Draw(
-				new RectangleF(position.X, position.Y, 64, 64),
-				0,
-				new RectangleF(64, 64, 64, 64),
-				Angle.Right,
-				Color.White
-			);
+            // You also can draw only a part of the sprite.
+            _test.Draw(
+                new RectangleF(position.X, position.Y, 64, 64),
+                0,
+                new RectangleF(64, 64, 64, 64),
+                Angle.Right,
+                Color.White
+            );
 
-			position += Vector2.UnitY * spacing * 1.5f;
+            position += Vector2.UnitY * spacing * 1.5f;
 			position.X = 0;
 
 			// You can extract raw texture from the frames. Note that you will get the whole texture atlas.
@@ -126,15 +128,15 @@ namespace MonoGo.Samples.Demos
 			_batch.End();
 			
 			// After you're done, you can draw anything you like without switching graphics mode again.
-			RectangleShape.Draw(position, position + new Vector2(texture.Width, texture.Height), true);
+			RectangleShape.Draw(position, position + new Vector2(texture.Width, texture.Height), ShapeFill.Outline);
 
 			position += Vector2.UnitX * 512;
 
 			GraphicsMgr.CurrentColor = Color.Red;
 			Surface.SetTarget(_surface);
 
-			var po = new Vector2(_surface.Width, _surface.Height) / 2 + new Angle(GameMgr.ElapsedTimeTotal * 10).ToVector2() * 64;
-			RectangleShape.DrawBySize(po, Vector2.One * 8, false);
+			var po = _surface.Size / 2 + new Angle(GameMgr.ElapsedTimeTotal * 10).ToVector2() * 64;
+			RectangleShape.DrawBySize(po, Vector2.One * 8, ShapeFill.Solid);
 
 			Surface.ResetTarget();
 
@@ -147,7 +149,7 @@ namespace MonoGo.Samples.Demos
 			Text.Draw("This text is drawn using default" + Environment.NewLine + "Monogame spritefont.", position);
 			position += Vector2.UnitY * 48;
 			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "FancyFont");
-			Text.Draw("This text is drawn using custom" + Environment.NewLine + "font made from a sprite.", position, Vector2.One * 1.1f, Vector2.Zero, new Angle(-10));			
+			Text.Draw("This text is drawn using custom" + Environment.NewLine + "font made from a sprite.", position, Vector2.One * 1.1f, Vector2.Zero, new Angle(-10));
 		}
 
 		/// <summary>
@@ -155,14 +157,14 @@ namespace MonoGo.Samples.Demos
 		/// </summary>
 		void InitSurface()
 		{
-			_surface = new Surface(128, 128);
+			_surface = new Surface(new Vector2(128, 128));
 
 			Surface.SetTarget(_surface);
 
 			GraphicsMgr.Device.Clear(_secondaryColor);
 
 			GraphicsMgr.CurrentColor = _mainColor;
-			CircleShape.Draw(new Vector2(64, 64), 64, false);
+			CircleShape.Draw(new Vector2(64, 64), 64, ShapeFill.Solid);
 
 			Surface.ResetTarget();
 		}

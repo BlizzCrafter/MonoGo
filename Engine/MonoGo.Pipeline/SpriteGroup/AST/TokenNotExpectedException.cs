@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Monofoxe.Pipeline.SpriteGroup.AST
+namespace MonoGo.Pipeline.SpriteGroup.AST
 {
 	[Serializable]
 	internal class TokenNotExpectedException : Exception

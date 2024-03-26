@@ -1,5 +1,4 @@
-﻿using MonoGo.Engine.Drawing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace MonoGo.Engine.Utils.Tilemaps
 {

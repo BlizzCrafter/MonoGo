@@ -8,19 +8,13 @@ using MonoGo.Engine.Utils;
 namespace MonoGo.Samples.Demos
 {
 	public class ShapeDemo : Entity
-    {		
+	{
 		Color _mainColor = Color.White;
 		HsvColor _secondaryColor = new HsvColor(new Color(34, 65, 250));
-		TriangleShape _triangle; 
-
+		
 		public ShapeDemo(Layer layer) : base(layer)
 		{
-            // You can instantiate shapes instead of using static methods.
-            _triangle = new TriangleShape();
-			_triangle.Point1 = new Vector2(32, 32);
-			_triangle.Point2 = new Vector2(-32, 32);
-			_triangle.Point3 = new Vector2(-32, -32);
-			_triangle.IsOutline = true;
+
 		}
 
 		public override void Draw()
@@ -42,20 +36,22 @@ namespace MonoGo.Samples.Demos
 
 			// Circles.
 			GraphicsMgr.CurrentColor = _mainColor; // Setting current color. It's active for all shapes and sprites.
-			CircleShape.Draw(position, 24, false); // Filled circle.
+			CircleShape.Draw(position, 24, ShapeFill.Solid); // Filled circle.
 
 			GraphicsMgr.CurrentColor = _secondaryColor.ToColor();
-			CircleShape.Draw(position, 32, true); // Outline.
+			CircleShape.Draw(position, 32, ShapeFill.Outline); // Outline.
+
 
 			position += Vector2.UnitX * spacing;
+
 
 			CircleShape.CircleVerticesCount = 8; // Changing the amount of circle vertices.
 
 			GraphicsMgr.CurrentColor = _mainColor; 
-			CircleShape.Draw(position, 24, false); 
+			CircleShape.Draw(position, 24, ShapeFill.Solid); 
 
 			GraphicsMgr.CurrentColor = _secondaryColor.ToColor();
-			CircleShape.Draw(position, 32, true);
+			CircleShape.Draw(position, 32, ShapeFill.Outline);
 
 			CircleShape.CircleVerticesCount = 32;
 			// Circles.
@@ -66,18 +62,18 @@ namespace MonoGo.Samples.Demos
 			// Rectangles.
 			
 			// You can draw rectangle using its top left and bottom right point...
-			RectangleShape.Draw(position - Vector2.One * 24, position + Vector2.One * 24, false);
+			RectangleShape.Draw(position - Vector2.One * 24, position + Vector2.One * 24, ShapeFill.Solid);
 
 			GraphicsMgr.CurrentColor = _mainColor;
 			// ...or its center position and size!
-			RectangleShape.DrawBySize(position, Vector2.One * 64, true);
+			RectangleShape.DrawBySize(position, Vector2.One * 64, ShapeFill.Outline);
 
 			position += Vector2.UnitX * spacing;
 
 			RectangleShape.Draw( // We can also manually set colors for each vertex.
 				position - Vector2.One * 24, 
-				position + Vector2.One * 24, 
-				false, 
+				position + Vector2.One * 24,
+				ShapeFill.Solid, 
 				_mainColor, 
 				_mainColor, 
 				_mainColor, 
@@ -86,8 +82,8 @@ namespace MonoGo.Samples.Demos
 
 			RectangleShape.DrawBySize(
 				position, 
-				Vector2.One * 64, 
-				true,
+				Vector2.One * 64,
+				ShapeFill.Outline,
 				_mainColor,
 				_secondaryColor.ToColor(),
 				_mainColor,
@@ -99,22 +95,22 @@ namespace MonoGo.Samples.Demos
 			position.X = startingPosition.X;
 
 			// Triangles.
-			_triangle.Position = position;
-			_triangle.Draw(); // Drawing an instantiated triangle.
 
 			GraphicsMgr.CurrentColor = _mainColor;
 
 			TriangleShape.Draw(
 				position + new Vector2(-24, -24), 
 				position + new Vector2(24, -24), 
-				position + new Vector2(24, 24), 
-				false
+				position + new Vector2(24, 24),
+				ShapeFill.Solid
 			);
 			
 			// Be aware of culling. This triangle, for example, will be culled.
 			// You can disable culling, if you don't want to deal with it.
-			TriangleShape.Draw(new Vector2(-24, -24), new Vector2(24, 24), new Vector2(24, -24), false);
-			
+			TriangleShape.Draw(new Vector2(-24, -24), new Vector2(24, 24), new Vector2(24, -24), ShapeFill.Solid);
+
+			// Triangles.
+
 			// Lines.
 			position += Vector2.UnitX * spacing;
 			LineShape.Draw(position - Vector2.One * 24, position + Vector2.One * 24);

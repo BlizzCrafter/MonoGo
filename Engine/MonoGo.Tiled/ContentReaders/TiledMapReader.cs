@@ -3,11 +3,11 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Monofoxe.Engine;
-using Monofoxe.Tiled.MapStructure;
-using Monofoxe.Tiled.MapStructure.Objects;
+using MonoGo.Engine;
+using MonoGo.Tiled.MapStructure;
+using MonoGo.Tiled.MapStructure.Objects;
 
-namespace Monofoxe.Tiled.ContentReaders
+namespace MonoGo.Tiled.ContentReaders
 {
 	/// <summary>
 	/// Reads sprite group file.

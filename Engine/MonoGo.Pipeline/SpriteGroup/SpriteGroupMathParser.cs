@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Monofoxe.Pipeline.SpriteGroup.AST;
+using MonoGo.Pipeline.SpriteGroup.AST;
 using System;
-using static Monofoxe.Pipeline.SpriteGroup.AST.SpriteGroupMathTokenizer;
+using static MonoGo.Pipeline.SpriteGroup.AST.SpriteGroupMathTokenizer;
 
-namespace Monofoxe.Pipeline.SpriteGroup
+namespace MonoGo.Pipeline.SpriteGroup
 {
 	/// <summary>
 	/// This class parses the expresion and returns the number that corresponds to it

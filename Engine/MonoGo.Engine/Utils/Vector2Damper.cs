@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Monofoxe.Engine.Utils
+namespace MonoGo.Engine.Utils
 {
 	/// <summary>
 	/// Smooth damper based on second order motion. 

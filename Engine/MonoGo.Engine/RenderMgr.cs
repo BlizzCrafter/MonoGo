@@ -13,11 +13,8 @@ namespace MonoGo.Engine
 
         public static void Init()
         {
-            var screenWidth = GameMgr.WindowManager.CanvasWidth;
-            var screenHeight = GameMgr.WindowManager.CanvasHeight;
-
-            SceneSurface = new Surface(screenWidth, screenHeight);
-            GUISurface = new Surface(screenWidth, screenHeight);
+            SceneSurface = new Surface(GameMgr.WindowManager.CanvasSize);
+            GUISurface = new Surface(GameMgr.WindowManager.CanvasSize);
 
             SceneMgr.OnPreDraw += SceneMgr_OnPreDraw;
             SceneMgr.OnPostDraw += SceneMgr_OnPostDraw;

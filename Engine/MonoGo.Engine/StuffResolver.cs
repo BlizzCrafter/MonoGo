@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Contains (usually platform-specific) stuff.

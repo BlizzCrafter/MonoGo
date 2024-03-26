@@ -1,5 +1,4 @@
-﻿
-namespace MonoGo.Engine.Utils
+﻿namespace MonoGo.Engine.Utils
 {
 	public delegate void CounterDelegate(Counter caller);
 

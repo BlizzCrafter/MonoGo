@@ -24,7 +24,7 @@ namespace MonoGo.Samples.Resources
 			}
 			Loaded = true;
 
-			AddResource("Arial", new Font(_content.Load<SpriteFont>("Arial")));
+            AddResource("Arial", new Font(_content.Load<SpriteFont>("Arial")));
             AddResource("Regular", new Font(_content.Load<SpriteFont>("Regular")));
             AddResource("Italic", new Font(_content.Load<SpriteFont>("Italic")));
             AddResource("Bold", new Font(_content.Load<SpriteFont>("Bold")));

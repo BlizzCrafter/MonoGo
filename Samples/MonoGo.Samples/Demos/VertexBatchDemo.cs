@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine;
+using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Resources;
@@ -10,7 +11,7 @@ using System.Diagnostics;
 namespace MonoGo.Samples.Demos
 {
 	public class VertexBatchDemo : Entity
-    {
+	{
 		VertexBatch _vbatch;
 
 		Sprite _player;

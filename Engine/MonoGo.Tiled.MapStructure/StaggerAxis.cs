@@ -1,5 +1,5 @@
 ﻿
-namespace Monofoxe.Tiled.MapStructure
+namespace MonoGo.Tiled.MapStructure
 {
 	public enum StaggerAxis : byte
 	{

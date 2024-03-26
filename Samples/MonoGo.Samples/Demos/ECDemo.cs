@@ -18,7 +18,7 @@ namespace MonoGo.Samples.Demos
 
 		public ECDemo(Layer layer) : base(layer)
 		{
-            for (var i = 0; i < 20; i += 1)
+			for (var i = 0; i < 20; i += 1)
 			{
 				var bot = new Bot(layer);
 				var position = bot.GetComponent<PositionComponent>();

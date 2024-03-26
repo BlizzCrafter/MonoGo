@@ -1,4 +1,4 @@
-﻿namespace Monofoxe.Pipeline.SpriteGroup.AST
+﻿namespace MonoGo.Pipeline.SpriteGroup.AST
 {
 	abstract class Node
 	{

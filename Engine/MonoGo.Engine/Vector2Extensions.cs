@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Monofoxe.Engine.Utils;
+using MonoGo.Engine.Utils;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Vector2 extensions.

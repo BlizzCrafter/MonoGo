@@ -12,7 +12,7 @@ namespace MonoGo.Samples
 {
 	public class GameController : Entity
 	{
-		public Camera2D MainCamera = new Camera2D(1280, 720);
+		public Camera2D MainCamera = new Camera2D(new Vector2(1280, 720));
 
 		Layer _guiLayer;
 
@@ -36,7 +36,6 @@ namespace MonoGo.Samples
 			GameMgr.WindowManager.CenterWindow();
 			GameMgr.WindowManager.CanvasMode = CanvasMode.Fill;
 
-
 			GraphicsMgr.VertexBatch.SamplerState = SamplerState.PointWrap; // Will make textures repeat without interpolation.
 
 			DefaultRasterizer = new RasterizerState();
@@ -54,7 +53,6 @@ namespace MonoGo.Samples
 			_guiLayer = Scene.CreateLayer("gui");
 			_guiLayer.IsGUI = true;
 
-
 			var cameraController = new CameraController(_guiLayer, MainCamera);
 
 			var switcher = new SceneSwitcher(_guiLayer, cameraController);
@@ -69,7 +67,6 @@ namespace MonoGo.Samples
 			SceneMgr.OnPostDraw += OnPostDraw;
 		}
 
-
 		private void OnPreDraw() =>
 			_stopwatch.Start();
 
@@ -79,7 +76,6 @@ namespace MonoGo.Samples
 			GameMgr.WindowManager.WindowTitle = "Rendering time: " + _stopwatch.Elapsed;
 			_stopwatch.Reset();
 		}
-
 
 		public override void Destroy()
 		{

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
-using Monofoxe.Tiled.MapStructure;
-using Monofoxe.Tiled.MapStructure.Objects;
+using MonoGo.Tiled.MapStructure;
+using MonoGo.Tiled.MapStructure.Objects;
 using System.IO;
 
-namespace Monofoxe.Pipeline.Tiled
+namespace MonoGo.Pipeline.Tiled
 {
 	[ContentTypeWriter]
 	public class TiledMapWriter : ContentTypeWriter<TiledMap>
@@ -300,12 +300,12 @@ namespace Monofoxe.Pipeline.Tiled
 		
 		
 		public override string GetRuntimeType(TargetPlatform targetPlatform) =>
-			"Monofoxe.Tiled.MapStructure.TiledMap, Monofoxe.Tiled";
+			"MonoGo.Tiled.MapStructure.TiledMap, MonoGo.Tiled";
 
 
 
 		public override string GetRuntimeReader(TargetPlatform targetPlatform) =>
-			"Monofoxe.Tiled.ContentReaders.TiledMapReader, Monofoxe.Tiled";
+			"MonoGo.Tiled.ContentReaders.TiledMapReader, MonoGo.Tiled";
 	}
 }
 

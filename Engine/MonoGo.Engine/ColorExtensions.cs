@@ -1,17 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Monofoxe.Engine
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// <see cref="Color"/> extensions
 	/// </summary>
 	public static class ColorExtensions
 	{
-
 		/// <summary>
 		/// Return the HsvColor equivalent of a given color 
 		/// </summary>

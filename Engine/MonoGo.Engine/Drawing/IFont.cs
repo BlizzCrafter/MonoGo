@@ -13,7 +13,8 @@ namespace MonoGo.Engine.Drawing
 	public interface IFont
 	{
 		Texture2D Texture {get;}
-		ReadOnlyCollection<char> Characters {get;}
+        SpriteFont SpriteFont { get; }
+        ReadOnlyCollection<char> Characters {get;}
 		char? DefaultCharacter {get; set;}
 		int LineSpacing {get; set;}
 		float Spacing {get; set;}

@@ -46,7 +46,7 @@ namespace MonoGo.Samples.Misc
 		{
 			base.Draw();
 			GraphicsMgr.CurrentColor = _color;
-			CircleShape.Draw(_position, _r, false);
+			CircleShape.Draw(_position, _r, ShapeFill.Solid);
 		}
 
 	}
