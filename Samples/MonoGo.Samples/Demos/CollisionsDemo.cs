@@ -50,7 +50,7 @@ namespace MonoGo.Samples.Demos
 			// Note that we don't add vertices directly to the RelativeVertices array. 
 			// It is possible to do that, however, you also must increment Count by 1.
 			// There are some restrictions to the polygon shape:
-			// - The vrtices should form a convex shape.
+			// - The vertices should form a convex shape.
 			// - The polygon vertices should have clockwise winding.
 			// - Single polygon cannot have more than CollisionSettings.MaxPolygonVertices (which is 8 by default).
 			_polygon.Add(new Vector2(-32, -32).ToMeters());
@@ -106,7 +106,7 @@ namespace MonoGo.Samples.Demos
 			base.Update();
 
 			// Updating shapes. -----------------------------------------
-			_polygon.Rotation = (float)GameMgr.ElapsedTimeTotal * 32;
+			_polygon.Rotation = (float)GameMgr.ElapsedTimeTotal * 16;
 			_polygon.UpdateTransform(); // For polygon shapes, it is required to apply new transform after every change.
 
 			_circle.Position = new Vector2(
@@ -119,7 +119,7 @@ namespace MonoGo.Samples.Demos
 
 			// Updating circle colliders. -----------------------------------------			
 			_circleCollider1.Position = new Vector2(
-				150 + 100 * MathF.Sin((float)GameMgr.ElapsedTimeTotal * 2),
+				150 + 100 * MathF.Sin((float)GameMgr.ElapsedTimeTotal * 1),
 				250
 			).ToMeters();
 			_circleCollider1.Rotation = (float)GameMgr.ElapsedTimeTotal * 32;
@@ -127,7 +127,7 @@ namespace MonoGo.Samples.Demos
 			_circleCollider1.UpdateTransform();
 
 			_circleCollider2.Position = new Vector2(
-				150 - 100 * MathF.Sin((float)GameMgr.ElapsedTimeTotal * 2),
+				150 - 100 * MathF.Sin((float)GameMgr.ElapsedTimeTotal * 1),
 				250
 			).ToMeters();
 			_circleCollider2.Radius = (32 + MathF.Sin((float)GameMgr.ElapsedTimeTotal * 4) * 8).ToMeters();
@@ -166,17 +166,18 @@ namespace MonoGo.Samples.Demos
 			_rectCollider.UpdateTransform();
 
 			_polyCollider2.Position = new Vector2(200, 400).ToMeters();
-			_polyCollider2.Rotation = (float)GameMgr.ElapsedTimeTotal * 32;
+			_polyCollider2.Rotation = (float)GameMgr.ElapsedTimeTotal * 64;
 			_polyCollider2.UpdateTransform();
 
 			_rectAndPolyCollidersCollided = CollisionChecker.CheckCollision(_polyCollider2, _rectCollider);
 			// Updating colliders. -----------------------------------------
 		}
+
 		public override void Draw()
 		{
 			base.Draw();
 
-			GraphicsMgr.CurrentColor = Color.CornflowerBlue;
+			GraphicsMgr.CurrentColor = Color.Yellow;
 			if (_circleAndPolygonCollided)
 			{
 				GraphicsMgr.CurrentColor = Color.Red;
@@ -187,7 +188,7 @@ namespace MonoGo.Samples.Demos
 			DrawAABB(_circle);
 			DrawAABB(_polygon);
 
-			GraphicsMgr.CurrentColor = Color.DeepPink;
+			GraphicsMgr.CurrentColor = Color.Orchid;
 			if (_circleCollidersCollided)
 			{
 				GraphicsMgr.CurrentColor = Color.Red;
@@ -197,16 +198,7 @@ namespace MonoGo.Samples.Demos
 			DrawAABB(_circleCollider1);
 			DrawAABB(_circleCollider2);
 
-			GraphicsMgr.CurrentColor = Color.Cyan;
-			if (_lineAndPolyCollidersCollided)
-			{
-				GraphicsMgr.CurrentColor = Color.Red;
-			}
-			DrawCollider(_polyCollider);
-			DrawCollider(_lineCollider);
-			DrawAABB(_polyCollider);
-
-			GraphicsMgr.CurrentColor = Color.ForestGreen;
+			GraphicsMgr.CurrentColor = Color.MediumSeaGreen;
 			if (_rectAndPolyCollidersCollided)
 			{
 				GraphicsMgr.CurrentColor = Color.Red;
@@ -214,7 +206,16 @@ namespace MonoGo.Samples.Demos
 			DrawCollider(_polyCollider2);
 			DrawCollider(_rectCollider);
 			DrawAABB(_polyCollider2);
-		}
+
+            GraphicsMgr.CurrentColor = Color.CornflowerBlue;
+            if (_lineAndPolyCollidersCollided)
+            {
+                GraphicsMgr.CurrentColor = Color.Red;
+            }
+            DrawCollider(_polyCollider);
+            DrawCollider(_lineCollider);
+            DrawAABB(_polyCollider);
+        }
 
 		public override void Destroy()
 		{
@@ -231,7 +232,6 @@ namespace MonoGo.Samples.Demos
 			ColliderPool.Return(_polyCollider2);
 			ColliderPool.Return(_rectCollider);
 		}
-
 
 		private void DrawCollider(Collider collider)
 		{

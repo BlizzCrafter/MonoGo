@@ -4,6 +4,7 @@ using MonoGo.Engine;
 using MonoGo.Engine.Cameras;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
+using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.Utils;
 using System.Diagnostics;
@@ -63,7 +64,10 @@ namespace MonoGo.Samples
 			// Note that this will create an additional surface.
 			MainCamera.PostprocessingMode = PostprocessingMode.CameraAndLayers;
 
-			SceneMgr.OnPreDraw += OnPreDraw; // You can do the same for individual layers or scenes.
+			// Setting a default Font to avoid crashes when skipping the samples backwards.
+            Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
+
+            SceneMgr.OnPreDraw += OnPreDraw; // You can do the same for individual layers or scenes.
 			SceneMgr.OnPostDraw += OnPostDraw;
 		}
 
