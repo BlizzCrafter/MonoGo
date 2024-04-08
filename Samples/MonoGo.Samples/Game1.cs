@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
+using MonoGo.Engine.UI;
 using MonoGo.Resources;
 using MonoGo.Samples.Resources;
 using MonoGo.Tiled;
 using MonoGo.Tiled.MapStructure;
-using MonoGo.GUI;
 using System;
 
 namespace MonoGo.Samples

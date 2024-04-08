@@ -10,7 +10,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Engine\MonoGo.Engine\MonoGo.Engine.csproj" />
-	  <ProjectReference Include="..\..\Engine\MonoGo.GUI\MonoGo.GUI.csproj" />
 	  <ProjectReference Include="..\..\Engine\MonoGo.Tiled\MonoGo.Tiled.csproj" />
 	</ItemGroup>
 
