@@ -9,8 +9,6 @@ namespace MonoGo.Pipeline.Tiled
 	{
 		public static TiledMap Parse(XmlDocument xml)
 		{
-			Logger.Log("foxes");
-
 			var map = new TiledMap();
 			var mapXml = xml["map"];
 			var mapAttributes = xml["map"].Attributes;
