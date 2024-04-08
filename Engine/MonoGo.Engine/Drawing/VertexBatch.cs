@@ -252,7 +252,7 @@ namespace MonoGo.Engine.Drawing
 
 		/// <summary>
 		/// Default shader with proper alpha blending. 
-		/// Replaces BasicEffect. Applied, when CurrentEffect and DefaulrEffect are null.
+		/// Replaces BasicEffect. Applied, when CurrentEffect and DefaultEffect are null.
 		/// </summary>
 		private static Effect _alphaBlendEffect;
 
