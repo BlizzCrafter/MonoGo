@@ -2,7 +2,8 @@
 	"atlasSize": 512,
 	"texturePadding": 1,
 	"rootDir": "/GUI",
-	"singleTexturesWildcards": [
+	"singleTexturesWildcards": 
+	[
 		"/Textures/*"
 	]
 }
