@@ -7,7 +7,7 @@
 		<NoWarn>NU5100</NoWarn>
 	</PropertyGroup>
 
-	<Import Project="..\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems" Label="Shared" />
+	<Import Project="..\Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems" Label="Shared" />
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.1.*">
 			<PrivateAssets>All</PrivateAssets>

@@ -9,8 +9,8 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Engine\MonoGo.Engine\MonoGo.Engine.csproj" />
-	  <ProjectReference Include="..\..\Engine\MonoGo.Tiled\MonoGo.Tiled.csproj" />
+	  <ProjectReference Include="..\..\MonoGo.Engine\MonoGo.Engine.csproj" />
+	  <ProjectReference Include="..\..\Modules\MonoGo.Tiled\MonoGo.Tiled.csproj" />
 	</ItemGroup>
 
 	<Target Name="BuildContentProject">

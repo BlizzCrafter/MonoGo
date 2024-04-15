@@ -29,9 +29,9 @@
 		<MonoGameContentReference Include="Content\Content.mgcb" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Engine\MonoGo.Engine.DesktopGL\MonoGo.Engine.DesktopGL.csproj" />
-	  <ProjectReference Include="..\..\Engine\MonoGo.Engine\MonoGo.Engine.csproj" />
-	  <ProjectReference Include="..\..\Engine\MonoGo.Tiled\MonoGo.Tiled.csproj" />
+	  <ProjectReference Include="..\..\MonoGo.Engine.DesktopGL\MonoGo.Engine.DesktopGL.csproj" />
+	  <ProjectReference Include="..\..\MonoGo.Engine\MonoGo.Engine.csproj" />
+	  <ProjectReference Include="..\..\Modules\MonoGo.Tiled\MonoGo.Tiled.csproj" />
 	  <ProjectReference Include="..\MonoGo.Samples\MonoGo.Samples.csproj" />
 	</ItemGroup>
 	<Target Name="RestoreDotnetTools" BeforeTargets="Restore">

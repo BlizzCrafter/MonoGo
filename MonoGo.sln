@@ -3,21 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Pipeline", "Engine\MonoGo.Pipeline\MonoGo.Pipeline.csproj", "{D59079B2-CC07-4783-9C7F-05E78EBBC5FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Pipeline", "MonoGo.Pipeline\MonoGo.Pipeline.csproj", "{D59079B2-CC07-4783-9C7F-05E78EBBC5FD}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGo.Tiled.MapStructure", "Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGo.Tiled.MapStructure", "Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine", "Engine\MonoGo.Engine\MonoGo.Engine.csproj", "{70699800-5172-413D-BB6F-0D80CB9FCD13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine", "MonoGo.Engine\MonoGo.Engine.csproj", "{70699800-5172-413D-BB6F-0D80CB9FCD13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tiled", "Engine\MonoGo.Tiled\MonoGo.Tiled.csproj", "{E615232A-8EDD-43BB-84D0-3BA376ACA7E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tiled", "Modules\MonoGo.Tiled\MonoGo.Tiled.csproj", "{E615232A-8EDD-43BB-84D0-3BA376ACA7E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tests", "Engine\MonoGo.Tests\MonoGo.Tests.csproj", "{799409E8-B82F-4DBF-BBDE-B9EF253B2404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tests", "Tests\MonoGo.Tests.csproj", "{799409E8-B82F-4DBF-BBDE-B9EF253B2404}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine.WindowsDX", "Engine\MonoGo.Engine.WindowsDX\MonoGo.Engine.WindowsDX.csproj", "{A1593C65-09C3-4294-A153-A43509D989AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine.WindowsDX", "MonoGo.Engine.WindowsDX\MonoGo.Engine.WindowsDX.csproj", "{A1593C65-09C3-4294-A153-A43509D989AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine.DesktopGL", "Engine\MonoGo.Engine.DesktopGL\MonoGo.Engine.DesktopGL.csproj", "{491EFCE4-315C-40AB-AC26-28F7A6190E9A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{B86C69D3-FFCE-488F-891F-6EAAAD2513FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine.DesktopGL", "MonoGo.Engine.DesktopGL\MonoGo.Engine.DesktopGL.csproj", "{491EFCE4-315C-40AB-AC26-28F7A6190E9A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{10BACD3F-2B0F-47C5-9D0C-80156103C4C7}"
 EndProject
@@ -30,6 +28,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Samples.WindowsDX", "Samples\MonoGo.Samples.WindowsDX\MonoGo.Samples.WindowsDX.csproj", "{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{C0A95E21-53D3-406A-B97C-6A2600E7CAD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7F57A7A1-737E-45C4-B9A8-53E4A08CC715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,12 +83,12 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D59079B2-CC07-4783-9C7F-05E78EBBC5FD} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
-		{785E8147-0E69-45DF-92F7-B4F315739D0C} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
+		{785E8147-0E69-45DF-92F7-B4F315739D0C} = {7F57A7A1-737E-45C4-B9A8-53E4A08CC715}
 		{70699800-5172-413D-BB6F-0D80CB9FCD13} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
-		{E615232A-8EDD-43BB-84D0-3BA376ACA7E6} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
+		{E615232A-8EDD-43BB-84D0-3BA376ACA7E6} = {7F57A7A1-737E-45C4-B9A8-53E4A08CC715}
 		{799409E8-B82F-4DBF-BBDE-B9EF253B2404} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
-		{A1593C65-09C3-4294-A153-A43509D989AA} = {B86C69D3-FFCE-488F-891F-6EAAAD2513FD}
-		{491EFCE4-315C-40AB-AC26-28F7A6190E9A} = {B86C69D3-FFCE-488F-891F-6EAAAD2513FD}
+		{A1593C65-09C3-4294-A153-A43509D989AA} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
+		{491EFCE4-315C-40AB-AC26-28F7A6190E9A} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
 		{8C3E1EF4-8923-4D05-B128-D01968D77AC6} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
 		{0720FA7C-FCBC-4310-985F-C1D1E9D2C929} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
 		{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
@@ -98,8 +98,8 @@ Global
 		SolutionGuid = {B5534B27-AF0B-4FD7-80A1-0E7BCBFC9C46}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{785e8147-0e69-45df-92f7-b4f315739d0c}*SharedItemsImports = 13
-		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{d59079b2-cc07-4783-9c7f-05e78ebbc5fd}*SharedItemsImports = 5
-		Engine\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{e615232a-8edd-43bb-84d0-3ba376aca7e6}*SharedItemsImports = 5
+		Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{785e8147-0e69-45df-92f7-b4f315739d0c}*SharedItemsImports = 13
+		Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{d59079b2-cc07-4783-9c7f-05e78ebbc5fd}*SharedItemsImports = 5
+		Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems*{e615232a-8edd-43bb-84d0-3ba376aca7e6}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
