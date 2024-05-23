@@ -1,85 +1,117 @@
-﻿{
-	"root": "../../MonoGo.Samples.Content/Content/",
-	"references": [
-		"../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
-	],
-	"content": {
-		"contentList": {
-			"path": "$Content.npl",
-			"recursive": "False",
-			"action": "build",
-			"importer": "ResourceInfoImporter",
-			"processor": "PassThroughProcessor",
-			"watch": [
-				"../../MonoGo.Samples.Content/Content/*"
-			]
-		},
-		"music": {
-			"path": "Audio/Music/*.ogg",
-			"recursive": "True",
-			"action": "copy"
-		},
-		"sounds": {
-			"path": "Audio/Sounds/*.wav",
-			"recursive": "True",
-			"action": "copy"
-		},
-		"styles": {
-			"path": "Graphics/GUI/Styles/*.xml",
-			"recursive": "false",
-			"action": "copy",
-			"importer": "XmlImporter",
-			"processor": "PassThroughProcessor",
-			"watch": [
-				"GUI/Styles/*.xml"
-			]
-		},
-		"defaultSpriteGroup": {
-			"path": "Graphics/*.spritegroup",
-			"recursive": "True",
-			"action": "build",
-			"importer": "SpriteGroupImporter",
-			"processor": "SpriteGroupProcessor",
-			"watch": [
-				"Default/*.png",
-				"Default/*.json",
-				"GUI/Textures/*.png"
-			]
-		},
-		"effects": {
-			"path": "Effects/*.fx",
-			"recursive": "True",
-			"action": "build",
-			"importer": "EffectImporter",
-			"processor": "EffectProcessor"
-		},
-		"tiledMaps": {
-			"path": "Maps/*.tmx",
-			"recursive": "True",
-			"action": "build",
-			"importer": "TiledMapImporter",
-			"processor": "PassThroughProcessor",
-			"watch": [
-				"Tilesets/*.tsx",
-				"Tilesets/*.png",
-				"Templates/*.tsx",
-				"Templates/*.tx",
-				"Templates/*.png"
-			]
-		},
-		"tiledMapTextures": {
-			"path": "Maps/*.png",
-			"recursive": "True",
-			"action": "build",
-			"importer": "TextureImporter",
-			"processor": "TextureProcessor"
-		},
-		"fonts": {
-			"path": "Fonts/*.spritefont",
-			"recursive": "True",
-			"action": "build",
-			"importer": "FontDescriptionImporter",
-			"processor": "FontDescriptionProcessor"
-		}
-	}
+{
+  "root": "../../MonoGo.Samples.Content/Content/",
+  "references": [
+    "../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
+  ],
+  "content": {
+    "contentList": {
+      "path": "$Content.npl",
+      "recursive": "False",
+      "action": "build",
+      "importer": "ResourceInfoImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "../../MonoGo.Samples.Content/Content/*"
+      ]
+    },
+    "music": {
+      "path": "Audio/Music/*.ogg",
+      "recursive": "True",
+      "action": "copy",
+      "importer": "OggImporter",
+      "processor": "SongProcessor",
+      "processorParam": {
+        "Quality": "Best"
+      },
+      "watch": []
+    },
+    "sounds": {
+      "path": "Audio/Sounds/*.wav",
+      "recursive": "True",
+      "action": "copy",
+      "importer": "WavImporter",
+      "processor": "SoundEffectProcessor",
+      "processorParam": {
+        "Quality": "Best"
+      },
+      "watch": []
+    },
+    "styles": {
+      "path": "Graphics/GUI/Styles/*.xml",
+      "recursive": "false",
+      "action": "copy",
+      "importer": "XmlImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "GUI/Styles/*.xml"
+      ]
+    },
+    "defaultSpriteGroup": {
+      "path": "Graphics/*.spritegroup",
+      "recursive": "True",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "Default/*.png",
+        "Default/*.json",
+        "GUI/Textures/*.png"
+      ]
+    },
+    "effects": {
+      "path": "Effects/*.fx",
+      "recursive": "True",
+      "action": "build",
+      "importer": "EffectImporter",
+      "processor": "EffectProcessor",
+      "processorParam": {
+        "DebugMode": "Auto",
+        "Defines": ""
+      },
+      "watch": []
+    },
+    "tiledMaps": {
+      "path": "Maps/*.tmx",
+      "recursive": "True",
+      "action": "build",
+      "importer": "TiledMapImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "Tilesets/*.tsx",
+        "Tilesets/*.png",
+        "Templates/*.tsx",
+        "Templates/*.tx",
+        "Templates/*.png"
+      ]
+    },
+    "tiledMapTextures": {
+      "path": "Maps/*.png",
+      "recursive": "True",
+      "action": "build",
+      "importer": "TextureImporter",
+      "processor": "TextureProcessor",
+      "processorParam": {
+        "ColorKeyColor": "255,0,255,255",
+        "ColorKeyEnabled": "True",
+        "GenerateMipmaps": "False",
+        "PremultiplyAlpha": "True",
+        "ResizeToPowerOfTwo": "False",
+        "MakeSquare": "False",
+        "TextureFormat": "Color"
+      },
+      "watch": []
+    },
+    "fonts": {
+      "path": "Fonts/*.spritefont",
+      "recursive": "True",
+      "action": "build",
+      "importer": "FontDescriptionImporter",
+      "processor": "FontDescriptionProcessor",
+      "processorParam": {
+        "PremultiplyAlpha": "True",
+        "TextureFormat": "Compressed"
+      },
+      "watch": []
+    }
+  }
 }

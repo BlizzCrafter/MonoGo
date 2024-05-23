@@ -567,21 +567,29 @@
 #begin ../../MonoGo.Samples.Content/Content/Effects/Disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
 /build:../../MonoGo.Samples.Content/Content/Effects/Disabled.fx;Effects/Disabled.fx
 
 #begin ../../MonoGo.Samples.Content/Content/Effects/Grayscale.fx
 /importer:EffectImporter
 /processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
 /build:../../MonoGo.Samples.Content/Content/Effects/Grayscale.fx;Effects/Grayscale.fx
 
 #begin ../../MonoGo.Samples.Content/Content/Effects/Seizure.fx
 /importer:EffectImporter
 /processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
 /build:../../MonoGo.Samples.Content/Content/Effects/Seizure.fx;Effects/Seizure.fx
 
 #begin ../../MonoGo.Samples.Content/Content/Effects/Silhouette.fx
 /importer:EffectImporter
 /processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
 /build:../../MonoGo.Samples.Content/Content/Effects/Silhouette.fx;Effects/Silhouette.fx
 
 #begin ../../MonoGo.Samples.Content/Content/Maps/Test.tmx
@@ -592,34 +600,63 @@
 #begin ../../MonoGo.Samples.Content/Content/Maps/Tilesets/grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:../../MonoGo.Samples.Content/Content/Maps/Tilesets/grass.png;Maps/Tilesets/grass.png
 
 #begin ../../MonoGo.Samples.Content/Content/Maps/Templates/TemplatesTileset/bot.png
 /importer:TextureImporter
 /processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:../../MonoGo.Samples.Content/Content/Maps/Templates/TemplatesTileset/bot.png;Maps/Templates/TemplatesTileset/bot.png
 
 #begin ../../MonoGo.Samples.Content/Content/Maps/Templates/TemplatesTileset/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:../../MonoGo.Samples.Content/Content/Maps/Templates/TemplatesTileset/player.png;Maps/Templates/TemplatesTileset/player.png
 
 #begin ../../MonoGo.Samples.Content/Content/Fonts/Arial.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Arial.spritefont;Fonts/Arial.spritefont
 
 #begin ../../MonoGo.Samples.Content/Content/Fonts/Bold.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Bold.spritefont;Fonts/Bold.spritefont
 
 #begin ../../MonoGo.Samples.Content/Content/Fonts/Italic.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Italic.spritefont;Fonts/Italic.spritefont
 
 #begin ../../MonoGo.Samples.Content/Content/Fonts/Regular.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Regular.spritefont;Fonts/Regular.spritefont
