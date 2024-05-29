@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Pipeline", "MonoGo.Pipeline\MonoGo.Pipeline.csproj", "{D59079B2-CC07-4783-9C7F-05E78EBBC5FD}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGo.Tiled.MapStructure", "Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Engine", "MonoGo.Engine\MonoGo.Engine.csproj", "{70699800-5172-413D-BB6F-0D80CB9FCD13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tiled", "Modules\MonoGo.Tiled\MonoGo.Tiled.csproj", "{E615232A-8EDD-43BB-84D0-3BA376ACA7E6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MonoGo.Tiled.MapStructure", "Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.shproj", "{785E8147-0E69-45DF-92F7-B4F315739D0C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGo.Tests", "Tests\MonoGo.Tests.csproj", "{799409E8-B82F-4DBF-BBDE-B9EF253B2404}"
 EndProject
