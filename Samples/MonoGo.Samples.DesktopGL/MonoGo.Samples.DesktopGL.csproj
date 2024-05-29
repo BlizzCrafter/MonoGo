@@ -38,4 +38,7 @@
 		<Message Text="Restoring dotnet tools" Importance="High" />
 		<Exec Command="dotnet tool restore" />
 	</Target>
+	<ItemGroup>
+	  <NPLContentReferences Remove="Content\Content-Engine.npl" />
+	</ItemGroup>
 </Project>

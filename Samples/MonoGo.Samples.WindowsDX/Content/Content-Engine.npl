@@ -1,0 +1,38 @@
+{
+  "root": "../../../MonoGo.Engine.Content/Content/",
+  "references": [
+    "../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
+  ],
+  "content": {
+    "contentList": {
+      "path": "$Content-Engine.npl",
+      "recursive": "False",
+      "action": "build",
+      "importer": "ResourceInfoImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "../../../MonoGo.Engine.Content/Content/*"
+      ]
+    },
+    "styles": {
+      "path": "Graphics/GUI/Styles/*.xml",
+      "recursive": "false",
+      "action": "copy",
+      "importer": "XmlImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "GUI/Styles/*.xml"
+      ]
+    },
+    "defaultSpriteGroup": {
+      "path": "Graphics/*.spritegroup",
+      "recursive": "True",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "GUI/Textures/*.png"
+      ]
+    }
+  }
+}

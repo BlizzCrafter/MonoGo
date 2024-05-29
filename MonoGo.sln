@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{C0A95E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7F57A7A1-737E-45C4-B9A8-53E4A08CC715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGo.Engine.Content", "MonoGo.Engine.Content\MonoGo.Engine.Content.csproj", "{25E4C3A9-B509-48D0-9B7B-F59D28067C6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E4C3A9-B509-48D0-9B7B-F59D28067C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E4C3A9-B509-48D0-9B7B-F59D28067C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E4C3A9-B509-48D0-9B7B-F59D28067C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E4C3A9-B509-48D0-9B7B-F59D28067C6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{0720FA7C-FCBC-4310-985F-C1D1E9D2C929} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
 		{94BCE387-0572-4EF7-A8AB-AEFB7B54B50F} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
 		{B33C2CAE-3D6A-4A70-9829-550ADDACA92C} = {10BACD3F-2B0F-47C5-9D0C-80156103C4C7}
+		{25E4C3A9-B509-48D0-9B7B-F59D28067C6D} = {C0A95E21-53D3-406A-B97C-6A2600E7CAD3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B5534B27-AF0B-4FD7-80A1-0E7BCBFC9C46}
