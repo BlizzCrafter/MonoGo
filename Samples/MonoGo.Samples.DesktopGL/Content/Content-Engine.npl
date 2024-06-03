@@ -1,5 +1,5 @@
 {
-  "root": "../../../MonoGo.Engine.Content/Content/",
+  "root": "../../../Content/",
   "references": [
     "../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
   ],
@@ -11,7 +11,7 @@
       "importer": "ResourceInfoImporter",
       "processor": "PassThroughProcessor",
       "watch": [
-        "../../../MonoGo.Engine.Content/Content/*"
+        "../../../Content/*"
       ]
     },
     "styles": {

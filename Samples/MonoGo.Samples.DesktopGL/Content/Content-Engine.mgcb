@@ -18,542 +18,542 @@
 /processor:PassThroughProcessor
 /build:Content-Engine.npl
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-Default.xml;Graphics/GUI/Styles/Button-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button-Default.xml;Graphics/GUI/Styles/Button-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-MouseDown.xml;Graphics/GUI/Styles/Button-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button-MouseDown.xml;Graphics/GUI/Styles/Button-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button-MouseHover.xml;Graphics/GUI/Styles/Button-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button-MouseHover.xml;Graphics/GUI/Styles/Button-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml;Graphics/GUI/Styles/ButtonParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml;Graphics/GUI/Styles/ButtonParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Alternative_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button_Alternative_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Alternative_md.xml;Graphics/GUI/Styles/Button_Alternative_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button_Alternative_md.xml;Graphics/GUI/Styles/Button_Alternative_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Default_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Default_md.xml;Graphics/GUI/Styles/Button_Default_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button_Default_md.xml;Graphics/GUI/Styles/Button_Default_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Fancy_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Button_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Button_Fancy_md.xml;Graphics/GUI/Styles/Button_Fancy_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Button_Fancy_md.xml;Graphics/GUI/Styles/Button_Fancy_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBox-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-Default.xml;Graphics/GUI/Styles/CheckBox-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBox-Default.xml;Graphics/GUI/Styles/CheckBox-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml;Graphics/GUI/Styles/CheckBox-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml;Graphics/GUI/Styles/CheckBox-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml;Graphics/GUI/Styles/CheckBox-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml;Graphics/GUI/Styles/CheckBox-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml;Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml;Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml;Graphics/GUI/Styles/ColoredRectangle-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml;Graphics/GUI/Styles/ColoredRectangle-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml;Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml;Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml;Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml;Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Default_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Cursor_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Default_md.xml;Graphics/GUI/Styles/Cursor_Default_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Cursor_Default_md.xml;Graphics/GUI/Styles/Cursor_Default_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml;Graphics/GUI/Styles/Cursor_Ibeam_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml;Graphics/GUI/Styles/Cursor_Ibeam_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml;Graphics/GUI/Styles/Cursor_Pointer_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml;Graphics/GUI/Styles/Cursor_Pointer_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDown-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-Default.xml;Graphics/GUI/Styles/DropDown-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDown-Default.xml;Graphics/GUI/Styles/DropDown-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDown-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-MouseDown.xml;Graphics/GUI/Styles/DropDown-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDown-MouseDown.xml;Graphics/GUI/Styles/DropDown-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDown-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDown-MouseHover.xml;Graphics/GUI/Styles/DropDown-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDown-MouseHover.xml;Graphics/GUI/Styles/DropDown-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml;Graphics/GUI/Styles/DropDownParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml;Graphics/GUI/Styles/DropDownParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml;Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml;Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Entity-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-Default.xml;Graphics/GUI/Styles/Entity-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Entity-Default.xml;Graphics/GUI/Styles/Entity-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Entity-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-MouseDown.xml;Graphics/GUI/Styles/Entity-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Entity-MouseDown.xml;Graphics/GUI/Styles/Entity-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Entity-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Entity-MouseHover.xml;Graphics/GUI/Styles/Entity-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Entity-MouseHover.xml;Graphics/GUI/Styles/Entity-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/example.xml
+#begin ../../../Content/Graphics/GUI/Styles/example.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/example.xml;Graphics/GUI/Styles/example.xml
+/copy:../../../Content/Graphics/GUI/Styles/example.xml;Graphics/GUI/Styles/example.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Header-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-Default.xml;Graphics/GUI/Styles/Header-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Header-Default.xml;Graphics/GUI/Styles/Header-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Header-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-MouseDown.xml;Graphics/GUI/Styles/Header-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Header-MouseDown.xml;Graphics/GUI/Styles/Header-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Header-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Header-MouseHover.xml;Graphics/GUI/Styles/Header-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Header-MouseHover.xml;Graphics/GUI/Styles/Header-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-Default.xml;Graphics/GUI/Styles/HorizontalLine-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-Default.xml;Graphics/GUI/Styles/HorizontalLine-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml;Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml;Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml;Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml;Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Icon-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-Default.xml;Graphics/GUI/Styles/Icon-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Icon-Default.xml;Graphics/GUI/Styles/Icon-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Icon-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-MouseDown.xml;Graphics/GUI/Styles/Icon-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Icon-MouseDown.xml;Graphics/GUI/Styles/Icon-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Icon-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Icon-MouseHover.xml;Graphics/GUI/Styles/Icon-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Icon-MouseHover.xml;Graphics/GUI/Styles/Icon-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Image-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-Default.xml;Graphics/GUI/Styles/Image-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Image-Default.xml;Graphics/GUI/Styles/Image-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Image-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-MouseDown.xml;Graphics/GUI/Styles/Image-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Image-MouseDown.xml;Graphics/GUI/Styles/Image-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Image-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Image-MouseHover.xml;Graphics/GUI/Styles/Image-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Image-MouseHover.xml;Graphics/GUI/Styles/Image-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Label-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-Default.xml;Graphics/GUI/Styles/Label-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Label-Default.xml;Graphics/GUI/Styles/Label-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Label-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-MouseDown.xml;Graphics/GUI/Styles/Label-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Label-MouseDown.xml;Graphics/GUI/Styles/Label-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Label-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Label-MouseHover.xml;Graphics/GUI/Styles/Label-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Label-MouseHover.xml;Graphics/GUI/Styles/Label-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-Default.xml;Graphics/GUI/Styles/Panel-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel-Default.xml;Graphics/GUI/Styles/Panel-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-MouseDown.xml;Graphics/GUI/Styles/Panel-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel-MouseDown.xml;Graphics/GUI/Styles/Panel-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel-MouseHover.xml;Graphics/GUI/Styles/Panel-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel-MouseHover.xml;Graphics/GUI/Styles/Panel-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml;Graphics/GUI/Styles/PanelTabsButton-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml;Graphics/GUI/Styles/PanelTabsButton-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Default_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Default_md.xml;Graphics/GUI/Styles/Panel_Default_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel_Default_md.xml;Graphics/GUI/Styles/Panel_Default_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Fancy_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Fancy_md.xml;Graphics/GUI/Styles/Panel_Fancy_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel_Fancy_md.xml;Graphics/GUI/Styles/Panel_Fancy_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Golden_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel_Golden_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Golden_md.xml;Graphics/GUI/Styles/Panel_Golden_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel_Golden_md.xml;Graphics/GUI/Styles/Panel_Golden_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml;Graphics/GUI/Styles/Panel_Listbackground_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml;Graphics/GUI/Styles/Panel_Listbackground_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Simple_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Panel_Simple_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Panel_Simple_md.xml;Graphics/GUI/Styles/Panel_Simple_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Panel_Simple_md.xml;Graphics/GUI/Styles/Panel_Simple_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Paragraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-Default.xml;Graphics/GUI/Styles/Paragraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Paragraph-Default.xml;Graphics/GUI/Styles/Paragraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml;Graphics/GUI/Styles/Paragraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml;Graphics/GUI/Styles/Paragraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml;Graphics/GUI/Styles/Paragraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml;Graphics/GUI/Styles/Paragraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-Default.xml;Graphics/GUI/Styles/ProgressBar-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-Default.xml;Graphics/GUI/Styles/ProgressBar-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml;Graphics/GUI/Styles/ProgressBar-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml;Graphics/GUI/Styles/ProgressBar-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml;Graphics/GUI/Styles/ProgressBar-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml;Graphics/GUI/Styles/ProgressBar-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml;Graphics/GUI/Styles/ProgressBarFill-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml;Graphics/GUI/Styles/ProgressBarFill-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml;Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml;Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml;Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml;Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Progressbar_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Progressbar_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Progressbar_md.xml;Graphics/GUI/Styles/Progressbar_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Progressbar_md.xml;Graphics/GUI/Styles/Progressbar_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButton-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-Default.xml;Graphics/GUI/Styles/RadioButton-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButton-Default.xml;Graphics/GUI/Styles/RadioButton-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml;Graphics/GUI/Styles/RadioButton-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml;Graphics/GUI/Styles/RadioButton-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml;Graphics/GUI/Styles/RadioButton-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml;Graphics/GUI/Styles/RadioButton-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml;Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml;Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Scrollbar_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Scrollbar_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Scrollbar_md.xml;Graphics/GUI/Styles/Scrollbar_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Scrollbar_md.xml;Graphics/GUI/Styles/Scrollbar_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectList-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-Default.xml;Graphics/GUI/Styles/SelectList-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectList-Default.xml;Graphics/GUI/Styles/SelectList-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectList-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-MouseDown.xml;Graphics/GUI/Styles/SelectList-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectList-MouseDown.xml;Graphics/GUI/Styles/SelectList-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectList-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectList-MouseHover.xml;Graphics/GUI/Styles/SelectList-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectList-MouseHover.xml;Graphics/GUI/Styles/SelectList-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml;Graphics/GUI/Styles/SelectListParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml;Graphics/GUI/Styles/SelectListParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml;Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml;Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml;Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml;Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/Slider-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-Default.xml;Graphics/GUI/Styles/Slider-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/Slider-Default.xml;Graphics/GUI/Styles/Slider-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/Slider-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-MouseDown.xml;Graphics/GUI/Styles/Slider-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/Slider-MouseDown.xml;Graphics/GUI/Styles/Slider-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/Slider-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider-MouseHover.xml;Graphics/GUI/Styles/Slider-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/Slider-MouseHover.xml;Graphics/GUI/Styles/Slider-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider_Default_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Slider_Default_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider_Default_md.xml;Graphics/GUI/Styles/Slider_Default_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Slider_Default_md.xml;Graphics/GUI/Styles/Slider_Default_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider_Fancy_md.xml
+#begin ../../../Content/Graphics/GUI/Styles/Slider_Fancy_md.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/Slider_Fancy_md.xml;Graphics/GUI/Styles/Slider_Fancy_md.xml
+/copy:../../../Content/Graphics/GUI/Styles/Slider_Fancy_md.xml;Graphics/GUI/Styles/Slider_Fancy_md.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInput-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-Default.xml;Graphics/GUI/Styles/TextInput-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInput-Default.xml;Graphics/GUI/Styles/TextInput-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInput-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-MouseDown.xml;Graphics/GUI/Styles/TextInput-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInput-MouseDown.xml;Graphics/GUI/Styles/TextInput-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInput-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInput-MouseHover.xml;Graphics/GUI/Styles/TextInput-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInput-MouseHover.xml;Graphics/GUI/Styles/TextInput-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml;Graphics/GUI/Styles/TextInputParagraph-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml;Graphics/GUI/Styles/TextInputParagraph-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml;Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml;Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml;Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml;Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml;Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml;Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ThemeData.xml
+#begin ../../../Content/Graphics/GUI/Styles/ThemeData.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/ThemeData.xml;Graphics/GUI/Styles/ThemeData.xml
+/copy:../../../Content/Graphics/GUI/Styles/ThemeData.xml;Graphics/GUI/Styles/ThemeData.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml
+#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml;Graphics/GUI/Styles/VerticalScrollbar-Default.xml
+/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml;Graphics/GUI/Styles/VerticalScrollbar-Default.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
+#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
+/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
+#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
-/copy:../../../MonoGo.Engine.Content/Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
+/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
 
-#begin ../../../MonoGo.Engine.Content/Content/Graphics/GUI.spritegroup
+#begin ../../../Content/Graphics/GUI.spritegroup
 /importer:SpriteGroupImporter
 /processor:SpriteGroupProcessor
-/build:../../../MonoGo.Engine.Content/Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup
+/build:../../../Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup
