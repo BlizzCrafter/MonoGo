@@ -14,16 +14,16 @@ namespace MonoGo.Samples.Misc
 		public const Buttons LeftButton = Buttons.A;
 		public const Buttons RightButton = Buttons.D;
 
-		private Sprite _playerSprite;
+        private Sprite _playerSprite;
 
-		// The player uses hybrid EC - it's a derived entity with components inside.
-		// You also can ditch components entirely and only use entities. 
-		
-		// I recommend using hybrid entities in places,
-		// where you know that this entity's code will not be reused anywhere else.
+        // The player uses hybrid EC - it's a derived entity with components inside.
+        // You also can ditch components entirely and only use entities. 
 
-		private ActorComponent _actor;
-		private PositionComponent _position;
+        // I recommend using hybrid entities in places,
+        // where you know that this entity's code will not be reused anywhere else.
+
+        private ActorComponent _actor;
+        private PositionComponent _position;
 
 		public Player(Layer layer, Vector2 position) : base(layer)
 		{
