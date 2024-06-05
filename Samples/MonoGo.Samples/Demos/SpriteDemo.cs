@@ -2,12 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine;
 using MonoGo.Engine.Utils;
-using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
-using MonoGo.Engine.Utils;
 using System;
 
 namespace MonoGo.Samples.Demos
