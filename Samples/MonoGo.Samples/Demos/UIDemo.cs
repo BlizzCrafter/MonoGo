@@ -15,7 +15,7 @@ using MonoGo.Engine.UI.Utils.Forms;
 
 namespace MonoGo.Samples.Demos
 {
-    public class UIDemo : Entity, IGuiEntity
+    public class UIDemo : Entity, IHaveGUI
     {
         List<Panel> panels = new List<Panel>();
         Button nextExampleButton;
@@ -35,7 +35,7 @@ namespace MonoGo.Samples.Demos
             int topPanelHeight = 65;
             Panel topPanel = new Panel(new Vector2(0, topPanelHeight + 2), PanelSkin.None, Anchor.TopCenter);
             topPanel.Padding = Vector2.Zero;
-            UserInterface.Active.AddEntity(topPanel);
+            UserInterface.Active.AddUIEntity(topPanel);
 
             // add previous example button
             previousExampleButton = new Button("<- GUI.Back", ButtonSkin.Alternative, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
@@ -95,7 +95,7 @@ namespace MonoGo.Samples.Demos
             eventsPanel.AddChild(targetEntityShow);
 
             // add the events panel
-            UserInterface.Active.AddEntity(eventsPanel);
+            UserInterface.Active.AddUIEntity(eventsPanel);
 
             // whenever events log list size changes, make sure its not too long. if it is, trim it.
             eventsLog.OnListChange = (EntityUI entity) =>
@@ -155,7 +155,7 @@ namespace MonoGo.Samples.Demos
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(1200, -1), PanelSkin.None);
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     Image title = new Image(ResourceHub.GetResource<Sprite>("DefaultSprites", "Logo")[0].Texture, new Vector2(256, 256), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
                     title.ShadowColor = new Color(0, 0, 0, 32);
@@ -181,7 +181,7 @@ Please click the {{MG_RED}}GUI.Next{{DEFAULT}} button at the top to see more GUI
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(500, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Widgets Types"));
@@ -212,7 +212,7 @@ Please click the {{MG_RED}}GUI.Next{{DEFAULT}} button at the top to see more GUI
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(740, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Basic Concepts"));
@@ -229,7 +229,7 @@ Another thing to keep in mind is size; Most widgets come with a default size, bu
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(800, 620));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Paragraph(@"Anchors help position elements. For example, this paragraph anchor is 'center'.
@@ -253,7 +253,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Buttons"));
@@ -282,7 +282,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // checkboxes example
                     panel.AddChild(new Header("CheckBox"));
@@ -308,7 +308,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // title and text
                     panel.AddChild(new Header("Panels"));
@@ -343,7 +343,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     Panel panel = new Panel(new Vector2(450, 690));
                     panel.Draggable = true;
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // title and text
                     panel.AddChild(new Header("Draggable"));
@@ -371,7 +371,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(550, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Animators"));
@@ -423,7 +423,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // sliders title
                     panel.AddChild(new Header("Sliders"));
@@ -449,7 +449,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // list title
                     panel.AddChild(new Header("SelectList"));
@@ -474,7 +474,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                 {
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     panel.AddChild(new Header("SelectList with Icons"));
                     panel.AddChild(new HorizontalLine());
@@ -506,7 +506,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(620, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // list title
                     panel.AddChild(new Header("SelectList as a Table"));
@@ -536,7 +536,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // list title
                     panel.AddChild(new Header("SelectList - Skin"));
@@ -562,7 +562,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // dropdown title
                     panel.AddChild(new Header("DropDown"));
@@ -604,7 +604,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, 440));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // dropdown title
                     panel.AddChild(new Header("Panel Overflow"));
@@ -637,7 +637,7 @@ Here's a button, to test clicking while scrolled:"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(460, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // icons title
                     panel.AddChild(new Header("Icons"));
@@ -666,7 +666,7 @@ Here's a button, to test clicking while scrolled:"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // text input example
                     panel.AddChild(new Header("Text Input"));
@@ -706,7 +706,7 @@ Here's a button, to test clicking while scrolled:"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(650, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Text Validators"));
@@ -769,7 +769,7 @@ Here's a button, to test clicking while scrolled:"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // text input example
                     panel.AddChild(new Header("Tooltip Text"));
@@ -792,7 +792,7 @@ And yes, it can be multiline.";
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(500, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // text input example
                     panel.AddChild(new Header("Locked Text Input"));
@@ -823,7 +823,7 @@ Related to the cleric is the paladin, who is typically a Lawful Good[citation ne
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(540, 440), skin: PanelSkin.None);
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // create panel tabs
                     PanelTabs tabs = new PanelTabs();
@@ -864,7 +864,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Message Box"));
@@ -916,7 +916,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(560, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("UI Forms"));
@@ -960,7 +960,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(560, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("File Dialogs"));
@@ -1001,7 +1001,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(750, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Top Menu"));
@@ -1046,7 +1046,7 @@ Maybe something interesting in tab3?"));
                     Panel panel = new Panel(new Vector2(480, 580));
                     panel.Enabled = false;
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // disabled title
                     panel.AddChild(new Header("Disabled"));
@@ -1078,7 +1078,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(520, 610));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // locked title
                     panel.AddChild(new Header("Locked"));
@@ -1112,7 +1112,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(450, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("Cursor"));
@@ -1149,7 +1149,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(530, -1));
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // misc title
                     panel.AddChild(new Header("Miscellaneous"));
@@ -1190,7 +1190,7 @@ Maybe something interesting in tab3?"));
                     // create panel and add to list of panels and manager
                     Panel panel = new Panel(new Vector2(520, 400), PanelSkin.None);
                     panels.Add(panel);
-                    UserInterface.Active.AddEntity(panel);
+                    UserInterface.Active.AddUIEntity(panel);
 
                     // add title and text
                     panel.AddChild(new Header("End Of GUI-DEMO"));
