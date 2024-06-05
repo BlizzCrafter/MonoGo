@@ -27,6 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Particles\" />
 	  <Folder Include="UI\" />
 	</ItemGroup>
 
