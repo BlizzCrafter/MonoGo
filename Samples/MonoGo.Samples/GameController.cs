@@ -90,7 +90,7 @@ namespace MonoGo.Samples
 		{
 			_drawStopwatch.Stop();
             _elapsedDraw = _drawStopwatch.Elapsed.TotalMilliseconds;
-            GameMgr.WindowManager.WindowTitle = $"CPU: {_elapsedUpdate:0.00}ms | GPU: {_elapsedDraw:0.00}ms";
+            GameMgr.WindowManager.WindowTitle = $"update: {_elapsedUpdate:0.00}ms | draw: {_elapsedDraw:0.00}ms";
 			_drawStopwatch.Reset();
 		}
 
