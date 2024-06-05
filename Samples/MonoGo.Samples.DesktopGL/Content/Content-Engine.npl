@@ -24,14 +24,24 @@
         "GUI/Styles/*.xml"
       ]
     },
-    "defaultSpriteGroup": {
-      "path": "Graphics/*.spritegroup",
+    "GUI": {
+      "path": "Graphics/GUI.spritegroup",
       "recursive": "True",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "GUI/Textures/*.png"
+        "Graphics/GUI/Textures/*.png"
+      ]
+    },
+    "Particles": {
+      "path": "Graphics/Particles.spritegroup",
+      "recursive": "false",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "Graphics/Particles/Textures/*.png"
       ]
     }
   }
