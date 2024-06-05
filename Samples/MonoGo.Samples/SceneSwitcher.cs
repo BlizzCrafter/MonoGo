@@ -25,7 +25,8 @@ namespace MonoGo.Samples
 
         public List<SceneFactory> Factories = new List<SceneFactory>
 		{
-            new SceneFactory(typeof(UIDemo)),
+            new SceneFactory(typeof(ParticlesDemo), ParticlesDemo.Description)
+            /*new SceneFactory(typeof(UIDemo)),
             new SceneFactory(typeof(ShapeDemo)),
             new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
             new SceneFactory(typeof(SpriteDemo)),
@@ -36,18 +37,12 @@ namespace MonoGo.Samples
             new SceneFactory(typeof(TiledDemo), TiledDemo.Description),
             new SceneFactory(typeof(VertexBatchDemo)),
             new SceneFactory(typeof(CoroutinesDemo)),
-			new SceneFactory(typeof(CollisionsDemo)),
+			new SceneFactory(typeof(CollisionsDemo)),*/
         };
 
 		public int CurrentSceneID {get; private set;} = 0;
 		public Scene CurrentScene => CurrentFactory.Scene;
 		public SceneFactory CurrentFactory => Factories[CurrentSceneID];
-
-        int _barHeight = 64;
-		Color _barColor = Color.Black * 0.5f;
-		Color _textColor = Color.White;
-
-		Vector2 _indent = new Vector2(8, 4);
 
         const Buttons _prevSceneButton = Buttons.F1;
         const Buttons _nextSceneButton = Buttons.F2;
@@ -81,7 +76,7 @@ namespace MonoGo.Samples
 
             Panel menuPanel = new Panel(new Vector2(0, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
             menuPanel.Padding = Vector2.Zero;
-            UserInterface.Active.AddEntity(menuPanel);
+            UserInterface.Active.AddUIEntity(menuPanel);
 
             previousExampleButton = new Button($"<- ({_prevSceneButton}) Back", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(280, 0));
             previousExampleButton.OnClick = (EntityUI btn) => { PreviousScene(); };
@@ -111,8 +106,8 @@ namespace MonoGo.Samples
 
             // Create other GUIs last so that we don't steal input focus their.
             CurrentScene?.GetEntityList<Entity>()
-                .Where(x => x is IGuiEntity)
-                .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
+                .Where(x => x is IHaveGUI)
+                .Select(x => x as IHaveGUI).FirstOrDefault()?.CreateUI();
         }
 
 		public override void Update()
