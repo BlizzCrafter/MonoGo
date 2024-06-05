@@ -60,6 +60,7 @@ namespace MonoGo.Samples
 
             new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
             new SpriteGroupResourceBox("GUISprites", "Graphics/GUI");
+            new SpriteGroupResourceBox("ParticleSprites", "Graphics/Particles");
             new DirectoryResourceBox<Effect>("Effects", "Effects");
 			new DirectoryResourceBox<TiledMap>("Maps", "Maps");
 
