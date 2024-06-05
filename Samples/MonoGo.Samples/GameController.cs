@@ -20,7 +20,9 @@ namespace MonoGo.Samples
 		public static RasterizerState DefaultRasterizer;
 		public static RasterizerState WireframeRasterizer;
 
-		private Stopwatch _stopwatch = new Stopwatch();
+        private Stopwatch _updateStopwatch = new Stopwatch();
+        private Stopwatch _drawStopwatch = new Stopwatch();
+		private double _elapsedUpdate, _elapsedDraw; 
 
 		public static RandomExt Random = new RandomExt();
 
@@ -67,26 +69,39 @@ namespace MonoGo.Samples
 			// Setting a default Font to avoid crashes when skipping the samples backwards.
             Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
 
+            SceneMgr.OnPreUpdate += OnPreUpdate;
+            SceneMgr.OnPostUpdate += OnPostUpdate;
             SceneMgr.OnPreDraw += OnPreDraw; // You can do the same for individual layers or scenes.
 			SceneMgr.OnPostDraw += OnPostDraw;
 		}
 
-		private void OnPreDraw() =>
-			_stopwatch.Start();
+        private void OnPreUpdate() => _updateStopwatch.Start();
+
+        private void OnPostUpdate()
+        {
+            _updateStopwatch.Stop();
+            _elapsedUpdate = _updateStopwatch.Elapsed.TotalMilliseconds;
+            _updateStopwatch.Reset();
+        }
+
+        private void OnPreDraw() => _drawStopwatch.Start();
 
 		private void OnPostDraw()
 		{
-			_stopwatch.Stop();
-			GameMgr.WindowManager.WindowTitle = "Rendering time: " + _stopwatch.Elapsed;
-			_stopwatch.Reset();
+			_drawStopwatch.Stop();
+            _elapsedDraw = _drawStopwatch.Elapsed.TotalMilliseconds;
+            GameMgr.WindowManager.WindowTitle = $"CPU: {_elapsedUpdate:0.00}ms | GPU: {_elapsedDraw:0.00}ms";
+			_drawStopwatch.Reset();
 		}
 
 		public override void Destroy()
 		{
 			base.Destroy();
 
-			SceneMgr.OnPreDraw -= OnPreDraw;
-			SceneMgr.OnPostDraw -= OnPostDraw;
-		}
+			SceneMgr.OnPreUpdate -= OnPreUpdate;
+			SceneMgr.OnPostUpdate -= OnPostUpdate;
+            SceneMgr.OnPreDraw -= OnPreDraw;
+            SceneMgr.OnPostDraw -= OnPostDraw;
+        }
 	}
 }
