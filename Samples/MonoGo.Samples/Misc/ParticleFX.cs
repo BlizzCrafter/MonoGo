@@ -47,7 +47,7 @@ namespace MonoGo.Samples.Misc
                 {
                     position = posComponent.Position;
                 }
-                else throw new NullReferenceException($"{FollowEntity.GetType().Name} entity need to have a {nameof(PositionComponent)} attached to it.");
+                else throw new NullReferenceException($"{FollowEntity.GetType().Name} entity need to have a {nameof(PositionComponent)}.");
             }
 
             ParticleEffect.Update((float)GameMgr.ElapsedTime);
