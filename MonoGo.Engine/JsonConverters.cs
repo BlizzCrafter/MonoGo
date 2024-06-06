@@ -34,31 +34,35 @@ namespace MonoGo.Engine
         {
             if (Initialized) return;
 
-            SerializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.General);
-
-            SerializerOptions.Converters.Add(new VectorConverter());
-            SerializerOptions.Converters.Add(new AxisConverter());
-            SerializerOptions.Converters.Add(new RangeConverter());
-            SerializerOptions.Converters.Add(new RangeFConverter());
-            SerializerOptions.Converters.Add(new HSLConverter());
-            SerializerOptions.Converters.Add(new ColourRangeConverter());
-            SerializerOptions.Converters.Add(new ColourInterpolator2Converter());
-            SerializerOptions.Converters.Add(new DragModifierConverter());
-            SerializerOptions.Converters.Add(new FollowObjectModifierConverter());
-            SerializerOptions.Converters.Add(new HueInterpolator2Converter());
-            SerializerOptions.Converters.Add(new LinearGravityModifierConverter());
-            SerializerOptions.Converters.Add(new NoModifierConverter());
-            SerializerOptions.Converters.Add(new OpacityFastFadeModifierConverter());
-            SerializerOptions.Converters.Add(new OpacityInterpolator2Converter());
-            SerializerOptions.Converters.Add(new RotationModifierConverter());
-            SerializerOptions.Converters.Add(new ScaleInterpolator2Converter());
-            SerializerOptions.Converters.Add(new VelocityColourModifierConverter());
-            SerializerOptions.Converters.Add(new VelocityHueModifierConverter());
-            SerializerOptions.Converters.Add(new VortexModifierConverter());
-            SerializerOptions.Converters.Add(new CircleContainerModifierConverter());
-            SerializerOptions.Converters.Add(new RectContainerModifierConverter());
-            SerializerOptions.Converters.Add(new RectLoopContainerModifierConverter());
-
+            SerializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.General)
+            {
+                WriteIndented = true,
+                Converters =
+                {
+                    new VectorConverter(),
+                    new AxisConverter(),
+                    new RangeConverter(),
+                    new RangeFConverter(),
+                    new HSLConverter(),
+                    new ColourRangeConverter(),
+                    new ColourInterpolator2Converter(),
+                    new DragModifierConverter(),
+                    new FollowObjectModifierConverter(),
+                    new HueInterpolator2Converter(),
+                    new LinearGravityModifierConverter(),
+                    new NoModifierConverter(),
+                    new OpacityFastFadeModifierConverter(),
+                    new OpacityInterpolator2Converter(),
+                    new RotationModifierConverter(),
+                    new ScaleInterpolator2Converter(),
+                    new VelocityColourModifierConverter(),
+                    new VelocityHueModifierConverter(),
+                    new VortexModifierConverter(),
+                    new CircleContainerModifierConverter(),
+                    new RectContainerModifierConverter(),
+                    new RectLoopContainerModifierConverter()
+                }
+            };
             Initialized = true;
         }
     }
