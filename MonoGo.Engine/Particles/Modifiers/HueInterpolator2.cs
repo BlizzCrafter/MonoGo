@@ -31,7 +31,7 @@ namespace MonoGo.Engine.Particles.Modifiers
 
             while (iterator.HasNext) {
                 var particle = iterator.Next();
-                particle->Colour = new Colour(
+                particle->Colour = new HSL(
                     delta * particle->Age + InitialHue,
                     particle->Colour.S,
                     particle->Colour.L);

@@ -43,7 +43,7 @@ namespace MonoGo.Engine.Particles.Modifiers
                     var t = (float)Math.Sqrt(velocity2) / VelocityThreshold;
                     h = MathHelper.Lerp(StationaryHue, VelocityHue, t);
                 }
-                particle->Colour = new Colour(h, particle->Colour.S, particle->Colour.L);
+                particle->Colour = new HSL(h, particle->Colour.S, particle->Colour.L);
             }
         }
 
