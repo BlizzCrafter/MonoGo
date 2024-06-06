@@ -9,7 +9,7 @@ namespace MonoGo.Engine.Particles
         public Vector Position;
         public Vector TriggerPos;
         public Vector Velocity;
-        public Colour Colour;
+        public HSL Colour;
         public float Opacity;
         public Vector Scale;
         public float Rotation;

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MonoGo.Engine.Particles
+namespace MonoGo.Engine
 {
     /// <summary>
     /// An immutable data structure representing a directed fixed axis.

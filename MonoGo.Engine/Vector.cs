@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using System.Globalization;
 using System;
 
-namespace MonoGo.Engine.Particles
+namespace MonoGo.Engine
 {
     /// <summary>
     /// Defines a data structure representing a Euclidean vector facing a particular direction,

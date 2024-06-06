@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
-using static MonoGo.Engine.Particles.Axis;
-using static MonoGo.Engine.Particles.Range;
-using static MonoGo.Engine.Particles.RangeF;
-using static MonoGo.Engine.Particles.Vector;
-using static MonoGo.Engine.Particles.Colour;
-using static MonoGo.Engine.Particles.ColourRange;
+using static MonoGo.Engine.Axis;
+using static MonoGo.Engine.Vector;
+using static MonoGo.Engine.HSL;
+using static MonoGo.Engine.HSLRange;
+using static MonoGo.Engine.Range;
+using static MonoGo.Engine.RangeF;
 using static MonoGo.Engine.Particles.Modifiers.ColourInterpolator2;
 using static MonoGo.Engine.Particles.Modifiers.DragModifier;
 using static MonoGo.Engine.Particles.Modifiers.FollowObjectModifier;
@@ -22,7 +22,7 @@ using static MonoGo.Engine.Particles.Modifiers.Container.CircleContainerModifier
 using static MonoGo.Engine.Particles.Modifiers.Container.RectContainerModifier;
 using static MonoGo.Engine.Particles.Modifiers.Container.RectLoopContainerModifier;
 
-namespace MonoGo.Engine.Particles
+namespace MonoGo.Engine
 {
     internal static class JsonConverters
     {
@@ -30,7 +30,7 @@ namespace MonoGo.Engine.Particles
 
         internal static bool Initialized = false;
 
-        internal static void Initialize()
+        internal static void Init()
         {
             if (Initialized) return;
 
@@ -40,7 +40,7 @@ namespace MonoGo.Engine.Particles
             SerializerOptions.Converters.Add(new AxisConverter());
             SerializerOptions.Converters.Add(new RangeConverter());
             SerializerOptions.Converters.Add(new RangeFConverter());
-            SerializerOptions.Converters.Add(new ColourConverter());
+            SerializerOptions.Converters.Add(new HSLConverter());
             SerializerOptions.Converters.Add(new ColourRangeConverter());
             SerializerOptions.Converters.Add(new ColourInterpolator2Converter());
             SerializerOptions.Converters.Add(new DragModifierConverter());

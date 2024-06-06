@@ -74,8 +74,6 @@ namespace MonoGo.Engine.Particles
 
         public FileInfo Serialize(string filePath)
         {
-            JsonConverters.Initialize();
-
             FileInfo pathInfo = new FileInfo(@Path.Combine(filePath, Name));
             if (!Directory.Exists(pathInfo.FullName)) Directory.CreateDirectory(pathInfo.FullName);
 
@@ -95,8 +93,6 @@ namespace MonoGo.Engine.Particles
 
         public static ParticleEffect Deserialize(string filePath, string name)
         {
-            JsonConverters.Initialize();
-
             ParticleEffect particleEffect = JsonSerializer.Deserialize<ParticleEffect>(
                     File.ReadAllText(@Path.Combine(filePath, $"{name}.mpe")), JsonConverters.SerializerOptions);
 

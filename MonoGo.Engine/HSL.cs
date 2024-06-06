@@ -4,26 +4,26 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Xna.Framework;
 
-namespace MonoGo.Engine.Particles
+namespace MonoGo.Engine
 {
     /// <summary>
     /// An immutable data structure representing a 24bit colour composed of separate hue, saturation and lightness channels.
     /// </summary>
-    public struct Colour : IEquatable<Colour>
+    public struct HSL : IEquatable<HSL>
     {
-        public class ColourConverter : JsonConverter<Colour>
+        public class HSLConverter : JsonConverter<HSL>
         {
             public override bool CanConvert(Type objectType)
             {
-                return (objectType == typeof(Colour));
+                return objectType == typeof(HSL);
             }
 
-            public override Colour Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            public override HSL Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 return Parse(reader.GetString()!);
             }
 
-            public override void Write(Utf8JsonWriter writer, Colour value, JsonSerializerOptions options)
+            public override void Write(Utf8JsonWriter writer, HSL value, JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.ToString());
             }
@@ -32,7 +32,39 @@ namespace MonoGo.Engine.Particles
         /// <summary>
         /// Gets the value of the hue channel in degrees.
         /// </summary>
-        public readonly float H;
+        public float H;
+
+        /// <summary>
+        /// Gets the value of the saturation channel.
+        /// </summary>
+        public float S;
+
+        /// <summary>
+        /// Gets the value of the lightness channel.
+        /// </summary>
+        public float L;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HSL"/> structure.
+        /// </summary>
+        public HSL(Color color) : this()
+        {
+            this = color.ToHsl();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HSL"/> structure.
+        /// </summary>
+        /// <param name="h">The value of the hue channel.</param>
+        /// <param name="s">The value of the saturation channel.</param>
+        /// <param name="l">The value of the lightness channel.</param>
+        public HSL(float h, float s, float l) : this()
+        {
+            // normalize the hue
+            H = NormalizeHue(h);
+            S = MathHelper.Clamp(s, 0f, 1f);
+            L = MathHelper.Clamp(l, 0f, 1f);
+        }
 
         private static float NormalizeHue(float h)
         {
@@ -41,41 +73,19 @@ namespace MonoGo.Engine.Particles
         }
 
         /// <summary>
-        /// Gets the value of the saturation channel.
-        /// </summary>
-        public readonly float S;
-
-        /// <summary>
-        /// Gets the value of the lightness channel.
-        /// </summary>
-        public readonly float L;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Colour"/> structure.
-        /// </summary>
-        /// <param name="h">The value of the hue channel.</param>
-        /// <param name="s">The value of the saturation channel.</param>
-        /// <param name="l">The value of the lightness channel.</param>
-        public Colour(float h, float s, float l) : this()
-        {
-            // normalize the hue
-            H = NormalizeHue(h);
-            S = MathHelper.Clamp(s, 0f, 1f);
-            L = MathHelper.Clamp(l, 0f, 1f);
-        }
-
-        /// <summary>
         /// Copies the individual channels of the colour to the specified memory location.
         /// </summary>
         /// <param name="destination">The memory location to copy the axis to.</param>
-        public void CopyTo(out Colour destination) {
-            destination = new Colour(H, S, L);
+        public void CopyTo(out HSL destination)
+        {
+            destination = new HSL(H, S, L);
         }
 
         /// <summary>
         /// Destructures the colour, exposing the individual channels.
         /// </summary>
-        public void Destructure(out float h, out float s, out float l) {
+        public void Destructure(out float h, out float s, out float l)
+        {
             h = H;
             s = S;
             l = L;
@@ -88,7 +98,8 @@ namespace MonoGo.Engine.Particles
         /// <exception cref="T:System.ArgumentNullException">
         /// Thrown if the value passed to the <paramref name="callback"/> parameter is <c>null</c>.
         /// </exception>
-        public void Match(Action<float, float, float> callback) {
+        public void Match(Action<float, float, float> callback)
+        {
             if (callback == null)
                 throw new ArgumentNullException(nameof(callback));
 
@@ -118,27 +129,28 @@ namespace MonoGo.Engine.Particles
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+        /// Determines whether the specified <see cref="object"/> is equal to this instance.
         /// </summary>
-        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with this instance.</param>
         /// <returns>
-        ///     <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object obj) {
-            if (obj is Colour)
-                return Equals((Colour)obj);
+        public override bool Equals(object obj)
+        {
+            if (obj is HSL)
+                return Equals((HSL)obj);
 
             return base.Equals(obj);
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="Colour"/> is equal to this instance.
+        /// Determines whether the specified <see cref="HSL"/> is equal to this instance.
         /// </summary>
-        /// <param name="value">The <see cref="Colour"/> to compare with this instance.</param>
+        /// <param name="value">The <see cref="HSL"/> to compare with this instance.</param>
         /// <returns>
-        ///     <c>true</c> if the specified <see cref="Colour"/> is equal to this instance; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="HSL"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public bool Equals(Colour value)
+        public bool Equals(HSL value)
         {
             return H.Equals(value.H) &&
                    S.Equals(value.S) &&
@@ -151,54 +163,55 @@ namespace MonoGo.Engine.Particles
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        public override int GetHashCode() {
+        public override int GetHashCode()
+        {
             return H.GetHashCode() ^
                    S.GetHashCode() ^
                    L.GetHashCode();
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
+        /// A <see cref="string"/> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0}°;{1:P0};{2:P0}", 
-                H.ToString("F1"), (S).ToString("F1"), (L).ToString("F1"));
+            return string.Format(CultureInfo.InvariantCulture, "{0}°;{1:P0};{2:P0}",
+                H.ToString("F1"), S.ToString("F1"), L.ToString("F1"));
         }
 
-        public static Colour Parse(string s)
+        public static HSL Parse(string s)
         {
             var hsl = s.Split(';');
             var hue = float.Parse(hsl[0].TrimEnd('°'));
             var sat = float.Parse(hsl[1]);
             var lig = float.Parse(hsl[2]);
 
-            return new Colour(hue, sat, lig);
+            return new HSL(hue, sat, lig);
         }
 
         public static Color OppositeColorRGB(Color input)
         {
-            Colour hslColor = ColorHelper.ToHsl(new Color(
+            HSL hslColor = new Color(
                 input.R,
                 input.G,
                 input.B,
-                (byte)255));
+                (byte)255).ToHsl();
             float h = (hslColor.H + 180) % 360;
-            return ColorHelper.ToRgb(h, hslColor.S, hslColor.L);
+            return ColorHelper.ToColor(h, hslColor.S, hslColor.L);
         }
 
         public static Color InvertedColorRGB(Color input)
         {
-            Colour hslColor = ColorHelper.ToHsl(new Color(
+            HSL hslColor = new Color(
                 input.R,
                 input.G,
                 input.B,
-                (byte)255));
-            float h = 360- hslColor.H;
-            return ColorHelper.ToRgb(h, hslColor.S, hslColor.L);
+                (byte)255).ToHsl();
+            float h = 360 - hslColor.H;
+            return ColorHelper.ToColor(h, hslColor.S, hslColor.L);
         }
 
         /// <summary>
@@ -207,9 +220,10 @@ namespace MonoGo.Engine.Particles
         /// <param name="x">The lvalue.</param>
         /// <param name="y">The rvalue.</param>
         /// <returns>
-        ///     <c>true</c> if the lvalue <see cref="Colour"/> is equal to the rvalue; otherwise, <c>false</c>.
+        ///     <c>true</c> if the lvalue <see cref="HSL"/> is equal to the rvalue; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator ==(Colour x, Colour y) {
+        public static bool operator ==(HSL x, HSL y)
+        {
             return x.Equals(y);
         }
 
@@ -219,24 +233,26 @@ namespace MonoGo.Engine.Particles
         /// <param name="x">The lvalue.</param>
         /// <param name="y">The rvalue.</param>
         /// <returns>
-        ///     <c>true</c> if the lvalue <see cref="Colour"/> is not equal to the rvalue; otherwise, <c>false</c>.
+        ///     <c>true</c> if the lvalue <see cref="HSL"/> is not equal to the rvalue; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator !=(Colour x, Colour y) {
+        public static bool operator !=(HSL x, HSL y)
+        {
             return !x.Equals(y);
         }
 
-        public static Colour operator -(Colour a, Colour b) {
-            return new Colour(a.H - b.H, a.S - b.S, a.L - b.L);
+        public static HSL operator -(HSL a, HSL b)
+        {
+            return new HSL(a.H - b.H, a.S - b.S, a.L - b.L);
         }
 
-        public static Colour Lerp(Colour c1, Colour c2, float t)
+        public static HSL Lerp(HSL c1, HSL c2, float t)
         {
             // loop around if c2.H < c1.H
             var h2 = c2.H >= c1.H ? c2.H : c2.H + 360;
-            return new Colour(
-                c1.H + t*(h2 - c1.H),
-                c1.S + t*(c2.S - c1.S),
-                c1.L + t*(c2.L - c2.L));
+            return new HSL(
+                c1.H + t * (h2 - c1.H),
+                c1.S + t * (c2.S - c1.S),
+                c1.L + t * (c2.L - c2.L));
         }
     }
 }

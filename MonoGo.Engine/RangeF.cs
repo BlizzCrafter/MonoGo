@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MonoGo.Engine.Particles
+namespace MonoGo.Engine
 {
     /// <summary>
     /// Represents a closed interval of floating point values.
