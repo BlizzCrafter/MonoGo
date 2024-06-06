@@ -110,12 +110,12 @@ namespace MonoGo.Engine.Particles
             vector = new Vector((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
 
-        public static void NextColour(out Colour colour, ColourRange range)
+        public static void NextColour(out HSL colour, HSLRange range)
         {
             var maxH = range.Max.H >= range.Min.H
                 ? range.Max.H
                 : range.Max.H + 360;
-            colour = new Colour(NextSingle(range.Min.H, maxH),
+            colour = new HSL(NextSingle(range.Min.H, maxH),
                                  NextSingle(range.Min.S, range.Max.S),
                                  NextSingle(range.Min.L, range.Max.L));
         }

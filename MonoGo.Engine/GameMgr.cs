@@ -84,7 +84,7 @@ namespace MonoGo.Engine
 		/// </summary>
 		public static Dictionary<string, Type> Types { get; private set; }
 
-		public static int Fps { get; private set; }
+		public static int FPS { get; private set; }
 		private static int _fpsCount;
 		private static double _fpsAddition;
 

@@ -235,7 +235,7 @@ namespace MonoGo.Engine.Particles
                 {
                     var particle = iterator.Next();
 
-                    var color = particle->Colour.ToRgb();
+                    var color = particle->Colour.ToColor();
                     if (blendState == BlendState.AlphaBlend)
                         color *= particle->Opacity;
                     else

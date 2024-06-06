@@ -144,7 +144,7 @@ namespace MonoGo.Samples
                 GameMgr.ExitGame();
             }
 
-            if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
+            if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.FPS + "{{DEFAULT}}";
             
             UserInterface.Active.Update();
         }
