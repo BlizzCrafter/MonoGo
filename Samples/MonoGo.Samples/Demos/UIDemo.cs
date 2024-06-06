@@ -24,7 +24,7 @@ namespace MonoGo.Samples.Demos
         int currExample = 0;
 
         public UIDemo(Layer layer) : base(layer)
-        {           
+        {
         }
 
         public void CreateUI()
