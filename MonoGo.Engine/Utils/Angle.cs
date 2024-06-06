@@ -34,11 +34,9 @@ namespace MonoGo.Engine.Utils
 		}
 
 		public float DegreesF => (float)Degrees;
-		public float RadiansF => (float)Radians;
-		
+		public float RadiansF => (float)Radians;		
 
 		private double _degrees;
-
 
 		public Angle(double degrees)
 		{
@@ -71,8 +69,7 @@ namespace MonoGo.Engine.Utils
 		/// </summary>
 		public double Difference(Angle other) =>
 			((Degrees - other.Degrees + 180.0) % 360.0 + 360.0) % 360.0 - 180.0;
-
-		
+				
 		public Vector2 ToVector2() =>
 			new Vector2((float)Math.Cos(Radians), (float)Math.Sin(Radians));
 	
@@ -87,7 +84,6 @@ namespace MonoGo.Engine.Utils
 
 		public static double ToRadians(double radians) =>
 			(radians / 360.0) * Math.PI * 2.0;
-
 
 		public bool Equals(Angle other) =>
 			_degrees == other._degrees;
@@ -124,8 +120,6 @@ namespace MonoGo.Engine.Utils
 		public static Angle operator +(int num, Angle a) =>
 			new Angle(a._degrees + num);
 
-
-
 		public static Angle operator -(Angle a1, Angle a2) =>
 			new Angle(a1._degrees - a2._degrees);
 
@@ -148,7 +142,6 @@ namespace MonoGo.Engine.Utils
 			new Angle(num - a._degrees);
 
 
-
 		public static Angle operator *(Angle a, double num) =>
 			new Angle(a._degrees * num);
 
@@ -168,7 +161,6 @@ namespace MonoGo.Engine.Utils
 			new Angle(a._degrees * num);
 
 
-
 		public static Angle operator /(Angle a, double num) =>
 			new Angle(a._degrees / num);
 
@@ -186,7 +178,6 @@ namespace MonoGo.Engine.Utils
 
 		public static Angle operator /(int num, Angle a) =>
 			new Angle(num / a._degrees);
-
 
 
 		public static bool operator >(Angle a1, Angle a2) =>
@@ -215,7 +206,6 @@ namespace MonoGo.Engine.Utils
 		public override string ToString() =>
 			_degrees.ToString();
 		
-
 		void Normalize() =>
 			_degrees = (_degrees % 360.0 + 360.0) % 360.0;
 	}
