@@ -23,7 +23,7 @@ namespace MonoGo.Engine.Particles
             GetCapacity = capacity;
 
             Buffer = new ParticleBuffer(capacity);
-            Offset = new Vector();
+            Offset = new Vector2();
             Profile = profile;
             Modifiers = new IModifier[0];
             ModifierExecutionStrategy = ModifierExecutionStrategy.Serial;
@@ -70,7 +70,7 @@ namespace MonoGo.Engine.Particles
         public int ActiveParticles => Buffer.Count;
 
         public string Name { get; set; }
-        public Vector Offset { get; set; }
+        public Vector2 Offset { get; set; }
         public IModifier[] Modifiers { get; set; }
         public Profile Profile { get; }
         public ReleaseParameters Parameters { get; set; }
@@ -86,11 +86,6 @@ namespace MonoGo.Engine.Particles
         //public Animation Animation { get; set; }
 
         public ModifierExecutionStrategy ModifierExecutionStrategy { get; set; }
-
-        public void UpdateModifierReferences(ref object _object)
-        {
-            foreach (IModifier modifier in Modifiers) modifier.UpdateReferences(ref _object);
-        }
 
         public override string ToString()
         {
@@ -163,7 +158,7 @@ namespace MonoGo.Engine.Particles
             ModifierExecutionStrategy.ExecuteModifiers(Modifiers, elapsedSeconds, iterator);
         }
 
-        public void Trigger(Vector position)
+        public void Trigger(Vector2 position)
         {
             if (Parameters != null && !StopEmitting)
             {
@@ -187,7 +182,7 @@ namespace MonoGo.Engine.Particles
             }
         }
 
-        private void Release(Vector position, int numToRelease)
+        private void Release(Vector2 position, int numToRelease)
         {
             var iterator = Buffer.Release(numToRelease);
 
@@ -213,7 +208,7 @@ namespace MonoGo.Engine.Particles
 
                 particle->Opacity  = FastRand.NextSingle(Parameters.Opacity);
                 var scale = FastRand.NextSingle(Parameters.Scale);
-                particle->Scale    = new Vector(scale, scale);
+                particle->Scale    = new Vector2(scale, scale);
                 particle->Rotation = FastRand.NextSingle(Parameters.Rotation);
                 particle->Mass     = FastRand.NextSingle(Parameters.Mass);
             }

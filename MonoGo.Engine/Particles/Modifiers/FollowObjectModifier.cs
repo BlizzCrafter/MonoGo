@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.Utils;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -24,17 +26,21 @@ namespace MonoGo.Engine.Particles.Modifiers
         }
 
         public dynamic ObjectReference { get; set; }
-        public Vector Offset { get; set; }
+        public Vector2 Offset { get; set; }
+        public float Speed { get; set; } = 1f;
+        public bool Inside { get; set; }
 
         public unsafe void Update(float elapsedSeconds, ParticleBuffer.ParticleIterator iterator)
         {
             while (iterator.HasNext)
             {
                 var particle = iterator.Next();
-                Vector position = particle->Position;
+                Vector2 position = particle->Position;
                 if (ObjectReference != null)
                 {
-                    position = new Vector(ObjectReference.Position.X + Offset.X, -ObjectReference.Position.Y + Offset.Y);
+                    Angle angle = new Angle(position, ObjectReference.Position + Offset);
+                    if (Inside) angle *= -1;
+                    position += angle.ToVector2() * Speed * elapsedSeconds;
                 }
                 particle->Position = position;
             }
@@ -43,28 +49,6 @@ namespace MonoGo.Engine.Particles.Modifiers
         public override string ToString()
         {
             return GetType().ToString();
-        }
-
-        public void UpdateReferences(ref object _object)
-        {
-            if (((dynamic)_object).GetListViewItemTagDataReference.GetItemType.ToString() == "Object")
-            {
-                string id = ((dynamic)_object).GetListViewItemTagDataReference.ID.ToString();
-                var bodyList = ((dynamic)_object).WorldReference.BodyList;
-                foreach (dynamic body in bodyList)
-                {
-                    if (body.ID.ToString() == id)
-                    {
-                        ObjectReference = body;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                string objectType = _object.GetType().ToString();
-                if (objectType.Contains("Entity")) ObjectReference = ((dynamic)_object).PivotBody;
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -56,7 +57,7 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
                 {
                     yPos = particle->Position.Y - Height;
                 }
-                particle->Position = new Vector(xPos, yPos);
+                particle->Position = new Vector2(xPos, yPos);
             }
         }
 

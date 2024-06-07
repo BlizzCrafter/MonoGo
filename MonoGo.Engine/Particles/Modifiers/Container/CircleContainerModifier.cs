@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -35,8 +36,8 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
                 var particle = iterator.Next();
                 var localPos = particle->Position - particle->TriggerPos;
 
-                var distSq = localPos.LengthSq;
-                var normal = localPos.Axis.ToVector();
+                var distSq = localPos.LengthSq();
+                var normal = localPos.Axis().ToVector2();
 
                 if (Inside)
                 {
@@ -54,13 +55,13 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
             }
         }
 
-        private unsafe void SetReflected(float distSq, Particle* particle, Vector normal)
+        private unsafe void SetReflected(float distSq, Particle* particle, Vector2 normal)
         {
             var dist = (float) Math.Sqrt(distSq);
             var d = dist - Radius; // how far outside the circle is the particle
 
             var twoRestDot = 2*RestitutionCoefficient*
-                             Vector.Dot(particle->Velocity, normal);
+                             Vector2.Dot(particle->Velocity, normal);
             particle->Velocity -= twoRestDot*normal;
 
             // exact computation requires sqrt or goniometrics

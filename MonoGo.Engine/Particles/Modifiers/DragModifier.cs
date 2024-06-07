@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -30,7 +31,7 @@ namespace MonoGo.Engine.Particles.Modifiers {
                 var particle = iterator.Next();
                 var drag = -DragCoefficient * Density * particle->Mass * elapsedSeconds;
 
-                particle->Velocity = new Vector(
+                particle->Velocity = new Vector2(
                     particle->Velocity.X + particle->Velocity.X * drag,
                     particle->Velocity.Y + particle->Velocity.Y * drag);
             }

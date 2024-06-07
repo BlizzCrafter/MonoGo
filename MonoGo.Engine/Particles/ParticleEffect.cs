@@ -19,11 +19,6 @@ namespace MonoGo.Engine.Particles
         [JsonIgnore]
         public bool StopEmitting { get; set; } = false;
 
-        public void UpdateModifierReferences(ref object _object)
-        {
-            foreach (Emitter emitter in Emitters) emitter.UpdateModifierReferences(ref _object);
-        }
-
         public void SetLoop(string emitterName)
         {
             Emitters.Where(x => x.Name == emitterName).ToList().ForEach(x => x.Loop = !x.Loop);
@@ -145,7 +140,7 @@ namespace MonoGo.Engine.Particles
         public void Trigger(Vector2 position)
         {
             foreach (var e in Emitters)
-                e.Trigger(new Vector(position.X, position.Y));
+                e.Trigger(new Vector2(position.X, position.Y));
         }
 
         public void Trigger(LineSegment line)

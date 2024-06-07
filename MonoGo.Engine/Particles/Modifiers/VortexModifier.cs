@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -23,7 +24,7 @@ namespace MonoGo.Engine.Particles.Modifiers
             }
         }
 
-        public Vector Position { get; set; }
+        public Vector2 Position { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
         // Note: not the real-life one
@@ -34,11 +35,11 @@ namespace MonoGo.Engine.Particles.Modifiers
                 var particle = iterator.Next();
                 var diff = Position + particle->TriggerPos - particle->Position;
                 
-                var distance2 = diff.LengthSq;
+                var distance2 = diff.LengthSq();
                 
                 var speedGain = GravConst * Mass / distance2 * elapsedSeconds;
                 // normalize distances and multiply by speedGain
-                particle->Velocity += diff.Axis * speedGain;
+                particle->Velocity += diff.Axis() * speedGain;
             }
         }
 

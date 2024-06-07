@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace MonoGo.Engine.Particles
 {
@@ -104,10 +105,10 @@ namespace MonoGo.Engine.Particles
             axis = new Axis((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
 
-        public static void NextUnitVector(out Vector vector) {
+        public static void NextUnitVector(out Vector2 vector) {
             var angle = NextAngle();
 
-            vector = new Vector((float)Math.Cos(angle), (float)Math.Sin(angle));
+            vector = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
 
         public static void NextColour(out HSL colour, HSLRange range)

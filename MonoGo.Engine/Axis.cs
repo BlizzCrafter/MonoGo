@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.Particles;
+using System;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -80,16 +82,6 @@ namespace MonoGo.Engine
         /// Gets a directed axis which points down.
         /// </summary>
         public static Axis Down => new Axis(0f, 1f);
-
-        /// <summary>
-        /// Multiplies the fixed axis by a magnitude value resulting in a directed vector.
-        /// </summary>
-        /// <param name="magnitude">The magnitude of the vector.</param>
-        /// <returns>A directed vector.</returns>
-        public Vector Multiply(float magnitude)
-        {
-            return new Vector(this, magnitude);
-        }
 
         /// <summary>
         /// Copies the X and Y components of the axis to the specified memory location.
@@ -207,12 +199,7 @@ namespace MonoGo.Engine
             return new Axis(x, y);
         }
 
-        public Vector ToVector()
-        {
-            return new Vector(this, 1.0f);
-        }
-
-        public static implicit operator Vector(Axis a) => a.ToVector();
+        public static implicit operator Vector2(Axis a) => a.ToVector2(1.0f);
 
         public static bool operator ==(Axis x, Axis y) {
             return x.Equals(y);
@@ -222,8 +209,8 @@ namespace MonoGo.Engine
             return !x.Equals(y);
         }
 
-        public static Vector operator *(Axis axis, float magnitude) {
-            return new Vector(axis, magnitude);
+        public static Vector2 operator *(Axis axis, float magnitude) {
+            return axis.ToVector2(magnitude);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -23,8 +24,8 @@ namespace MonoGo.Engine.Particles.Modifiers
             }
         }
 
-        public Vector InitialScale { get; set; }
-        public Vector FinalScale { get; set; }
+        public Vector2 InitialScale { get; set; }
+        public Vector2 FinalScale { get; set; }
 
         public unsafe void Update(float elapsedSeconds, ParticleBuffer.ParticleIterator iterator) {
             var delta = FinalScale - InitialScale;

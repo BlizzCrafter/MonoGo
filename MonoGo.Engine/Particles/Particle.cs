@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using Microsoft.Xna.Framework;
+using System.Runtime.InteropServices;
 
 namespace MonoGo.Engine.Particles
 {
@@ -6,12 +7,12 @@ namespace MonoGo.Engine.Particles
     public struct Particle {
         public float Inception;
         public float Age;
-        public Vector Position;
-        public Vector TriggerPos;
-        public Vector Velocity;
+        public Vector2 Position;
+        public Vector2 TriggerPos;
+        public Vector2 Velocity;
         public HSL Colour;
         public float Opacity;
-        public Vector Scale;
+        public Vector2 Scale;
         public float Rotation;
         public float Mass;
 

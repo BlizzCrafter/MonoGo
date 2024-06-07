@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -31,7 +32,7 @@ namespace MonoGo.Engine.Particles.Modifiers
 
             while (iterator.HasNext) {
                 var particle = iterator.Next();
-                particle->Velocity = new Vector(
+                particle->Velocity = new Vector2(
                     particle->Velocity.X + vector.X * particle->Mass,
                     particle->Velocity.Y + vector.Y * particle->Mass);
             }

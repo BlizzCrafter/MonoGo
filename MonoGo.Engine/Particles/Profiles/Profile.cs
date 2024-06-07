@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace MonoGo.Engine.Particles.Profiles
 {
     public abstract class Profile : ICloneable
     {
-        public abstract void GetOffsetAndHeading(out Vector offset,
+        public abstract void GetOffsetAndHeading(out Vector2 offset,
             out Axis heading);
 
         public object Clone()

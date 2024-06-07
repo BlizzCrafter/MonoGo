@@ -66,31 +66,17 @@ namespace MonoGo.Engine.Particles
                 Head -= (Size + 1);
         }
 
-        public void CopyTo(IntPtr destination) {
-            memcpy(destination, _nativePointer, ActiveSizeInBytes);
-        }
-
-        public void CopyToReverse(IntPtr destination) {
-            var offset = 0;
-            for (var i = ActiveSizeInBytes - Particle.SizeInBytes; i >= 0; i -= Particle.SizeInBytes) {
-                memcpy(IntPtr.Add(destination, offset), IntPtr.Add(_nativePointer, i), Particle.SizeInBytes);
-                offset += Particle.SizeInBytes;
-            }
-        }
-
-        [DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
-        public static extern void memcpy(IntPtr dest, IntPtr src, int count);
-
         private bool _disposed;
 
-        public void Dispose() {
-            if (!_disposed) {
+        public void Dispose() 
+        {
+            if (!_disposed) 
+            {
                 Marshal.FreeHGlobal(_nativePointer);
                 _disposed = true;
 
                 if (Size > 0) GC.RemoveMemoryPressure(Particle.SizeInBytes * Size);
-            }
-            
+            }            
             GC.SuppressFinalize(this);
         }
 
