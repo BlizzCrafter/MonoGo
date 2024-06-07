@@ -198,8 +198,10 @@ namespace MonoGo.Engine
         public static implicit operator Angle(Vector2 value) => new Angle(value);
         public static implicit operator Angle((float x, float y) value) => new Angle(new Vector2(value.x, value.y));
         public static implicit operator Angle(double degrees) => new Angle(degrees);
-        
-		#endregion Operators.
+
+        public static explicit operator Vector2(Angle angle) => angle.ToVector2();
+
+        #endregion Operators.
 
         public override int GetHashCode() =>
 			_degrees.GetHashCode();
