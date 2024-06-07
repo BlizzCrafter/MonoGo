@@ -141,7 +141,6 @@ namespace MonoGo.Engine
 		public static Angle operator -(int num, Angle a) =>
 			new Angle(num - a._degrees);
 
-
 		public static Angle operator *(Angle a, double num) =>
 			new Angle(a._degrees * num);
 
@@ -159,7 +158,6 @@ namespace MonoGo.Engine
 
 		public static Angle operator *(int num, Angle a) =>
 			new Angle(a._degrees * num);
-
 
 		public static Angle operator /(Angle a, double num) =>
 			new Angle(a._degrees / num);
@@ -179,7 +177,6 @@ namespace MonoGo.Engine
 		public static Angle operator /(int num, Angle a) =>
 			new Angle(num / a._degrees);
 
-
 		public static bool operator >(Angle a1, Angle a2) =>
 			a1._degrees > a2._degrees;
 
@@ -198,9 +195,13 @@ namespace MonoGo.Engine
 		public static bool operator !=(Angle a1, Angle a2) =>
 			a1._degrees != a2._degrees;
 
+        public static implicit operator Angle(Vector2 value) => new Angle(value);
+        public static implicit operator Angle((float x, float y) value) => new Angle(new Vector2(value.x, value.y));
+        public static implicit operator Angle(double degrees) => new Angle(degrees);
+        
 		#endregion Operators.
-			
-		public override int GetHashCode() =>
+
+        public override int GetHashCode() =>
 			_degrees.GetHashCode();
 
 		public override string ToString() =>

@@ -34,7 +34,7 @@ namespace MonoGo.Engine
         public readonly float Y;
 
         [JsonIgnore]
-        public float Angle => (float) Math.Atan2(Y, X);
+        public readonly Angle Angle => (X, Y);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Axis"/> structure.
@@ -195,11 +195,12 @@ namespace MonoGo.Engine
 
             float x = float.Parse(xy[0], NumberStyles.Float, CultureInfo.InvariantCulture);
             float y = float.Parse(xy[1], NumberStyles.Float, CultureInfo.InvariantCulture);
-
+            
             return new Axis(x, y);
         }
 
         public static implicit operator Vector2(Axis a) => a.ToVector2(1.0f);
+        public static implicit operator Axis(Angle a) => new Axis(a.RadiansF);
 
         public static bool operator ==(Axis x, Axis y) {
             return x.Equals(y);
