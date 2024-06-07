@@ -1,23 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.Utils;
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace MonoGo.Engine.Particles.Modifiers
 {
-    public class FollowObjectModifier : IModifier
+    public class FollowPositionModifier : IModifier
     {
-        public class FollowObjectModifierConverter : JsonConverter<IModifier>
+        public class FollowPositionModifierConverter : JsonConverter<IModifier>
         {
             public override bool CanConvert(Type objectType)
             {
-                return (objectType == typeof(FollowObjectModifier));
+                return (objectType == typeof(FollowPositionModifier));
             }
 
             public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
-                return new FollowObjectModifier();
+                return new FollowPositionModifier();
             }
 
             public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)

@@ -6,7 +6,7 @@ using static MonoGo.Engine.Range;
 using static MonoGo.Engine.RangeF;
 using static MonoGo.Engine.Particles.Modifiers.ColourInterpolator2;
 using static MonoGo.Engine.Particles.Modifiers.DragModifier;
-using static MonoGo.Engine.Particles.Modifiers.FollowObjectModifier;
+using static MonoGo.Engine.Particles.Modifiers.FollowPositionModifier;
 using static MonoGo.Engine.Particles.Modifiers.HueInterpolator2;
 using static MonoGo.Engine.Particles.Modifiers.LinearGravityModifier;
 using static MonoGo.Engine.Particles.Modifiers.NoModifier;
@@ -51,7 +51,7 @@ namespace MonoGo.Engine
                     new ColourRangeConverter(),
                     new ColourInterpolator2Converter(),
                     new DragModifierConverter(),
-                    new FollowObjectModifierConverter(),
+                    new FollowPositionModifierConverter(),
                     new HueInterpolator2Converter(),
                     new LinearGravityModifierConverter(),
                     new NoModifierConverter(),

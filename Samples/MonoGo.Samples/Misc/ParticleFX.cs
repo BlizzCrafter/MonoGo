@@ -32,7 +32,7 @@ namespace MonoGo.Samples.Misc
                         Name = "Splash",
                         Modifiers = new[]
                         {
-                            new FollowObjectModifier()
+                            new FollowPositionModifier()
                             {
                                 ObjectReference = followComponent,
                                 Inside = false,
@@ -66,9 +66,9 @@ namespace MonoGo.Samples.Misc
             {
                 foreach (IModifier modifier in emitter.Modifiers)
                 {
-                    if (modifier is FollowObjectModifier)
+                    if (modifier is FollowPositionModifier)
                     {
-                        var followModifier = modifier as FollowObjectModifier;
+                        var followModifier = modifier as FollowPositionModifier;
                         followModifier.Offset = new Vector2(value, followModifier.Offset.Y);
                     }
                 }
@@ -81,9 +81,9 @@ namespace MonoGo.Samples.Misc
             {
                 foreach (IModifier modifier in emitter.Modifiers)
                 {
-                    if (modifier is FollowObjectModifier)
+                    if (modifier is FollowPositionModifier)
                     {
-                        var followModifier = modifier as FollowObjectModifier;
+                        var followModifier = modifier as FollowPositionModifier;
                         followModifier.Offset = new Vector2(followModifier.Offset.X, value);
                     }
                 }
@@ -96,9 +96,9 @@ namespace MonoGo.Samples.Misc
             {
                 foreach (IModifier modifier in emitter.Modifiers)
                 {
-                    if (modifier is FollowObjectModifier)
+                    if (modifier is FollowPositionModifier)
                     {
-                        var followModifier = modifier as FollowObjectModifier;
+                        var followModifier = modifier as FollowPositionModifier;
                         followModifier.Speed = value;
                     }
                 }
@@ -111,9 +111,9 @@ namespace MonoGo.Samples.Misc
             {
                 foreach (IModifier modifier in emitter.Modifiers)
                 {
-                    if (modifier is FollowObjectModifier)
+                    if (modifier is FollowPositionModifier)
                     {
-                        var followModifier = modifier as FollowObjectModifier;
+                        var followModifier = modifier as FollowPositionModifier;
                         followModifier.Inside = !followModifier.Inside;
                     }
                 }
