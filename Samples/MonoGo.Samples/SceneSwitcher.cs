@@ -74,19 +74,22 @@ namespace MonoGo.Samples
                 panelHeight = 65;
             }
 
-            Panel menuPanel = new Panel(new Vector2(0, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
-            menuPanel.Padding = Vector2.Zero;
-            UserInterface.Active.AddUIEntity(menuPanel);
+            Panel bottomPanel = new Panel(new Vector2(0, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
+            bottomPanel.Identifier = "BottomPanel";
+            bottomPanel.Padding = Vector2.Zero;
+            UserInterface.Active.AddUIEntity(bottomPanel);
 
             previousExampleButton = new Button($"<- ({_prevSceneButton}) Back", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(280, 0));
             previousExampleButton.OnClick = (EntityUI btn) => { PreviousScene(); };
-            menuPanel.AddChild(previousExampleButton);
+            bottomPanel.AddChild(previousExampleButton);
 
             if (CurrentScene != null && !isUIDemo)
             {
                 //Scene Name
                 {
                     Panel descriptionPanel = new Panel(new Vector2(700, 0), PanelSkin.None, Anchor.Center);
+                    descriptionPanel.Identifier = "DescriptionPanel";
+                    descriptionPanel.Padding = new Vector2(10, 10);
 
                     FPS_Paragraph = new RichParagraph("", Anchor.TopRight);
                     descriptionPanel.AddChild(FPS_Paragraph);
@@ -95,14 +98,14 @@ namespace MonoGo.Samples
                     descriptionPanel.AddChild(new HorizontalLine());
                     descriptionPanel.AddChild(new RichParagraph(sceneDescription));
                     descriptionPanel.PanelOverflowBehavior = PanelOverflowBehavior.Clipped;
-                    menuPanel.AddChild(descriptionPanel);
+                    bottomPanel.AddChild(descriptionPanel);
                 }
             }
 
             nextExampleButton = new Button($"Next ({_nextSceneButton}) ->", ButtonSkin.Default, Anchor.CenterRight, new Vector2(280, 0));
             nextExampleButton.OnClick = (EntityUI btn) => { NextScene(); };
             nextExampleButton.Identifier = "next_btn";
-            menuPanel.AddChild(nextExampleButton);
+            bottomPanel.AddChild(nextExampleButton);
 
             // Create other GUIs last so that we don't steal input focus their.
             CurrentScene?.GetEntityList<Entity>()
