@@ -3,6 +3,7 @@ using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Particles;
+using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.Particles.Profiles;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
@@ -15,9 +16,7 @@ namespace MonoGo.Samples.Misc
         public ParticleEffect ParticleEffect { get; set; }
         public PositionComponent PositionComponent { get; set; }
 
-        public Entity FollowEntity { get; set; }
-
-        public ParticleFX(Layer layer, Vector2 position = default) : base(layer)
+        public ParticleFX(Layer layer, PositionComponent followComponent, Vector2 position = default) : base(layer)
         {
             PositionComponent = AddComponent(new PositionComponent(position));
 
@@ -30,7 +29,17 @@ namespace MonoGo.Samples.Misc
                     {
                         Sprite = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel"),
                         Loop = true,
-                        Name = "Splash"
+                        Name = "Splash",
+                        Modifiers = new[]
+                        {
+                            new FollowObjectModifier()
+                            {
+                                ObjectReference = followComponent,
+                                Inside = false,
+                                Speed = 1f,
+                                Offset = Vector2.Zero
+                            }
+                        }
                     }
                 }
             };
@@ -40,18 +49,8 @@ namespace MonoGo.Samples.Misc
         {
             base.Update();
 
-            var position = PositionComponent.Position;
-            if (FollowEntity != null)
-            {
-                if (FollowEntity.TryGetComponent(out PositionComponent posComponent))
-                {
-                    position = posComponent.Position;
-                }
-                else throw new NullReferenceException($"{FollowEntity.GetType().Name} entity need to have a {nameof(PositionComponent)}.");
-            }
-
             ParticleEffect.Update((float)GameMgr.ElapsedTime);
-            ParticleEffect.Trigger(position);
+            ParticleEffect.Trigger(PositionComponent.Position);
         }
 
         public override void Draw()
@@ -59,6 +58,66 @@ namespace MonoGo.Samples.Misc
             base.Draw();
 
             ParticleEffect.Draw();
+        }
+
+        public void OffsetX(float value)
+        {
+            foreach (Emitter emitter in ParticleEffect.Emitters)
+            {
+                foreach (IModifier modifier in emitter.Modifiers)
+                {
+                    if (modifier is FollowObjectModifier)
+                    {
+                        var followModifier = modifier as FollowObjectModifier;
+                        followModifier.Offset = new Vector2(value, followModifier.Offset.Y);
+                    }
+                }
+            }
+        }
+
+        public void OffsetY(float value)
+        {
+            foreach (Emitter emitter in ParticleEffect.Emitters)
+            {
+                foreach (IModifier modifier in emitter.Modifiers)
+                {
+                    if (modifier is FollowObjectModifier)
+                    {
+                        var followModifier = modifier as FollowObjectModifier;
+                        followModifier.Offset = new Vector2(followModifier.Offset.X, value);
+                    }
+                }
+            }
+        }
+
+        public void Speed(float value)
+        {
+            foreach (Emitter emitter in ParticleEffect.Emitters)
+            {
+                foreach (IModifier modifier in emitter.Modifiers)
+                {
+                    if (modifier is FollowObjectModifier)
+                    {
+                        var followModifier = modifier as FollowObjectModifier;
+                        followModifier.Speed = value;
+                    }
+                }
+            }
+        }
+
+        public void Inside()
+        {
+            foreach (Emitter emitter in ParticleEffect.Emitters)
+            {
+                foreach (IModifier modifier in emitter.Modifiers)
+                {
+                    if (modifier is FollowObjectModifier)
+                    {
+                        var followModifier = modifier as FollowObjectModifier;
+                        followModifier.Inside = !followModifier.Inside;
+                    }
+                }
+            }
         }
     }
 }

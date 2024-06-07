@@ -2,8 +2,9 @@
 using MonoGo.Engine;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.SceneSystem;
-using MonoGo.Engine.UI.Entities;
 using MonoGo.Engine.UI;
+using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Entities.TextValidators;
 using MonoGo.Samples.Misc;
 using System;
 
@@ -13,14 +14,16 @@ namespace MonoGo.Samples.Demos
     {
         public static readonly string Description =
             "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
-            "Particles > {{L_GREEN}}Update{{DEFAULT}}:{{YELLOW}}" + ToggleEnabledButton + " {{L_GREEN}}Draw{{DEFAULT}}:{{YELLOW}}" + ToggleVisibilityButton + " {{DEFAULT}}" + "{{L_GREEN}}Follow{{DEFAULT}}:{{YELLOW}}" + ToggleFollowEntityButton + " {{DEFAULT}}";
+            "Particles > {{L_GREEN}}Update{{DEFAULT}}:{{YELLOW}}" + ToggleEnabledButton + " {{L_GREEN}}Draw{{DEFAULT}}:{{YELLOW}}" + ToggleVisibilityButton + " {{DEFAULT}}" + "{{L_GREEN}}Follow{{DEFAULT}}:{{YELLOW}}" + ToggleFollowEntityButton + " {{DEFAULT}}" + "{{L_GREEN}}Inside{{DEFAULT}}:{{YELLOW}}" + ToggleInsideButton + " {{DEFAULT}}";
 
         public const Buttons ToggleVisibilityButton = Buttons.N;
         public const Buttons ToggleEnabledButton = Buttons.M;
         public const Buttons ToggleFollowEntityButton = Buttons.F;
+        public const Buttons ToggleInsideButton = Buttons.I;
 
         private Player _player;
         private ParticleFX _particleFX;
+        private bool _particlesFollowPlayer = true;
 
         private RichParagraph ActiveParticles_Paragraph;
 
@@ -31,10 +34,9 @@ namespace MonoGo.Samples.Demos
                 Depth = 0
             };
 
-            _particleFX = new ParticleFX(layer, GameMgr.WindowManager.CanvasCenter)
+            _particleFX = new ParticleFX(layer, _player.GetComponent<PositionComponent>(), GameMgr.WindowManager.CanvasCenter)
             {
-                Depth = 1,
-                FollowEntity = _player
+                Depth = 1
             };
             layer.DepthSorting = true;
             layer.ReorderEntity(_player, 0);
@@ -52,16 +54,35 @@ namespace MonoGo.Samples.Demos
 
             if (Input.CheckButtonPress(ToggleFollowEntityButton))
             {
+                _particlesFollowPlayer = !_particlesFollowPlayer;
+            }
+
+            if (_particlesFollowPlayer)
+            {
                 foreach (var entity in Layer.GetEntityList<ParticleFX>())
                 {
-                    if (entity.FollowEntity == null)
+                    if (entity.TryGetComponent(out PositionComponent posComponent))
                     {
-                        entity.FollowEntity = _player;
+                        posComponent.Position = _player.GetComponent<PositionComponent>().Position;
                     }
-                    else entity.FollowEntity = null;
                 }
             }
-            
+            else
+            {
+                foreach (var entity in Layer.GetEntityList<ParticleFX>())
+                {
+                    if (entity.TryGetComponent(out PositionComponent posComponent))
+                    {
+                        posComponent.Position = posComponent.StartingPosition;
+                    }
+                }
+            }
+
+            if (Input.CheckButtonPress(ToggleInsideButton))
+            {
+                _particleFX.Inside();
+            }
+
             if (Input.CheckButtonPress(ToggleVisibilityButton))
             {
                 foreach (var entity in Layer.GetEntityList<ParticleFX>())
@@ -81,12 +102,47 @@ namespace MonoGo.Samples.Demos
 
         public void CreateUI()
         {
-            Panel descriptionPanel = new(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
+            Panel topPanel = new(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
 
             ActiveParticles_Paragraph = new RichParagraph("", Anchor.Center);
-            descriptionPanel.AddChild(ActiveParticles_Paragraph);
+            topPanel.AddChild(ActiveParticles_Paragraph);
 
-            UserInterface.Active.AddUIEntity(descriptionPanel);
+            UserInterface.Active.AddUIEntity(topPanel);
+
+            var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Offest:X=0";
+                textInput.OnValueChange += (EntityUI entityUI) => 
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    _particleFX.OffsetX(value);
+                };
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Offest:Y=0";
+                textInput.OnValueChange += (EntityUI entityUI) => 
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    _particleFX.OffsetY(value);
+                }; 
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Speed=1";
+                textInput.OnValueChange += (EntityUI entityUI) => 
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    _particleFX.Speed(value);
+                };
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
         }
     }
 }
