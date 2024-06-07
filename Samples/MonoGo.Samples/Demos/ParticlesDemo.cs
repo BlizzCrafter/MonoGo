@@ -22,7 +22,7 @@ namespace MonoGo.Samples.Demos
         public const Buttons ToggleInsideButton = Buttons.I;
 
         private Player _player;
-        private ParticleFX _particleFX;
+        private ParticleFollowFX _particleFX;
         private bool _particlesFollowPlayer = true;
 
         private RichParagraph ActiveParticles_Paragraph;
@@ -34,7 +34,7 @@ namespace MonoGo.Samples.Demos
                 Depth = 0
             };
 
-            _particleFX = new ParticleFX(layer, _player.GetComponent<PositionComponent>(), GameMgr.WindowManager.CanvasCenter)
+            _particleFX = new ParticleFollowFX(layer, _player.GetComponent<PositionComponent>(), GameMgr.WindowManager.CanvasCenter)
             {
                 Depth = 1
             };
@@ -59,7 +59,7 @@ namespace MonoGo.Samples.Demos
 
             if (_particlesFollowPlayer)
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
                 {
                     if (entity.TryGetComponent(out PositionComponent posComponent))
                     {
@@ -69,7 +69,7 @@ namespace MonoGo.Samples.Demos
             }
             else
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
                 {
                     if (entity.TryGetComponent(out PositionComponent posComponent))
                     {
@@ -85,7 +85,7 @@ namespace MonoGo.Samples.Demos
 
             if (Input.CheckButtonPress(ToggleVisibilityButton))
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
                 {
                     entity.Visible = !entity.Visible;
                 }
@@ -93,7 +93,7 @@ namespace MonoGo.Samples.Demos
 
             if (Input.CheckButtonPress(ToggleEnabledButton))
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
                 {
                     entity.Enabled = !entity.Enabled;
                 }

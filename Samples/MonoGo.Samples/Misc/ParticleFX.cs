@@ -11,12 +11,12 @@ using System;
 
 namespace MonoGo.Samples.Misc
 {
-    public class ParticleFX : Entity
+    public class ParticleFollowFX : Entity
     {
         public ParticleEffect ParticleEffect { get; set; }
         public PositionComponent PositionComponent { get; set; }
 
-        public ParticleFX(Layer layer, PositionComponent followComponent, Vector2 position = default) : base(layer)
+        public ParticleFollowFX(Layer layer, PositionComponent followComponent, Vector2 position = default) : base(layer)
         {
             PositionComponent = AddComponent(new PositionComponent(position));
 
