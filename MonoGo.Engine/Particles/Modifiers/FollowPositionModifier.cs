@@ -37,7 +37,7 @@ namespace MonoGo.Engine.Particles.Modifiers
                 Vector2 position = particle->Position;
                 if (ObjectReference != null)
                 {
-                    Angle angle = new Angle(position, ObjectReference.Position + Offset);
+                    var angle = new Angle(position, ObjectReference.Position + Offset);
                     if (Inside) angle *= -1;
                     position += (Vector2)angle * Speed * elapsedSeconds;
                 }
