@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace MonoGo.Engine.Utils
+namespace MonoGo.Engine
 {
 	/// <summary>
 	/// Represents an angle measured in degrees. 
