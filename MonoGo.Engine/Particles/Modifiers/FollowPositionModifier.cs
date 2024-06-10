@@ -24,7 +24,7 @@ namespace MonoGo.Engine.Particles.Modifiers
             }
         }
 
-        public dynamic ObjectReference { get; set; }
+        public IMovable ObjectReference { get; set; }
         public Vector2 Offset { get; set; }
         public float Speed { get; set; } = 1f;
         public bool Inside { get; set; }

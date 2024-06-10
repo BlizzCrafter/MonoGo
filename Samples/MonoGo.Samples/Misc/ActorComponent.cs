@@ -33,8 +33,6 @@ namespace MonoGo.Samples.Misc
 			{
 				// Retrieving the position component from entity.
 				var position = Owner.GetComponent<PositionComponent>();
-
-				position.PreviousPosition = position.Position;
 				position.Position += TimeKeeper.Global.Time(Speed) * Direction.ToVector2();
 			}
 		}
