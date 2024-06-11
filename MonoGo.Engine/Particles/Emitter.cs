@@ -122,17 +122,19 @@ namespace MonoGo.Engine.Particles
 
         public Emitter Clone()
         {
-            Emitter emitter = new Emitter(Buffer.Size, GetTerm, Profile);
-            emitter.BlendMode = BlendMode;
-            emitter.ModifierExecutionStrategy = ModifierExecutionStrategy;
-            emitter.Modifiers = Modifiers;
-            emitter.Name = Name;
-            emitter.Offset = Offset;
-            emitter.Parameters = Parameters;
-            emitter.StopEmitting = StopEmitting;
-            emitter.Loop = Loop;
-            emitter.Sprite = Sprite;
-            emitter.TexturePath = TexturePath;
+            var emitter = new Emitter(Buffer.Size, GetTerm, Profile)
+            {
+                BlendMode = BlendMode,
+                ModifierExecutionStrategy = ModifierExecutionStrategy,
+                Modifiers = Modifiers,
+                Name = Name,
+                Offset = Offset,
+                Parameters = Parameters,
+                StopEmitting = StopEmitting,
+                Loop = Loop,
+                Sprite = Sprite,
+                TexturePath = TexturePath
+            };
 
             return emitter;
         }
