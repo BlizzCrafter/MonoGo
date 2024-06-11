@@ -4,27 +4,17 @@ using static MonoGo.Engine.HSL;
 using static MonoGo.Engine.HSLRange;
 using static MonoGo.Engine.Range;
 using static MonoGo.Engine.RangeF;
-using static MonoGo.Engine.Particles.Modifiers.ColourInterpolator2;
-using static MonoGo.Engine.Particles.Modifiers.DragModifier;
-using static MonoGo.Engine.Particles.Modifiers.FollowPositionModifier;
-using static MonoGo.Engine.Particles.Modifiers.HueInterpolator2;
-using static MonoGo.Engine.Particles.Modifiers.LinearGravityModifier;
-using static MonoGo.Engine.Particles.Modifiers.NoModifier;
-using static MonoGo.Engine.Particles.Modifiers.OpacityFastFadeModifier;
-using static MonoGo.Engine.Particles.Modifiers.OpacityInterpolator2;
-using static MonoGo.Engine.Particles.Modifiers.RotationModifier;
-using static MonoGo.Engine.Particles.Modifiers.ScaleInterpolator2;
-using static MonoGo.Engine.Particles.Modifiers.VelocityColourModifier;
-using static MonoGo.Engine.Particles.Modifiers.VelocityHueModifier;
-using static MonoGo.Engine.Particles.Modifiers.VortexModifier;
-using static MonoGo.Engine.Particles.Modifiers.Container.CircleContainerModifier;
-using static MonoGo.Engine.Particles.Modifiers.Container.RectContainerModifier;
-using static MonoGo.Engine.Particles.Modifiers.Container.RectLoopContainerModifier;
+using static MonoGo.Engine.Particles.ModifierExecutionStrategy;
 using static MonoGo.Engine.AdditionalConverters;
 using System.Text.Json.Serialization;
 using System;
 using Microsoft.Xna.Framework;
 using System.Globalization;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
+using MonoGo.Engine.Particles.Modifiers;
+using MonoGo.Engine.Particles.Profiles;
 
 namespace MonoGo.Engine
 {
@@ -32,15 +22,12 @@ namespace MonoGo.Engine
     {
         internal static JsonSerializerOptions SerializerOptions;
 
-        internal static bool Initialized = false;
-
         internal static void Init()
         {
-            if (Initialized) return;
-
             SerializerOptions = new JsonSerializerOptions(JsonSerializerDefaults.General)
             {
                 WriteIndented = true,
+                PropertyNamingPolicy = null,
                 Converters =
                 {
                     new VectorConverter(),
@@ -49,25 +36,11 @@ namespace MonoGo.Engine
                     new RangeFConverter(),
                     new HSLConverter(),
                     new ColourRangeConverter(),
-                    new ColourInterpolator2Converter(),
+                    new ModifierExecutionStrategyConverter(),
                     new BaseTypeJsonConverter<Profile>(),
                     new BaseTypeJsonConverter<IModifier>()
-                    new HueInterpolator2Converter(),
-                    new LinearGravityModifierConverter(),
-                    new NoModifierConverter(),
-                    new OpacityFastFadeModifierConverter(),
-                    new OpacityInterpolator2Converter(),
-                    new RotationModifierConverter(),
-                    new ScaleInterpolator2Converter(),
-                    new VelocityColourModifierConverter(),
-                    new VelocityHueModifierConverter(),
-                    new VortexModifierConverter(),
-                    new CircleContainerModifierConverter(),
-                    new RectContainerModifierConverter(),
-                    new RectLoopContainerModifierConverter()
                 }
             };
-            Initialized = true;
         }
     }
 
