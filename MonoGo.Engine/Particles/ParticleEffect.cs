@@ -69,38 +69,19 @@ namespace MonoGo.Engine.Particles
 
         public FileInfo Serialize(string filePath)
         {
-            FileInfo pathInfo = new FileInfo(@Path.Combine(filePath, Name));
-            if (!Directory.Exists(pathInfo.FullName)) Directory.CreateDirectory(pathInfo.FullName);
+            var pathInfo = new FileInfo(@Path.Combine(filePath, Name));
+            if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
-            ParticleEffect particleEffectClone = Clone();
-            var json = JsonSerializer.Serialize(particleEffectClone, JsonConverters.SerializerOptions);
-            File.WriteAllText(@Path.Combine(pathInfo.FullName, $"{Name}.mpe"), json, Encoding.UTF8);
-
-            //TODO: Copy Textures of emitters?
-            /*foreach (string textureKey in particleEffectClone.Emitters.Select(x => x.TextureKey).Where(x => !string.IsNullOrEmpty(x)))
-            {
-                FileInfo textureInfo = new FileInfo(@Path.Combine(Settings.CurrentProjectDirectory.FullName, textureKey));
-                textureInfo.CopyTo(@Path.Combine(pathInfo.FullName, textureKey), true);
-            }*/
+            var json = JsonSerializer.Serialize(this, JsonConverters.SerializerOptions);
+            File.WriteAllText(@Path.Combine(filePath, $"{Name}.mpe"), json, Encoding.UTF8);
 
             return pathInfo;
         }
 
-        public static ParticleEffect Deserialize(string filePath, string name)
+        public ParticleEffect Deserialize(string filePath, string name)
         {
-            ParticleEffect particleEffect = JsonSerializer.Deserialize<ParticleEffect>(
+            var particleEffect = JsonSerializer.Deserialize<ParticleEffect>(
                     File.ReadAllText(@Path.Combine(filePath, $"{name}.mpe")), JsonConverters.SerializerOptions);
-
-            //TODO: Load Emitter Textures?
-            /*particleEffect.Emitters.ToList().ForEach(
-                x =>
-                {
-                    if (x.TextureKey != null && !string.IsNullOrEmpty(x.TextureKey))
-                    {
-                        x.Texture = Settings.Content.Load<Texture2D>($"{Settings.RenderedDirectory.FullName}/{x.TextureKey.Replace(".xnb", "")}");
-                    }
-                    else x.Texture = Settings.Content.Load<Texture2D>($"{Settings.RenderedDirectory.FullName}/Pixel");
-                });*/
 
             return particleEffect;
         }

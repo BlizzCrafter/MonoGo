@@ -5,13 +5,15 @@ using MonoGo.Engine.Particles.Profiles;
 using MonoGo.Engine.Particles.Modifiers;
 using System.Text.Json.Serialization;
 using MonoGo.Engine.Drawing;
-using MonoGo.Engine.Utils;
+using System.Linq;
+using MonoGo.Engine.Resources;
 
 namespace MonoGo.Engine.Particles
 {
     public unsafe class Emitter : IDisposable
     {
-        public Emitter(int capacity, TimeSpan term, Profile profile) {
+        public Emitter(int capacity, TimeSpan term, Profile profile)
+        {
             if (profile == null)
                 throw new ArgumentNullException(nameof(profile));
 
@@ -30,13 +32,28 @@ namespace MonoGo.Engine.Particles
             Parameters = new ReleaseParameters();
         }
 
+        [JsonConstructor]
+        public Emitter(int GetCapacity, TimeSpan GetTerm, Profile Profile, string TexturePath)
+            : this(GetCapacity, GetTerm, Profile)
+        {
+            this.TexturePath = TexturePath;
+
+            var resource = TexturePath.Split('/');
+            var resourceBox = resource.First();
+            var resourceName = resource.Last();
+            Sprite = ResourceHub.GetResource<Sprite>(resourceBox, resourceName);
+        }
+
         [JsonPropertyName("Capacity")]
+        [JsonPropertyOrder(-4)]
         public int GetCapacity { get; set; }
         private readonly int _capacity;
 
         [JsonPropertyName("Term")]
+        [JsonPropertyOrder(-3)]
         public TimeSpan GetTerm { get; set; }
         private readonly float _term;
+
         internal float _MaxTime, _CurrentTime;
 
         public bool Loop 
@@ -72,14 +89,25 @@ namespace MonoGo.Engine.Particles
         public string Name { get; set; }
         public Vector2 Offset { get; set; }
         public IModifier[] Modifiers { get; set; }
+        [JsonPropertyOrder(-2)]
         public Profile Profile { get; }
         public ReleaseParameters Parameters { get; set; }
         public BlendMode BlendMode { get; set; }
         public float LayerDepth { get; set; }
-        public string TextureKey { get; set; }
+        [JsonPropertyOrder(-1)]
+        public string TexturePath { get; set; }
 
         [JsonIgnore]
-        public Sprite Sprite { get; set; }
+        public Sprite Sprite 
+        {
+            get { return _sprite; }
+            set
+            {
+                _sprite = value;
+                TexturePath = $"{value.Name.Split('/').First()}/{value.Name.Split('/').Last()}";
+            }
+        }
+        private Sprite _sprite;
 
         //[JsonIgnore]
         //TODO: Implement SpriteSheet Animations
@@ -104,7 +132,7 @@ namespace MonoGo.Engine.Particles
             emitter.StopEmitting = StopEmitting;
             emitter.Loop = Loop;
             emitter.Sprite = Sprite;
-            emitter.TextureKey = TextureKey;
+            emitter.TexturePath = TexturePath;
 
             return emitter;
         }
