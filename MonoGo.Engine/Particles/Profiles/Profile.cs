@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace MonoGo.Engine.Particles.Profiles
 {
@@ -79,7 +79,7 @@ namespace MonoGo.Engine.Particles.Profiles
 
         public override string ToString()
         {
-            return GetType().ToString();
+            return GetType().Name.ToString();
         }
     }
 }
