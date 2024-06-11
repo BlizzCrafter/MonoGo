@@ -1,29 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 namespace MonoGo.Engine.Particles.Modifiers.Container
 {
     public class RectLoopContainerModifier : IModifier
     {
-        public class RectLoopContainerModifierConverter : JsonConverter<IModifier>
-        {
-            public override bool CanConvert(Type objectType)
-            {
-                return (objectType == typeof(RectLoopContainerModifier));
-            }
-
-            public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            {
-                return new RectLoopContainerModifier();
-            }
-
-            public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)
-            {
-            }
-        }
-
         public int Width { get; set; }
         public int Height { get; set; }
 
@@ -32,9 +12,9 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
             while (iterator.HasNext)
             {
                 var particle = iterator.Next();
-                var left =   particle->TriggerPos.X + Width * -0.5f;
-                var right =  particle->TriggerPos.X + Width * 0.5f;
-                var top =    particle->TriggerPos.Y + Height * -0.5f;
+                var left = particle->TriggerPos.X + Width * -0.5f;
+                var right = particle->TriggerPos.X + Width * 0.5f;
+                var top = particle->TriggerPos.Y + Height * -0.5f;
                 var bottom = particle->TriggerPos.Y + Height * 0.5f;
 
                 float xPos = particle->Position.X;
@@ -59,15 +39,6 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
                 }
                 particle->Position = new Vector2(xPos, yPos);
             }
-        }
-
-        public override string ToString()
-        {
-            return GetType().ToString();
-        }
-
-        public void UpdateReferences(ref object _object)
-        {
         }
     }
 }

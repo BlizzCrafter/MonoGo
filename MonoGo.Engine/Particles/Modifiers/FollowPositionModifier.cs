@@ -1,29 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Microsoft.Xna.Framework;
 
 namespace MonoGo.Engine.Particles.Modifiers
 {
     public class FollowPositionModifier : IModifier
     {
-        public class FollowPositionModifierConverter : JsonConverter<IModifier>
-        {
-            public override bool CanConvert(Type objectType)
-            {
-                return (objectType == typeof(FollowPositionModifier));
-            }
-
-            public override IModifier Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            {
-                return new FollowPositionModifier();
-            }
-
-            public override void Write(Utf8JsonWriter writer, IModifier value, JsonSerializerOptions options)
-            {
-            }
-        }
-
+        [JsonIgnore]
         public IMovable ObjectReference { get; set; }
         public Vector2 Offset { get; set; }
         public float Speed { get; set; } = 1f;
@@ -43,11 +25,6 @@ namespace MonoGo.Engine.Particles.Modifiers
                 }
                 particle->Position = position;
             }
-        }
-
-        public override string ToString()
-        {
-            return GetType().ToString();
         }
     }
 }
