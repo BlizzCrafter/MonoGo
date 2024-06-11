@@ -7,6 +7,7 @@ using MonoGo.Engine.UI.Entities;
 using MonoGo.Engine.UI.Entities.TextValidators;
 using MonoGo.Samples.Misc;
 using System;
+using System.IO;
 
 namespace MonoGo.Samples.Demos
 {
@@ -20,6 +21,10 @@ namespace MonoGo.Samples.Demos
         public const Buttons ToggleEnabledButton = Buttons.M;
         public const Buttons ToggleFollowEntityButton = Buttons.F;
         public const Buttons ToggleInsideButton = Buttons.I;
+        #region DEBUG
+        public const Buttons SerializeButton = Buttons.K;
+        public const Buttons DeserializeButton = Buttons.L;
+        #endregion DEBUG
 
         private Player _player;
         private ParticleFollowFX _particleFX;
@@ -98,6 +103,18 @@ namespace MonoGo.Samples.Demos
                     entity.Enabled = !entity.Enabled;
                 }
             }
+
+            #region DEBUG
+            if (Input.CheckButtonPress(SerializeButton))
+            {
+                _particleFX.Serialize(Path.Combine(AppContext.BaseDirectory, "Exports"));
+            }
+
+            if (Input.CheckButtonPress(DeserializeButton))
+            {
+                _particleFX.Deserialize(Path.Combine(AppContext.BaseDirectory, "Exports", "Potpourri"));
+            }
+            #endregion DEBUG
         }
 
         public void CreateUI()

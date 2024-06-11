@@ -15,9 +15,12 @@ namespace MonoGo.Samples.Misc
     {
         public ParticleEffect ParticleEffect { get; set; }
         public PositionComponent PositionComponent { get; set; }
+        public PositionComponent FollowComponent { get; set; }
 
         public ParticleFollowFX(Layer layer, PositionComponent followComponent, Vector2 position = default) : base(layer)
         {
+            FollowComponent = followComponent;
+
             PositionComponent = AddComponent(new PositionComponent(position));
 
             ParticleEffect = new ParticleEffect
@@ -58,6 +61,32 @@ namespace MonoGo.Samples.Misc
             base.Draw();
 
             ParticleEffect.Draw();
+        }
+
+        public void Serialize(string filePath)
+        {
+            ParticleEffect.Serialize(filePath);
+        }
+
+        public void Deserialize(string filePath)
+        {
+            ParticleEffect = new ParticleEffect(filePath);
+            AttachFollowComponent();
+        }
+
+        public void AttachFollowComponent()
+        {
+            foreach (Emitter emitter in ParticleEffect.Emitters)
+            {
+                foreach (IModifier modifier in emitter.Modifiers)
+                {
+                    if (modifier is FollowPositionModifier)
+                    {
+                        var followModifier = modifier as FollowPositionModifier;
+                        followModifier.ObjectReference = FollowComponent;
+                    }
+                }
+            }
         }
 
         public void OffsetX(float value)

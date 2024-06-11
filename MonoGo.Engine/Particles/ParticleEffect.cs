@@ -14,9 +14,6 @@ namespace MonoGo.Engine.Particles
         public Emitter[] Emitters { get; set; }
 
         [JsonIgnore]
-        public object Tag { get; set; }
-
-        [JsonIgnore]
         public bool StopEmitting { get; set; } = false;
 
         public void SetLoop(string emitterName)
@@ -56,13 +53,27 @@ namespace MonoGo.Engine.Particles
             Emitters = new Emitter[0];
         }
 
+        /// <summary>
+        /// Deserialization ctor.
+        /// </summary>
+        /// <param name="filePath">The absolut file path of the particle effect file in JSON format.</param>
+        public ParticleEffect(string filePath)
+        {
+            var particleEffect = Deserialize(filePath);
+            
+            Name = particleEffect.Name;
+            StopEmitting = particleEffect.StopEmitting;
+            Emitters = particleEffect.Emitters;
+        }
+
         public ParticleEffect Clone()
         {
-            ParticleEffect particleEffect = new ParticleEffect();
-            particleEffect.Name = Name;
-            particleEffect.Tag = Tag;
-            particleEffect.StopEmitting = StopEmitting;
-            particleEffect.Emitters = Emitters.Select(x => x.Clone()).ToArray();
+            var particleEffect = new ParticleEffect
+            {
+                Name = Name,
+                StopEmitting = StopEmitting,
+                Emitters = Emitters.Select(x => x.Clone()).ToArray()
+            };
 
             return particleEffect;
         }
@@ -78,12 +89,11 @@ namespace MonoGo.Engine.Particles
             return pathInfo;
         }
 
-        public ParticleEffect Deserialize(string filePath, string name)
+        private ParticleEffect Deserialize(string filePath)
         {
-            var particleEffect = JsonSerializer.Deserialize<ParticleEffect>(
+            var name = Path.GetFileNameWithoutExtension(filePath);
+            return JsonSerializer.Deserialize<ParticleEffect>(
                     File.ReadAllText(@Path.Combine(filePath, $"{name}.mpe")), JsonConverters.SerializerOptions);
-
-            return particleEffect;
         }
 
         [JsonIgnore]
