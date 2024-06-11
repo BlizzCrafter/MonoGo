@@ -50,8 +50,8 @@ namespace MonoGo.Engine
                     new HSLConverter(),
                     new ColourRangeConverter(),
                     new ColourInterpolator2Converter(),
-                    new DragModifierConverter(),
-                    new FollowPositionModifierConverter(),
+                    new BaseTypeJsonConverter<Profile>(),
+                    new BaseTypeJsonConverter<IModifier>()
                     new HueInterpolator2Converter(),
                     new LinearGravityModifierConverter(),
                     new NoModifierConverter(),
@@ -105,6 +105,67 @@ namespace MonoGo.Engine
             {
                 return string.Format(CultureInfo.InvariantCulture,
                     $"({value.X.ToString(CultureInfo.InvariantCulture)}; {value.Y.ToString(CultureInfo.InvariantCulture)})");
+            }
+        }
+        public class BaseTypeJsonConverter<T> : JsonConverter<T>
+        {
+            private readonly Dictionary<string, Type> _baseTypes;
+
+            public BaseTypeJsonConverter()
+            {
+                var typeList = typeof(T).GetTypeInfo().Assembly.DefinedTypes
+                .Where(type => typeof(T).GetTypeInfo().IsAssignableFrom(type) && !type.IsAbstract);
+
+                _baseTypes = typeList.ToDictionary(t => t.Name, t => t.AsType());
+            }
+
+            public override bool CanConvert(Type typeToConvert)
+            {                
+                return _baseTypes.ContainsValue(typeToConvert) || typeof(T) == typeToConvert;
+            }
+
+            public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                reader.Read();
+                var name = reader.GetString();
+
+                using (JsonDocument doc = JsonDocument.ParseValue(ref reader))
+                {
+                    var jObject = doc.RootElement;
+                    if (_baseTypes.TryGetValue(name, out Type type))
+                    {
+                        var value = (T)JsonSerializer.Deserialize(jObject.GetRawText(), type, GetTempOptions(options));
+                        reader.Read();
+                        return value;
+                    }
+                }
+                reader.Read();
+                return default;
+            }
+
+            public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+            {
+                string name = ((dynamic)value).ToString();
+                string shortName = name.Split('.').Last();
+
+                writer.WriteStartObject();
+                writer.WritePropertyName(shortName);
+                JsonSerializer.Serialize(writer, (dynamic)value, GetTempOptions(options));
+                writer.WriteEndObject();
+            }
+
+            private JsonSerializerOptions GetTempOptions(JsonSerializerOptions options)
+            {
+                var tempOptions = new JsonSerializerOptions()
+                {
+                    WriteIndented = true
+                };
+                foreach (var converter in options.Converters)
+                {
+                    if (converter == this) continue;
+                    tempOptions.Converters.Add(converter);
+                }
+                return tempOptions;
             }
         }
     }
