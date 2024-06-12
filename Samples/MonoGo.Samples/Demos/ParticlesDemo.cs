@@ -1,6 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGo.Engine;
+using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
+using MonoGo.Engine.Particles;
+using MonoGo.Engine.Particles.Modifiers;
+using MonoGo.Engine.Particles.Profiles;
+using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Entities;
@@ -27,25 +32,54 @@ namespace MonoGo.Samples.Demos
         #endregion DEBUG
 
         private Player _player;
-        private ParticleFollowFX _particleFX;
+        private ParticleSampleEntity _particleSampleEntity;
         private bool _particlesFollowPlayer = true;
 
         private RichParagraph ActiveParticles_Paragraph;
 
         public ParticlesDemo(Layer layer) : base(layer)
         {
+            var particleEffect = new ParticleEffect
+            {
+                Name = "Potpourri",
+                Emitters = new[]
+                {
+                    new Emitter(1000, TimeSpan.FromSeconds(3), new PointProfile())
+                    {
+                        Sprite = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel"),
+                        Loop = true,
+                        Name = "Splash",
+                        Modifiers = new[]
+                        {
+                            new FollowPositionModifier()
+                            {
+                                Inside = false,
+                                Speed = 1f,
+                                Offset = Vector2.Zero
+                            }
+                        }
+                    }
+                }
+            };
+
             _player = new Player(layer, new Vector2(400, 300))
             {
                 Depth = 0
             };
-
-            _particleFX = new ParticleFollowFX(layer, _player.GetComponent<PositionComponent>(), GameMgr.WindowManager.CanvasCenter)
+            _particleSampleEntity = new ParticleSampleEntity(
+                layer,
+                particleEffect, 
+                _player.GetComponent<PositionComponent>(), 
+                GameMgr.WindowManager.CanvasCenter)
             {
                 Depth = 1
             };
+
             layer.DepthSorting = true;
             layer.ReorderEntity(_player, 0);
-            layer.ReorderEntity(_particleFX, 1);
+            layer.ReorderEntity(_particleSampleEntity, 1);
+
+            CheckParticleEffectFollowsPlayer();
         }
 
         public override void Update()
@@ -54,43 +88,23 @@ namespace MonoGo.Samples.Demos
 
             if (ActiveParticles_Paragraph != null)
             {
-                ActiveParticles_Paragraph.Text = "Active Particles:{{YELLOW}}" + _particleFX.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
+                ActiveParticles_Paragraph.Text = "Active Particles:{{YELLOW}}" + _particleSampleEntity.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
             }
 
             if (Input.CheckButtonPress(ToggleFollowEntityButton))
             {
                 _particlesFollowPlayer = !_particlesFollowPlayer;
-            }
-
-            if (_particlesFollowPlayer)
-            {
-                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
-                {
-                    if (entity.TryGetComponent(out PositionComponent posComponent))
-                    {
-                        posComponent.Position = _player.GetComponent<PositionComponent>().Position;
-                    }
-                }
-            }
-            else
-            {
-                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
-                {
-                    if (entity.TryGetComponent(out PositionComponent posComponent))
-                    {
-                        posComponent.Position = posComponent.StartingPosition;
-                    }
-                }
-            }
+                CheckParticleEffectFollowsPlayer();
+            }            
 
             if (Input.CheckButtonPress(ToggleInsideButton))
             {
-                _particleFX.Inside();
+                _particleSampleEntity.ToggleInside();
             }
 
             if (Input.CheckButtonPress(ToggleVisibilityButton))
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleSampleEntity>())
                 {
                     entity.Visible = !entity.Visible;
                 }
@@ -98,7 +112,7 @@ namespace MonoGo.Samples.Demos
 
             if (Input.CheckButtonPress(ToggleEnabledButton))
             {
-                foreach (var entity in Layer.GetEntityList<ParticleFollowFX>())
+                foreach (var entity in Layer.GetEntityList<ParticleSampleEntity>())
                 {
                     entity.Enabled = !entity.Enabled;
                 }
@@ -107,14 +121,32 @@ namespace MonoGo.Samples.Demos
             #region DEBUG
             if (Input.CheckButtonPress(SerializeButton))
             {
-                _particleFX.Serialize(Path.Combine(AppContext.BaseDirectory, "Exports"));
+                _particleSampleEntity.Serialize(Path.Combine(AppContext.BaseDirectory, "Exports"));
             }
 
             if (Input.CheckButtonPress(DeserializeButton))
             {
-                _particleFX.Deserialize(Path.Combine(AppContext.BaseDirectory, "Exports", "Potpourri"));
+                _particleSampleEntity.Deserialize(Path.Combine(AppContext.BaseDirectory, "Exports", "Potpourri"));
             }
             #endregion DEBUG
+        }
+
+        private void CheckParticleEffectFollowsPlayer()
+        {
+            if (_particlesFollowPlayer)
+            {
+                foreach (var entity in Layer.GetEntityList<ParticleEffectEntity>())
+                {
+                    entity.Moveable = _player.GetComponent<PositionComponent>();
+                }
+            }
+            else
+            {
+                foreach (var entity in Layer.GetEntityList<ParticleEffectEntity>())
+                {
+                    entity.Moveable = _particleSampleEntity.GetComponent<PositionComponent>();
+                }
+            }
         }
 
         public void CreateUI()
@@ -133,7 +165,7 @@ namespace MonoGo.Samples.Demos
                 textInput.OnValueChange += (EntityUI entityUI) => 
                 {
                     float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleFX.OffsetX(value);
+                    _particleSampleEntity.OffsetX(value);
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
@@ -144,7 +176,7 @@ namespace MonoGo.Samples.Demos
                 textInput.OnValueChange += (EntityUI entityUI) => 
                 {
                     float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleFX.OffsetY(value);
+                    _particleSampleEntity.OffsetY(value);
                 }; 
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
@@ -155,7 +187,7 @@ namespace MonoGo.Samples.Demos
                 textInput.OnValueChange += (EntityUI entityUI) => 
                 {
                     float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleFX.Speed(value);
+                    _particleSampleEntity.Speed(value);
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
