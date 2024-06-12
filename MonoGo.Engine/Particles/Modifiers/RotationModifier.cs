@@ -2,6 +2,8 @@
 {
     public class RotationModifier : IModifier
     {
+        public string Key { get; set; }
+
         public float RotationRate { get; set; }
 
         public unsafe void Update(float elapsedSeconds, ParticleBuffer.ParticleIterator iterator)

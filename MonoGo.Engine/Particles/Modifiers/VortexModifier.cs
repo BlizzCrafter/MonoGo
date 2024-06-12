@@ -4,6 +4,8 @@ namespace MonoGo.Engine.Particles.Modifiers
 {
     public class VortexModifier : IModifier
     {
+        public string Key { get; set; }
+
         public Vector2 Position { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }

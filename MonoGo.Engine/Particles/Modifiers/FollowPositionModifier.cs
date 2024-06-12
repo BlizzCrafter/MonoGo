@@ -3,8 +3,10 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGo.Engine.Particles.Modifiers
 {
-    public class FollowPositionModifier : IModifier
+    public class FollowPositionModifier : IModifier, IFollowable
     {
+        public string Key { get; set; }
+
         [JsonIgnore]
         public IMovable Followable { get; set; }
         public Vector2 Offset { get; set; }

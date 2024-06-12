@@ -4,6 +4,8 @@ namespace MonoGo.Engine.Particles.Modifiers
 {
     public class ScaleInterpolator2 : IModifier
     {
+        public string Key { get; set; }
+
         public Vector2 InitialScale { get; set; }
         public Vector2 FinalScale { get; set; }
 

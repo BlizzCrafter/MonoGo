@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Text.Json;
+
 namespace MonoGo.Engine.Particles.Modifiers 
 {    
     public class DragModifier : IModifier
     {
+        public string Key { get; set; }
+
         public float DragCoefficient { get; set; } = 0.47f;
         public float Density { get; set; } = .5f;
 

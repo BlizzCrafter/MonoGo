@@ -4,6 +4,8 @@ namespace MonoGo.Engine.Particles.Modifiers
 {
     public class LinearGravityModifier : IModifier
     {
+        public string Key { get; set; }
+
         public Axis Direction { get; set; }
         public float Strength { get; set; }
 

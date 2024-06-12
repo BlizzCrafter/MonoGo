@@ -4,6 +4,8 @@ namespace MonoGo.Engine.Particles.Modifiers
 {
     public class VelocityColourModifier : IModifier
     {
+        public string Key { get; set; }
+
         public HSL StationaryColour { get; set; }
         public HSL VelocityColour { get; set; }
         public float VelocityThreshold { get; set; }

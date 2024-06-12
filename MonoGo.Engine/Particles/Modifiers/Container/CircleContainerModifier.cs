@@ -5,6 +5,8 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
 {
     public class CircleContainerModifier : IModifier
     {
+        public string Key { get; set; }
+
         public float Radius { get; set; }
         public bool Inside { get; set; } = true;
         public float RestitutionCoefficient { get; set; } = 1;

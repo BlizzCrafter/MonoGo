@@ -5,6 +5,8 @@ namespace MonoGo.Engine.Particles.Modifiers
 {
     public class VelocityHueModifier : IModifier
     {
+        public string Key { get; set; }
+
         public float StationaryHue { get; set; }
         public float VelocityHue { get; set; }
         public float VelocityThreshold { get; set; }

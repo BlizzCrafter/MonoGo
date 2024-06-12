@@ -2,6 +2,8 @@
 {
     public class HueInterpolator2 : IModifier
     {
+        public string Key { get; set; }
+
         public float InitialHue { get; set; }
         public float FinalHue { get; set; }
 

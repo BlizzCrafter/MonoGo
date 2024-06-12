@@ -5,6 +5,8 @@
     /// </summary>
     public class ColourInterpolator2 : IModifier 
     {
+        public string Key { get; set; }
+
         /// <summary>
         /// Gets or sets the initial colour of particles when they are released.
         /// </summary>

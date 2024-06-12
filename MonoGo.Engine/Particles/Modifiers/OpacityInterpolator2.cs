@@ -2,6 +2,8 @@
 {
     public class OpacityInterpolator2 : IModifier
     {
+        public string Key { get; set; }
+
         public float InitialOpacity { get; set; }
         public float FinalOpacity { get; set; }
 

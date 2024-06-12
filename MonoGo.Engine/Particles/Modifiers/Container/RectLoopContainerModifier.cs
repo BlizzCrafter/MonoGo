@@ -4,6 +4,8 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
 {
     public class RectLoopContainerModifier : IModifier
     {
+        public string Key { get; set; }
+
         public int Width { get; set; }
         public int Height { get; set; }
 
