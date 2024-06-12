@@ -8,8 +8,8 @@ namespace MonoGo.Engine.Particles
     {
         public ParticleEffect ParticleEffect { get; set; }
         
-        public IMovable Moveable { get; set; }
-        public IMovable FollowMoveable { get; set; }
+        public IMovable Movable { get; set; }
+        public IMovable FollowMovable { get; set; }
 
         public ParticleEffectEntity(
             Layer layer, 
@@ -18,8 +18,8 @@ namespace MonoGo.Engine.Particles
             IMovable position = default) 
             : base(layer)
         {
-            Moveable = position;
-            FollowMoveable = followable;
+            Movable = position;
+            FollowMovable = followable;
             ParticleEffect = particleEffect;
             UpdateFollowMoveable();
         }
@@ -31,8 +31,8 @@ namespace MonoGo.Engine.Particles
             IMovable position = default)
             : base(layer)
         {
-            Moveable = position;
-            FollowMoveable = followable;
+            Movable = position;
+            FollowMovable = followable;
             ParticleEffect = new ParticleEffect(particleEffectFilePath);
             UpdateFollowMoveable();
         }
@@ -42,12 +42,12 @@ namespace MonoGo.Engine.Particles
             base.Update();
 
             ParticleEffect.Update((float)GameMgr.ElapsedTime);
-            ParticleEffect.Trigger(Moveable.Position);
+            ParticleEffect.Trigger(Movable.Position);
         }
 
         public void UpdateFollowMoveable()
         {
-            ParticleEffect.Modifiers<IFollowable>().ToList().ForEach(x => x.Followable = FollowMoveable);
+            ParticleEffect.Modifiers<IFollowable>().ToList().ForEach(x => x.Followable = FollowMovable);
         }
 
         public override void Draw()

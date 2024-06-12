@@ -137,14 +137,14 @@ namespace MonoGo.Samples.Demos
             {
                 foreach (var entity in Layer.GetEntityList<ParticleEffectEntity>())
                 {
-                    entity.Moveable = _player.GetComponent<PositionComponent>();
+                    entity.Movable = _player.GetComponent<PositionComponent>();
                 }
             }
             else
             {
                 foreach (var entity in Layer.GetEntityList<ParticleEffectEntity>())
                 {
-                    entity.Moveable = _particleSampleEntity.GetComponent<PositionComponent>();
+                    entity.Movable = _particleSampleEntity.GetComponent<PositionComponent>();
                 }
             }
         }
