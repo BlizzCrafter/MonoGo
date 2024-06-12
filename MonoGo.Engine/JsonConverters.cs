@@ -128,12 +128,20 @@ namespace MonoGo.Engine
                 writer.WriteEndObject();
             }
 
+            /// <summary>
+            /// Creates fresh serializer options to avoid infinite loops during (De-)Serialization.
+            /// </summary>
             private JsonSerializerOptions GetTempOptions(JsonSerializerOptions options)
             {
-                var tempOptions = new JsonSerializerOptions()
+                var tempOptions = new JsonSerializerOptions(options);
+                
+                // Remove all existing converters.
+                foreach (var converter in tempOptions.Converters.ToList())
                 {
-                    WriteIndented = true
-                };
+                    tempOptions.Converters.Remove(converter);
+                }
+                
+                // Re-Add all converters besides this one.
                 foreach (var converter in options.Converters)
                 {
                     if (converter == this) continue;
