@@ -52,7 +52,7 @@ namespace MonoGo.Samples.Misc
         public void ToggleInside()
         {
             ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
-                .ForEach(x => x.Inside = x.Inside);
+                .ForEach(x => x.Inside = !x.Inside);
         }
     }
 }
