@@ -28,6 +28,7 @@ namespace MonoGo.Engine
             {
                 WriteIndented = true,
                 PropertyNamingPolicy = null,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 Converters =
                 {
                     new VectorConverter(),
