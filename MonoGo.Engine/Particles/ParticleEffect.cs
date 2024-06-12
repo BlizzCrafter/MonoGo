@@ -16,6 +16,14 @@ namespace MonoGo.Engine.Particles
         [JsonIgnore]
         public bool StopEmitting { get; set; } = false;
 
+        public T[] Modifiers<T>(string name = default)
+        {
+            return Emitters
+                .SelectMany(e => e.Modifiers)
+                .Where(m => m is T && (string.IsNullOrEmpty(name) || m.Key == name))
+                .Select(m => (T)m).ToArray();
+        }
+
         public void SetLoop(string emitterName)
         {
             Emitters.Where(x => x.Name == emitterName).ToList().ForEach(x => x.Loop = !x.Loop);
@@ -91,7 +99,6 @@ namespace MonoGo.Engine.Particles
 
         private ParticleEffect Deserialize(string filePath)
         {
-            var name = Path.GetFileNameWithoutExtension(filePath);
             return JsonSerializer.Deserialize<ParticleEffect>(
                     File.ReadAllText($"{filePath}.mpe"), JsonConverters.SerializerOptions);
         }
