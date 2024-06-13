@@ -2,6 +2,6 @@
 {
     public interface IFollowable
     {
-        public IMovable Followable { get; set; }
+        public IMovable Movable { get; set; }
     }
 }
