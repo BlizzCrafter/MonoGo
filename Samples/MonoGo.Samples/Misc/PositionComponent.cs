@@ -38,6 +38,6 @@ namespace MonoGo.Samples.Misc
 			Position = position;
 			PreviousPosition = position;
 			StartingPosition = position;
-		}
-	}
+        }
+    }
 }

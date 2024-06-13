@@ -58,15 +58,13 @@ namespace MonoGo.Samples.Misc
 		{
 			base.Draw();
 
-
 			// Layers and scenes have methods for searching entities/components.
 			foreach(var bot in Layer.GetEntityList<Bot>())
 			{
 				var botPosition = bot.GetComponent<PositionComponent>();
 
 				LineShape.Draw(_position.Position, botPosition.Position, Color.Transparent, Color.White * 0.2f);
-			}
-			
+			}			
 		}
 	}
 }
