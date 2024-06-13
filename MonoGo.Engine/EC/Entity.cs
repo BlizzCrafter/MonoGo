@@ -190,8 +190,27 @@ namespace MonoGo.Engine.EC
 		public T AddComponent<T>(T component) where T : Component =>
 			(T)AddComponent(typeof(T), component);
 
+        /// <summary>
+        /// Adds component to the entity and place it at the top of the component list.
+        /// </summary>
+        public T AddComponentToTop<T>(T component) where T : Component
+        {
+            AddComponent(typeof(T), component);
+            ReorderComponentToTop(component);
+            return component;
+        }
 
 		/// <summary>
+        /// Adds component to the entity the the specific index of the component list.
+        /// </summary>
+        public T AddComponent<T>(T component, int index) where T : Component
+		{
+			AddComponent(typeof(T), component);
+			ReorderComponent(component, index);
+			return component;
+        }
+
+        /// <summary>
 		/// Returns component of given class.
 		/// </summary>
 		public T GetComponent<T>() where T : Component =>
@@ -203,6 +222,14 @@ namespace MonoGo.Engine.EC
 		public Component GetComponent(Type type) =>
 			_componentDictionary[type];
 		
+        /// <summary>
+        /// Returns component of given type.
+		/// Useful for components with interfaces for example.
+        /// </summary>
+        public T FindComponent<T>()
+        {
+            return (dynamic)_componentDictionary.First(x => x.Value is T).Value;
+        }
 
 		/// <summary>
 		/// Retrieves component of given class, if it exists, and returns true. If it doesn't, returns false.
