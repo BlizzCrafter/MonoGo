@@ -19,7 +19,7 @@ namespace MonoGo.Engine.Particles.Modifiers.Container
                 var particle = iterator.Next();
                 var localPos = particle->Position - particle->TriggerPos;
 
-                var distSq = localPos.LengthSq();
+                var distSq = localPos.LengthSquared();
                 var normal = localPos.Axis().ToVector2();
 
                 if (Inside)

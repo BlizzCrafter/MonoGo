@@ -30,13 +30,5 @@ namespace MonoGo.Engine.Particles
         {
             return new Axis(value.X, value.Y);
         }
-
-        /// <summary>
-        /// Gets the squared length of the Vector2.
-        /// </summary>
-        public static float LengthSq(this Vector2 value)
-        {
-            return value.X * value.X + value.Y * value.Y;
-        }
     }
 }

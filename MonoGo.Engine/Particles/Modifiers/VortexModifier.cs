@@ -20,7 +20,7 @@ namespace MonoGo.Engine.Particles.Modifiers
                 var particle = iterator.Next();
                 var diff = Position + particle->TriggerPos - particle->Position;
 
-                var distance2 = diff.LengthSq();
+                var distance2 = diff.LengthSquared();
 
                 var speedGain = GravConst * Mass / distance2 * elapsedSeconds;
                 // normalize distances and multiply by speedGain
