@@ -5,6 +5,9 @@ using MonoGo.Engine.Utils.Coroutines;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.Utils.CustomCollections;
 using MonoGo.Engine.Cameras;
+using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
+using System.ComponentModel;
 
 namespace MonoGo.Engine.EC
 {
@@ -25,16 +28,18 @@ namespace MonoGo.Engine.EC
 				if (value != _depth)
 				{
 					_depth = value;
-					Layer._depthListOutdated = true;
+					Layer._depthListEntitiesOutdated = true;
 				}
 			}
 		}
 		private int _depth;
+		
+		internal bool _depthListComponentsOutdated = false;
 
-		/// <summary>
-		/// Tells f object was destroyed.
-		/// </summary>
-		public bool Destroyed {get; private set;} = false;
+        /// <summary>
+        /// Tells f object was destroyed.
+        /// </summary>
+        public bool Destroyed {get; private set;} = false;
 
 		/// <summary>
 		/// If false, Update and Destroy events won't be executed.
@@ -72,15 +77,17 @@ namespace MonoGo.Engine.EC
 		public Scene Scene => _layer.Scene;
 
 		// We need two collections to eliminate collection modification 
-		// during foreach while keeping GetComponent faste.
+		// during foreach while keeping GetComponent fast.
 		private Dictionary<Type, Component> _componentDictionary;
-		private SafeList<Component> _componentList;
-				
-		/// <summary>
-		/// If camera's RenderMask does not have any bits in common with entity's RenderMask, 
-		/// the entity will not be rendered for that camera.
-		/// </summary>
-		public RenderMask RenderMask = RenderMask.Default;
+        internal SafeList<Component> _componentList;
+        internal SafeList<Component> _depthSortedComponents;
+        private ComponentDepthComparer _depthComparer = new ComponentDepthComparer();
+
+        /// <summary>
+        /// If camera's RenderMask does not have any bits in common with entity's RenderMask, 
+        /// the entity will not be rendered for that camera.
+        /// </summary>
+        public RenderMask RenderMask = RenderMask.Default;
 
 		public Entity(Layer layer)
 		{
@@ -98,7 +105,6 @@ namespace MonoGo.Engine.EC
 		 * - Draw
 		 */
 
-
 		/// <summary>
 		/// Updates at a fixed rate, if entity is enabled.
 		/// </summary>
@@ -113,8 +119,6 @@ namespace MonoGo.Engine.EC
 			}
 		}
 		
-		
-		
 		/// <summary>
 		/// Updates every frame, if entity is enabled.
 		/// </summary>
@@ -128,8 +132,6 @@ namespace MonoGo.Engine.EC
 				}
 			}
 		}
-		
-		
 
 		/// <summary>
 		/// Draw updates. Triggers only if entity is visible.
@@ -139,7 +141,7 @@ namespace MonoGo.Engine.EC
 		/// </summary>
 		public virtual void Draw() 
 		{
-			foreach (var component in _componentList)
+			foreach (var component in _depthSortedComponents)
 			{
 				if (component.Visible)
 				{
@@ -147,8 +149,6 @@ namespace MonoGo.Engine.EC
 				}
 			}
 		}
-		
-
 
 		/// <summary>
 		///	Triggers right before destruction.
@@ -179,10 +179,10 @@ namespace MonoGo.Engine.EC
 			component.Owner = this;
 			component.Initialize();
 			component.Initialized = true;
+            _depthListComponentsOutdated = true;
 
-			return component; // Doing a passthrough for nicer syntax.	
+            return component; // Doing a passthrough for nicer syntax.	
 		}
-
 
 		/// <summary>
 		/// Adds component to the entity.
@@ -200,7 +200,7 @@ namespace MonoGo.Engine.EC
             return component;
         }
 
-		/// <summary>
+        /// <summary>
         /// Adds component to the entity the the specific index of the component list.
         /// </summary>
         public T AddComponent<T>(T component, int index) where T : Component
@@ -211,17 +211,17 @@ namespace MonoGo.Engine.EC
         }
 
         /// <summary>
-		/// Returns component of given class.
-		/// </summary>
-		public T GetComponent<T>() where T : Component =>
+        /// Returns component of given class.
+        /// </summary>
+        public T GetComponent<T>() where T : Component =>
 			(T)_componentDictionary[typeof(T)];
-		
-		/// <summary>
-		/// Returns component of given class.
-		/// </summary>
-		public Component GetComponent(Type type) =>
+
+        /// <summary>
+        /// Returns component of given class.
+        /// </summary>
+        public Component GetComponent(Type type) =>
 			_componentDictionary[type];
-		
+
         /// <summary>
         /// Returns component of given type.
 		/// Useful for components with interfaces for example.
@@ -231,10 +231,10 @@ namespace MonoGo.Engine.EC
             return (dynamic)_componentDictionary.First(x => x.Value is T).Value;
         }
 
-		/// <summary>
-		/// Retrieves component of given class, if it exists, and returns true. If it doesn't, returns false.
-		/// </summary>
-		public bool TryGetComponent<T>(out T component) where T : Component
+        /// <summary>
+        /// Retrieves component of given class, if it exists, and returns true. If it doesn't, returns false.
+        /// </summary>
+        public bool TryGetComponent<T>(out T component) where T : Component
 		{
 			var result = _componentDictionary.TryGetValue(typeof(T), out Component c);
 			component = (T)c; // Needs a manual cast.
@@ -247,7 +247,6 @@ namespace MonoGo.Engine.EC
 		public bool TryGetComponent(out Component component, Type type) =>
 			_componentDictionary.TryGetValue(type, out component);
 		
-
 		/// <summary>
 		/// Returns all the components. All of them.
 		/// </summary>
@@ -261,10 +260,8 @@ namespace MonoGo.Engine.EC
 				array[id] = componentPair.Value;
 				id += 1;
 			}
-
 			return array;
 		}
-
 
 		/// <summary>
 		/// Checks if an entity has the component of given type.
@@ -277,9 +274,7 @@ namespace MonoGo.Engine.EC
 		/// </summary>
 		public bool HasComponent(Type type) =>
 			_componentDictionary.ContainsKey(type);
-		
-
-		
+				
 		/// <summary>
 		/// Removes component from an entity and returns it.
 		/// </summary>
@@ -297,17 +292,78 @@ namespace MonoGo.Engine.EC
 				_componentDictionary.Remove(type);
 				_componentList.Remove(component);
 				component.Owner = null;
-				return component;
+                _depthListComponentsOutdated = true;
+
+                return component;
 			}
 			return null;
 		}
 
-		#endregion Components.
+        #region Ordering.
 
-		/// <summary>
-		/// Starts a new coroutine.
-		/// </summary>
-		public Coroutine StartCoroutine(IEnumerator routine)
+        /// <summary>
+        /// Changes the update order of a component and places it 
+        /// at the specified position of the component list.
+        /// </summary>
+        public void ReorderComponent(Component component, int index)
+        {
+            if (!_componentList.Contains(component))
+            {
+                throw new Exception("Cannot reorder component - it doesn't belong to this entity.");
+            }
+            _componentList.Remove(component);
+            _componentList.Insert(index, component);
+        }
+
+        /// <summary>
+        /// Changes the update order of an component and places it 
+        /// at the top of the component list.
+        /// </summary>
+        public void ReorderComponentToTop(Component component) =>
+            ReorderComponent(component, 0);
+
+        /// <summary>
+        /// Changes the update order of a component and places it 
+        /// at the bottom of the component list.
+        /// </summary>
+        public void ReorderComponentToBottom(Component component)
+        {
+            if (!_componentList.Contains(component))
+            {
+                throw new Exception("Cannot reorder component - it doesn't belong to this entity.");
+            }
+            _componentList.Remove(component);
+            _componentList.Add(component);
+        }
+
+        #endregion Ordering.
+
+        #endregion Components.
+
+        /// <summary>
+        /// Sorts the components of this entity by depth, if depth sorting is enabled.
+        /// </summary>
+        internal void SortByDepth()
+        {
+			if (Layer.DepthSorting)
+			{
+				if (_depthListComponentsOutdated)
+				{
+					_depthSortedComponents = new SafeList<Component>(_componentList.ToList());
+					_depthSortedComponents.Sort(_depthComparer);
+					_depthListComponentsOutdated = false;
+				}
+			}
+			else
+			{
+                _depthSortedComponents = _componentList;
+            }
+        }
+
+        /// <summary>
+        /// Starts a new coroutine.
+        /// </summary>
+        public Coroutine StartCoroutine(IEnumerator routine)
 		{
 			if (!HasComponent<CCoroutineRunner>())
 			{
