@@ -1,34 +1,25 @@
-﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine;
+﻿using System.Linq;
+using Microsoft.Xna.Framework;
+using MonoGo.Engine.EC;
 using MonoGo.Engine.Particles;
 using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
-using System.Linq;
 
 namespace MonoGo.Samples.Misc
 {
-    public class ParticleSampleEntity : ParticleEffectEntity
+    public class ParticleEditorEntity : Entity
     {
         public PositionComponent PositionComponent { get; set; }
+        public ParticleEffect ParticleEffect { get; set; }
 
-        public ParticleSampleEntity(
-            Layer layer, 
-            ParticleEffect particleEffect,
-            IMovable followable = default,
-            Vector2 position = default) 
-            : base(layer, particleEffect, followable, new PositionComponent(position))
-        {
-            PositionComponent = AddComponent(new PositionComponent(position));
-        }
-
-        public ParticleSampleEntity(
+        public ParticleEditorEntity(
             Layer layer,
-            string particleEffectFilePath,
-            IMovable followable = default,
-            Vector2 position = default)
-            : base(layer, particleEffectFilePath, followable, new PositionComponent(position))
+            Vector2 position,
+            ParticleEffect particleEffect) 
+            : base(layer)
         {
             PositionComponent = AddComponent(new PositionComponent(position));
+            ParticleEffect = particleEffect;
         }
 
         public void OffsetX(float value)
