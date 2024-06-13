@@ -17,12 +17,12 @@ namespace MonoGo.Samples.Misc
 
         public ParticleEditorEntity(
             Layer layer,
-            ParticleEffectComponent cParticleEffectComponent) 
+            ParticleEffectComponent particleEffectComponent) 
             : base(layer)
         {
             Visible = false;
 
-            ParticleEffectComponent = cParticleEffectComponent;
+            ParticleEffectComponent = particleEffectComponent;
         }
 
         public override void Update()
@@ -31,39 +31,40 @@ namespace MonoGo.Samples.Misc
 
             if (_activeParticlesParagraph != null)
             {
-                _activeParticlesParagraph.Text = "Active Particles:{{YELLOW}}" + ParticleEffectComponent.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
+                _activeParticlesParagraph.Text = 
+                    "Active Particles:{{YELLOW}}" + ParticleEffectComponent.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
             }
         }
 
         public void OffsetX(float value)
         {
             var player = Layer.FindEntity<Player>();
-            var cParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            cParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Offset = new Vector2(value, x.Offset.Y));
         }
 
         public void OffsetY(float value)
         {
             var player = Layer.FindEntity<Player>();
-            var cParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            cParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Offset = new Vector2(x.Offset.X, value));
         }
 
         public void Speed(float value)
         {
             var player = Layer.FindEntity<Player>();
-            var cParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            cParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Speed = value);
         }
 
         public void ToggleInside()
         {
             var player = Layer.FindEntity<Player>();
-            var cParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            cParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Inside = !x.Inside);
         }
 
