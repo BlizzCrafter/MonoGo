@@ -110,7 +110,8 @@ namespace MonoGo.Samples
             // Create other GUIs last so that we don't steal input focus their.
             CurrentScene?.GetEntityList<Entity>()
                 .Where(x => x is IHaveGUI)
-                .Select(x => x as IHaveGUI).FirstOrDefault()?.CreateUI();
+                .Select(x => x as IHaveGUI).ToList()
+                .ForEach(x => x.CreateUI());
         }
 
 		public override void Update()
