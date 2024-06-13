@@ -13,6 +13,11 @@
 		public Entity Owner {get; internal set;}
 
 		/// <summary>
+		/// The key of this component.
+		/// </summary>
+        public string Key { get; internal set; }
+
+        /// <summary>
 		/// Tells if this component was initialized.
 		/// </summary>
 		public bool Initialized {get; internal set;} = false;
