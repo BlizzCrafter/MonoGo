@@ -73,6 +73,7 @@ namespace MonoGo.Engine.Particles
         public void Deserialize(string filePath)
         {
             ParticleEffect = new ParticleEffect(filePath);
+            AttractParticlesTo(OwnerMovable);
         }
     }
 }

@@ -36,8 +36,6 @@ namespace MonoGo.Samples.Demos
         private ParticleEditorEntity _particleEditorEntity;
         private bool _playerAttractsParticles = true;
 
-        private RichParagraph ActiveParticles_Paragraph;
-
         public ParticlesDemo(Layer layer) : base(layer)
         {
             layer.DepthSorting = true;
@@ -64,15 +62,14 @@ namespace MonoGo.Samples.Demos
                     }
                 }
             };
+            var cParticleEffect = new ParticleEffectComponent(particleEffect, GameMgr.WindowManager.CanvasCenter) 
+            { 
+                Depth = 1 
+            };
 
             _player = new Player(layer, new Vector2(400, 300));
-            _player.AddComponentToTop(
-                new ParticleEffectComponent(particleEffect, GameMgr.WindowManager.CanvasCenter) { Depth = 1 });
-
-            _particleEditorEntity = new ParticleEditorEntity(
-                layer,
-                _player.GetComponent<PositionComponent>().Position,
-                particleEffect);
+            _player.AddComponentToTop(cParticleEffect);            
+            _particleEditorEntity = new ParticleEditorEntity(layer, cParticleEffect);
 
             CheckPlayerAttractsParticles();
         }
@@ -80,11 +77,6 @@ namespace MonoGo.Samples.Demos
         public override void Update()
         {
             base.Update();
-
-            if (ActiveParticles_Paragraph != null)
-            {
-                ActiveParticles_Paragraph.Text = "Active Particles:{{YELLOW}}" + _particleEditorEntity.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
-            }
 
             if (Input.CheckButtonPress(ToggleFollowButton))
             {
@@ -146,13 +138,6 @@ namespace MonoGo.Samples.Demos
 
         public void CreateUI()
         {
-            Panel topPanel = new(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
-
-            ActiveParticles_Paragraph = new RichParagraph("", Anchor.Center);
-            topPanel.AddChild(ActiveParticles_Paragraph);
-
-            UserInterface.Active.AddUIEntity(topPanel);
-
             var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
             {
                 var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
