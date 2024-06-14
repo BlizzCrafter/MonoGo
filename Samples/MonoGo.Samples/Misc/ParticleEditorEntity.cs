@@ -86,8 +86,10 @@ namespace MonoGo.Samples.Misc
                 textInput.PlaceholderText = "Offest:X=0";
                 textInput.OnValueChange += (EntityUI entityUI) =>
                 {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    OffsetX(value);
+                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
+                    {
+                        OffsetX(value); 
+                    }
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
@@ -97,8 +99,10 @@ namespace MonoGo.Samples.Misc
                 textInput.PlaceholderText = "Offest:Y=0";
                 textInput.OnValueChange += (EntityUI entityUI) =>
                 {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    OffsetY(value);
+                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
+                    {
+                        OffsetY(value);
+                    }
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
@@ -108,8 +112,10 @@ namespace MonoGo.Samples.Misc
                 textInput.PlaceholderText = "Speed=1";
                 textInput.OnValueChange += (EntityUI entityUI) =>
                 {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    Speed(value);
+                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
+                    {
+                        Speed(value);
+                    }
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
