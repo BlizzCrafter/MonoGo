@@ -9,14 +9,11 @@ using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.Particles.Profiles;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
-using MonoGo.Engine.UI;
-using MonoGo.Engine.UI.Entities;
-using MonoGo.Engine.UI.Entities.TextValidators;
 using MonoGo.Samples.Misc;
 
 namespace MonoGo.Samples.Demos
 {
-    public class ParticlesDemo : Entity, IHaveGUI
+    public class ParticlesDemo : Entity
     {
         public static readonly string Description =
             "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
@@ -62,6 +59,7 @@ namespace MonoGo.Samples.Demos
                     }
                 }
             };
+
             var cParticleEffect = new ParticleEffectComponent(particleEffect, GameMgr.WindowManager.CanvasCenter) 
             { 
                 Depth = 1 
@@ -133,47 +131,6 @@ namespace MonoGo.Samples.Demos
             {
                 var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
                 cParticleEffect.AttractParticlesTo(null);
-            }
-        }
-
-        public void CreateUI()
-        {
-            var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
-            bottomPanel.Size = new Vector2(0, 180);
-
-            var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
-            {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:X=0";
-                textInput.OnValueChange += (EntityUI entityUI) => 
-                {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleEditorEntity.OffsetX(value);
-                };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
-            }
-            {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:Y=0";
-                textInput.OnValueChange += (EntityUI entityUI) => 
-                {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleEditorEntity.OffsetY(value);
-                }; 
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
-            }
-            {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Speed=1";
-                textInput.OnValueChange += (EntityUI entityUI) => 
-                {
-                    float.TryParse(entityUI.GetValue().ToString(), out float value);
-                    _particleEditorEntity.Speed(value);
-                };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
             }
         }
     }

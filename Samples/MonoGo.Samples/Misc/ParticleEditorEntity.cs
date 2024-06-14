@@ -6,6 +6,7 @@ using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Entities.TextValidators;
 
 namespace MonoGo.Samples.Misc
 {
@@ -75,6 +76,44 @@ namespace MonoGo.Samples.Misc
             topPanel.AddChild(_activeParticlesParagraph);
 
             UserInterface.Active.AddUIEntity(topPanel);
+
+            var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
+            bottomPanel.Size = new Vector2(0, 180);
+
+            var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Offest:X=0";
+                textInput.OnValueChange += (EntityUI entityUI) =>
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    OffsetX(value);
+                };
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Offest:Y=0";
+                textInput.OnValueChange += (EntityUI entityUI) =>
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    OffsetY(value);
+                };
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
+            {
+                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
+                textInput.PlaceholderText = "Speed=1";
+                textInput.OnValueChange += (EntityUI entityUI) =>
+                {
+                    float.TryParse(entityUI.GetValue().ToString(), out float value);
+                    Speed(value);
+                };
+                textInput.Validators.Add(new NumbersOnly(true));
+                descriptionPanel.AddChild(textInput);
+            }
         }
     }
 }
