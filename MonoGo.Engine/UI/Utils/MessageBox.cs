@@ -175,7 +175,7 @@ namespace MonoGo.Engine.UI.Utils
                 fader.FillColor = new Color(0, 0, 0, 100);
                 fader.OutlineWidth = 0;
                 fader.ClickThrough = false;
-                UserInterface.Active.AddEntity(fader);
+                UserInterface.Active.AddUIEntity(fader);
                 ret.BackgroundFader = fader;
             }
 
@@ -237,7 +237,7 @@ namespace MonoGo.Engine.UI.Utils
             // add panel to active ui root
             else
             {
-                UserInterface.Active.AddEntity(panel);
+                UserInterface.Active.AddUIEntity(panel);
             }
             return ret;
         }

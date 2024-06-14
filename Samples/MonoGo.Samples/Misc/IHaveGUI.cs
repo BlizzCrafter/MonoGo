@@ -1,6 +1,6 @@
 ﻿namespace MonoGo.Samples.Misc
 {
-    public interface IGuiEntity
+    public interface IHaveGUI
     {
         void CreateUI();
     }

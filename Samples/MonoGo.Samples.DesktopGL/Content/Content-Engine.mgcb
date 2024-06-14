@@ -557,3 +557,8 @@
 /importer:SpriteGroupImporter
 /processor:SpriteGroupProcessor
 /build:../../../Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup
+
+#begin ../../../Content/Graphics/Particles.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/Graphics/Particles.spritegroup;Graphics/Particles.spritegroup

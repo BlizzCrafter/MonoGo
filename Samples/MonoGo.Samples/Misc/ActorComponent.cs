@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Utils;
@@ -32,8 +33,6 @@ namespace MonoGo.Samples.Misc
 			{
 				// Retrieving the position component from entity.
 				var position = Owner.GetComponent<PositionComponent>();
-
-				position.PreviousPosition = position.Position;
 				position.Position += TimeKeeper.Global.Time(Speed) * Direction.ToVector2();
 			}
 		}

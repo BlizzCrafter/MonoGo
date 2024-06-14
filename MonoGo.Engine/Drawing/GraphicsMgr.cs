@@ -62,12 +62,11 @@ namespace MonoGo.Engine.Drawing
 		/// Initialization function for draw manager. 
 		/// </summary>
 		public static void Init(GraphicsDevice device)
-		{
-			Device = device;			
+        {
+            Device = device;
 			Device.DepthStencilState = DepthStencilState.DepthRead;
 
-			
-			CircleShape.CircleVerticesCount = 16;
+            CircleShape.CircleVerticesCount = 16;
 			
 			_cameraRasterizerState = new RasterizerState
 			{
@@ -76,8 +75,6 @@ namespace MonoGo.Engine.Drawing
 				FillMode = FillMode.Solid
 			};
 			VertexBatch = new VertexBatch(Device);
-			
-
 			VertexBatch.World = Matrix.CreateTranslation(Vector3.Zero);
 		}
 

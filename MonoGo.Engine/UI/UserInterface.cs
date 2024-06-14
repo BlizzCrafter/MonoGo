@@ -420,7 +420,7 @@ namespace MonoGo.Engine.UI
         /// Add an entity to screen.
         /// </summary>
         /// <param name="entity">Entity to add.</param>
-        public EntityUI AddEntity(EntityUI entity)
+        public EntityUI AddUIEntity(EntityUI entity)
         {
             return Root.AddChild(entity);
         }
@@ -429,7 +429,7 @@ namespace MonoGo.Engine.UI
         /// Remove an entity from screen.
         /// </summary>
         /// <param name="entity">Entity to remove.</param>
-        public void RemoveEntity(EntityUI entity)
+        public void RemoveUIEntity(EntityUI entity)
         {
             Root.RemoveChild(entity);
         }
@@ -523,7 +523,7 @@ namespace MonoGo.Engine.UI
                     {
                         _tooltipEntity.Locked = true;
                         _tooltipEntity.ClickThrough = true;
-                        AddEntity(_tooltipEntity);
+                        AddUIEntity(_tooltipEntity);
                     }
                 }
             }
@@ -559,18 +559,18 @@ namespace MonoGo.Engine.UI
                 Root.MarkAsDirty();
             }
 
-                // check if screen size changed or don't have a render target yet. if so, create the render target.
-                if (_renderTarget == null ||
-                    _renderTarget.Width != ScreenWidth ||
-                    _renderTarget.Height != ScreenHeight)
-                {
-                    // recreate render target
-                    DisposeRenderTarget();
-                    _renderTarget = new RenderTarget2D(_spriteBatch.GraphicsDevice,
-                        ScreenWidth, ScreenHeight, false,
-                        _spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
-                        _spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
-                        RenderTargetUsage.PreserveContents);
+            // check if screen size changed or don't have a render target yet. if so, create the render target.
+            if (_renderTarget == null ||
+                _renderTarget.Width != ScreenWidth ||
+                _renderTarget.Height != ScreenHeight)
+            {
+                // recreate render target
+                DisposeRenderTarget();
+                _renderTarget = new RenderTarget2D(_spriteBatch.GraphicsDevice,
+                    ScreenWidth, ScreenHeight, false,
+                    _spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat,
+                    _spriteBatch.GraphicsDevice.PresentationParameters.DepthStencilFormat, 0,
+                    RenderTargetUsage.PreserveContents);
 
                 RenderMgr.GUISurface = new Surface(_renderTarget);
             }

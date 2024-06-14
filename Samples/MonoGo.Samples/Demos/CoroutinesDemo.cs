@@ -127,15 +127,17 @@ namespace MonoGo.Samples.Demos
 
 			yield break; // Yield break abandons the coroutine. The code below will not be executed.
 
+#pragma warning disable CS0162 // Unreachable Code.
+            yield return Wait.ForSeconds(0.5);
+            _sequenceStage += 1;
 			yield return Wait.ForSeconds(0.5);
 			_sequenceStage += 1;
 			yield return Wait.ForSeconds(0.5);
 			_sequenceStage += 1;
-			yield return Wait.ForSeconds(0.5);
-			_sequenceStage += 1;
-		}
+#pragma warning restore CS0162 // Unreachable Code.
+        }
 
-		private IEnumerator SubsequenceCoroutine()
+        private IEnumerator SubsequenceCoroutine()
 		{
 			for (var i = 0; i < 10; i += 1)
 			{

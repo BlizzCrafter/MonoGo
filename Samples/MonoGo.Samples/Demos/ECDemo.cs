@@ -11,7 +11,7 @@ namespace MonoGo.Samples.Demos
 	{
 		public static readonly string Description =
             "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
-            "Bots > {{L_GREEN}}Update{{DEFAULT}}: {{YELLOW}}" + ToggleEnabledButton + "{{L_GREEN}} Draw{{DEFAULT}}: {{YELLOW}}" + ToggleVisibilityButton + "{{DEFAULT}}";
+            "Bots > {{L_GREEN}}Update{{DEFAULT}}:{{YELLOW}}" + ToggleEnabledButton + " {{L_GREEN}}Draw{{DEFAULT}}:{{YELLOW}}" + ToggleVisibilityButton + " {{DEFAULT}}";
 
 		public const Buttons ToggleVisibilityButton = Buttons.N;
 		public const Buttons ToggleEnabledButton = Buttons.M;

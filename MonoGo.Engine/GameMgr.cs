@@ -35,9 +35,7 @@ namespace MonoGo.Engine
 		/// </summary>
 		public static double ElapsedTime { get; private set; }
 
-
 		public static double FixedUpdateRate = 0.5; // Seconds.
-
 
 		public static double MaxGameSpeed
 		{
@@ -73,7 +71,6 @@ namespace MonoGo.Engine
 		}
 		private static double _minGameSpeed = 30;
 
-
 		/// <summary>
 		/// All game's assemblies, including ones from libraries.
 		/// </summary>
@@ -84,19 +81,19 @@ namespace MonoGo.Engine
 		/// </summary>
 		public static Dictionary<string, Type> Types { get; private set; }
 
-		public static int Fps { get; private set; }
+		public static int FPS { get; private set; }
 		private static int _fpsCount;
 		private static double _fpsAddition;
 
-
 		public static void Init(Game game)
 		{
+			JsonConverters.Init();
+
 			Game = game;
 			Game.IsMouseVisible = false;
 
 			var keyboardBind = StuffResolver.GetStuff<ITextInputBinder>();
 			keyboardBind?.Init();
-
 
 			Input.MaxGamepadCount = 2;
 
@@ -137,8 +134,6 @@ namespace MonoGo.Engine
 			SceneMgr.PostUpdateRoutine();
 		}
 
-
-
 		/// <summary>
 		/// Performs drawing-related routines and calls Draw events for entities and systems.
 		/// </summary>
@@ -149,7 +144,7 @@ namespace MonoGo.Engine
 
 			if (_fpsAddition >= 1) // Every second value updates and counters reset.
 			{
-				Fps = _fpsCount;
+				FPS = _fpsCount;
 				_fpsAddition -= 1;
 				_fpsCount = 0;
 			}
@@ -157,15 +152,11 @@ namespace MonoGo.Engine
 			GraphicsMgr.Update(gameTime);
 		}
 
-
-
 		/// <summary>
 		/// Closes the game.
 		/// </summary>
 		public static void ExitGame() =>
 			Game.Exit();
-
-
 
 		#region Assembly loading.
 
@@ -225,6 +216,5 @@ namespace MonoGo.Engine
 		}
 
 		#endregion Assembly loading.
-
 	}
 }

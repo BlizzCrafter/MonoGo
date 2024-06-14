@@ -24,14 +24,14 @@ namespace MonoGo.Samples
 
 		float _rotationSpeed = 120;
 
-		public const Buttons UpButton = Buttons.Up;
-		public const Buttons DownButton = Buttons.Down;
-		public const Buttons LeftButton = Buttons.Left;
-		public const Buttons RightButton = Buttons.Right;
-		public const Buttons ZoomInButton = Buttons.Z;
-		public const Buttons ZoomOutButton = Buttons.X;
-		public const Buttons RotateRightButton = Buttons.V;
-		public const Buttons RotateLeftButton = Buttons.C;
+		public const Buttons UpButton = Buttons.NumPad8;
+		public const Buttons DownButton = Buttons.NumPad5;
+		public const Buttons LeftButton = Buttons.NumPad4;
+		public const Buttons RightButton = Buttons.NumPad6;
+		public const Buttons ZoomInButton = Buttons.Add;
+		public const Buttons ZoomOutButton = Buttons.Subtract;
+		public const Buttons RotateRightButton = Buttons.NumPad7;
+		public const Buttons RotateLeftButton = Buttons.NumPad9;
 
 
 		public CameraController(Layer layer, Camera camera) : base(layer)

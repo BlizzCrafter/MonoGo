@@ -39,7 +39,7 @@ namespace MonoGo.Engine.SceneSystem
 		public bool Enabled = true;
 
 
-		internal bool _depthListOutdated = false;
+		internal bool _depthListEntitiesOutdated = false;
 
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace MonoGo.Engine.SceneSystem
 
 
 		/// <summary>
-		/// If true, entities and components will be sorted by their depth.
+		/// If true, entities and their components will be sorted by their depth.
 		/// </summary>
 		public bool DepthSorting
 		{
@@ -71,13 +71,21 @@ namespace MonoGo.Engine.SceneSystem
 				if (value)
 				{
 					_depthSortedEntities = new SafeList<Entity>();
-					_depthListOutdated = true;
+					_entities.ToList().ForEach(
+						x =>
+						{
+							x._depthSortedComponents = new SafeList<Component>();
+							x._depthListComponentsOutdated = true;
+						});
+					_depthListEntitiesOutdated = true;
 				}
 				else
 				{
 					// Linking "sorted" lists directly to primary lists.
 					_depthSortedEntities = _entities;
-				}
+                    _entities.ToList().ForEach(x => x._depthSortedComponents = x._componentList);
+
+                }
 			}
 		}
 		private bool _depthSorting;
@@ -120,8 +128,6 @@ namespace MonoGo.Engine.SceneSystem
 			
 			DepthSorting = false;
 		}
-
-
 
 		#region Entity methods.
 
@@ -224,8 +230,6 @@ namespace MonoGo.Engine.SceneSystem
 
 		#endregion Entity methods.
 
-
-
 		#region Ordering.
 
 		/// <summary>
@@ -242,14 +246,12 @@ namespace MonoGo.Engine.SceneSystem
 			_entities.Insert(index, entity);
 		}
 
-
 		/// <summary>
 		/// Changes the update order of an entity and places it 
 		/// at the top of an entity list.
 		/// </summary>
 		public void ReorderEntityToTop(Entity entity) =>
 			ReorderEntity(entity, 0);
-
 
 		/// <summary>
 		/// Changes the update order of an entity and places it 
@@ -380,38 +382,35 @@ namespace MonoGo.Engine.SceneSystem
 
 		#endregion Events.
 
-
-
 		/// <summary>
-		/// Sorts entites and components by depth, if depth sorting is enabled.
+		/// Sorts entities and their components by depth, if depth sorting is enabled.
 		/// </summary>
 		internal void SortByDepth()
 		{
 			if (DepthSorting)
 			{
-				if (_depthListOutdated)
+				if (_depthListEntitiesOutdated)
 				{
 					_depthSortedEntities = new SafeList<Entity>(_entities.ToList());
-					_depthSortedEntities.Sort(_depthComparer); 
-					_depthListOutdated = false;
+					_depthSortedEntities.Sort(_depthComparer);
+					_depthListEntitiesOutdated = false;
 				}
 			}
 			else
 			{
 				_depthSortedEntities = _entities;
-			}
-		}
-
+            }
+            _depthSortedEntities.ToList().ForEach(x => x.SortByDepth());
+        }
 
 		internal void AddEntity(Entity entity)
 		{
 			_entities.Add(entity);
-			_depthListOutdated = true;
+			_depthListEntitiesOutdated = true;
 		}
 
 		internal void RemoveEntity(Entity entity) =>
 			_entities.Remove(entity);
-
 
 		internal void UpdateEntityList()
 		{
@@ -424,9 +423,7 @@ namespace MonoGo.Engine.SceneSystem
 				}
 			}
 			// Clearing main list from destroyed objects.
-
 		}
-
 
 		/// <summary>
 		/// Applies shaders to the camera surface.

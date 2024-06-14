@@ -18,10 +18,6 @@ namespace MonoGo.Samples.Demos
             "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Triggers{{DEFAULT}}";
 
 		Color _mainColor = Color.White;
-		Color _secondaryColor = Color.Violet;
-
-		double _animation = 0;
-		double _animationSpeed = 0.25;
 
 		StringBuilder _keyboardInput = new StringBuilder();
 		int _keyboardInputMaxLength = 32;

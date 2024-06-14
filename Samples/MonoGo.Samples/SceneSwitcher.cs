@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using MonoGo.Engine;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.SceneSystem;
@@ -6,9 +9,6 @@ using MonoGo.Samples.Demos;
 using MonoGo.Samples.Misc;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MonoGo.Samples
 {
@@ -19,16 +19,24 @@ namespace MonoGo.Samples
             "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}" + Environment.NewLine +
             "Restart:{{YELLOW}}" + _restartButton + "{{DEFAULT}} GUI:{{YELLOW}}" + _toggleUIButton + "{{DEFAULT}} Fullscreen:{{YELLOW}}" + _toggleFullscreenButton + "{{DEFAULT}} Exit:{{YELLOW}}" + _exitButton;
 
+        const Buttons _prevSceneButton = Buttons.Q;
+        const Buttons _nextSceneButton = Buttons.E;
+        const Buttons _restartButton = Buttons.F1;
+        const Buttons _toggleUIButton = Buttons.F2;
+        const Buttons _toggleFullscreenButton = Buttons.F3;
+        const Buttons _exitButton = Buttons.Escape;
+
         Button nextExampleButton;
         Button previousExampleButton;
         RichParagraph FPS_Paragraph;
 
-        public List<SceneFactory> Factories = new List<SceneFactory>
-		{
+        public List<SceneFactory> Factories = new()
+        {
             new SceneFactory(typeof(UIDemo)),
             new SceneFactory(typeof(ShapeDemo)),
             new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
             new SceneFactory(typeof(SpriteDemo)),
+            new SceneFactory(typeof(ParticlesDemo), ParticlesDemo.Description),
             new SceneFactory(typeof(InputDemo), InputDemo.Description),
             new SceneFactory(typeof(ECDemo), ECDemo.Description),
             new SceneFactory(typeof(SceneSystemDemo), SceneSystemDemo.Description),
@@ -39,22 +47,9 @@ namespace MonoGo.Samples
 			new SceneFactory(typeof(CollisionsDemo)),
         };
 
-		public int CurrentSceneID {get; private set;} = 0;
+		public int CurrentSceneID { get; private set; } = 0;
 		public Scene CurrentScene => CurrentFactory.Scene;
 		public SceneFactory CurrentFactory => Factories[CurrentSceneID];
-
-        int _barHeight = 64;
-		Color _barColor = Color.Black * 0.5f;
-		Color _textColor = Color.White;
-
-		Vector2 _indent = new Vector2(8, 4);
-
-        const Buttons _prevSceneButton = Buttons.F1;
-        const Buttons _nextSceneButton = Buttons.F2;
-		const Buttons _restartButton = Buttons.F3;
-		const Buttons _toggleUIButton = Buttons.F4;
-		const Buttons _toggleFullscreenButton = Buttons.F5;
-        const Buttons _exitButton = Buttons.Escape;
 
         CameraController _cameraController;
 
@@ -71,7 +66,7 @@ namespace MonoGo.Samples
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
 
-            int panelHeight = 180;
+            int panelHeight = 150;
             var isUIDemo = false;
             if (CurrentFactory?.Type == typeof(UIDemo))
             {
@@ -79,19 +74,22 @@ namespace MonoGo.Samples
                 panelHeight = 65;
             }
 
-            Panel menuPanel = new Panel(new Vector2(0, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
-            menuPanel.Padding = Vector2.Zero;
-            UserInterface.Active.AddEntity(menuPanel);
+            Panel bottomPanel = new Panel(new Vector2(GameMgr.WindowManager.CanvasSize.X, panelHeight), isUIDemo ? PanelSkin.None : PanelSkin.Default, Anchor.BottomCenter);
+            bottomPanel.Identifier = "BottomPanel";
+            bottomPanel.Padding = Vector2.Zero;
+            UserInterface.Active.AddUIEntity(bottomPanel);
 
-            previousExampleButton = new Button($"<- ({_prevSceneButton}) Back", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(280, 0));
+            previousExampleButton = new Button($"<- ({_prevSceneButton}) Back", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(250, 0));
             previousExampleButton.OnClick = (EntityUI btn) => { PreviousScene(); };
-            menuPanel.AddChild(previousExampleButton);
+            bottomPanel.AddChild(previousExampleButton);
 
             if (CurrentScene != null && !isUIDemo)
             {
                 //Scene Name
                 {
-                    Panel descriptionPanel = new Panel(new Vector2(700, 0), PanelSkin.None, Anchor.Center);
+                    Panel descriptionPanel = new Panel(new Vector2(bottomPanel.Size.X - 500, 0), PanelSkin.None, Anchor.Center);
+                    descriptionPanel.Identifier = "DescriptionPanel";
+                    descriptionPanel.Padding = new Vector2(10, 10);
 
                     FPS_Paragraph = new RichParagraph("", Anchor.TopRight);
                     descriptionPanel.AddChild(FPS_Paragraph);
@@ -100,19 +98,20 @@ namespace MonoGo.Samples
                     descriptionPanel.AddChild(new HorizontalLine());
                     descriptionPanel.AddChild(new RichParagraph(sceneDescription));
                     descriptionPanel.PanelOverflowBehavior = PanelOverflowBehavior.Clipped;
-                    menuPanel.AddChild(descriptionPanel);
+                    bottomPanel.AddChild(descriptionPanel);
                 }
             }
 
-            nextExampleButton = new Button($"Next ({_nextSceneButton}) ->", ButtonSkin.Default, Anchor.CenterRight, new Vector2(280, 0));
+            nextExampleButton = new Button($"Next ({_nextSceneButton}) ->", ButtonSkin.Default, Anchor.CenterRight, new Vector2(250, 0));
             nextExampleButton.OnClick = (EntityUI btn) => { NextScene(); };
             nextExampleButton.Identifier = "next_btn";
-            menuPanel.AddChild(nextExampleButton);
+            bottomPanel.AddChild(nextExampleButton);
 
             // Create other GUIs last so that we don't steal input focus their.
             CurrentScene?.GetEntityList<Entity>()
-                .Where(x => x is IGuiEntity)
-                .Select(x => x as IGuiEntity).FirstOrDefault()?.CreateUI();
+                .Where(x => x is IHaveGUI)
+                .Select(x => x as IHaveGUI).ToList()
+                .ForEach(x => x.CreateUI());
         }
 
 		public override void Update()
@@ -149,7 +148,7 @@ namespace MonoGo.Samples
                 GameMgr.ExitGame();
             }
 
-            if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.Fps + "{{DEFAULT}}";
+            if (FPS_Paragraph != null) FPS_Paragraph.Text = "FPS: {{YELLOW}}" + GameMgr.FPS + "{{DEFAULT}}";
             
             UserInterface.Active.Update();
         }

@@ -43,12 +43,12 @@ namespace MonoGo.Engine
 		private int _canvasWidth;
 		private int _canvasHeight;
 
-
+		public Vector2 CanvasCenter => new(_canvasWidth / 2f, _canvasHeight / 2f);
 
 		/// <summary>
 		/// Window position.
 		/// </summary>
-		public Point WindowPosision
+		public Point WindowPosition
 		{
 			get => Window.Position;
 			set => Window.Position = value;
@@ -114,6 +114,6 @@ namespace MonoGo.Engine
 		/// Centers game window on the screen.
 		/// </summary>
 		public void CenterWindow() => 
-			WindowPosision = ((ScreenSize - CanvasSize) / 2).ToPoint();
+			WindowPosition = ((ScreenSize - CanvasSize) / 2).ToPoint();
 	}
 }

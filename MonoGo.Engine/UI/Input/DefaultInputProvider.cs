@@ -32,9 +32,6 @@ namespace MonoGo.Engine.UI
         Vector2 _newMousePos;
         Vector2 _oldMousePos;
 
-        // store current frame gametime
-        GameTime _currTime;
-
         // store all Key values in lookup array
         Keys[] _allKeyValues;
 
