@@ -138,6 +138,9 @@ namespace MonoGo.Samples.Demos
 
         public void CreateUI()
         {
+            var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
+            bottomPanel.Size = new Vector2(0, 180);
+
             var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
             {
                 var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
