@@ -228,131 +228,158 @@ namespace MonoGo.Engine.PostProcessing
             BloomPreset = BloomPresets.WeakWide;
             SetBloomPreset(BloomPreset);
         }
-                
-        internal static void Process(RenderTarget2D renderTarget)
+
+        internal static void Process()
         {
-            if (Surface == null
-                || Surface.Size.X != renderTarget.Width
-                || Surface.Size.Y != renderTarget.Height)
+            if (RenderMgr.BloomFX)
             {
-                Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
-            }
+                RenderTarget2D renderTarget;
+                if (RenderMgr.ColorGradingFX) renderTarget = ColorGrading.Surface.RenderTarget;
+                else renderTarget = RenderMgr.SceneSurface.RenderTarget;
 
-            _radiusMultiplier = _bloomResolution.X / renderTarget.Width;
+                if (Surface == null
+                    || Surface.Size.X != renderTarget.Width
+                    || Surface.Size.Y != renderTarget.Height)
+                {
+                    Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
+                }
 
-            GraphicsMgr.VertexBatch.RasterizerState = RasterizerState.CullNone;
-            GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
+                _radiusMultiplier = _bloomResolution.X / renderTarget.Width;
 
-            GraphicsMgr.VertexBatch.Texture = renderTarget;
-            GraphicsMgr.VertexBatch.Effect = _shaderEffect;
-            _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
-            _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
-            _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
+                GraphicsMgr.VertexBatch.RasterizerState = RasterizerState.CullNone;
+                GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
 
-            //EXTRACT
-            //We extract the bright values which are above the Threshold and save them to Mip0
-            Surface.SetTarget(_bloomSurfaceMip0);
-            GraphicsMgr.Device.Clear(Color.Transparent);
+                GraphicsMgr.VertexBatch.Texture = renderTarget;
+                GraphicsMgr.VertexBatch.Effect = _shaderEffect;
+                _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
+                _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
+                _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
 
-            GraphicsMgr.VertexBatch.Texture = renderTarget;
-            BloomScreenTexture = renderTarget;
-            BloomInverseResolution = new Vector2(1.0f / _bloomResolution.X, 1.0f / _bloomResolution.Y);
-
-            if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
-            else _shaderEffect.CurrentTechnique = _bloomPassExtract;
-
-            GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
-            Surface.ResetTarget();
-
-            //Now downsample to the next lower mip texture
-            if (BloomDownsamplePasses > 0)
-            {
-                //DOWNSAMPLE TO MIP1
-                Surface.SetTarget(_bloomSurfaceMip1);
+                //EXTRACT
+                //We extract the bright values which are above the Threshold and save them to Mip0
+                Surface.SetTarget(_bloomSurfaceMip0);
                 GraphicsMgr.Device.Clear(Color.Transparent);
-                
-                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip0.RenderTarget;
-                BloomScreenTexture = _bloomSurfaceMip0.RenderTarget;
-                _shaderEffect.CurrentTechnique = _bloomPassDownsample;
+
+                GraphicsMgr.VertexBatch.Texture = renderTarget;
+                BloomScreenTexture = renderTarget;
+                BloomInverseResolution = new Vector2(1.0f / _bloomResolution.X, 1.0f / _bloomResolution.Y);
+
+                if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
+                else _shaderEffect.CurrentTechnique = _bloomPassExtract;
 
                 GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
                 Surface.ResetTarget();
 
-                if (BloomDownsamplePasses > 1)
+                //Now downsample to the next lower mip texture
+                if (BloomDownsamplePasses > 0)
                 {
-                    //Our input resolution is halfed, so our inverse 1/res. must be doubled
-                    BloomInverseResolution *= 2;
-
-                    //DOWNSAMPLE TO MIP2
-                    Surface.SetTarget(_bloomSurfaceMip2);
+                    //DOWNSAMPLE TO MIP1
+                    Surface.SetTarget(_bloomSurfaceMip1);
                     GraphicsMgr.Device.Clear(Color.Transparent);
 
-                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
-                    BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
+                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip0.RenderTarget;
+                    BloomScreenTexture = _bloomSurfaceMip0.RenderTarget;
                     _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
-
                     Surface.ResetTarget();
 
-                    if (BloomDownsamplePasses > 2)
+                    if (BloomDownsamplePasses > 1)
                     {
+                        //Our input resolution is halfed, so our inverse 1/res. must be doubled
                         BloomInverseResolution *= 2;
 
-                        //DOWNSAMPLE TO MIP3
-                        Surface.SetTarget(_bloomSurfaceMip3);
+                        //DOWNSAMPLE TO MIP2
+                        Surface.SetTarget(_bloomSurfaceMip2);
                         GraphicsMgr.Device.Clear(Color.Transparent);
 
-                        GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
-                        BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
+                        GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
+                        BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
                         _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                         GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                         Surface.ResetTarget();
 
-                        if (BloomDownsamplePasses > 3)
+                        if (BloomDownsamplePasses > 2)
                         {
                             BloomInverseResolution *= 2;
 
-                            //DOWNSAMPLE TO MIP4
-                            Surface.SetTarget(_bloomSurfaceMip4);
+                            //DOWNSAMPLE TO MIP3
+                            Surface.SetTarget(_bloomSurfaceMip3);
                             GraphicsMgr.Device.Clear(Color.Transparent);
 
-                            GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
-                            BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
+                            GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
+                            BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
                             _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                             GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                             Surface.ResetTarget();
 
-                            if (BloomDownsamplePasses > 4)
+                            if (BloomDownsamplePasses > 3)
                             {
                                 BloomInverseResolution *= 2;
 
-                                //DOWNSAMPLE TO MIP5
-                                Surface.SetTarget(_bloomSurfaceMip5);
+                                //DOWNSAMPLE TO MIP4
+                                Surface.SetTarget(_bloomSurfaceMip4);
                                 GraphicsMgr.Device.Clear(Color.Transparent);
 
-                                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
-                                BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
+                                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
+                                BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
                                 _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                                 GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                                 Surface.ResetTarget();
 
+                                if (BloomDownsamplePasses > 4)
+                                {
+                                    BloomInverseResolution *= 2;
+
+                                    //DOWNSAMPLE TO MIP5
+                                    Surface.SetTarget(_bloomSurfaceMip5);
+                                    GraphicsMgr.Device.Clear(Color.Transparent);
+
+                                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
+                                    BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
+                                    _shaderEffect.CurrentTechnique = _bloomPassDownsample;
+
+                                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+
+                                    Surface.ResetTarget();
+
+                                    ChangeBlendState();
+
+                                    //UPSAMPLE TO MIP4
+                                    Surface.SetTarget(_bloomSurfaceMip4);
+
+                                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip5.RenderTarget;
+                                    BloomScreenTexture = _bloomSurfaceMip5.RenderTarget;
+
+                                    BloomStrength = _bloomStrength5;
+                                    BloomRadius = _bloomRadius5;
+
+                                    if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                                    else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
+
+                                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+
+                                    Surface.ResetTarget();
+
+                                    BloomInverseResolution /= 2;
+                                }
+
                                 ChangeBlendState();
 
-                                //UPSAMPLE TO MIP4
-                                Surface.SetTarget(_bloomSurfaceMip4);
+                                //UPSAMPLE TO MIP3
+                                Surface.SetTarget(_bloomSurfaceMip3);
 
-                                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip5.RenderTarget;
-                                BloomScreenTexture = _bloomSurfaceMip5.RenderTarget;
+                                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
+                                BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
 
-                                BloomStrength = _bloomStrength5;
-                                BloomRadius = _bloomRadius5;
+                                BloomStrength = _bloomStrength4;
+                                BloomRadius = _bloomRadius4;
 
                                 if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                                 else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
@@ -362,18 +389,19 @@ namespace MonoGo.Engine.PostProcessing
                                 Surface.ResetTarget();
 
                                 BloomInverseResolution /= 2;
+
                             }
 
                             ChangeBlendState();
 
-                            //UPSAMPLE TO MIP3
-                            Surface.SetTarget(_bloomSurfaceMip3);
+                            //UPSAMPLE TO MIP2
+                            Surface.SetTarget(_bloomSurfaceMip2);
 
-                            GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
-                            BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
+                            GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
+                            BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
 
-                            BloomStrength = _bloomStrength4;
-                            BloomRadius = _bloomRadius4;
+                            BloomStrength = _bloomStrength3;
+                            BloomRadius = _bloomRadius3;
 
                             if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                             else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
@@ -383,19 +411,18 @@ namespace MonoGo.Engine.PostProcessing
                             Surface.ResetTarget();
 
                             BloomInverseResolution /= 2;
-
                         }
 
                         ChangeBlendState();
 
-                        //UPSAMPLE TO MIP2
-                        Surface.SetTarget(_bloomSurfaceMip2);
+                        //UPSAMPLE TO MIP1
+                        Surface.SetTarget(_bloomSurfaceMip1);
 
-                        GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
-                        BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
+                        GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
+                        BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
 
-                        BloomStrength = _bloomStrength3;
-                        BloomRadius = _bloomRadius3;
+                        BloomStrength = _bloomStrength2;
+                        BloomRadius = _bloomRadius2;
 
                         if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                         else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
@@ -409,14 +436,14 @@ namespace MonoGo.Engine.PostProcessing
 
                     ChangeBlendState();
 
-                    //UPSAMPLE TO MIP1
-                    Surface.SetTarget(_bloomSurfaceMip1);
+                    //UPSAMPLE TO MIP0
+                    Surface.SetTarget(_bloomSurfaceMip0);
 
-                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
-                    BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
+                    GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
+                    BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
 
-                    BloomStrength = _bloomStrength2;
-                    BloomRadius = _bloomRadius2;
+                    BloomStrength = _bloomStrength1;
+                    BloomRadius = _bloomRadius1;
 
                     if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                     else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
@@ -424,36 +451,16 @@ namespace MonoGo.Engine.PostProcessing
                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                     Surface.ResetTarget();
-
-                    BloomInverseResolution /= 2;
                 }
 
-                ChangeBlendState();
+                GraphicsMgr.VertexBatch.Effect = null;
+                GraphicsMgr.VertexBatch.Texture = null;
 
-                //UPSAMPLE TO MIP0
-                Surface.SetTarget(_bloomSurfaceMip0);
-
-                GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
-                BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
-
-                BloomStrength = _bloomStrength1;
-                BloomRadius = _bloomRadius1;
-
-                if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
-                else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
-
-                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
-
+                Surface.SetTarget(Surface);
+                GraphicsMgr.Device.Clear(Color.Transparent);
+                _bloomSurfaceMip0.Draw();
                 Surface.ResetTarget();
             }
-
-            GraphicsMgr.VertexBatch.Effect = null;
-            GraphicsMgr.VertexBatch.Texture = null;
-
-            Surface.SetTarget(Surface);
-            GraphicsMgr.Device.Clear(Color.Transparent);
-            _bloomSurfaceMip0.Draw();
-            Surface.ResetTarget();
         }
 
         /// <summary>

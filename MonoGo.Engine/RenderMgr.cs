@@ -9,6 +9,8 @@ namespace MonoGo.Engine
     public static class RenderMgr
     {
         public static bool PostProcessing { get; set; } = false;
+        public static bool ColorGradingFX { get; set; } = true;
+        public static bool BloomFX { get; set; } = true;
 
         public static Surface SceneSurface { get; set; }
         public static Surface GUISurface { get; set; }
@@ -56,15 +58,11 @@ namespace MonoGo.Engine
                 Surface.ResetTarget();
             }
 
-            if (PostProcessing)
+            if (PostProcessing && (ColorGradingFX || BloomFX))
             {
                 ColorGrading.Process();
-                Bloom.Process(ColorGrading.Surface.RenderTarget);
-
-                GraphicsMgr.VertexBatch.BlendState = BlendState.Additive;
-                ColorGrading.Surface.Draw();
-                Bloom.Surface.Draw();
-                GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
+                Bloom.Process();
+                DrawPostFXScene();
             }
             else SceneSurface.Draw();
 
@@ -75,6 +73,18 @@ namespace MonoGo.Engine
                 GUISurface.Draw();
                 GraphicsMgr.VertexBatch.PopViewMatrix();
             }
+        }
+
+        private static void DrawPostFXScene()
+        {
+            GraphicsMgr.VertexBatch.BlendState = BlendState.Additive;
+
+            if (ColorGradingFX) ColorGrading.Surface.Draw();
+            else SceneSurface.Draw();
+
+            if (BloomFX) Bloom.Surface.Draw();
+
+            GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
         }
 
         public static void Destroy()

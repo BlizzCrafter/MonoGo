@@ -28,34 +28,37 @@ namespace MonoGo.Engine.PostProcessing
 
         internal static void Process()
         {
-            var renderTarget = RenderMgr.SceneSurface.RenderTarget;
-
-            if (Surface == null
-                || Surface.Size.X != renderTarget.Width
-                || Surface.Size.Y != renderTarget.Height)
+            if (RenderMgr.ColorGradingFX)
             {
-                Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
+                var renderTarget = RenderMgr.SceneSurface.RenderTarget;
+
+                if (Surface == null
+                    || Surface.Size.X != renderTarget.Width
+                    || Surface.Size.Y != renderTarget.Height)
+                {
+                    Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
+                }
+
+                GraphicsMgr.VertexBatch.Texture = renderTarget;
+                GraphicsMgr.VertexBatch.Effect = _shaderEffect;
+                _shaderEffect.Parameters["Input"].SetValue(renderTarget);
+                _shaderEffect.Parameters["LUT"].SetValue(CurrentLUT[0].Texture);
+                _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
+                _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
+                _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
+
+                GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
+
+                Surface.SetTarget(Surface);
+                GraphicsMgr.Device.Clear(Color.Black);
+                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                Surface.ResetTarget();
+
+                GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
+
+                GraphicsMgr.VertexBatch.Effect = null;
+                GraphicsMgr.VertexBatch.Texture = null;
             }
-
-            GraphicsMgr.VertexBatch.Texture = renderTarget;
-            GraphicsMgr.VertexBatch.Effect = _shaderEffect;
-            _shaderEffect.Parameters["Input"].SetValue(renderTarget);
-            _shaderEffect.Parameters["LUT"].SetValue(CurrentLUT[0].Texture);
-            _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
-            _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
-            _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
-
-            GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
-
-            Surface.SetTarget(Surface);
-            GraphicsMgr.Device.Clear(Color.Black);
-            GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
-            Surface.ResetTarget();
-
-            GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
-
-            GraphicsMgr.VertexBatch.Effect = null;
-            GraphicsMgr.VertexBatch.Texture = null;
         }
 
         public static Sprite NextLUT()
