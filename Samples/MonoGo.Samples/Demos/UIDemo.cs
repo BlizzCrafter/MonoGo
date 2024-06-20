@@ -157,7 +157,7 @@ namespace MonoGo.Samples.Demos
                     panels.Add(panel);
                     UserInterface.Active.AddUIEntity(panel);
 
-                    Image title = new Image(ResourceHub.GetResource<Sprite>("DefaultSprites", "Logo")[0].Texture, new Vector2(256, 256), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
+                    Image title = new Image(ResourceHub.GetResource<Sprite>("DemoSprites", "Logo")[0].Texture, new Vector2(256, 256), anchor: Anchor.TopCenter, offset: new Vector2(0, -20));
                     title.ShadowColor = new Color(0, 0, 0, 32);
                     title.ShadowOffset = Vector2.One * -2;
                     panel.AddChild(title);

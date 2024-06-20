@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Content;
-using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
-using MonoGo.Engine.Resources;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MonoGo.Resources
+namespace MonoGo.Engine.Resources
 {
 	public class SpriteGroupResourceBox : ResourceBox<Sprite>
 	{
-
 		private ContentManager _content = new ContentManager(GameMgr.Game.Services);
 
 		private readonly string _resourcePath;
@@ -38,7 +35,6 @@ namespace MonoGo.Resources
 				}
 				catch { }
 			}
-
 		}
 
 		public override void Unload()

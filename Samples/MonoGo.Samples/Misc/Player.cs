@@ -27,7 +27,7 @@ namespace MonoGo.Samples.Misc
 
 		public Player(Layer layer, Vector2 position) : base(layer)
 		{
-			_playerSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Player");
+			_playerSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Player");
 			
 			// You can add components right in the constructor.
 			_position = AddComponent(new PositionComponent(position));

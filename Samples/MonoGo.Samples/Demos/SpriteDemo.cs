@@ -27,8 +27,8 @@ namespace MonoGo.Samples.Demos
 
 		public SpriteDemo(Layer layer) : base(layer)
 		{
-            _test = ResourceHub.GetResource<Sprite>("DefaultSprites", "Test");
-			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
+            _test = ResourceHub.GetResource<Sprite>("DemoSprites", "Test");
+			_fireSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Fire");
 
 			_batch = new SpriteBatch(GraphicsMgr.Device);
 			_seizure = ResourceHub.GetResource<Effect>("Effects", "Seizure");

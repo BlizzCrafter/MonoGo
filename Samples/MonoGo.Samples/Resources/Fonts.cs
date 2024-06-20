@@ -29,7 +29,7 @@ namespace MonoGo.Samples.Resources
             AddResource("Italic", new Font(_content.Load<SpriteFont>("Italic")));
             AddResource("Bold", new Font(_content.Load<SpriteFont>("Bold")));
 
-            var fontSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Font");
+            var fontSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Font");
 
 			AddResource("FancyFont", new TextureFont(fontSprite, 1, 1, TextureFont.Ascii, false));
 		}

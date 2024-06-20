@@ -58,15 +58,16 @@ namespace MonoGo.Samples
 		{
 			GraphicsMgr.Init(GraphicsDevice);
 
-            new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
-            new SpriteGroupResourceBox("GUISprites", "Graphics/GUI");
-            new SpriteGroupResourceBox("ParticleSprites", "Graphics/Particles");
+            new SpriteGroupResourceBox("DemoSprites", "Demo");
+            new SpriteGroupResourceBox("GUISprites", "GUI");
+            new SpriteGroupResourceBox("ParticleSprites", "Particles");
+            new SpriteGroupResourceBox("EffectSprites", "Effects");
             new DirectoryResourceBox<Effect>("Effects", "Effects");
 			new DirectoryResourceBox<TiledMap>("Maps", "Maps");
 
 			new Fonts();
 
-            UserInterface.Init("Graphics/GUI/Styles");
+            UserInterface.Init("GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
         }

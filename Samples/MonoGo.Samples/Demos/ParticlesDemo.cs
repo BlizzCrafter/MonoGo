@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoGo.Engine;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
@@ -10,6 +8,8 @@ using MonoGo.Engine.Particles.Profiles;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Samples.Misc;
+using System;
+using System.IO;
 
 namespace MonoGo.Samples.Demos
 {
