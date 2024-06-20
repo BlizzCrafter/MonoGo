@@ -4,6 +4,6 @@
 	"rootDir": "/Effects",
 	"singleTexturesWildcards": 
 	[
-		"/Textures/*"
+		"/LUT/*"
 	]
 }

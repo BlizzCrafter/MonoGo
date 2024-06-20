@@ -10,8 +10,8 @@ namespace MonoGo.Engine.PostProcessing
     {
         public static Surface Surface { get; private set; }
         
-        public static Sprite CurrentLut { get; set; }
-        public static Sprite[] Luts { get; private set; }
+        public static Sprite CurrentLUT { get; set; }
+        public static Sprite[] LUTs { get; private set; }
 
         private static Effect _shaderEffect;
 
@@ -19,10 +19,11 @@ namespace MonoGo.Engine.PostProcessing
         {
             _shaderEffect = ResourceHub.GetResource<Effect>("Effects", "ColorGrading");
 
-            var effectSpriteBox = ResourceHub.GetResourceBox("EffectSprites") as SpriteGroupResourceBox;
-            Luts = effectSpriteBox.Select(x => x.Value).ToArray();
+            var effectSpriteBox = ResourceHub.GetResourceBox("LUTSprites") as SpriteGroupResourceBox;
+            LUTs = effectSpriteBox.Select(x => x.Value).ToArray();
 
-            CurrentLut = Luts.ToList().FirstOrDefault(x => x.Name.Contains("default")) ?? NextLUT();
+            CurrentLUT = LUTs.ToList().FirstOrDefault(
+                x => x.Name.Contains("Default", System.StringComparison.InvariantCultureIgnoreCase)) ?? NextLUT();
         }
 
         internal static void Process()
@@ -39,7 +40,7 @@ namespace MonoGo.Engine.PostProcessing
             GraphicsMgr.VertexBatch.Texture = renderTarget;
             GraphicsMgr.VertexBatch.Effect = _shaderEffect;
             _shaderEffect.Parameters["Input"].SetValue(renderTarget);
-            _shaderEffect.Parameters["LUT"].SetValue(CurrentLut[0].Texture);
+            _shaderEffect.Parameters["LUT"].SetValue(CurrentLUT[0].Texture);
             _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
             _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
             _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
@@ -55,20 +56,20 @@ namespace MonoGo.Engine.PostProcessing
 
         public static Sprite NextLUT()
         {
-            var i = Luts.ToList().IndexOf(CurrentLut);
-            if (i == Luts.Length - 1) CurrentLut = Luts[0];
-            else CurrentLut = Luts[i + 1];
+            var i = LUTs.ToList().IndexOf(CurrentLUT);
+            if (i == LUTs.Length - 1) CurrentLUT = LUTs[0];
+            else CurrentLUT = LUTs[i + 1];
 
-            return CurrentLut;
+            return CurrentLUT;
         }
 
         public static Sprite PreviousLUT()
         {
-            var i = Luts.ToList().IndexOf(CurrentLut);
-            if (i == 0) CurrentLut = Luts[^1];
-            else CurrentLut = Luts[i - 1];
+            var i = LUTs.ToList().IndexOf(CurrentLUT);
+            if (i == 0) CurrentLUT = LUTs[^1];
+            else CurrentLUT = LUTs[i - 1];
 
-            return CurrentLut;
+            return CurrentLUT;
         }
 
         internal static void Dispose()

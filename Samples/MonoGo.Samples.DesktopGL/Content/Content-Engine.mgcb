@@ -14,11 +14,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../../Content/Effects.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../../Content/Effects.spritegroup;Effects.spritegroup
-
 #begin ../../../Content/Effects/Bloom.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -582,3 +577,8 @@
 /importer:ResourceInfoImporter
 /processor:PassThroughProcessor
 /build:Content-Engine.npl
+
+#begin ../../../Content/LUT.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/LUT.spritegroup;LUT.spritegroup

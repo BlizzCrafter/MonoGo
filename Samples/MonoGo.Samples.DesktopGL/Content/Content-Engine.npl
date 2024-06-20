@@ -24,9 +24,9 @@
         "GUI/Styles/*.xml"
       ]
     },
-    "GUI": {
+    "GUIGroup": {
       "path": "GUI.spritegroup",
-      "recursive": "True",
+      "recursive": false,
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
@@ -34,7 +34,7 @@
         "GUI/Textures/*.png"
       ]
     },
-    "Particles": {
+    "ParticlesGroup": {
       "path": "Particles.spritegroup",
       "recursive": "false",
       "action": "build",
@@ -44,14 +44,14 @@
         "Particles/Textures/*.png"
       ]
     },
-    "EffectGroup": {
-      "path": "Effects.spritegroup",
+    "LUTGroup": {
+      "path": "LUT.spritegroup",
       "recursive": "false",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Effects/Textures/*.png"
+        "Effects/LUT/*.png"
       ]
     },
     "Effects": {
