@@ -1,18 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGo.Engine.Drawing;
+using MonoGo.Engine.PostProcessing;
 using MonoGo.Engine.SceneSystem;
 
 namespace MonoGo.Engine
 {
     public static class RenderMgr
     {
+        public static bool PostProcessing { get; set; } = false;
+
         public static Surface SceneSurface { get; set; }
         public static Surface GUISurface { get; set; }
 
-        public static Matrix GUITransformMatrix = Matrix.Identity;
+        public static Matrix GUITransformMatrix { get; set; } = Matrix.Identity;
 
         public static void Init()
         {
+            ColorGrading.Init();
+
             SceneSurface = new Surface(GameMgr.WindowManager.CanvasSize);
             GUISurface = new Surface(GameMgr.WindowManager.CanvasSize);
 
@@ -49,7 +54,12 @@ namespace MonoGo.Engine
                 Surface.ResetTarget();
             }
 
-            SceneSurface.Draw();
+            if (PostProcessing)
+            {
+                ColorGrading.Process();
+                ColorGrading.Surface.Draw();
+            }
+            else SceneSurface.Draw();
 
             if (GUITransformMatrix == Matrix.Identity) GUISurface.Draw();
             else
@@ -64,6 +74,7 @@ namespace MonoGo.Engine
         {
             SceneSurface.Dispose();
             GUISurface.Dispose();
+            ColorGrading.Dispose();
         }
     }
 }
