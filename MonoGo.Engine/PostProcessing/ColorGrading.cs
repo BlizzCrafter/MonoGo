@@ -45,10 +45,14 @@ namespace MonoGo.Engine.PostProcessing
             _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
             _shaderEffect.Parameters["Projection"].SetValue(GraphicsMgr.VertexBatch.Projection);
 
+            GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
+
             Surface.SetTarget(Surface);
             GraphicsMgr.Device.Clear(Color.Black);
             GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
             Surface.ResetTarget();
+
+            GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
 
             GraphicsMgr.VertexBatch.Effect = null;
             GraphicsMgr.VertexBatch.Texture = null;
