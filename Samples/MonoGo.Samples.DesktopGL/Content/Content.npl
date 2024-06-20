@@ -37,14 +37,14 @@
       "watch": []
     },
     "defaultSpriteGroup": {
-      "path": "Graphics/*.spritegroup",
+      "path": "*.spritegroup",
       "recursive": "True",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Default/*.png",
-        "Default/*.json"
+        "Graphics/Default/*.png",
+        "Graphics/Default/*.json"
       ]
     },
     "effects": {

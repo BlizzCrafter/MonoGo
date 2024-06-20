@@ -15,7 +15,7 @@
       ]
     },
     "styles": {
-      "path": "Graphics/GUI/Styles/*.xml",
+      "path": "GUI/Styles/*.xml",
       "recursive": "false",
       "action": "copy",
       "importer": "XmlImporter",
@@ -25,23 +25,47 @@
       ]
     },
     "GUI": {
-      "path": "Graphics/GUI.spritegroup",
+      "path": "GUI.spritegroup",
       "recursive": "True",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Graphics/GUI/Textures/*.png"
+        "GUI/Textures/*.png"
       ]
     },
     "Particles": {
-      "path": "Graphics/Particles.spritegroup",
+      "path": "Particles.spritegroup",
       "recursive": "false",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Graphics/Particles/Textures/*.png"
+        "Particles/Textures/*.png"
+      ]
+    },
+    "EffectGroup": {
+      "path": "Effects.spritegroup",
+      "recursive": "false",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "Effects/Textures/*.png"
+      ]
+    },
+    "Effects": {
+      "path": "Effects/*.fx",
+      "recursive": "false",
+      "action": "build",
+      "importer": "EffectImporter",
+      "processor": "EffectProcessor",
+      "processorParam": {
+        "DebugMode": "Auto",
+        "Defines": ""
+      },
+      "watch": [
+        "Effects/*.fx"
       ]
     }
   }

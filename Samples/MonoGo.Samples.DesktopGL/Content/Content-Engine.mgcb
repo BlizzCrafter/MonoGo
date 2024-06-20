@@ -3,6 +3,7 @@
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
+/platform:DesktopGL
 /config:
 /profile:Reach
 /compress:False
@@ -13,552 +14,571 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../Content/Effects.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/Effects.spritegroup;Effects.spritegroup
+
+#begin ../../../Content/Effects/Bloom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:../../../Content/Effects/Bloom.fx;Effects/Bloom.fx
+
+#begin ../../../Content/Effects/ColorGrading.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:../../../Content/Effects/ColorGrading.fx;Effects/ColorGrading.fx
+
+#begin ../../../Content/GUI.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/GUI.spritegroup;GUI.spritegroup
+
+#begin ../../../Content/GUI/Styles/Button_Alternative_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button_Alternative_md.xml;GUI/Styles/Button_Alternative_md.xml
+
+#begin ../../../Content/GUI/Styles/Button_Default_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button_Default_md.xml;GUI/Styles/Button_Default_md.xml
+
+#begin ../../../Content/GUI/Styles/Button_Fancy_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button_Fancy_md.xml;GUI/Styles/Button_Fancy_md.xml
+
+#begin ../../../Content/GUI/Styles/Button-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button-Default.xml;GUI/Styles/Button-Default.xml
+
+#begin ../../../Content/GUI/Styles/Button-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button-MouseDown.xml;GUI/Styles/Button-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Button-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Button-MouseHover.xml;GUI/Styles/Button-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/ButtonParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ButtonParagraph-Default.xml;GUI/Styles/ButtonParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/ButtonParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ButtonParagraph-MouseDown.xml;GUI/Styles/ButtonParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/ButtonParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ButtonParagraph-MouseHover.xml;GUI/Styles/ButtonParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/CheckBox-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBox-Default.xml;GUI/Styles/CheckBox-Default.xml
+
+#begin ../../../Content/GUI/Styles/CheckBox-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBox-MouseDown.xml;GUI/Styles/CheckBox-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/CheckBox-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBox-MouseHover.xml;GUI/Styles/CheckBox-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/CheckBoxParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBoxParagraph-Default.xml;GUI/Styles/CheckBoxParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/CheckBoxParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBoxParagraph-MouseDown.xml;GUI/Styles/CheckBoxParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/CheckBoxParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/CheckBoxParagraph-MouseHover.xml;GUI/Styles/CheckBoxParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/ColoredRectangle-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ColoredRectangle-Default.xml;GUI/Styles/ColoredRectangle-Default.xml
+
+#begin ../../../Content/GUI/Styles/ColoredRectangle-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ColoredRectangle-MouseDown.xml;GUI/Styles/ColoredRectangle-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/ColoredRectangle-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ColoredRectangle-MouseHover.xml;GUI/Styles/ColoredRectangle-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Cursor_Default_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Cursor_Default_md.xml;GUI/Styles/Cursor_Default_md.xml
+
+#begin ../../../Content/GUI/Styles/Cursor_Ibeam_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Cursor_Ibeam_md.xml;GUI/Styles/Cursor_Ibeam_md.xml
+
+#begin ../../../Content/GUI/Styles/Cursor_Pointer_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Cursor_Pointer_md.xml;GUI/Styles/Cursor_Pointer_md.xml
+
+#begin ../../../Content/GUI/Styles/DropDown-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDown-Default.xml;GUI/Styles/DropDown-Default.xml
+
+#begin ../../../Content/GUI/Styles/DropDown-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDown-MouseDown.xml;GUI/Styles/DropDown-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/DropDown-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDown-MouseHover.xml;GUI/Styles/DropDown-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/DropDownParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownParagraph-Default.xml;GUI/Styles/DropDownParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/DropDownParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownParagraph-MouseDown.xml;GUI/Styles/DropDownParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/DropDownParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownParagraph-MouseHover.xml;GUI/Styles/DropDownParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedPanel-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedPanel-Default.xml;GUI/Styles/DropDownSelectedPanel-Default.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedPanel-MouseDown.xml;GUI/Styles/DropDownSelectedPanel-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedPanel-MouseHover.xml;GUI/Styles/DropDownSelectedPanel-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedParagraph-Default.xml;GUI/Styles/DropDownSelectedParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Entity-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Entity-Default.xml;GUI/Styles/Entity-Default.xml
+
+#begin ../../../Content/GUI/Styles/Entity-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Entity-MouseDown.xml;GUI/Styles/Entity-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Entity-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Entity-MouseHover.xml;GUI/Styles/Entity-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/example.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/example.xml;GUI/Styles/example.xml
+
+#begin ../../../Content/GUI/Styles/Header-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Header-Default.xml;GUI/Styles/Header-Default.xml
+
+#begin ../../../Content/GUI/Styles/Header-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Header-MouseDown.xml;GUI/Styles/Header-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Header-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Header-MouseHover.xml;GUI/Styles/Header-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/HorizontalLine-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/HorizontalLine-Default.xml;GUI/Styles/HorizontalLine-Default.xml
+
+#begin ../../../Content/GUI/Styles/HorizontalLine-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/HorizontalLine-MouseDown.xml;GUI/Styles/HorizontalLine-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/HorizontalLine-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/HorizontalLine-MouseHover.xml;GUI/Styles/HorizontalLine-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Icon-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Icon-Default.xml;GUI/Styles/Icon-Default.xml
+
+#begin ../../../Content/GUI/Styles/Icon-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Icon-MouseDown.xml;GUI/Styles/Icon-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Icon-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Icon-MouseHover.xml;GUI/Styles/Icon-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Image-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Image-Default.xml;GUI/Styles/Image-Default.xml
+
+#begin ../../../Content/GUI/Styles/Image-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Image-MouseDown.xml;GUI/Styles/Image-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Image-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Image-MouseHover.xml;GUI/Styles/Image-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Label-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Label-Default.xml;GUI/Styles/Label-Default.xml
+
+#begin ../../../Content/GUI/Styles/Label-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Label-MouseDown.xml;GUI/Styles/Label-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Label-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Label-MouseHover.xml;GUI/Styles/Label-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Panel_Default_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel_Default_md.xml;GUI/Styles/Panel_Default_md.xml
+
+#begin ../../../Content/GUI/Styles/Panel_Fancy_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel_Fancy_md.xml;GUI/Styles/Panel_Fancy_md.xml
+
+#begin ../../../Content/GUI/Styles/Panel_Golden_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel_Golden_md.xml;GUI/Styles/Panel_Golden_md.xml
+
+#begin ../../../Content/GUI/Styles/Panel_Listbackground_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel_Listbackground_md.xml;GUI/Styles/Panel_Listbackground_md.xml
+
+#begin ../../../Content/GUI/Styles/Panel_Simple_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel_Simple_md.xml;GUI/Styles/Panel_Simple_md.xml
+
+#begin ../../../Content/GUI/Styles/Panel-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel-Default.xml;GUI/Styles/Panel-Default.xml
+
+#begin ../../../Content/GUI/Styles/Panel-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel-MouseDown.xml;GUI/Styles/Panel-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Panel-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Panel-MouseHover.xml;GUI/Styles/Panel-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButton-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButton-Default.xml;GUI/Styles/PanelTabsButton-Default.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButton-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButton-MouseDown.xml;GUI/Styles/PanelTabsButton-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButton-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButton-MouseHover.xml;GUI/Styles/PanelTabsButton-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButtonParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButtonParagraph-Default.xml;GUI/Styles/PanelTabsButtonParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Paragraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Paragraph-Default.xml;GUI/Styles/Paragraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/Paragraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Paragraph-MouseDown.xml;GUI/Styles/Paragraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Paragraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Paragraph-MouseHover.xml;GUI/Styles/Paragraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Progressbar_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Progressbar_md.xml;GUI/Styles/Progressbar_md.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBar-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBar-Default.xml;GUI/Styles/ProgressBar-Default.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBar-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBar-MouseDown.xml;GUI/Styles/ProgressBar-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBar-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBar-MouseHover.xml;GUI/Styles/ProgressBar-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBarFill-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBarFill-Default.xml;GUI/Styles/ProgressBarFill-Default.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBarFill-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBarFill-MouseDown.xml;GUI/Styles/ProgressBarFill-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/ProgressBarFill-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ProgressBarFill-MouseHover.xml;GUI/Styles/ProgressBarFill-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/RadioButton-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButton-Default.xml;GUI/Styles/RadioButton-Default.xml
+
+#begin ../../../Content/GUI/Styles/RadioButton-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButton-MouseDown.xml;GUI/Styles/RadioButton-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/RadioButton-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButton-MouseHover.xml;GUI/Styles/RadioButton-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/RadioButtonParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButtonParagraph-Default.xml;GUI/Styles/RadioButtonParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/RadioButtonParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButtonParagraph-MouseDown.xml;GUI/Styles/RadioButtonParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/RadioButtonParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/RadioButtonParagraph-MouseHover.xml;GUI/Styles/RadioButtonParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Scrollbar_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Scrollbar_md.xml;GUI/Styles/Scrollbar_md.xml
+
+#begin ../../../Content/GUI/Styles/SelectList-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectList-Default.xml;GUI/Styles/SelectList-Default.xml
+
+#begin ../../../Content/GUI/Styles/SelectList-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectList-MouseDown.xml;GUI/Styles/SelectList-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/SelectList-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectList-MouseHover.xml;GUI/Styles/SelectList-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/SelectListParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectListParagraph-Default.xml;GUI/Styles/SelectListParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/SelectListParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectListParagraph-MouseDown.xml;GUI/Styles/SelectListParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/SelectListParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/SelectListParagraph-MouseHover.xml;GUI/Styles/SelectListParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/Slider_Default_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Slider_Default_md.xml;GUI/Styles/Slider_Default_md.xml
+
+#begin ../../../Content/GUI/Styles/Slider_Fancy_md.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Slider_Fancy_md.xml;GUI/Styles/Slider_Fancy_md.xml
+
+#begin ../../../Content/GUI/Styles/Slider-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Slider-Default.xml;GUI/Styles/Slider-Default.xml
+
+#begin ../../../Content/GUI/Styles/Slider-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Slider-MouseDown.xml;GUI/Styles/Slider-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/Slider-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/Slider-MouseHover.xml;GUI/Styles/Slider-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/TextInput-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInput-Default.xml;GUI/Styles/TextInput-Default.xml
+
+#begin ../../../Content/GUI/Styles/TextInput-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInput-MouseDown.xml;GUI/Styles/TextInput-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/TextInput-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInput-MouseHover.xml;GUI/Styles/TextInput-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/TextInputParagraph-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputParagraph-Default.xml;GUI/Styles/TextInputParagraph-Default.xml
+
+#begin ../../../Content/GUI/Styles/TextInputParagraph-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputParagraph-MouseDown.xml;GUI/Styles/TextInputParagraph-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/TextInputParagraph-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputParagraph-MouseHover.xml;GUI/Styles/TextInputParagraph-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/TextInputPlaceholder-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputPlaceholder-Default.xml;GUI/Styles/TextInputPlaceholder-Default.xml
+
+#begin ../../../Content/GUI/Styles/TextInputPlaceholder-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputPlaceholder-MouseDown.xml;GUI/Styles/TextInputPlaceholder-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/TextInputPlaceholder-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/TextInputPlaceholder-MouseHover.xml;GUI/Styles/TextInputPlaceholder-MouseHover.xml
+
+#begin ../../../Content/GUI/Styles/ThemeData.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/ThemeData.xml;GUI/Styles/ThemeData.xml
+
+#begin ../../../Content/GUI/Styles/VerticalScrollbar-Default.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/VerticalScrollbar-Default.xml;GUI/Styles/VerticalScrollbar-Default.xml
+
+#begin ../../../Content/GUI/Styles/VerticalScrollbar-MouseDown.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/VerticalScrollbar-MouseDown.xml;GUI/Styles/VerticalScrollbar-MouseDown.xml
+
+#begin ../../../Content/GUI/Styles/VerticalScrollbar-MouseHover.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/copy:../../../Content/GUI/Styles/VerticalScrollbar-MouseHover.xml;GUI/Styles/VerticalScrollbar-MouseHover.xml
+
+#begin ../../../Content/Particles.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/Particles.spritegroup;Particles.spritegroup
+
 #begin Content-Engine.npl
 /importer:ResourceInfoImporter
 /processor:PassThroughProcessor
 /build:Content-Engine.npl
-
-#begin ../../../Content/Graphics/GUI/Styles/Button-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button-Default.xml;Graphics/GUI/Styles/Button-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Button-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button-MouseDown.xml;Graphics/GUI/Styles/Button-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Button-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button-MouseHover.xml;Graphics/GUI/Styles/Button-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-Default.xml;Graphics/GUI/Styles/ButtonParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/ButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/ButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Button_Alternative_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button_Alternative_md.xml;Graphics/GUI/Styles/Button_Alternative_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Button_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button_Default_md.xml;Graphics/GUI/Styles/Button_Default_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Button_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Button_Fancy_md.xml;Graphics/GUI/Styles/Button_Fancy_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBox-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBox-Default.xml;Graphics/GUI/Styles/CheckBox-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBox-MouseDown.xml;Graphics/GUI/Styles/CheckBox-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBox-MouseHover.xml;Graphics/GUI/Styles/CheckBox-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-Default.xml;Graphics/GUI/Styles/CheckBoxParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml;Graphics/GUI/Styles/CheckBoxParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-Default.xml;Graphics/GUI/Styles/ColoredRectangle-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml;Graphics/GUI/Styles/ColoredRectangle-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml;Graphics/GUI/Styles/ColoredRectangle-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Cursor_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Cursor_Default_md.xml;Graphics/GUI/Styles/Cursor_Default_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Cursor_Ibeam_md.xml;Graphics/GUI/Styles/Cursor_Ibeam_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Cursor_Pointer_md.xml;Graphics/GUI/Styles/Cursor_Pointer_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDown-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDown-Default.xml;Graphics/GUI/Styles/DropDown-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDown-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDown-MouseDown.xml;Graphics/GUI/Styles/DropDown-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDown-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDown-MouseHover.xml;Graphics/GUI/Styles/DropDown-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-Default.xml;Graphics/GUI/Styles/DropDownParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml;Graphics/GUI/Styles/DropDownSelectedPanel-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;Graphics/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Entity-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Entity-Default.xml;Graphics/GUI/Styles/Entity-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Entity-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Entity-MouseDown.xml;Graphics/GUI/Styles/Entity-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Entity-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Entity-MouseHover.xml;Graphics/GUI/Styles/Entity-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/example.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/example.xml;Graphics/GUI/Styles/example.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Header-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Header-Default.xml;Graphics/GUI/Styles/Header-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Header-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Header-MouseDown.xml;Graphics/GUI/Styles/Header-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Header-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Header-MouseHover.xml;Graphics/GUI/Styles/Header-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-Default.xml;Graphics/GUI/Styles/HorizontalLine-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseDown.xml;Graphics/GUI/Styles/HorizontalLine-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/HorizontalLine-MouseHover.xml;Graphics/GUI/Styles/HorizontalLine-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Icon-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Icon-Default.xml;Graphics/GUI/Styles/Icon-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Icon-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Icon-MouseDown.xml;Graphics/GUI/Styles/Icon-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Icon-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Icon-MouseHover.xml;Graphics/GUI/Styles/Icon-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Image-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Image-Default.xml;Graphics/GUI/Styles/Image-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Image-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Image-MouseDown.xml;Graphics/GUI/Styles/Image-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Image-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Image-MouseHover.xml;Graphics/GUI/Styles/Image-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Label-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Label-Default.xml;Graphics/GUI/Styles/Label-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Label-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Label-MouseDown.xml;Graphics/GUI/Styles/Label-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Label-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Label-MouseHover.xml;Graphics/GUI/Styles/Label-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel-Default.xml;Graphics/GUI/Styles/Panel-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel-MouseDown.xml;Graphics/GUI/Styles/Panel-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel-MouseHover.xml;Graphics/GUI/Styles/Panel-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-Default.xml;Graphics/GUI/Styles/PanelTabsButton-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButton-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButton-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel_Default_md.xml;Graphics/GUI/Styles/Panel_Default_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel_Fancy_md.xml;Graphics/GUI/Styles/Panel_Fancy_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel_Golden_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel_Golden_md.xml;Graphics/GUI/Styles/Panel_Golden_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel_Listbackground_md.xml;Graphics/GUI/Styles/Panel_Listbackground_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Panel_Simple_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Panel_Simple_md.xml;Graphics/GUI/Styles/Panel_Simple_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Paragraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Paragraph-Default.xml;Graphics/GUI/Styles/Paragraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Paragraph-MouseDown.xml;Graphics/GUI/Styles/Paragraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Paragraph-MouseHover.xml;Graphics/GUI/Styles/Paragraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-Default.xml;Graphics/GUI/Styles/ProgressBar-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-MouseDown.xml;Graphics/GUI/Styles/ProgressBar-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBar-MouseHover.xml;Graphics/GUI/Styles/ProgressBar-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-Default.xml;Graphics/GUI/Styles/ProgressBarFill-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml;Graphics/GUI/Styles/ProgressBarFill-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml;Graphics/GUI/Styles/ProgressBarFill-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Progressbar_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Progressbar_md.xml;Graphics/GUI/Styles/Progressbar_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButton-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButton-Default.xml;Graphics/GUI/Styles/RadioButton-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButton-MouseDown.xml;Graphics/GUI/Styles/RadioButton-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButton-MouseHover.xml;Graphics/GUI/Styles/RadioButton-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-Default.xml;Graphics/GUI/Styles/RadioButtonParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml;Graphics/GUI/Styles/RadioButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Scrollbar_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Scrollbar_md.xml;Graphics/GUI/Styles/Scrollbar_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectList-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectList-Default.xml;Graphics/GUI/Styles/SelectList-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectList-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectList-MouseDown.xml;Graphics/GUI/Styles/SelectList-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectList-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectList-MouseHover.xml;Graphics/GUI/Styles/SelectList-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-Default.xml;Graphics/GUI/Styles/SelectListParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml;Graphics/GUI/Styles/SelectListParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml;Graphics/GUI/Styles/SelectListParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Slider-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Slider-Default.xml;Graphics/GUI/Styles/Slider-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Slider-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Slider-MouseDown.xml;Graphics/GUI/Styles/Slider-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Slider-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Slider-MouseHover.xml;Graphics/GUI/Styles/Slider-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Slider_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Slider_Default_md.xml;Graphics/GUI/Styles/Slider_Default_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/Slider_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/Slider_Fancy_md.xml;Graphics/GUI/Styles/Slider_Fancy_md.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInput-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInput-Default.xml;Graphics/GUI/Styles/TextInput-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInput-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInput-MouseDown.xml;Graphics/GUI/Styles/TextInput-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInput-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInput-MouseHover.xml;Graphics/GUI/Styles/TextInput-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-Default.xml;Graphics/GUI/Styles/TextInputParagraph-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml;Graphics/GUI/Styles/TextInputParagraph-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml;Graphics/GUI/Styles/TextInputParagraph-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-Default.xml;Graphics/GUI/Styles/TextInputPlaceholder-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml;Graphics/GUI/Styles/TextInputPlaceholder-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/ThemeData.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/ThemeData.xml;Graphics/GUI/Styles/ThemeData.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-Default.xml;Graphics/GUI/Styles/VerticalScrollbar-Default.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseDown.xml
-
-#begin ../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml;Graphics/GUI/Styles/VerticalScrollbar-MouseHover.xml
-
-#begin ../../../Content/Graphics/GUI.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../../Content/Graphics/GUI.spritegroup;Graphics/GUI.spritegroup
-
-#begin ../../../Content/Graphics/Particles.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../../Content/Graphics/Particles.spritegroup;Graphics/Particles.spritegroup

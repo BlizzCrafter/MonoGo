@@ -19,11 +19,6 @@
 /processor:PassThroughProcessor
 /build:Content.npl
 
-#begin ../../MonoGo.Samples.Content/Content/Graphics/Default.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../MonoGo.Samples.Content/Content/Graphics/Default.spritegroup;Graphics/Default.spritegroup
-
 #begin ../../MonoGo.Samples.Content/Content/Effects/Disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
