@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.PostProcessing;
 using MonoGo.Engine.SceneSystem;
@@ -17,6 +18,7 @@ namespace MonoGo.Engine
         public static void Init()
         {
             ColorGrading.Init();
+            Bloom.Init();
 
             SceneSurface = new Surface(GameMgr.WindowManager.CanvasSize);
             GUISurface = new Surface(GameMgr.WindowManager.CanvasSize);
@@ -57,7 +59,12 @@ namespace MonoGo.Engine
             if (PostProcessing)
             {
                 ColorGrading.Process();
+                Bloom.Process(ColorGrading.Surface.RenderTarget);
+
+                GraphicsMgr.VertexBatch.BlendState = BlendState.Additive;
                 ColorGrading.Surface.Draw();
+                Bloom.Surface.Draw();
+                GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
             }
             else SceneSurface.Draw();
 
@@ -75,6 +82,7 @@ namespace MonoGo.Engine
             SceneSurface.Dispose();
             GUISurface.Dispose();
             ColorGrading.Dispose();
+            Bloom.Dispose();
         }
     }
 }
