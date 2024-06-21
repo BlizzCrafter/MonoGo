@@ -19,11 +19,10 @@ namespace MonoGo.Engine
 
         public static void Init()
         {
+            UpdateResolution();
+
             ColorGrading.Init();
             Bloom.Init();
-
-            SceneSurface = new Surface(GameMgr.WindowManager.CanvasSize);
-            GUISurface = new Surface(GameMgr.WindowManager.CanvasSize);
 
             SceneMgr.OnPreDraw += SceneMgr_OnPreDraw;
             SceneMgr.OnPostDraw += SceneMgr_OnPostDraw;
@@ -33,6 +32,8 @@ namespace MonoGo.Engine
 
         private static void SceneMgr_OnPreDraw()
         {
+            UpdateResolution();
+
             Surface.SetTarget(SceneSurface, GraphicsMgr.VertexBatch.View);
             GraphicsMgr.Device.Clear(GraphicsMgr.CurrentCamera.BackgroundColor);
         }
@@ -85,6 +86,19 @@ namespace MonoGo.Engine
             if (BloomFX) Bloom.Surface.Draw();
 
             GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
+        }
+
+        private static void UpdateResolution()
+        {
+            if (SceneSurface == null || SceneSurface.Size != GameMgr.WindowManager.CanvasSize)
+            {
+                SceneSurface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+            }
+
+            if (GUISurface == null || GUISurface.Size != GameMgr.WindowManager.CanvasSize)
+            {
+                GUISurface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+            }
         }
 
         public static void Destroy()
