@@ -17,6 +17,8 @@ namespace MonoGo.Engine.PostProcessing
 
         internal static void Init()
         {
+            UpdateResolution();
+
             _shaderEffect = ResourceHub.GetResource<Effect>("Effects", "ColorGrading");
 
             var effectSpriteBox = ResourceHub.GetResourceBox("LUTSprites") as SpriteGroupResourceBox;
@@ -30,14 +32,9 @@ namespace MonoGo.Engine.PostProcessing
         {
             if (RenderMgr.ColorGradingFX)
             {
-                var renderTarget = RenderMgr.SceneSurface.RenderTarget;
+                UpdateResolution();
 
-                if (Surface == null
-                    || Surface.Size.X != renderTarget.Width
-                    || Surface.Size.Y != renderTarget.Height)
-                {
-                    Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
-                }
+                var renderTarget = RenderMgr.SceneSurface.RenderTarget;
 
                 GraphicsMgr.VertexBatch.Texture = renderTarget;
                 GraphicsMgr.VertexBatch.Effect = _shaderEffect;
@@ -77,6 +74,13 @@ namespace MonoGo.Engine.PostProcessing
             else CurrentLUT = LUTs[i - 1];
 
             return CurrentLUT;
+        }
+        private static void UpdateResolution()
+        {
+            if (Surface == null || Surface.Size != GameMgr.WindowManager.CanvasSize)
+            {
+                Surface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+            }
         }
 
         internal static void Dispose()

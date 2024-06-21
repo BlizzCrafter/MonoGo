@@ -318,18 +318,13 @@ namespace MonoGo.Engine.PostProcessing
         {
             if (RenderMgr.BloomFX)
             {
+                UpdateResolution();
+
                 RenderTarget2D renderTarget;
                 if (RenderMgr.ColorGradingFX) renderTarget = ColorGrading.Surface.RenderTarget;
-                else renderTarget = RenderMgr.SceneSurface.RenderTarget;
+                else renderTarget = RenderMgr.SceneSurface.RenderTarget;                
 
-                if (Surface == null
-                    || Surface.Size.X != renderTarget.Width
-                    || Surface.Size.Y != renderTarget.Height)
-                {
-                    Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
-                }
-
-                _radiusMultiplier = GameMgr.WindowManager.CanvasSize.X / renderTarget.Width;
+                _radiusMultiplier = Surface.Size.X / renderTarget.Width;
 
                 GraphicsMgr.VertexBatch.RasterizerState = RasterizerState.CullNone;
                 GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
@@ -347,7 +342,7 @@ namespace MonoGo.Engine.PostProcessing
 
                 GraphicsMgr.VertexBatch.Texture = renderTarget;
                 ScreenTexture = renderTarget;
-                InverseResolution = new Vector2(1.0f / GameMgr.WindowManager.CanvasSize.X, 1.0f / GameMgr.WindowManager.CanvasSize.Y);
+                InverseResolution = new Vector2(1.0f / Surface.Size.X, 1.0f / Surface.Size.Y);
 
                 if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
                 else _shaderEffect.CurrentTechnique = _bloomPassExtract;
@@ -553,21 +548,26 @@ namespace MonoGo.Engine.PostProcessing
             GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
         }
 
-        internal static void UpdateResolution()
+        private static void UpdateResolution()
         {
-            var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
-            var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            if (Surface == null || Surface.Size != GameMgr.WindowManager.CanvasSize)
+            {
+                Surface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
 
-            _bloomSurfaceMip0 = new Surface(bloomRenderTarget2DMip0);
-            _bloomSurfaceMip1 = new Surface(bloomRenderTarget2DMip1);
-            _bloomSurfaceMip2 = new Surface(bloomRenderTarget2DMip2);
-            _bloomSurfaceMip3 = new Surface(bloomRenderTarget2DMip3);
-            _bloomSurfaceMip4 = new Surface(bloomRenderTarget2DMip4);
-            _bloomSurfaceMip5 = new Surface(bloomRenderTarget2DMip5);
+                var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
+                var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+
+                _bloomSurfaceMip0 = new Surface(bloomRenderTarget2DMip0);
+                _bloomSurfaceMip1 = new Surface(bloomRenderTarget2DMip1);
+                _bloomSurfaceMip2 = new Surface(bloomRenderTarget2DMip2);
+                _bloomSurfaceMip3 = new Surface(bloomRenderTarget2DMip3);
+                _bloomSurfaceMip4 = new Surface(bloomRenderTarget2DMip4);
+                _bloomSurfaceMip5 = new Surface(bloomRenderTarget2DMip5);
+            }
         }
 
         internal static void Dispose()
