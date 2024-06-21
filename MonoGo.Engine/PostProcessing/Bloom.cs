@@ -6,59 +6,214 @@ using MonoGo.Engine.Resources;
 
 namespace MonoGo.Engine.PostProcessing
 {
-    /// <summary>
-    /// 
-    /// Version 1.1, 16. Dez. 2016
-    /// 
-    /// Bloom / Blur, 2016 TheKosmonaut
-    /// 
-    /// High-Quality Bloom filter for high-performance applications
-    /// 
-    /// Based largely on the implementations in Unreal Engine 4 and Call of Duty AW
-    /// For more information look for
-    /// "Next Generation Post Processing in Call of Duty Advanced Warfare" by Jorge Jimenez
-    /// http://www.iryoku.com/downloads/Next-Generation-Post-Processing-in-Call-of-Duty-Advanced-Warfare-v18.pptx
-    /// 
-    /// The idea is to have several rendertargets or one rendertarget with several mip maps
-    /// so each mip has half resolution (1/2 width and 1/2 height) of the previous one.
-    /// 
-    /// 32, 16, 8, 4, 2
-    /// 
-    /// In the first step we extract the bright spots from the original image. If not specified otherwise thsi happens in full resolution.
-    /// We can do that based on the average RGB value or Luminance and check whether this value is higher than our Threshold.
-    ///     BloomUseLuminance = true / false (default is true)
-    ///     BloomThreshold = 0.8f;
-    /// 
-    /// Then we downscale this extraction layer to the next mip map.
-    /// While doing that we sample several pixels around the origin.
-    /// We continue to downsample a few more times, defined in
-    ///     BloomDownsamplePasses = 5 ( default is 5)
-    /// 
-    /// Afterwards we upsample again, but blur in this step, too.
-    /// The final output should be a blur with a very large kernel and smooth gradient.
-    /// 
-    /// The output in the draw is only the blurred extracted texture. 
-    /// It can be drawn on top of / merged with the original image with an additive operation for example.
-    /// 
-    /// If you use ToneMapping you should apply Bloom before that step.
-    /// </summary>
+    public enum BloomPresets
+    {
+        Wide,
+        WeakWide,
+        GlareWide,
+        SuperWide,
+        Focussed,
+        Small,
+        Cheap,
+        One
+    };
+
     public static class Bloom
     {
-        public enum BloomPresets
-        {
-            Wide,
-            WeakWide,
-            GlareWide,
-            SuperWide,
-            Focussed,
-            Small,
-            Cheap,
-            One
-        };
-
         public static Surface Surface { get; private set; }
 
-        //Mip-Surfaces
+        public static float StrengthMultiplier = 1.0f;
+
+        public static bool UseLuminance = true;
+        public static int DownsamplePasses = 5;
+
+        public static float Threshold
+        {
+            get { return _threshold; }
+            set
+            {
+                if (Math.Abs(_threshold - value) > 0.001f)
+                {
+                    _threshold = value;
+                    _bloomThresholdParameter.SetValue(_threshold);
+                }
+            }
+        }
+        private static float _threshold;
+
+        public static float StreakLength
+        {
+            get { return _streakLength; }
+            set
+            {
+                if (Math.Abs(_streakLength - value) > 0.001f)
+                {
+                    _streakLength = value;
+                    _bloomStreakLengthParameter.SetValue(_streakLength);
+                }
+            }
+        }
+        private static float _streakLength;
+
+        public static void NextPreset()
+        {
+            Preset(_bloomPreset.Next());
+        }
+        public static void PreviousPreset()
+        {
+            Preset(_bloomPreset.Previous());
+        }
+
+        private static void Preset(BloomPresets preset)
+        {
+            switch (preset)
+            {
+                case BloomPresets.Wide:
+                    {
+                        _bloomStrength1 = 0.5f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 2;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 2;
+                        _bloomRadius5 = 4.0f;
+                        _bloomRadius4 = 4.0f;
+                        _bloomRadius3 = 2.0f;
+                        _bloomRadius2 = 2.0f;
+                        _bloomRadius1 = 1.0f;
+                        StreakLength = 1;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+                case BloomPresets.WeakWide:
+                    {
+                        _bloomStrength1 = 0.5f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 1;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 0.5f;
+                        _bloomRadius5 = 4.0f;
+                        _bloomRadius4 = 4.0f;
+                        _bloomRadius3 = 2.0f;
+                        _bloomRadius2 = 2.0f;
+                        _bloomRadius1 = 1.0f;
+                        StreakLength = 2f;
+                        DownsamplePasses = 2;
+                        break;
+                    }
+                case BloomPresets.GlareWide:
+                    {
+                        _bloomStrength1 = 0.5f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 2;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 2;
+                        _bloomRadius5 = 4.0f;
+                        _bloomRadius4 = 4.0f;
+                        _bloomRadius3 = 2.0f;
+                        _bloomRadius2 = 2.0f;
+                        _bloomRadius1 = 1.0f;
+                        StreakLength = 0.3f;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+                case BloomPresets.SuperWide:
+                    {
+                        _bloomStrength1 = 0.9f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 1;
+                        _bloomStrength4 = 2;
+                        _bloomStrength5 = 6;
+                        _bloomRadius5 = 4.0f;
+                        _bloomRadius4 = 2.0f;
+                        _bloomRadius3 = 2.0f;
+                        _bloomRadius2 = 2.0f;
+                        _bloomRadius1 = 2.0f;
+                        StreakLength = 1;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+                case BloomPresets.Focussed:
+                    {
+                        _bloomStrength1 = 0.8f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 1;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 2;
+                        _bloomRadius5 = 4.0f;
+                        _bloomRadius4 = 2.0f;
+                        _bloomRadius3 = 2.0f;
+                        _bloomRadius2 = 2.0f;
+                        _bloomRadius1 = 2.0f;
+                        StreakLength = 1;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+                case BloomPresets.Small:
+                    {
+                        _bloomStrength1 = 0.8f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 1;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 1;
+                        _bloomRadius5 = 1;
+                        _bloomRadius4 = 1;
+                        _bloomRadius3 = 1;
+                        _bloomRadius2 = 1;
+                        _bloomRadius1 = 1;
+                        StreakLength = 1;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+                case BloomPresets.Cheap:
+                    {
+                        _bloomStrength1 = 0.8f;
+                        _bloomStrength2 = 2;
+                        _bloomRadius2 = 2;
+                        _bloomRadius1 = 2;
+                        StreakLength = 1;
+                        DownsamplePasses = 2;
+                        break;
+                    }
+                case BloomPresets.One:
+                    {
+                        _bloomStrength1 = 4f;
+                        _bloomStrength2 = 1;
+                        _bloomStrength3 = 1;
+                        _bloomStrength4 = 1;
+                        _bloomStrength5 = 2;
+                        _bloomRadius5 = 1.0f;
+                        _bloomRadius4 = 1.0f;
+                        _bloomRadius3 = 1.0f;
+                        _bloomRadius2 = 1.0f;
+                        _bloomRadius1 = 1.0f;
+                        StreakLength = 1;
+                        DownsamplePasses = 5;
+                        break;
+                    }
+            }
+            _bloomPreset = preset;
+        }
+        private static BloomPresets _bloomPreset;
+
+        private static Texture2D ScreenTexture 
+        { 
+            set { _bloomParameterScreenTexture.SetValue(value); } 
+        }
+        
+        private static Vector2 InverseResolution
+        {
+            get { return _inverseResolution; }
+            set
+            {
+                if (value != _inverseResolution)
+                {
+                    _inverseResolution = value;
+                    _bloomInverseResolutionParameter.SetValue(_inverseResolution);
+                }
+            }
+        }
+        private static Vector2 _inverseResolution;
+
         private static Surface _bloomSurfaceMip0;
         private static Surface _bloomSurfaceMip1;
         private static Surface _bloomSurfaceMip2;
@@ -68,7 +223,6 @@ namespace MonoGo.Engine.PostProcessing
 
         private static SurfaceFormat _renderTargetFormat;
 
-        //Shader + variables
         private static Effect _shaderEffect;
 
         private static EffectTechnique _bloomPassExtract;
@@ -84,103 +238,11 @@ namespace MonoGo.Engine.PostProcessing
         private static EffectParameter _bloomStreakLengthParameter;
         private static EffectParameter _bloomThresholdParameter;
 
-        //Preset variables for different mip levels
         private static float _bloomRadius1 = 1.0f;
         private static float _bloomRadius2 = 1.0f;
         private static float _bloomRadius3 = 1.0f;
         private static float _bloomRadius4 = 1.0f;
         private static float _bloomRadius5 = 1.0f;
-
-        private static float _bloomStrength1 = 1.0f;
-        private static float _bloomStrength2 = 1.0f;
-        private static float _bloomStrength3 = 1.0f;
-        private static float _bloomStrength4 = 1.0f;
-        private static float _bloomStrength5 = 1.0f;
-
-        public static float BloomStrengthMultiplier = 1.0f;
-
-        private static float _radiusMultiplier = 1.0f;
-
-        public static bool BloomUseLuminance = true;
-        public static int BloomDownsamplePasses = 5;
-
-        //Bloom Resolution (not canvas resolution!)
-        private static Vector2 _bloomResolution;
-
-        private static float BloomStrength
-        {
-            get { return _bloomStrength; }
-            set
-            {
-                if (Math.Abs(_bloomStrength - value) > 0.001f)
-                {
-                    _bloomStrength = value;
-                    _bloomStrengthParameter.SetValue(_bloomStrength * BloomStrengthMultiplier);
-                }
-
-            }
-        }
-        private static float _bloomStrength;
-
-        public static float BloomStreakLength
-        {
-            get { return _bloomStreakLength; }
-            set
-            {
-                if (Math.Abs(_bloomStreakLength - value) > 0.001f)
-                {
-                    _bloomStreakLength = value;
-                    _bloomStreakLengthParameter.SetValue(_bloomStreakLength);
-                }
-            }
-        }
-        private static float _bloomStreakLength;
-
-        public static float BloomThreshold
-        {
-            get { return _bloomThreshold; }
-            set
-            {
-                if (Math.Abs(_bloomThreshold - value) > 0.001f)
-                {
-                    _bloomThreshold = value;
-                    _bloomThresholdParameter.SetValue(_bloomThreshold);
-                }
-            }
-        }
-        private static float _bloomThreshold;
-
-        public static BloomPresets BloomPreset
-        {
-            get { return _bloomPreset; }
-            set
-            {
-                if (_bloomPreset == value) return;
-
-                _bloomPreset = value;
-                SetBloomPreset(_bloomPreset);
-            }
-        }
-        private static BloomPresets _bloomPreset;
-
-        private static Texture2D BloomScreenTexture 
-        { 
-            set { _bloomParameterScreenTexture.SetValue(value); } 
-        }
-        
-        private static Vector2 BloomInverseResolution
-        {
-            get { return _bloomInverseResolution; }
-            set
-            {
-                if (value != _bloomInverseResolution)
-                {
-                    _bloomInverseResolution = value;
-                    _bloomInverseResolutionParameter.SetValue(_bloomInverseResolution);
-                }
-            }
-        }
-        private static Vector2 _bloomInverseResolution;
 
         private static float BloomRadius
         {
@@ -201,13 +263,37 @@ namespace MonoGo.Engine.PostProcessing
         }
         private static float _bloomRadius;
 
+        private static float _bloomStrength1 = 1.0f;
+        private static float _bloomStrength2 = 1.0f;
+        private static float _bloomStrength3 = 1.0f;
+        private static float _bloomStrength4 = 1.0f;
+        private static float _bloomStrength5 = 1.0f;
+
+        private static float BloomStrength
+        {
+            get { return _bloomStrength; }
+            set
+            {
+                if (Math.Abs(_bloomStrength - value) > 0.001f)
+                {
+                    _bloomStrength = value;
+                    _bloomStrengthParameter.SetValue(_bloomStrength * StrengthMultiplier);
+                }
+
+            }
+        }
+        private static float _bloomStrength;
+
+        private static float _radiusMultiplier = 1.0f;
+
         /// <summary>
         /// Loads all needed components for the BloomEffect.
         /// </summary>
         /// <param name="renderTargetFormat">The intended format for the rendertargets. For normal, non-hdr, applications color or rgba1010102 are fine NOTE: For OpenGL, SurfaceFormat.Color is recommended for non-HDR applications.</param>
         public static void Init(SurfaceFormat renderTargetFormat = SurfaceFormat.Color)
         {
-            UpdateResolution(GameMgr.WindowManager.CanvasSize);
+            UpdateResolution();
+
             _renderTargetFormat = renderTargetFormat;
 
             _shaderEffect = ResourceHub.GetResource<Effect>("Effects", "Bloom");
@@ -224,9 +310,8 @@ namespace MonoGo.Engine.PostProcessing
             _bloomPassUpsample = _shaderEffect.Techniques["Upsample"];
             _bloomPassUpsampleLuminance = _shaderEffect.Techniques["UpsampleLuminance"];
 
-            BloomThreshold = 0.9f;
-            BloomPreset = BloomPresets.WeakWide;
-            SetBloomPreset(BloomPreset);
+            Threshold = 0.9f;
+            Preset(BloomPresets.WeakWide);
         }
 
         internal static void Process()
@@ -244,7 +329,7 @@ namespace MonoGo.Engine.PostProcessing
                     Surface = new Surface(new Vector2(renderTarget.Width, renderTarget.Height));
                 }
 
-                _radiusMultiplier = _bloomResolution.X / renderTarget.Width;
+                _radiusMultiplier = GameMgr.WindowManager.CanvasSize.X / renderTarget.Width;
 
                 GraphicsMgr.VertexBatch.RasterizerState = RasterizerState.CullNone;
                 GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
@@ -261,88 +346,88 @@ namespace MonoGo.Engine.PostProcessing
                 GraphicsMgr.Device.Clear(Color.Transparent);
 
                 GraphicsMgr.VertexBatch.Texture = renderTarget;
-                BloomScreenTexture = renderTarget;
-                BloomInverseResolution = new Vector2(1.0f / _bloomResolution.X, 1.0f / _bloomResolution.Y);
+                ScreenTexture = renderTarget;
+                InverseResolution = new Vector2(1.0f / GameMgr.WindowManager.CanvasSize.X, 1.0f / GameMgr.WindowManager.CanvasSize.Y);
 
-                if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
+                if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
                 else _shaderEffect.CurrentTechnique = _bloomPassExtract;
 
                 GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
                 Surface.ResetTarget();
 
                 //Now downsample to the next lower mip texture
-                if (BloomDownsamplePasses > 0)
+                if (DownsamplePasses > 0)
                 {
                     //DOWNSAMPLE TO MIP1
                     Surface.SetTarget(_bloomSurfaceMip1);
                     GraphicsMgr.Device.Clear(Color.Transparent);
 
                     GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip0.RenderTarget;
-                    BloomScreenTexture = _bloomSurfaceMip0.RenderTarget;
+                    ScreenTexture = _bloomSurfaceMip0.RenderTarget;
                     _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
                     Surface.ResetTarget();
 
-                    if (BloomDownsamplePasses > 1)
+                    if (DownsamplePasses > 1)
                     {
                         //Our input resolution is halfed, so our inverse 1/res. must be doubled
-                        BloomInverseResolution *= 2;
+                        InverseResolution *= 2;
 
                         //DOWNSAMPLE TO MIP2
                         Surface.SetTarget(_bloomSurfaceMip2);
                         GraphicsMgr.Device.Clear(Color.Transparent);
 
                         GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
-                        BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
+                        ScreenTexture = _bloomSurfaceMip1.RenderTarget;
                         _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                         GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                         Surface.ResetTarget();
 
-                        if (BloomDownsamplePasses > 2)
+                        if (DownsamplePasses > 2)
                         {
-                            BloomInverseResolution *= 2;
+                            InverseResolution *= 2;
 
                             //DOWNSAMPLE TO MIP3
                             Surface.SetTarget(_bloomSurfaceMip3);
                             GraphicsMgr.Device.Clear(Color.Transparent);
 
                             GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
-                            BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
+                            ScreenTexture = _bloomSurfaceMip2.RenderTarget;
                             _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                             GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                             Surface.ResetTarget();
 
-                            if (BloomDownsamplePasses > 3)
+                            if (DownsamplePasses > 3)
                             {
-                                BloomInverseResolution *= 2;
+                                InverseResolution *= 2;
 
                                 //DOWNSAMPLE TO MIP4
                                 Surface.SetTarget(_bloomSurfaceMip4);
                                 GraphicsMgr.Device.Clear(Color.Transparent);
 
                                 GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
-                                BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
+                                ScreenTexture = _bloomSurfaceMip3.RenderTarget;
                                 _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                                 GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                                 Surface.ResetTarget();
 
-                                if (BloomDownsamplePasses > 4)
+                                if (DownsamplePasses > 4)
                                 {
-                                    BloomInverseResolution *= 2;
+                                    InverseResolution *= 2;
 
                                     //DOWNSAMPLE TO MIP5
                                     Surface.SetTarget(_bloomSurfaceMip5);
                                     GraphicsMgr.Device.Clear(Color.Transparent);
 
                                     GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
-                                    BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
+                                    ScreenTexture = _bloomSurfaceMip4.RenderTarget;
                                     _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
                                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
@@ -355,19 +440,19 @@ namespace MonoGo.Engine.PostProcessing
                                     Surface.SetTarget(_bloomSurfaceMip4);
 
                                     GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip5.RenderTarget;
-                                    BloomScreenTexture = _bloomSurfaceMip5.RenderTarget;
+                                    ScreenTexture = _bloomSurfaceMip5.RenderTarget;
 
                                     BloomStrength = _bloomStrength5;
                                     BloomRadius = _bloomRadius5;
 
-                                    if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                                    if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                                     else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
                                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                                     Surface.ResetTarget();
 
-                                    BloomInverseResolution /= 2;
+                                    InverseResolution /= 2;
                                 }
 
                                 ChangeBlendState();
@@ -376,19 +461,19 @@ namespace MonoGo.Engine.PostProcessing
                                 Surface.SetTarget(_bloomSurfaceMip3);
 
                                 GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip4.RenderTarget;
-                                BloomScreenTexture = _bloomSurfaceMip4.RenderTarget;
+                                ScreenTexture = _bloomSurfaceMip4.RenderTarget;
 
                                 BloomStrength = _bloomStrength4;
                                 BloomRadius = _bloomRadius4;
 
-                                if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                                if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                                 else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
                                 GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                                 Surface.ResetTarget();
 
-                                BloomInverseResolution /= 2;
+                                InverseResolution /= 2;
 
                             }
 
@@ -398,19 +483,19 @@ namespace MonoGo.Engine.PostProcessing
                             Surface.SetTarget(_bloomSurfaceMip2);
 
                             GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip3.RenderTarget;
-                            BloomScreenTexture = _bloomSurfaceMip3.RenderTarget;
+                            ScreenTexture = _bloomSurfaceMip3.RenderTarget;
 
                             BloomStrength = _bloomStrength3;
                             BloomRadius = _bloomRadius3;
 
-                            if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                            if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                             else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
                             GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                             Surface.ResetTarget();
 
-                            BloomInverseResolution /= 2;
+                            InverseResolution /= 2;
                         }
 
                         ChangeBlendState();
@@ -419,19 +504,19 @@ namespace MonoGo.Engine.PostProcessing
                         Surface.SetTarget(_bloomSurfaceMip1);
 
                         GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip2.RenderTarget;
-                        BloomScreenTexture = _bloomSurfaceMip2.RenderTarget;
+                        ScreenTexture = _bloomSurfaceMip2.RenderTarget;
 
                         BloomStrength = _bloomStrength2;
                         BloomRadius = _bloomRadius2;
 
-                        if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                        if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                         else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
                         GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
 
                         Surface.ResetTarget();
 
-                        BloomInverseResolution /= 2;
+                        InverseResolution /= 2;
                     }
 
                     ChangeBlendState();
@@ -440,12 +525,12 @@ namespace MonoGo.Engine.PostProcessing
                     Surface.SetTarget(_bloomSurfaceMip0);
 
                     GraphicsMgr.VertexBatch.Texture = _bloomSurfaceMip1.RenderTarget;
-                    BloomScreenTexture = _bloomSurfaceMip1.RenderTarget;
+                    ScreenTexture = _bloomSurfaceMip1.RenderTarget;
 
                     BloomStrength = _bloomStrength1;
                     BloomRadius = _bloomRadius1;
 
-                    if (BloomUseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
+                    if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                     else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
                     GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
@@ -463,158 +548,19 @@ namespace MonoGo.Engine.PostProcessing
             }
         }
 
-        /// <summary>
-        /// A few presets with different values for the different mip levels of our bloom.
-        /// </summary>
-        /// <param name="preset">See BloomPresets enums. Example: BloomPresets.Wide</param>
-        private static void SetBloomPreset(BloomPresets preset)
-        {
-            switch(preset)
-            {
-                case BloomPresets.Wide:
-                {
-                        _bloomStrength1 = 0.5f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 2;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 2;
-                        _bloomRadius5 = 4.0f;
-                        _bloomRadius4 = 4.0f;
-                        _bloomRadius3 = 2.0f;
-                        _bloomRadius2 = 2.0f;
-                        _bloomRadius1 = 1.0f;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 5;
-                        break;
-                }
-                case BloomPresets.WeakWide:
-                    {
-                        _bloomStrength1 = 0.5f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 1;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 0.5f;
-                        _bloomRadius5 = 4.0f;
-                        _bloomRadius4 = 4.0f;
-                        _bloomRadius3 = 2.0f;
-                        _bloomRadius2 = 2.0f;
-                        _bloomRadius1 = 1.0f;
-                        BloomStreakLength = 2f;
-                        BloomDownsamplePasses = 2;
-                        break;
-                    }
-                case BloomPresets.GlareWide:
-                    {
-                        _bloomStrength1 = 0.5f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 2;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 2;
-                        _bloomRadius5 = 4.0f;
-                        _bloomRadius4 = 4.0f;
-                        _bloomRadius3 = 2.0f;
-                        _bloomRadius2 = 2.0f;
-                        _bloomRadius1 = 1.0f;
-                        BloomStreakLength = 0.3f;
-                        BloomDownsamplePasses = 5;
-                        break;
-                    }
-                case BloomPresets.SuperWide:
-                    {
-                        _bloomStrength1 = 0.9f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 1;
-                        _bloomStrength4 = 2;
-                        _bloomStrength5 = 6;
-                        _bloomRadius5 = 4.0f;
-                        _bloomRadius4 = 2.0f;
-                        _bloomRadius3 = 2.0f;
-                        _bloomRadius2 = 2.0f;
-                        _bloomRadius1 = 2.0f;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 5;
-                        break;
-                    }
-                case BloomPresets.Focussed:
-                    {
-                        _bloomStrength1 = 0.8f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 1;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 2;
-                        _bloomRadius5 = 4.0f;
-                        _bloomRadius4 = 2.0f;
-                        _bloomRadius3 = 2.0f;
-                        _bloomRadius2 = 2.0f;
-                        _bloomRadius1 = 2.0f;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 5;
-                        break;
-                    }
-                case BloomPresets.Small:
-                    {
-                        _bloomStrength1 = 0.8f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 1;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 1;
-                        _bloomRadius5 = 1;
-                        _bloomRadius4 = 1;
-                        _bloomRadius3 = 1;
-                        _bloomRadius2 = 1;
-                        _bloomRadius1 = 1;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 5;
-                        break;
-                    }
-                case BloomPresets.Cheap:
-                    {
-                        _bloomStrength1 = 0.8f;
-                        _bloomStrength2 = 2;
-                        _bloomRadius2 = 2;
-                        _bloomRadius1 = 2;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 2;
-                        break;
-                    }
-                case BloomPresets.One:
-                    {
-                        _bloomStrength1 = 4f;
-                        _bloomStrength2 = 1;
-                        _bloomStrength3 = 1;
-                        _bloomStrength4 = 1;
-                        _bloomStrength5 = 2;
-                        _bloomRadius5 = 1.0f;
-                        _bloomRadius4 = 1.0f;
-                        _bloomRadius3 = 1.0f;
-                        _bloomRadius2 = 1.0f;
-                        _bloomRadius1 = 1.0f;
-                        BloomStreakLength = 1;
-                        BloomDownsamplePasses = 5;
-                        break;
-                    }
-            }
-        }
-
         private static void ChangeBlendState()
         {
             GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
         }
 
-        /// <summary>
-        /// Update the InverseResolution of the used rendertargets. This should be the InverseResolution of the processed image
-        /// We use SurfaceFormat.Color, but you can use higher precision buffers obviously.
-        /// </summary>
-        public static void UpdateResolution(Vector2 resolution)
+        internal static void UpdateResolution()
         {
-            _bloomResolution = resolution;
-
-            var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
-            var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-            var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)_bloomResolution.X, (int)_bloomResolution.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
+            var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)GameMgr.WindowManager.CanvasSize.X, (int)GameMgr.WindowManager.CanvasSize.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
 
             _bloomSurfaceMip0 = new Surface(bloomRenderTarget2DMip0);
             _bloomSurfaceMip1 = new Surface(bloomRenderTarget2DMip1);
@@ -624,9 +570,6 @@ namespace MonoGo.Engine.PostProcessing
             _bloomSurfaceMip5 = new Surface(bloomRenderTarget2DMip5);
         }
 
-        /// <summary>
-        /// Dispose our RenderTargets. This is not covered by the Garbage Collector so we have to do it manually
-        /// </summary>
         internal static void Dispose()
         {
             Surface?.Dispose();
