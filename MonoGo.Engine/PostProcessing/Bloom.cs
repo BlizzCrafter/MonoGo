@@ -310,8 +310,8 @@ namespace MonoGo.Engine.PostProcessing
             _bloomPassUpsample = _shaderEffect.Techniques["Upsample"];
             _bloomPassUpsampleLuminance = _shaderEffect.Techniques["UpsampleLuminance"];
 
-            Threshold = 0.9f;
-            Preset(BloomPresets.WeakWide);
+            Threshold = 0.5f;
+            Preset(BloomPresets.GlareWide);
         }
 
         internal static void Process()
@@ -328,8 +328,6 @@ namespace MonoGo.Engine.PostProcessing
 
                 GraphicsMgr.VertexBatch.RasterizerState = RasterizerState.CullNone;
                 GraphicsMgr.VertexBatch.BlendState = BlendState.Opaque;
-
-                GraphicsMgr.VertexBatch.Texture = renderTarget;
                 GraphicsMgr.VertexBatch.Effect = _shaderEffect;
                 _shaderEffect.Parameters["World"].SetValue(GraphicsMgr.VertexBatch.World);
                 _shaderEffect.Parameters["View"].SetValue(GraphicsMgr.VertexBatch.View);
@@ -347,7 +345,7 @@ namespace MonoGo.Engine.PostProcessing
                 if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassExtractLuminance;
                 else _shaderEffect.CurrentTechnique = _bloomPassExtract;
 
-                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
                 Surface.ResetTarget();
 
                 //Now downsample to the next lower mip texture
@@ -361,7 +359,7 @@ namespace MonoGo.Engine.PostProcessing
                     ScreenTexture = _bloomSurfaceMip0.RenderTarget;
                     _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
-                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                    GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
                     Surface.ResetTarget();
 
                     if (DownsamplePasses > 1)
@@ -377,7 +375,7 @@ namespace MonoGo.Engine.PostProcessing
                         ScreenTexture = _bloomSurfaceMip1.RenderTarget;
                         _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
-                        GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                        GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                         Surface.ResetTarget();
 
@@ -393,7 +391,7 @@ namespace MonoGo.Engine.PostProcessing
                             ScreenTexture = _bloomSurfaceMip2.RenderTarget;
                             _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
-                            GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                            GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                             Surface.ResetTarget();
 
@@ -409,7 +407,7 @@ namespace MonoGo.Engine.PostProcessing
                                 ScreenTexture = _bloomSurfaceMip3.RenderTarget;
                                 _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
-                                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                                GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                                 Surface.ResetTarget();
 
@@ -425,7 +423,7 @@ namespace MonoGo.Engine.PostProcessing
                                     ScreenTexture = _bloomSurfaceMip4.RenderTarget;
                                     _shaderEffect.CurrentTechnique = _bloomPassDownsample;
 
-                                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                                    GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                                     Surface.ResetTarget();
 
@@ -443,7 +441,7 @@ namespace MonoGo.Engine.PostProcessing
                                     if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                                     else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
-                                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                                    GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                                     Surface.ResetTarget();
 
@@ -464,7 +462,7 @@ namespace MonoGo.Engine.PostProcessing
                                 if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                                 else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
-                                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                                GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                                 Surface.ResetTarget();
 
@@ -486,7 +484,7 @@ namespace MonoGo.Engine.PostProcessing
                             if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                             else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
-                            GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                            GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                             Surface.ResetTarget();
 
@@ -507,7 +505,7 @@ namespace MonoGo.Engine.PostProcessing
                         if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                         else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
-                        GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                        GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                         Surface.ResetTarget();
 
@@ -528,7 +526,7 @@ namespace MonoGo.Engine.PostProcessing
                     if (UseLuminance) _shaderEffect.CurrentTechnique = _bloomPassUpsampleLuminance;
                     else _shaderEffect.CurrentTechnique = _bloomPassUpsample;
 
-                    GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                    GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
 
                     Surface.ResetTarget();
                 }
@@ -555,11 +553,11 @@ namespace MonoGo.Engine.PostProcessing
                 Surface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
 
                 var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
-                var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-                var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-                var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-                var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
-                var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 2, (int)Surface.Size.Y / 2, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip2 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 4, (int)Surface.Size.Y / 4, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip3 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 8, (int)Surface.Size.Y / 8, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip4 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 16, (int)Surface.Size.Y / 16, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                var bloomRenderTarget2DMip5 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 32, (int)Surface.Size.Y / 32, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
 
                 _bloomSurfaceMip0 = new Surface(bloomRenderTarget2DMip0);
                 _bloomSurfaceMip1 = new Surface(bloomRenderTarget2DMip1);

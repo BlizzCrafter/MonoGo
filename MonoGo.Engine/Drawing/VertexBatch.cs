@@ -401,6 +401,19 @@ namespace MonoGo.Engine.Drawing
 		#region Quads.
 
 
+		public void AddQuad(Vector2 size)
+		{
+			SetQuad(
+				0, 0, size.X, size.Y,
+				Color.White,
+                Vector2.Zero,
+                Vector2.One,
+                0,
+                0,
+                0,
+                0);
+        }
+
 		public void AddQuad(Vector2 position, Color color)
 		{
 			SetQuad(
