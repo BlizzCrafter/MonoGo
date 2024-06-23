@@ -73,19 +73,21 @@ namespace MonoGo.Samples
         {
             UserInterface.Active.Clear();
 
-            //PostFX Panel
+            #region PostFX Panel
+
             _postFXPanel = new(new Vector2(-_postFXPanelOffsetX, GameMgr.WindowManager.CanvasSize.Y), PanelSkin.Default, Anchor.TopRight, new Vector2(_postFXPanelOffsetX, 0))
             {
                 Identifier = "PostFXPanel",
                 Padding = new Vector2(0, 5)
             };
+            UserInterface.Active.AddUIEntity(_postFXPanel);
+
             _postFXPanelAnimation = new Animation()
             {
                 Easing = Easing.EaseInBounce,
                 Looping = false,
                 Speed = 1,
-                Invert = true,
-                LinearProgress = 1
+                Invert = true
             };
             _postFXPanelAnimation.AnimationEndEvent += (e) => 
             {
@@ -99,7 +101,17 @@ namespace MonoGo.Samples
                     _postFXPanelAnimation.Easing = Easing.EaseOutBounce;
                 }
             };
-            UserInterface.Active.AddUIEntity(_postFXPanel);
+
+            _postFXButton = new Button(
+                "FX", ButtonSkin.Fancy, Anchor.TopRight, new Vector2(100, 50))
+            {
+                OnClick = (EntityUI btn) =>
+                {
+                    _postFXPanelVisible = !_postFXPanelVisible;
+                    if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
+                }
+            };
+            UserInterface.Active.AddUIEntity(_postFXButton);
 
             _postFXPanel.AddChild(new Header("Post FX"));
             _postFXPanel.AddChild(new HorizontalLine());
@@ -110,7 +122,9 @@ namespace MonoGo.Samples
                 Checked = RenderMgr.PostProcessing,
                 OnClick = (EntityUI btn) => { RenderMgr.PostProcessing = !RenderMgr.PostProcessing; }
             });
-            
+
+            #region Color Grading
+
             _postFXPanel.AddChild(new Button(
                 "Color Grading", ButtonSkin.Default, Anchor.AutoCenter, new Vector2(300, 50))
             {
@@ -118,8 +132,6 @@ namespace MonoGo.Samples
                 Checked = RenderMgr.ColorGradingFX,
                 OnClick = (EntityUI btn) => { RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX; }
             });
-
-            //Color Grading Panel
             {
                 Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
                 {
@@ -156,6 +168,9 @@ namespace MonoGo.Samples
                 panel.AddChild(rightButton);
             }
 
+            #endregion Color Grading Panel
+            #region Bloom
+
             _postFXPanel.AddChild(new Button(
                 "Bloom", ButtonSkin.Default, Anchor.AutoCenter, new Vector2(300, 50))
             {
@@ -163,8 +178,6 @@ namespace MonoGo.Samples
                 Checked = RenderMgr.BloomFX,
                 OnClick = (EntityUI btn) => { RenderMgr.BloomFX = !RenderMgr.BloomFX; }
             });
-
-            //Bloom Panel
             {
                 Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
                 {
@@ -221,20 +234,12 @@ namespace MonoGo.Samples
                     panel.AddChild(slider);
                 }
             }
-            _postFXButton = new Button(
-                "FX", ButtonSkin.Fancy, Anchor.TopRight, new Vector2(100, 50))
-            {
-                ToggleMode = true,
-                Checked = _postFXPanelVisible,
-                OnClick = (EntityUI btn) =>
-                {
-                    _postFXPanelVisible = !_postFXPanelVisible;
-                    if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
-                }
-            };
-            UserInterface.Active.AddUIEntity(_postFXButton);
 
-            // Bottom Panel
+            #endregion Bloom
+
+            #endregion PostFX Panel
+            #region Bottom Panel
+
             var sceneDescription = Description;
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
@@ -285,6 +290,8 @@ namespace MonoGo.Samples
             _nextExampleButton.OnClick = (EntityUI btn) => { NextScene(); };
             _nextExampleButton.Identifier = "next_btn";
             bottomPanel.AddChild(_nextExampleButton);
+
+            #endregion Bottom Panel
 
             // Create other GUIs last so that we don't steal input focus their.
             CurrentScene?.GetEntityList<Entity>()
