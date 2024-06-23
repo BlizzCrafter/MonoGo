@@ -35,7 +35,7 @@ namespace MonoGo.Samples
         Button _postFXButton;
         Animation _postFXPanelAnimation;
         bool _postFXPanelVisible = false;
-        int _postFXPanelOffsetX = -300;
+        int _postFXPanelOffsetX = -302;
 
         Button _nextExampleButton;
         Button _previousExampleButton;
