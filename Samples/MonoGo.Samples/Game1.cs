@@ -37,7 +37,9 @@ namespace MonoGo.Samples
 		protected override void Initialize()
         {
 			base.Initialize();
-			TiledEntityFactoryPool.InitFactoryPool();
+
+            RenderMgr.Init();
+            TiledEntityFactoryPool.InitFactoryPool();
 
             var depth = new DepthStencilState();
 			depth.DepthBufferEnable = true;
@@ -46,8 +48,6 @@ namespace MonoGo.Samples
 
 			GraphicsMgr.VertexBatch.DepthStencilState = depth;
             new GameController();
-
-			RenderMgr.Init();
         }
 
 		/// <summary>
@@ -55,8 +55,8 @@ namespace MonoGo.Samples
 		/// all of your content.
 		/// </summary>
 		protected override void LoadContent()
-		{
-			GraphicsMgr.Init(GraphicsDevice);
+        {
+            GraphicsMgr.Init(GraphicsDevice);
 
             new SpriteGroupResourceBox("DemoSprites", "Demo");
             new SpriteGroupResourceBox("GUISprites", "GUI");
