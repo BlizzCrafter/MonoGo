@@ -261,11 +261,17 @@ namespace MonoGo.Engine.UI
         /// <summary>Metadata about scrollbar texture.</summary>
         public TextureData VerticalScrollbarData;
 
-        /// <summary>Arrow-down texture (used in dropdown).</summary>
+        /// <summary>Arrow-Down texture (used in dropdown).</summary>
         public Texture2D ArrowDown;
 
-        /// <summary>Arrow-up texture (used in dropdown).</summary>
+        /// <summary>Arrow-Up texture (used in dropdown).</summary>
         public Texture2D ArrowUp;
+
+        /// <summary>Arrow-Left texture can be used in buttons for example.</summary>
+        public Texture2D ArrowLeft;
+
+        /// <summary>Arrow-Right texture can be used in buttons for example.</summary>
+        public Texture2D ArrowRight;
 
         /// <summary>Default font types.</summary>
         public SpriteFont[] Fonts;
@@ -300,6 +306,8 @@ namespace MonoGo.Engine.UI
             VerticalScrollbarMarkTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Scrollbar_Mark")[0].Texture;
             ArrowDown = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Down")[0].Texture;
             ArrowUp = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Up")[0].Texture;
+            ArrowLeft = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Left")[0].Texture;
+            ArrowRight = ResourceHub.GetResource<Sprite>("GUISprites", "Arrow_Right")[0].Texture;
             ProgressBarTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Progressbar")[0].Texture;
             ProgressBarFillTexture = ResourceHub.GetResource<Sprite>("GUISprites", "Progressbar_Fill")[0].Texture;
 
