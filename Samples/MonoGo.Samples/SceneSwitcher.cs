@@ -9,6 +9,10 @@ using MonoGo.Samples.Demos;
 using MonoGo.Samples.Misc;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.PostProcessing;
+using MonoGo.Engine.Drawing;
+using MonoGo.Engine.Resources;
+using MonoGo.Engine.Utils;
 
 namespace MonoGo.Samples
 {
@@ -27,6 +31,11 @@ namespace MonoGo.Samples
         const Buttons _exitButton = Buttons.Escape;
 
 
+        Panel _postFXPanel;
+        Button _postFXButton;
+        Animation _postFXPanelAnimation;
+        bool _postFXPanelVisible = false;
+        int _postFXPanelOffsetX = -300;
 
         Button _nextExampleButton;
         Button _previousExampleButton;
@@ -35,7 +44,6 @@ namespace MonoGo.Samples
         public List<SceneFactory> Factories = new()
         {
             new SceneFactory(typeof(UIDemo)),
-            new SceneFactory(typeof(ShapeDemo)),
             new SceneFactory(typeof(PrimitiveDemo), PrimitiveDemo.Description),
             new SceneFactory(typeof(ShapeDemo)),
             new SceneFactory(typeof(SpriteDemo)),
@@ -65,6 +73,168 @@ namespace MonoGo.Samples
         {
             UserInterface.Active.Clear();
 
+            //PostFX Panel
+            _postFXPanel = new(new Vector2(-_postFXPanelOffsetX, GameMgr.WindowManager.CanvasSize.Y), PanelSkin.Default, Anchor.TopRight, new Vector2(_postFXPanelOffsetX, 0))
+            {
+                Identifier = "PostFXPanel",
+                Padding = new Vector2(0, 5)
+            };
+            _postFXPanelAnimation = new Animation()
+            {
+                Easing = Easing.EaseInBounce,
+                Looping = false,
+                Speed = 1,
+                Invert = true,
+                LinearProgress = 1
+            };
+            _postFXPanelAnimation.AnimationEndEvent += (e) => 
+            {
+                _postFXPanelAnimation.Invert = !_postFXPanelAnimation.Invert;
+                if (_postFXPanelAnimation.Invert)
+                {
+                    _postFXPanelAnimation.Easing = Easing.EaseInBounce;
+                }
+                else
+                {
+                    _postFXPanelAnimation.Easing = Easing.EaseOutBounce;
+                }
+            };
+            UserInterface.Active.AddUIEntity(_postFXPanel);
+
+            _postFXPanel.AddChild(new Header("Post FX"));
+            _postFXPanel.AddChild(new HorizontalLine());
+            _postFXPanel.AddChild(new Button(
+                "Post Processing", ButtonSkin.Default, Anchor.AutoCenter, new Vector2(300, 50))
+            {
+                ToggleMode = true,
+                Checked = RenderMgr.PostProcessing,
+                OnClick = (EntityUI btn) => { RenderMgr.PostProcessing = !RenderMgr.PostProcessing; }
+            });
+            
+            _postFXPanel.AddChild(new Button(
+                "Color Grading", ButtonSkin.Default, Anchor.AutoCenter, new Vector2(300, 50))
+            {
+                ToggleMode = true,
+                Checked = RenderMgr.ColorGradingFX,
+                OnClick = (EntityUI btn) => { RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX; }
+            });
+
+            //Color Grading Panel
+            {
+                Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
+                {
+                    Padding = Vector2.One
+                };
+                _postFXPanel.AddChild(panel);
+
+                var image = new Image(ColorGrading.CurrentLUT[0].Texture, new Vector2(64, 64), offset: new Vector2(10, 0), anchor: Anchor.AutoInlineNoBreak)
+                {
+                    Padding = new Vector2(100, 0)
+                };
+                var leftButton = new Button(
+                    "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(44, 0))
+                {
+                    OnClick = (EntityUI btn) => { ColorGrading.PreviousLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
+                };
+                leftButton.ButtonParagraph.SetAnchorAndOffset(Anchor.AutoInlineNoBreak, Vector2.Zero);
+                leftButton.AddChild(new Icon(IconType.None, Anchor.Center)
+                {
+                    Texture = Engine.UI.Resources.Instance.ArrowLeft
+                }, true);
+                var rightButton = new Button(
+                    "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(10, 0))
+                {
+                    OnClick = (EntityUI btn) => { ColorGrading.NextLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
+                };
+                rightButton.ButtonParagraph.SetAnchorAndOffset(Anchor.Center, Vector2.Zero);
+                rightButton.AddChild(new Icon(IconType.None, Anchor.Center)
+                {
+                    Texture = Engine.UI.Resources.Instance.ArrowRight
+                }, true);
+                panel.AddChild(leftButton);
+                panel.AddChild(image);
+                panel.AddChild(rightButton);
+            }
+
+            _postFXPanel.AddChild(new Button(
+                "Bloom", ButtonSkin.Default, Anchor.AutoCenter, new Vector2(300, 50))
+            {
+                ToggleMode = true,
+                Checked = RenderMgr.BloomFX,
+                OnClick = (EntityUI btn) => { RenderMgr.BloomFX = !RenderMgr.BloomFX; }
+            });
+
+            //Bloom Panel
+            {
+                Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
+                {
+                    Padding = Vector2.One
+                };
+                _postFXPanel.AddChild(panel);
+
+                var leftButton = new Button(
+                    "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(44, 0))
+                {
+                    OnClick = (EntityUI btn) => { Bloom.PreviousPreset(); }
+                };
+                leftButton.ButtonParagraph.SetAnchorAndOffset(Anchor.AutoInlineNoBreak, Vector2.Zero);
+                leftButton.AddChild(new Icon(IconType.None, Anchor.Center)
+                {
+                    Texture = Engine.UI.Resources.Instance.ArrowLeft
+                }, true);
+
+                var image = new Image(ResourceHub.GetResource<Sprite>("GUISprites", "White_Texture")[0].Texture, new Vector2(64, 64), offset: new Vector2(10, 0), anchor: Anchor.AutoInlineNoBreak)
+                {
+                    Padding = new Vector2(100, 0)
+                };
+
+                var rightButton = new Button(
+                    "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(10, 0))
+                {
+                    OnClick = (EntityUI btn) => { Bloom.NextPreset(); }
+                };
+                rightButton.ButtonParagraph.SetAnchorAndOffset(Anchor.Center, Vector2.Zero);
+                rightButton.AddChild(new Icon(IconType.None, Anchor.Center)
+                {
+                    Texture = Engine.UI.Resources.Instance.ArrowRight
+                }, true);
+                panel.AddChild(leftButton);
+                panel.AddChild(image);
+                panel.AddChild(rightButton);
+
+                panel.AddChild(new Header("Threshold"));
+                {
+                    var slider = new Slider(0, 100)
+                    {
+                        Value = (int)(100 * Bloom.Threshold),
+                        OnValueChange = (EntityUI entity) => { Bloom.Threshold = MathF.Min(((Slider)entity).Value / 100f, 0.99f); }
+                    };
+                    panel.AddChild(slider);
+                }
+                {
+                    panel.AddChild(new Header("Streak"));
+                    var slider = new Slider(0, 30)
+                    {
+                        Value = (int)((100 * Bloom.StreakLength) / Bloom.StreakLength),
+                        OnValueChange = (EntityUI entity) => { Bloom.StreakLength = MathF.Min((((Slider)entity).Value / 100f) * 10f, 3f); }
+                    };
+                    panel.AddChild(slider);
+                }
+            }
+            _postFXButton = new Button(
+                "FX", ButtonSkin.Fancy, Anchor.TopRight, new Vector2(100, 50))
+            {
+                ToggleMode = true,
+                Checked = _postFXPanelVisible,
+                OnClick = (EntityUI btn) =>
+                {
+                    _postFXPanelVisible = !_postFXPanelVisible;
+                    if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
+                }
+            };
+            UserInterface.Active.AddUIEntity(_postFXButton);
+
+            // Bottom Panel
             var sceneDescription = Description;
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
@@ -127,7 +297,16 @@ namespace MonoGo.Samples
 		{
 			base.Update();
 
-			if (Input.CheckButtonPress(_toggleUIButton))
+            _postFXPanelAnimation.Update();
+            if (_postFXPanelAnimation.Running)
+            {
+                _postFXPanel.Offset = new Vector2(
+                    _postFXPanelOffsetX * (float)_postFXPanelAnimation.Progress, 0);
+                _postFXButton.Offset = new Vector2(_postFXPanel.Offset.X -_postFXPanelOffsetX, 0);
+            }
+
+
+            if (Input.CheckButtonPress(_toggleUIButton))
 			{
                 UserInterface.Active.Root.Visible = !UserInterface.Active.Root.Visible;
             }
