@@ -30,7 +30,6 @@ namespace MonoGo.Samples
         const Buttons _toggleFullscreenButton = Buttons.F3;
         const Buttons _exitButton = Buttons.Escape;
 
-
         Panel _postFXPanel;
         Button _postFXButton;
         Animation _postFXPanelAnimation;
@@ -311,7 +310,6 @@ namespace MonoGo.Samples
                     _postFXPanelOffsetX * (float)_postFXPanelAnimation.Progress, 0);
                 _postFXButton.Offset = new Vector2(_postFXPanel.Offset.X -_postFXPanelOffsetX, 0);
             }
-
 
             if (Input.CheckButtonPress(_toggleUIButton))
 			{
