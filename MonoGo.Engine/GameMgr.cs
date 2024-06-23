@@ -87,13 +87,8 @@ namespace MonoGo.Engine
 
 		public static void Init(Game game)
 		{
-			JsonConverters.Init();
-
-			Game = game;
+            Game = game;
 			Game.IsMouseVisible = false;
-
-			var keyboardBind = StuffResolver.GetStuff<ITextInputBinder>();
-			keyboardBind?.Init();
 
 			Input.MaxGamepadCount = 2;
 
@@ -101,9 +96,11 @@ namespace MonoGo.Engine
 
 			LoadAssembliesAndTypes(game.GetType().Assembly);
 
+            StuffResolver.GetStuff<ITextInputBinder>()?.Init();
+            JsonConverters.Init();
 			ResourceInfoMgr.Init();
 
-			var defScene = SceneMgr.CreateScene("default");
+            var defScene = SceneMgr.CreateScene("default");
 			defScene.CreateLayer("default");
 		}
 
