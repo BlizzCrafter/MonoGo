@@ -1,4 +1,13 @@
-﻿//Color Grading Shader with LUTs, TheKosmonaut 2017 ( kosmonaut3d@googlemail.com )
+﻿#if OPENGL
+	#define SV_POSITION POSITION
+	#define VS_SHADERMODEL vs_3_0
+	#define PS_SHADERMODEL ps_3_0
+#else
+	#define VS_SHADERMODEL vs_4_0_level_9_3
+	#define PS_SHADERMODEL ps_4_0_level_9_3
+#endif
+
+//Color Grading Shader with LUTs, TheKosmonaut 2017 ( kosmonaut3d@googlemail.com )
 
 #define Size 16
 #define SizeRoot 4
@@ -185,7 +194,7 @@ technique ApplyLUT
 {
     pass Pass1
     {
-        VertexShader = compile vs_3_0 VertexShaderFunction();
-        PixelShader = compile ps_3_0 PixelShaderApplyLUT();
+        VertexShader = compile VS_SHADERMODEL VertexShaderFunction();
+        PixelShader = compile PS_SHADERMODEL PixelShaderApplyLUT();
     }
 }
