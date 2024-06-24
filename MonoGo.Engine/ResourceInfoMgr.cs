@@ -5,10 +5,10 @@ using System.Text.RegularExpressions;
 
 namespace MonoGo.Engine
 {
-	/// <summary>
-	/// Provides convenient resource paths and lists all content assets.
-	/// </summary>
-	public static class ResourceInfoMgr
+    /// <summary>
+    /// Provides convenient resource paths and lists all content assets.
+    /// </summary>
+    public static class ResourceInfoMgr
 	{
 		/// <summary>
 		/// Root directory of the game content.
@@ -25,12 +25,20 @@ namespace MonoGo.Engine
 
 		internal static void Init()
 		{
-			try
-			{
-				_assetPaths = GameMgr.Game.Content.Load<string[]>("Content");
-			}
-			catch (Exception) { }
-		}
+			var assets = new List<string>();
+            var contentFiles = Directory.GetFiles(Path.GetFullPath(ContentDir), "Content*");
+            foreach (var contentFile in contentFiles)
+            {
+				try
+				{
+					var content = Path.GetFileNameWithoutExtension(contentFile);
+					assets.AddRange(GameMgr.Game.Content.Load<string[]>(content));
+				}
+				catch { continue; }
+            }
+            Array.Resize(ref _assetPaths, assets.Count);
+            assets.CopyTo(_assetPaths);
+        }
 
 
 		/// <summary>

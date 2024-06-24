@@ -58,7 +58,7 @@ namespace MonoGo.Samples.Demos
 
 			// You can set the texture for a primitive. Preferrably it shouldn't be in texture atlas.
 			// If in atlas, textures wouldn't be able to repeat.
-			_BlizzCrafterSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
+			_BlizzCrafterSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "BlizzCrafter");
 			_mesh.SetTextureFromFrame(_BlizzCrafterSprite[0]);
 			
 			var vIndex = 0;

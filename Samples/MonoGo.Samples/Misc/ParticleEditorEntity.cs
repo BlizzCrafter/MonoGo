@@ -70,9 +70,10 @@ namespace MonoGo.Samples.Misc
         }
 
         public void CreateUI()
-        {
+        { 
             var topPanel = new Panel(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
             _activeParticlesParagraph = new RichParagraph("", Anchor.Center);
+            topPanel.ClickThrough = true;
             topPanel.AddChild(_activeParticlesParagraph);
 
             UserInterface.Active.AddUIEntity(topPanel);

@@ -36,26 +36,15 @@
       },
       "watch": []
     },
-    "styles": {
-      "path": "Graphics/GUI/Styles/*.xml",
-      "recursive": "false",
-      "action": "copy",
-      "importer": "XmlImporter",
-      "processor": "PassThroughProcessor",
-      "watch": [
-        "GUI/Styles/*.xml"
-      ]
-    },
     "defaultSpriteGroup": {
-      "path": "Graphics/*.spritegroup",
+      "path": "*.spritegroup",
       "recursive": "True",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Default/*.png",
-        "Default/*.json",
-        "GUI/Textures/*.png"
+        "Graphics/Default/*.png",
+        "Graphics/Default/*.json"
       ]
     },
     "effects": {

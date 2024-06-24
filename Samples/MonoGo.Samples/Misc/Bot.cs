@@ -18,7 +18,7 @@ namespace MonoGo.Samples.Misc
 
 		public Bot(Layer layer) : base(layer)
 		{
-			var botSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Bot");
+			var botSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Bot");
 
 			AddComponent(new PositionComponent(Vector2.Zero));
 			_actor = AddComponent(new ActorComponent(botSprite));

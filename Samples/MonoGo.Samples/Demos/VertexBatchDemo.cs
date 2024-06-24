@@ -23,7 +23,7 @@ namespace MonoGo.Samples.Demos
 
 		public VertexBatchDemo(Layer layer) : base(layer)
 		{
-            _test = ResourceHub.GetResource<Sprite>("DefaultSprites", "BlizzCrafter");
+            _test = ResourceHub.GetResource<Sprite>("DemoSprites", "BlizzCrafter");
 			_vbatch = new VertexBatch(
 				GraphicsMgr.Device,
 				null,

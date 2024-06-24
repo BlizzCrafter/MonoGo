@@ -82,8 +82,8 @@ namespace MonoGo.Engine
 		public static double ToDegrees(double radians) =>
 			(radians / (Math.PI * 2.0)) * 360.0;
 
-		public static double ToRadians(double radians) =>
-			(radians / 360.0) * Math.PI * 2.0;
+		public static double ToRadians(double degrees) =>
+			(degrees / 360.0) * Math.PI * 2.0;
 
 		public bool Equals(Angle other) =>
 			_degrees == other._degrees;

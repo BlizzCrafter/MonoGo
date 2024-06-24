@@ -1,9 +1,9 @@
 ﻿{
 	"atlasSize": 512,
 	"texturePadding": 1,
-	"rootDir": "/Default",
+	"rootDir": "/Effects",
 	"singleTexturesWildcards": 
 	[
-		"/Textures/*"
+		"/LUT/*"
 	]
 }

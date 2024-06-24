@@ -37,7 +37,9 @@ namespace MonoGo.Samples
 		protected override void Initialize()
         {
 			base.Initialize();
-			TiledEntityFactoryPool.InitFactoryPool();
+
+            RenderMgr.Init();
+            TiledEntityFactoryPool.InitFactoryPool();
 
             var depth = new DepthStencilState();
 			depth.DepthBufferEnable = true;
@@ -46,8 +48,6 @@ namespace MonoGo.Samples
 
 			GraphicsMgr.VertexBatch.DepthStencilState = depth;
             new GameController();
-
-			RenderMgr.Init();
         }
 
 		/// <summary>
@@ -55,18 +55,19 @@ namespace MonoGo.Samples
 		/// all of your content.
 		/// </summary>
 		protected override void LoadContent()
-		{
-			GraphicsMgr.Init(GraphicsDevice);
+        {
+            GraphicsMgr.Init(GraphicsDevice);
 
-            new SpriteGroupResourceBox("DefaultSprites", "Graphics/Default");
-            new SpriteGroupResourceBox("GUISprites", "Graphics/GUI");
-            new SpriteGroupResourceBox("ParticleSprites", "Graphics/Particles");
+            new SpriteGroupResourceBox("DemoSprites", "Demo");
+            new SpriteGroupResourceBox("GUISprites", "GUI");
+            new SpriteGroupResourceBox("ParticleSprites", "Particles");
+            new SpriteGroupResourceBox("LUTSprites", "LUT");
             new DirectoryResourceBox<Effect>("Effects", "Effects");
 			new DirectoryResourceBox<TiledMap>("Maps", "Maps");
 
 			new Fonts();
 
-            UserInterface.Init("Graphics/GUI/Styles");
+            UserInterface.Init("GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
         }

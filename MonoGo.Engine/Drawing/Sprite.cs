@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MonoGo.Engine.Drawing
 {
 	/// <summary>
 	/// Drawable sprite. 
 	/// </summary>
+	[DebuggerDisplay("{Name,nq}")]
 	public class Sprite : ICloneable
 	{
 		public Vector2 Position;

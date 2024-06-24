@@ -55,7 +55,7 @@ namespace MonoGo.Samples.Demos
 		public UtilsDemo(Layer layer) : base(layer)
 		{
 			_grayscale = ResourceHub.GetResource<Effect>("Effects", "Grayscale");
-			_fireSprite = ResourceHub.GetResource<Sprite>("DefaultSprites", "Fire");
+			_fireSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Fire");
 
 			// Animation.
 

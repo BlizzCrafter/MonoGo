@@ -19,11 +19,6 @@
 /processor:PassThroughProcessor
 /build:Content.npl
 
-#begin ../../MonoGo.Samples.Content/Content/Graphics/Default.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../MonoGo.Samples.Content/Content/Graphics/Default.spritegroup;Graphics/Default.spritegroup
-
 #begin ../../MonoGo.Samples.Content/Content/Effects/Disabled.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -120,3 +115,8 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Regular.spritefont;Fonts/Regular.spritefont
+
+#begin ../../MonoGo.Samples.Content/Content/Demo.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../MonoGo.Samples.Content/Content/Demo.spritegroup;Demo.spritegroup

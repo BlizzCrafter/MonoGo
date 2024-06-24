@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<OutputPath>..\bin\$(Configuration)\</OutputPath>
 		<DocumentationFile>..\bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>
@@ -11,23 +11,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="GUI\**" />
-	  <EmbeddedResource Remove="GUI\**" />
-	  <None Remove="GUI\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.*">
 			<PrivateAssets>All</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="UI\" />
 	</ItemGroup>
 
 </Project>
