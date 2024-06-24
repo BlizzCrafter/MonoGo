@@ -115,3 +115,8 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:../../MonoGo.Samples.Content/Content/Fonts/Regular.spritefont;Fonts/Regular.spritefont
+
+#begin ../../MonoGo.Samples.Content/Content/Demo.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../MonoGo.Samples.Content/Content/Demo.spritegroup;Demo.spritegroup
