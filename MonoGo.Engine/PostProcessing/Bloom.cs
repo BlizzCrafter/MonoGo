@@ -64,7 +64,7 @@ namespace MonoGo.Engine.PostProcessing
             Preset(_bloomPreset.Previous());
         }
 
-        private static void Preset(BloomPresets preset)
+        public static void Preset(BloomPresets preset)
         {
             switch (preset)
             {
@@ -285,12 +285,9 @@ namespace MonoGo.Engine.PostProcessing
         private static float _bloomStrength;
 
         private static float _radiusMultiplier = 1.0f;
-
-        /// <summary>
-        /// Loads all needed components for the BloomEffect.
-        /// </summary>
+                
         /// <param name="renderTargetFormat">The intended format for the rendertargets. For normal, non-hdr, applications color or rgba1010102 are fine NOTE: For OpenGL, SurfaceFormat.Color is recommended for non-HDR applications.</param>
-        public static void Init(SurfaceFormat renderTargetFormat = SurfaceFormat.Color)
+        internal static void Init(SurfaceFormat renderTargetFormat = SurfaceFormat.Color)
         {
             UpdateResolution();
 
@@ -550,7 +547,7 @@ namespace MonoGo.Engine.PostProcessing
         {
             if (Surface == null || Surface.Size != GameMgr.WindowManager.CanvasSize)
             {
-                Surface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+                Surface = new Surface(GameMgr.WindowManager.CanvasSize);
 
                 var bloomRenderTarget2DMip0 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X, (int)Surface.Size.Y, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
                 var bloomRenderTarget2DMip1 = new RenderTarget2D(GraphicsMgr.Device, (int)Surface.Size.X / 2, (int)Surface.Size.Y / 2, false, _renderTargetFormat, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);

@@ -48,7 +48,7 @@ namespace MonoGo.Engine.PostProcessing
 
                 Surface.SetTarget(Surface);
                 GraphicsMgr.Device.Clear(Color.Black);
-                GraphicsMgr.VertexBatch.AddQuad(Vector2.Zero, Color.White);
+                GraphicsMgr.VertexBatch.AddQuad(Surface.Size);
                 Surface.ResetTarget();
 
                 GraphicsMgr.VertexBatch.BlendState = BlendState.AlphaBlend;
@@ -79,7 +79,7 @@ namespace MonoGo.Engine.PostProcessing
         {
             if (Surface == null || Surface.Size != GameMgr.WindowManager.CanvasSize)
             {
-                Surface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+                Surface = new Surface(GameMgr.WindowManager.CanvasSize);
             }
         }
 

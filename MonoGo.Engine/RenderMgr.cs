@@ -92,16 +92,16 @@ namespace MonoGo.Engine
         {
             if (SceneSurface == null || SceneSurface.Size != GameMgr.WindowManager.CanvasSize)
             {
-                SceneSurface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+                SceneSurface = new Surface(GameMgr.WindowManager.CanvasSize);
             }
 
             if (GUISurface == null || GUISurface.Size != GameMgr.WindowManager.CanvasSize)
             {
-                GUISurface = new Surface(new Vector2(GameMgr.WindowManager.CanvasSize.X, GameMgr.WindowManager.CanvasSize.Y));
+                GUISurface = new Surface(GameMgr.WindowManager.CanvasSize);
             }
         }
 
-        public static void Destroy()
+        public static void Dispose()
         {
             SceneSurface.Dispose();
             GUISurface.Dispose();

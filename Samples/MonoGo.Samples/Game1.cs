@@ -108,7 +108,7 @@ namespace MonoGo.Samples
 
         protected override void OnExiting(object sender, EventArgs args)
         {
-			RenderMgr.Destroy();
+			RenderMgr.Dispose();
 
             base.OnExiting(sender, args);
         }
