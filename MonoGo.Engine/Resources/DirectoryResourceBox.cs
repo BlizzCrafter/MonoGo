@@ -4,16 +4,15 @@ using MonoGo.Engine.Resources;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace MonoGo.Resources
 {
-	/// <summary>
-	/// Loads all content from a specified directory.
-	/// NOTE: All content files in the directory should be
-	/// of the same type!!!
-	/// </summary>
-	public class DirectoryResourceBox<T> : ResourceBox<T>
+    /// <summary>
+    /// Loads all content from a specified directory.
+    /// NOTE: All content files in the directory should be
+    /// of the same type!!!
+    /// </summary>
+    public class DirectoryResourceBox<T> : ResourceBox<T>
 	{
 		private static ContentManager _content;
 
