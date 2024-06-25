@@ -41,13 +41,13 @@ namespace MonoGo.Engine
         {
             GraphicsMgr.Init(GraphicsDevice);
 
-            new SpriteGroupResourceBox("GUISprites", "GUI");
-            new SpriteGroupResourceBox("ParticleSprites", "Particles");
-            new SpriteGroupResourceBox("LUTSprites", "LUT");
-            new DirectoryResourceBox<Effect>("Effects", "Effects");
-            new FontResourceBox("Fonts", "Fonts");
+            new SpriteGroupResourceBox("GUISprites", "Engine/GUI");
+            new SpriteGroupResourceBox("ParticleSprites", "Engine/Particles");
+            new SpriteGroupResourceBox("LUTSprites", "Engine/LUT");
+            new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
+            new FontResourceBox("Fonts", "Engine/Fonts");
 
-            UserInterface.Init("GUI/Styles");
+            UserInterface.Init("Engine/GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
             UserInterface.Active.SamplerState = SamplerState.PointWrap;
         }

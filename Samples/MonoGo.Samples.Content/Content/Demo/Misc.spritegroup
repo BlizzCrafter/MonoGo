@@ -1,7 +1,7 @@
 ﻿{
 	"atlasSize": 512,
 	"texturePadding": 1,
-	"rootDir": "/Graphics/Default",
+	"rootDir": "/Misc",
 	"singleTexturesWildcards": 
 	[
 		"/Textures/*"

@@ -143,7 +143,7 @@ namespace MonoGo.Samples.Demos
 			position += new Vector2(16, 150);
 
 			GraphicsMgr.CurrentColor = Color.White;
-			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
+			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Regular");
 			Text.Draw("This text is drawn using default" + Environment.NewLine + "MonoGame spritefont.", position);
 			position += Vector2.UnitY * 48;
 			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "FancyFont");

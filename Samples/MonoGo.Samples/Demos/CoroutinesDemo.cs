@@ -12,12 +12,12 @@ namespace MonoGo.Samples.Demos
 {
 	public class CoroutinesDemo : Entity
 	{
-		private Vector2 _ballSpawnerPosition = new Vector2(200, 400);
-		private Vector2 _waitUntilSpawnerPosition = new Vector2(200, 200);
-		private Vector2 _waitWhileSpawnerPosition = new Vector2(400, 200);
-		private Vector2 _basicUpdateClockPosition = new Vector2(400, 400);
-		private Vector2 _fixedUpdateClockPosition = new Vector2(600, 400);
-		private Vector2 _sequencePosition = new Vector2(600, 200);
+		private Vector2 _ballSpawnerPosition = new Vector2(300, 400);
+		private Vector2 _waitUntilSpawnerPosition = new Vector2(300, 200);
+		private Vector2 _waitWhileSpawnerPosition = new Vector2(600, 200);
+		private Vector2 _basicUpdateClockPosition = new Vector2(600, 400);
+		private Vector2 _fixedUpdateClockPosition = new Vector2(1000, 400);
+		private Vector2 _sequencePosition = new Vector2(1000, 200);
 
 		private Angle _basicUpdateClock = Angle.Up;
 		private Angle _fixedUpdateClock = Angle.Up;

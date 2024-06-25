@@ -15,47 +15,47 @@
       ]
     },
     "styles": {
-      "path": "GUI/Styles/*.xml",
+      "path": "Engine/GUI/Styles/*.xml",
       "recursive": "false",
       "action": "copy",
       "importer": "XmlImporter",
       "processor": "PassThroughProcessor",
       "watch": [
-        "GUI/Styles/*.xml"
+        "Engine/GUI/Styles/*.xml"
       ]
     },
     "GUIGroup": {
-      "path": "GUI.spritegroup",
+      "path": "Engine/GUI.spritegroup",
       "recursive": false,
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "GUI/Textures/*.png"
+        "Engine/GUI/Textures/*.png"
       ]
     },
     "ParticlesGroup": {
-      "path": "Particles.spritegroup",
+      "path": "Engine/Particles.spritegroup",
       "recursive": "false",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Particles/Textures/*.png"
+        "Engine/Particles/Textures/*.png"
       ]
     },
     "LUTGroup": {
-      "path": "LUT.spritegroup",
+      "path": "Engine/LUT.spritegroup",
       "recursive": "false",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Effects/LUT/*.png"
+        "Engine/Effects/LUT/*.png"
       ]
     },
     "Effects": {
-      "path": "Effects/*.fx",
+      "path": "Engine/Effects/*.fx",
       "recursive": "false",
       "action": "build",
       "importer": "EffectImporter",
@@ -65,7 +65,21 @@
         "Defines": ""
       },
       "watch": [
-        "Effects/*.fx"
+        "Engine/Effects/*.fx"
+      ]
+    },
+    "Fonts": {
+      "path": "Engine/Fonts/*.spritefont",
+      "recursive": "false",
+      "action": "build",
+      "importer": "FontDescriptionImporter",
+      "processor": "FontDescriptionProcessor",
+      "processorParam": {
+        "PremultiplyAlpha": "True",
+        "TextureFormat": "Compressed"
+      },
+      "watch": [
+        "Engine/Fonts/*.spritefont"
       ]
     }
   }

@@ -14,67 +14,33 @@
         "../../MonoGo.Samples.Content/Content/*"
       ]
     },
-    "music": {
-      "path": "Audio/Music/*.ogg",
-      "recursive": "True",
-      "action": "copy",
-      "importer": "OggImporter",
-      "processor": "SongProcessor",
-      "processorParam": {
-        "Quality": "Best"
-      },
-      "watch": []
-    },
-    "sounds": {
-      "path": "Audio/Sounds/*.wav",
-      "recursive": "True",
-      "action": "copy",
-      "importer": "WavImporter",
-      "processor": "SoundEffectProcessor",
-      "processorParam": {
-        "Quality": "Best"
-      },
-      "watch": []
-    },
     "defaultSpriteGroup": {
-      "path": "*.spritegroup",
+      "path": "Demo/Misc.spritegroup",
       "recursive": "True",
       "action": "build",
       "importer": "SpriteGroupImporter",
       "processor": "SpriteGroupProcessor",
       "watch": [
-        "Graphics/Default/*.png",
-        "Graphics/Default/*.json"
+        "Demo/Misc/*.png",
+        "Demo/Misc/*.json"
       ]
     },
-    "effects": {
-      "path": "Effects/*.fx",
-      "recursive": "True",
-      "action": "build",
-      "importer": "EffectImporter",
-      "processor": "EffectProcessor",
-      "processorParam": {
-        "DebugMode": "Auto",
-        "Defines": ""
-      },
-      "watch": []
-    },
     "tiledMaps": {
-      "path": "Maps/*.tmx",
+      "path": "Demo/Maps/*.tmx",
       "recursive": "True",
       "action": "build",
       "importer": "TiledMapImporter",
       "processor": "PassThroughProcessor",
       "watch": [
-        "Tilesets/*.tsx",
-        "Tilesets/*.png",
-        "Templates/*.tsx",
-        "Templates/*.tx",
-        "Templates/*.png"
+        "Demo/Maps/Tilesets/*.tsx",
+        "Demo/Maps/Tilesets/*.png",
+        "Demo/Maps/Templates/*.tsx",
+        "Demo/Maps/Templates/*.tx",
+        "Demo/Maps/Templates/*.png"
       ]
     },
     "tiledMapTextures": {
-      "path": "Maps/*.png",
+      "path": "Demo/Maps/*.png",
       "recursive": "True",
       "action": "build",
       "importer": "TextureImporter",
@@ -87,18 +53,6 @@
         "ResizeToPowerOfTwo": "False",
         "MakeSquare": "False",
         "TextureFormat": "Color"
-      },
-      "watch": []
-    },
-    "fonts": {
-      "path": "Fonts/*.spritefont",
-      "recursive": "True",
-      "action": "build",
-      "importer": "FontDescriptionImporter",
-      "processor": "FontDescriptionProcessor",
-      "processorParam": {
-        "PremultiplyAlpha": "True",
-        "TextureFormat": "Compressed"
       },
       "watch": []
     }

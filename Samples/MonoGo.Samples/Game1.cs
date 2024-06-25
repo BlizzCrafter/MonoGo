@@ -36,8 +36,8 @@ namespace MonoGo.Samples
         {
 			base.LoadContent();
 
-            new DirectoryResourceBox<TiledMap>("Maps", "Maps");
-            new SpriteGroupResourceBox("DemoSprites", "Demo");
+            new DirectoryResourceBox<TiledMap>("Maps", "Demo/Maps");
+            new SpriteGroupResourceBox("DemoSprites", "Demo/Misc");
 
             var fontSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Font");
             var fontBox = ResourceHub.GetResourceBox("Fonts") as ResourceBox<IFont>;

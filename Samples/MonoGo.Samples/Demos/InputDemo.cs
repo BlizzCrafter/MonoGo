@@ -82,7 +82,7 @@ namespace MonoGo.Samples.Demos
 			// This method can be used in Update, when no camera is active.
 			CircleShape.Draw(GraphicsMgr.CurrentCamera.GetRelativeMousePosition(), 12, ShapeFill.Outline);
 
-			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Arial");
+			Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Regular");
 
 			Text.Draw("Keyboard input: " + _keyboardInput.ToString(), position);
 
