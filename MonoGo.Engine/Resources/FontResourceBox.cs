@@ -1,17 +1,21 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Drawing;
+using System.Diagnostics;
+using System;
 using System.IO;
 
 namespace MonoGo.Engine.Resources
 {
     public class FontResourceBox : ResourceBox<IFont>
     {
-        private ContentManager _content = new(GameMgr.Game.Services);
+        private ContentManager _content;
 
-        public FontResourceBox(string name, string fontPath) : base(name)
+        private readonly string _resourceDir;
+
+        public FontResourceBox(string name, string resourceDir) : base(name)
         {
-            _content.RootDirectory = Path.Combine(ResourceInfoMgr.ContentDir, fontPath);
+            _resourceDir = resourceDir;
         }
 
         public override void Load()
@@ -22,16 +26,25 @@ namespace MonoGo.Engine.Resources
             }
             Loaded = true;
 
-            string[] fonts = Directory.GetFiles(_content.RootDirectory);
-            foreach (string font in fonts)
+            _content = new ContentManager(GameMgr.Game.Services);
+            _content.RootDirectory = ResourceInfoMgr.ContentDir;
+
+            var paths = ResourceInfoMgr.GetResourcePaths(_resourceDir + "/*");
+
+            foreach (var path in paths)
             {
-                var name = Path.GetFileNameWithoutExtension(font);
                 try
                 {
-                    var spriteFont = _content.Load<SpriteFont>(name);
-                    AddResource(name, new Font(spriteFont));
+                    if (Path.HasExtension(path))
+                    {
+                        continue;
+                    }
+                    AddResource(Path.GetFileNameWithoutExtension(path), new Font(_content.Load<SpriteFont>(path)));
                 }
-                catch { continue; }
+                catch (InvalidCastException)
+                {
+                    Debug.WriteLine("Failed to load " + path + ". It has a different type.");
+                }
             }
         }
 
