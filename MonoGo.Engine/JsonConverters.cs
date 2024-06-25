@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using static MonoGo.Engine.Axis;
-using static MonoGo.Engine.HSL;
+using static MonoGo.Engine.HSLColor;
 using static MonoGo.Engine.HSLRange;
 using static MonoGo.Engine.Range;
 using static MonoGo.Engine.RangeF;

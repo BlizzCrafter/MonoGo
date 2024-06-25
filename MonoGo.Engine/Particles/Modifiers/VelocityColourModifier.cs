@@ -6,8 +6,8 @@ namespace MonoGo.Engine.Particles.Modifiers
     {
         public string Key { get; set; }
 
-        public HSL StationaryColour { get; set; }
-        public HSL VelocityColour { get; set; }
+        public HSLColor StationaryColour { get; set; }
+        public HSLColor VelocityColour { get; set; }
         public float VelocityThreshold { get; set; }
 
         public unsafe void Update(float elapsedSeconds, ParticleBuffer.ParticleIterator iterator)
@@ -29,7 +29,7 @@ namespace MonoGo.Engine.Particles.Modifiers
                 {
                     var t = (float)Math.Sqrt(velocity2) / VelocityThreshold;
 
-                    particle->Colour = new HSL(
+                    particle->Colour = new HSLColor(
                         deltaColour.H * t + StationaryColour.H,
                         deltaColour.S * t + StationaryColour.S,
                         deltaColour.L * t + StationaryColour.L);

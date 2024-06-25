@@ -10,23 +10,23 @@
         /// <summary>
         /// Gets or sets the initial colour of particles when they are released.
         /// </summary>
-        public HSL InitialColour { get; set; }
+        public HSLColor InitialColour { get; set; }
 
         /// <summary>
         /// Gets or sets the final colour of particles when they are retired.
         /// </summary>
-        public HSL FinalColour { get; set; }
+        public HSLColor FinalColour { get; set; }
 
         public unsafe void Update(float elapsedSeconds, ParticleBuffer.ParticleIterator iterator)
         {
-            var delta = new HSL(FinalColour.H - InitialColour.H,
+            var delta = new HSLColor(FinalColour.H - InitialColour.H,
                                    FinalColour.S - InitialColour.S,
                                    FinalColour.L - InitialColour.L);
 
             while (iterator.HasNext)
             {
                 var particle = iterator.Next();
-                particle->Colour = new HSL(
+                particle->Colour = new HSLColor(
                     InitialColour.H + delta.H * particle->Age,
                     InitialColour.S + delta.S * particle->Age,
                     InitialColour.L + delta.L * particle->Age);

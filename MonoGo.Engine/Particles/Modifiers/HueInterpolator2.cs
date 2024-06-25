@@ -14,7 +14,7 @@
             while (iterator.HasNext)
             {
                 var particle = iterator.Next();
-                particle->Colour = new HSL(
+                particle->Colour = new HSLColor(
                     delta * particle->Age + InitialHue,
                     particle->Colour.S,
                     particle->Colour.L);

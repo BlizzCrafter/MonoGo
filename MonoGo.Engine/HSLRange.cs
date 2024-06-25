@@ -24,14 +24,14 @@ namespace MonoGo.Engine
             }
         }
 
-        public HSLRange(HSL min, HSL max)
+        public HSLRange(HSLColor min, HSLColor max)
         {
             Min = min;
             Max = max;
         }
 
-        public readonly HSL Min;
-        public readonly HSL Max;
+        public readonly HSLColor Min;
+        public readonly HSLColor Max;
 
         public static HSLRange Parse(string value)
         {
@@ -42,8 +42,8 @@ namespace MonoGo.Engine
             {
                 var noBrackets = value.Substring(1, value.Length - 2);
                 var colors = noBrackets.Split(';');
-                var c1 = HSL.Parse($"{colors[0]};{colors[1]};{colors[2]}");
-                var c2 = HSL.Parse($"{colors[3]};{colors[4]};{colors[5]}");
+                var c1 = HSLColor.Parse($"{colors[0]};{colors[1]};{colors[2]}");
+                var c2 = HSLColor.Parse($"{colors[3]};{colors[4]};{colors[5]}");
                 return new HSLRange(c1, c2);
             }
             catch
@@ -59,7 +59,7 @@ namespace MonoGo.Engine
             return "[" + Min + ';' + Max + ']';
         }
 
-        public static implicit operator HSLRange(HSL value)
+        public static implicit operator HSLRange(HSLColor value)
         {
             return new HSLRange(value, value);
         }

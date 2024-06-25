@@ -9,7 +9,7 @@
         {
             Quantity = 2;
             Speed    = RangeF.Parse("[10.0,30.0]");
-            Colour   = new HSLRange(new HSL(0f, 0.5f, 0.5f), new HSL(359f, 0.5f, 0.5f));
+            Colour   = new HSLRange(new HSLColor(0f, 0.5f, 0.5f), new HSLColor(359f, 0.5f, 0.5f));
             Opacity  = RangeF.Parse("[1.0,1.0]");
             Scale    = RangeF.Parse("[5.0,10.0]");
             Rotation = RangeF.Parse("[-3.14159,3.14159]");

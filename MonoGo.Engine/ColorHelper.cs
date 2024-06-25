@@ -8,7 +8,7 @@ namespace MonoGo.Engine
 {
     public static class ColorHelper
     {
-        public static Color ToColor(this HSL c)
+        public static Color ToColor(this HSLColor c)
         {
             return ToColor(c.H, c.S, c.L);
         }
@@ -40,12 +40,12 @@ namespace MonoGo.Engine
             return m1;
         }
 
-        public static HSL ToHsl(this Color c)
+        public static HSLColor ToHsl(this Color c)
         {
             return ToHsl(c.R, c.B, c.G);
         }
 
-        public static HSL ToHsl(float r, float b, float g)
+        public static HSLColor ToHsl(float r, float b, float g)
         {
             r = r / 255f;
             b = b / 255f;
@@ -58,7 +58,7 @@ namespace MonoGo.Engine
 
             var l = sum * 0.5f;
 
-            if (chroma == 0) return new HSL(0f, 0f, l);
+            if (chroma == 0) return new HSLColor(0f, 0f, l);
             float h;
             if (r == max)
                 h = (60 * (g - b) / chroma + 360) % 360;
@@ -69,17 +69,17 @@ namespace MonoGo.Engine
 
             var s = l <= 0.5f ? chroma / sum : chroma / (2f - sum);
 
-            return new HSL(h, s, l);
+            return new HSLColor(h, s, l);
         }
 
-        public static HSL InverseColour(this HSL colour)
+        public static HSLColor InverseColour(this HSLColor colour)
         {
-            return new HSL(360 - colour.H, colour.S, colour.L);
+            return new HSLColor(360 - colour.H, colour.S, colour.L);
         }
 
-        public static HSL OppositeColour(this HSL colour)
+        public static HSLColor OppositeColour(this HSLColor colour)
         {
-            return new HSL((colour.H + 180) % 360, colour.S, colour.L);
+            return new HSLColor((colour.H + 180) % 360, colour.S, colour.L);
         }
 
         /// <summary>

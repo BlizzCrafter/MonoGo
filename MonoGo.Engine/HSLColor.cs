@@ -9,21 +9,21 @@ namespace MonoGo.Engine
     /// <summary>
     /// An immutable data structure representing a 24bit colour composed of separate hue, saturation and lightness channels.
     /// </summary>
-    public struct HSL : IEquatable<HSL>
+    public struct HSLColor : IEquatable<HSLColor>
     {
-        public class HSLConverter : JsonConverter<HSL>
+        public class HSLConverter : JsonConverter<HSLColor>
         {
             public override bool CanConvert(Type objectType)
             {
-                return objectType == typeof(HSL);
+                return objectType == typeof(HSLColor);
             }
 
-            public override HSL Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            public override HSLColor Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 return Parse(reader.GetString()!);
             }
 
-            public override void Write(Utf8JsonWriter writer, HSL value, JsonSerializerOptions options)
+            public override void Write(Utf8JsonWriter writer, HSLColor value, JsonSerializerOptions options)
             {
                 writer.WriteStringValue(value.ToString());
             }
@@ -45,20 +45,20 @@ namespace MonoGo.Engine
         public float L;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HSL"/> structure.
+        /// Initializes a new instance of the <see cref="HSLColor"/> structure.
         /// </summary>
-        public HSL(Color color) : this()
+        public HSLColor(Color color) : this()
         {
             this = color.ToHsl();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HSL"/> structure.
+        /// Initializes a new instance of the <see cref="HSLColor"/> structure.
         /// </summary>
         /// <param name="h">The value of the hue channel.</param>
         /// <param name="s">The value of the saturation channel.</param>
         /// <param name="l">The value of the lightness channel.</param>
-        public HSL(float h, float s, float l) : this()
+        public HSLColor(float h, float s, float l) : this()
         {
             // normalize the hue
             H = NormalizeHue(h);
@@ -76,9 +76,9 @@ namespace MonoGo.Engine
         /// Copies the individual channels of the colour to the specified memory location.
         /// </summary>
         /// <param name="destination">The memory location to copy the axis to.</param>
-        public void CopyTo(out HSL destination)
+        public void CopyTo(out HSLColor destination)
         {
-            destination = new HSL(H, S, L);
+            destination = new HSLColor(H, S, L);
         }
 
         /// <summary>
@@ -137,20 +137,20 @@ namespace MonoGo.Engine
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is HSL)
-                return Equals((HSL)obj);
+            if (obj is HSLColor)
+                return Equals((HSLColor)obj);
 
             return base.Equals(obj);
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="HSL"/> is equal to this instance.
+        /// Determines whether the specified <see cref="HSLColor"/> is equal to this instance.
         /// </summary>
-        /// <param name="value">The <see cref="HSL"/> to compare with this instance.</param>
+        /// <param name="value">The <see cref="HSLColor"/> to compare with this instance.</param>
         /// <returns>
-        ///     <c>true</c> if the specified <see cref="HSL"/> is equal to this instance; otherwise, <c>false</c>.
+        ///     <c>true</c> if the specified <see cref="HSLColor"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public bool Equals(HSL value)
+        public bool Equals(HSLColor value)
         {
             return H.Equals(value.H) &&
                    S.Equals(value.S) &&
@@ -182,19 +182,19 @@ namespace MonoGo.Engine
                 H.ToString("F1"), S.ToString("F1"), L.ToString("F1"));
         }
 
-        public static HSL Parse(string s)
+        public static HSLColor Parse(string s)
         {
             var hsl = s.Split(';');
             var hue = float.Parse(hsl[0].TrimEnd('°'));
             var sat = float.Parse(hsl[1]);
             var lig = float.Parse(hsl[2]);
 
-            return new HSL(hue, sat, lig);
+            return new HSLColor(hue, sat, lig);
         }
 
         public static Color OppositeColorRGB(Color input)
         {
-            HSL hslColor = new Color(
+            HSLColor hslColor = new Color(
                 input.R,
                 input.G,
                 input.B,
@@ -205,7 +205,7 @@ namespace MonoGo.Engine
 
         public static Color InvertedColorRGB(Color input)
         {
-            HSL hslColor = new Color(
+            HSLColor hslColor = new Color(
                 input.R,
                 input.G,
                 input.B,
@@ -220,9 +220,9 @@ namespace MonoGo.Engine
         /// <param name="x">The lvalue.</param>
         /// <param name="y">The rvalue.</param>
         /// <returns>
-        ///     <c>true</c> if the lvalue <see cref="HSL"/> is equal to the rvalue; otherwise, <c>false</c>.
+        ///     <c>true</c> if the lvalue <see cref="HSLColor"/> is equal to the rvalue; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator ==(HSL x, HSL y)
+        public static bool operator ==(HSLColor x, HSLColor y)
         {
             return x.Equals(y);
         }
@@ -233,23 +233,23 @@ namespace MonoGo.Engine
         /// <param name="x">The lvalue.</param>
         /// <param name="y">The rvalue.</param>
         /// <returns>
-        ///     <c>true</c> if the lvalue <see cref="HSL"/> is not equal to the rvalue; otherwise, <c>false</c>.
+        ///     <c>true</c> if the lvalue <see cref="HSLColor"/> is not equal to the rvalue; otherwise, <c>false</c>.
         /// </returns>
-        public static bool operator !=(HSL x, HSL y)
+        public static bool operator !=(HSLColor x, HSLColor y)
         {
             return !x.Equals(y);
         }
 
-        public static HSL operator -(HSL a, HSL b)
+        public static HSLColor operator -(HSLColor a, HSLColor b)
         {
-            return new HSL(a.H - b.H, a.S - b.S, a.L - b.L);
+            return new HSLColor(a.H - b.H, a.S - b.S, a.L - b.L);
         }
 
-        public static HSL Lerp(HSL c1, HSL c2, float t)
+        public static HSLColor Lerp(HSLColor c1, HSLColor c2, float t)
         {
             // loop around if c2.H < c1.H
             var h2 = c2.H >= c1.H ? c2.H : c2.H + 360;
-            return new HSL(
+            return new HSLColor(
                 c1.H + t * (h2 - c1.H),
                 c1.S + t * (c2.S - c1.S),
                 c1.L + t * (c2.L - c2.L));

@@ -10,7 +10,7 @@ namespace MonoGo.Samples.Demos
 	public class ShapeDemo : Entity
 	{
 		Color _mainColor = Color.White;
-		HSL _secondaryColor = new(new Color(34, 65, 250));
+		HSLColor _secondaryColor = new(new Color(34, 65, 250));
 		
 		public ShapeDemo(Layer layer) : base(layer)
 		{
