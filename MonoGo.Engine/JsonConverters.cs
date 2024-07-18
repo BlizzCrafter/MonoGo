@@ -1,20 +1,21 @@
-﻿using System.Text.Json;
+﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.Particles.Modifiers;
+using MonoGo.Engine.Particles.Profiles;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using static MonoGo.Engine.AdditionalConverters;
 using static MonoGo.Engine.Axis;
 using static MonoGo.Engine.HSLColor;
 using static MonoGo.Engine.HSLRange;
+using static MonoGo.Engine.Particles.ModifierExecutionStrategy;
 using static MonoGo.Engine.Range;
 using static MonoGo.Engine.RangeF;
-using static MonoGo.Engine.Particles.ModifierExecutionStrategy;
-using static MonoGo.Engine.AdditionalConverters;
-using System.Text.Json.Serialization;
-using System;
-using Microsoft.Xna.Framework;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using MonoGo.Engine.Particles.Modifiers;
-using MonoGo.Engine.Particles.Profiles;
 
 namespace MonoGo.Engine
 {
@@ -32,6 +33,8 @@ namespace MonoGo.Engine
                 Converters =
                 {
                     new VectorConverter(),
+                    new RectangleConverter(),
+                    new PointConverter(),
                     new AxisConverter(),
                     new RangeConverter(),
                     new RangeFConverter(),
@@ -61,7 +64,7 @@ namespace MonoGo.Engine
 
             public override void Write(Utf8JsonWriter writer, Vector2 value, JsonSerializerOptions options)
             {
-                writer.WriteStringValue(WriteVector2(value));
+                writer.WriteStringValue(Write(value));
             }
 
             public static Vector2 Parse(string value)
@@ -69,16 +72,74 @@ namespace MonoGo.Engine
                 string trimed = value.TrimStart('(').TrimEnd(')');
                 string[] xy = trimed.Split(';');
 
-                float x = float.Parse(xy[0], NumberStyles.Float, CultureInfo.InvariantCulture);
-                float y = float.Parse(xy[1], NumberStyles.Float, CultureInfo.InvariantCulture);
+                var x = float.Parse(xy[0], NumberStyles.Float, CultureInfo.InvariantCulture);
+                var y = float.Parse(xy[1], NumberStyles.Float, CultureInfo.InvariantCulture);
 
                 return new Vector2(x, y);
             }
 
-            public string WriteVector2(Vector2 value)
+            public static string Write(Vector2 value)
             {
                 return string.Format(CultureInfo.InvariantCulture,
                     $"({value.X.ToString(CultureInfo.InvariantCulture)}; {value.Y.ToString(CultureInfo.InvariantCulture)})");
+            }
+        }
+        public class PointConverter : JsonConverter<Point>
+        {
+            public override bool CanConvert(Type objectType)
+            {
+                return (objectType == typeof(Point));
+            }
+
+            public override Point Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                reader.Read();
+                reader.Read(); var x = reader.GetInt32();
+                reader.Read();
+                reader.Read(); var y = reader.GetInt32();
+                reader.Read();
+
+                return new Point(x, y);
+            }
+
+            public override void Write(Utf8JsonWriter writer, Point value, JsonSerializerOptions options)
+            {
+                writer.WriteStartObject();
+                writer.WriteNumber("X", value.X);
+                writer.WriteNumber("Y", value.Y);
+                writer.WriteEndObject();
+            }
+        }
+        public class RectangleConverter : JsonConverter<Rectangle>
+        {
+            public override bool CanConvert(Type objectType)
+            {
+                return (objectType == typeof(Rectangle));
+            }
+
+            public override Rectangle Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                reader.Read();
+                reader.Read(); var x = reader.GetInt32();
+                reader.Read();
+                reader.Read(); var y = reader.GetInt32();
+                reader.Read();
+                reader.Read(); var width = reader.GetInt32();
+                reader.Read();
+                reader.Read(); var height = reader.GetInt32();
+                reader.Read();
+
+                return new Rectangle(x, y, width, height);
+            }
+
+            public override void Write(Utf8JsonWriter writer, Rectangle value, JsonSerializerOptions options)
+            {
+                writer.WriteStartObject();
+                writer.WriteNumber("X", value.X);
+                writer.WriteNumber("Y", value.Y);
+                writer.WriteNumber("Width", value.Width);
+                writer.WriteNumber("Height", value.Height);
+                writer.WriteEndObject();
             }
         }
         public class BaseTypeJsonConverter<T> : JsonConverter<T>

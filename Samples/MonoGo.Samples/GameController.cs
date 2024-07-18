@@ -13,7 +13,7 @@ namespace MonoGo.Samples
 {
 	public class GameController : Entity
 	{
-		public Camera2D MainCamera = new Camera2D(new Vector2(1280, 720));
+		public Camera2D MainCamera = new Camera2D(new Vector2(1600, 900));
 
 		Layer _guiLayer;
 

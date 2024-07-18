@@ -171,13 +171,11 @@
 		OemClear = 254,
 		#endregion Keyboard.
 
-
 		#region Mouse.
 		MouseLeft = 1000,
 		MouseRight = 1001,
 		MouseMiddle = 1002,
 		#endregion Mouse.
-
 
 		#region Gamepad.
 		GamepadLeft = 2000,

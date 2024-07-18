@@ -5,6 +5,7 @@ using MonoGo.Engine.Resources;
 using MonoGo.Engine.UI;
 using MonoGo.Resources;
 using System;
+using System.IO;
 
 namespace MonoGo.Engine
 {
@@ -41,15 +42,17 @@ namespace MonoGo.Engine
         {
             GraphicsMgr.Init(GraphicsDevice);
 
-            new SpriteGroupResourceBox("GUISprites", "Engine/GUI");
+            //new SpriteGroupResourceBox("GUISprites", "Engine/GUI");
             new SpriteGroupResourceBox("ParticleSprites", "Engine/Particles");
             new SpriteGroupResourceBox("LUTSprites", "Engine/LUT");
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
-            UserInterface.Init("Engine/GUI/Styles");
+            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"));
+
+            /*UserInterface.Init("Engine/GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;
-            UserInterface.Active.SamplerState = SamplerState.PointWrap;
+            UserInterface.Active.SamplerState = SamplerState.PointWrap;*/
         }
 
         protected override void UnloadContent()
@@ -68,7 +71,7 @@ namespace MonoGo.Engine
         {
             GameMgr.Draw(gameTime);
 
-            UserInterface.Active.DrawCursor();
+            //UserInterface.Active.DrawCursor();
 
             base.Draw(gameTime);
         }

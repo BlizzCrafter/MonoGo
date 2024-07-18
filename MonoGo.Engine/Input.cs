@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -19,7 +20,6 @@ namespace MonoGo.Engine
 		private static List<Buttons> _mouseButtons = new List<Buttons>();
 		private static List<Buttons> _oldMouseButtons = new List<Buttons>();
 
-
 		/// <summary>
 		/// Scrollwheel value. Can be -1, 0 or 1.
 		/// </summary>
@@ -27,7 +27,6 @@ namespace MonoGo.Engine
 		private static int _mouseWheelAdditionPrev;
 
 		#endregion Mouse.
-
 
 		#region Keyboard.
 
@@ -57,7 +56,6 @@ namespace MonoGo.Engine
 		private static List<Keys> _oldKeys = new List<Keys>();
 
 		#endregion Keyboard.
-
 
 		#region Gamepad.
 
@@ -95,11 +93,9 @@ namespace MonoGo.Engine
 
 		#endregion Gamepad.
 
-
 		private const int _keyboardMaxCode = 1000;
 		private const int _mouseMaxCode = 2000;
 		private const int _gamepadMaxCode = 3000;
-
 
 		private static bool _mouseCleared, _keyboardCleared, _gamepadCleared;
 
@@ -108,7 +104,6 @@ namespace MonoGo.Engine
 			_mouseCleared = false;
 			_keyboardCleared = false;
 			_gamepadCleared = false;
-
 
 			#region Mouse.
 
@@ -133,20 +128,11 @@ namespace MonoGo.Engine
 			{
 				_mouseButtons.Add(Buttons.MouseMiddle);
 			}
-
-
-			/*
-			For some weird reason, ScrollWheelValue accumulates all the scroll inputs.
-			And does it asynchroniously. So, to get usable 1\-1 value, we need to calculate 
-			sign of scroll value delta (raw delta has some big weird value and depends on fps).
-			Thank you, XNA devs. You've made me write even more code! ^0^
-			*/
-			MouseWheelValue = _mouseWheelAdditionPrev - mouseState.ScrollWheelValue;
+						
+			MouseWheelValue = (_mouseWheelAdditionPrev - mouseState.ScrollWheelValue) * -1;
 			_mouseWheelAdditionPrev = mouseState.ScrollWheelValue;
 
 			#endregion Mouse.
-
-
 
 			#region Keyboard.
 
@@ -175,8 +161,6 @@ namespace MonoGo.Engine
 			}
 
 			#endregion Keyboard.
-
-
 
 			#region Gamepad.
 
@@ -266,7 +250,6 @@ namespace MonoGo.Engine
 
 		}
 
-
 		#region Button checks.
 
 		/// <summary>
@@ -315,8 +298,6 @@ namespace MonoGo.Engine
 
 		#endregion Button checks.
 
-
-
 		#region Mouse.
 
 		/// <summary>
@@ -326,8 +307,6 @@ namespace MonoGo.Engine
 			_mouseCleared = true;
 
 		#endregion Mouse.
-
-
 
 		#region Keyboard.
 
@@ -371,8 +350,6 @@ namespace MonoGo.Engine
 		}
 
 		#endregion Keyboard.
-
-
 
 		#region Gamepad.
 
@@ -478,8 +455,6 @@ namespace MonoGo.Engine
 			_gamepadCleared = true;
 
 		#endregion Gamepad.
-
-
 
 		/// <summary>
 		/// Clears mouse, keyboard and gamepad input.

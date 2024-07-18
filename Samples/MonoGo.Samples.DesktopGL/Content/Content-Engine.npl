@@ -14,26 +14,6 @@
         "../../../Content/*"
       ]
     },
-    "styles": {
-      "path": "Engine/GUI/Styles/*.xml",
-      "recursive": "false",
-      "action": "copy",
-      "importer": "XmlImporter",
-      "processor": "PassThroughProcessor",
-      "watch": [
-        "Engine/GUI/Styles/*.xml"
-      ]
-    },
-    "GUIGroup": {
-      "path": "Engine/GUI.spritegroup",
-      "recursive": false,
-      "action": "build",
-      "importer": "SpriteGroupImporter",
-      "processor": "SpriteGroupProcessor",
-      "watch": [
-        "Engine/GUI/Textures/*.png"
-      ]
-    },
     "ParticlesGroup": {
       "path": "Engine/Particles.spritegroup",
       "recursive": "false",
@@ -66,6 +46,16 @@
       },
       "watch": [
         "Engine/Effects/*.fx"
+      ]
+    },
+    "GUI": {
+      "path": "Engine/GUI/*.*",
+      "recursive": "true",
+      "action": "copy",
+      "importer": null,
+      "processor": null,
+      "watch": [
+        "Engine/GUI/*.*"
       ]
     },
     "Fonts": {

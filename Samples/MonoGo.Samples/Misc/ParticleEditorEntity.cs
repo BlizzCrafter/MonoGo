@@ -6,7 +6,6 @@ using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Entities;
-using MonoGo.Engine.UI.Entities.TextValidators;
 
 namespace MonoGo.Samples.Misc
 {
@@ -14,7 +13,7 @@ namespace MonoGo.Samples.Misc
     {
         public ParticleEffectComponent ParticleEffectComponent { get; set; }
 
-        private RichParagraph _activeParticlesParagraph;
+        private Paragraph _activeParticlesParagraph;
 
         public ParticleEditorEntity(
             Layer layer,
@@ -71,7 +70,7 @@ namespace MonoGo.Samples.Misc
 
         public void CreateUI()
         { 
-            var topPanel = new Panel(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
+            /*var topPanel = new Panel(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
             _activeParticlesParagraph = new RichParagraph("", Anchor.Center);
             topPanel.ClickThrough = true;
             topPanel.AddChild(_activeParticlesParagraph);
@@ -120,7 +119,7 @@ namespace MonoGo.Samples.Misc
                 };
                 textInput.Validators.Add(new NumbersOnly(true));
                 descriptionPanel.AddChild(textInput);
-            }
+            }*/
         }
     }
 }

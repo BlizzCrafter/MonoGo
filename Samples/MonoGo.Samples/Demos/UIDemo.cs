@@ -8,14 +8,10 @@ using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine;
 using MonoGo.Engine.UI.Entities;
-using MonoGo.Engine.UI;
-using MonoGo.Engine.UI.DataTypes;
-using MonoGo.Engine.UI.Entities.TextValidators;
-using MonoGo.Engine.UI.Utils.Forms;
 
 namespace MonoGo.Samples.Demos
 {
-    public class UIDemo : Entity, IHaveGUI
+    /*public class UIDemo : Entity, IHaveGUI
     {
         List<Panel> panels = new List<Panel>();
         Button nextExampleButton;
@@ -1216,7 +1212,7 @@ Have a nice day!
             // once done init, clear events log
             eventsLog.ClearItems();
 
-            #endregion Demo Content*/
+            #endregion Demo Content
         }
 
         public override void Update()
@@ -1270,5 +1266,5 @@ Have a nice day!
             nextExampleButton.Enabled = currExample != panels.Count - 1;
             previousExampleButton.Enabled = currExample != 0;
         }
-    }
+    }*/
 }

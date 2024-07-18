@@ -1,340 +1,307 @@
-﻿#region File Description
-//-----------------------------------------------------------------------------
-// Sliders are horizontal bars, similar to scrollbar, that lets user pick
-// numeric values in pre-defined range.
-// For example, a slider is often use to pick settings like volume, gamma, etc..
-//
-// Author: Ronen Ness.
-// Since: 2016.
-//-----------------------------------------------------------------------------
-#endregion
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using MonoGo.Engine.UI.Defs;
+using MonoGo.Engine.UI.Utils;
+using System;
 
 namespace MonoGo.Engine.UI.Entities
 {
     /// <summary>
-    /// Different sliders skins (textures).
+    /// A slider to get numeric input.
     /// </summary>
-    public enum SliderSkin
-    {
-        /// <summary>Default, thin slider skin.</summary>
-        Default = 0,
-
-        /// <summary>More fancy, thicker slider skin.</summary>
-        Fancy = 1,
-    }
-
-    /// <summary>
-    /// Slider entity looks like a horizontal scrollbar that the user can drag left and right to select a numeric value from range.
-    /// </summary>
-    [System.Serializable]
     public class Slider : EntityUI
     {
         /// <summary>
-        /// Static ctor.
+        /// The entity used as slider handle.
         /// </summary>
-        static Slider()
+        public EntityUI Handle { get; private set; }
+
+        /// <summary>
+        /// Slider orientation.
+        /// </summary>
+        public Orientation Orientation { get; private set; }
+
+        /// <summary>
+        /// How much to change value via mouse wheel scroll.
+        /// </summary>
+        public int MouseWheelStep = 1;
+
+        // current handle offset
+        float _currHandleOffset;
+
+        /// <inheritdoc/>
+        internal override bool LockFocusWhileMouseDown => true;
+
+        /// <inheritdoc/>
+        internal override bool CanGetFocusWhileMouseIsDown => false;
+
+        /// <inheritdoc/>
+        internal override bool Interactable => true;
+
+        /// <summary>
+        /// Slider min value.
+        /// </summary>
+        public int MinValue
         {
-            EntityUI.MakeSerializable(typeof(Slider));
+            get => _minValue;
+            set
+            {
+                if (_minValue != value)
+                {
+                    _minValue = value;
+                    if (_maxValue < _minValue) { throw new ArgumentOutOfRangeException("Slider min value must be smaller than max value!"); }
+                    if (_value < _minValue)
+                    {
+                        _value = _minValue;
+                    }
+                }
+            }
+        }
+        int _minValue = 0;
+
+        /// <summary>
+        /// Slider max value.
+        /// </summary>
+        public int MaxValue
+        {
+            get => _maxValue;
+            set
+            {
+                if (_maxValue != value)
+                {
+                    _maxValue = value;
+                    if (_maxValue < _minValue) { throw new ArgumentOutOfRangeException("Slider max value must be bigger than min value!"); }
+                    if (_value > _maxValue)
+                    {
+                        _value = _maxValue;
+                    }
+                }
+            }
+        } 
+        int _maxValue = 10;
+
+        /// <summary>
+        /// Set / get current value.
+        /// </summary>
+        public int Value
+        {
+            get => _value;
+            set
+            {
+                if (_value != value)
+                {
+                    if (value < MinValue) { throw new ArgumentOutOfRangeException("Slider value can't be smaller than min value!"); }
+                    if (value > MaxValue) { throw new ArgumentOutOfRangeException("Slider value can't be bigger than max value!"); }
+                    _value = value;
+                    Events.OnValueChanged?.Invoke(this);
+                    UISystem.Events.OnValueChanged?.Invoke(this);
+                }
+            }
+        }
+        int _value = 5;
+
+        /// <summary>
+        /// Set current value, after clamping it to be between min and max.
+        /// </summary>
+        public int ValueSafe
+        {
+            get => Value;
+            set
+            {
+                Value = Math.Clamp(value, MinValue, MaxValue);
+            }
         }
 
-        // slider style
-        SliderSkin _skin;
+        /// <summary>
+        /// Slider steps count (or 0 for MaxValue - MinValue).
+        /// </summary>
+        public uint StepsCount
+        {
+            get => _stepsCount;
+            set
+            {
+                if (_stepsCount != value)
+                {
+                    _stepsCount = value;
+                    if (value > ValueRange)
+                    {
+                        throw new ArgumentOutOfRangeException("Slider steps count can't be bigger than ValueRange (max - min) value!");
+                    }
+                    Value = MinValue;
+                }
+            }
+        }
+        uint _stepsCount = 0;
 
-        /// <summary>Min slider value.</summary>
-        protected int _min;
+        /// <summary>
+        /// Get value, as percent between 0.f and 1.f.
+        /// </summary>
+        public float ValuePercent => (float)(Value - MinValue) / (float)(MaxValue - MinValue);
 
-        /// <summary>Max slider value.</summary>
-        protected int _max;
+        /// <summary>
+        /// If true, slider direction will be flipped.
+        /// </summary>
+        public bool FlippedDirection = false;
 
-        /// <summary>How many steps (ticks) are in range.</summary>
-        protected uint _stepsCount = 0;
+        // so we can point and drag handle
+        /// <inheritdoc/>
+        protected override bool WalkInternalChildren => true;
 
-        /// <summary>Current value.</summary>
-        protected int _value;
-
-        /// <summary>Actual frame width in pixels (used internally).</summary>
-        protected float _frameActualWidth = 0f;
-
-        /// <summary>Default styling for the slider itself. Note: loaded from UI theme xml file.</summary>
-        new public static StyleSheet DefaultStyle = new StyleSheet();
-
-        /// <summary>Actual mark width in pixels (used internally).</summary>
-        protected int _markWidth = 20;
+        /// <summary>
+        /// Get the value range based on max and min values.
+        /// </summary>
+        public int ValueRange => MaxValue - MinValue;
 
         /// <summary>
         /// Create the slider.
         /// </summary>
-        /// <param name="min">Min value (inclusive).</param>
-        /// <param name="max">Max value (inclusive).</param>
-        /// <param name="size">Slider size.</param>
-        /// <param name="skin">Slider skin (texture).</param>
-        /// <param name="anchor">Position anchor.</param>
-        /// <param name="offset">Offset from anchor position.</param>
-        public Slider(int min, int max, Vector2 size, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
-            base(size, anchor, offset)
+        /// <param name="system">Parent UI system.</param>
+        /// <param name="stylesheet">Slider stylesheet.</param>
+        /// <param name="orientation">Slider orientation.</param>
+        public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal) : base(stylesheet)
         {
-            // store style
-            _skin = skin;
+            // set orientation and call default anchor and size again
+            Orientation = orientation;
+            CalculateDefaultAnchorAndSize();
 
-            // store min and max and set default value
-            Min = min;
-            Max = max;
-
-            // set default steps count
-            _stepsCount = (uint)(Max - Min);
-
-            // set starting value to center
-            _value = (int)(Min + (Max - Min) / 2);
-
-            // update default style
-            UpdateStyle(DefaultStyle);
+            // create handle
+            Handle = new EntityUI(handleStylesheet);
+            Handle.CopyStateFrom = this;
+            Handle.Anchor = (orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter;
+            Handle.TransferInteractionsTo = this;
+            AddChildInternal(Handle);
+            Handle.IgnoreScrollOffset = true;
         }
 
         /// <summary>
-        /// Create slider with default size.
+        /// Create the slider with default stylesheets.
         /// </summary>
-        /// <param name="min">Min value (inclusive).</param>
-        /// <param name="max">Max value (inclusive).</param>
-        /// <param name="skin">Slider skin (texture).</param>
-        /// <param name="anchor">Position anchor.</param>
-        /// <param name="offset">Offset from anchor position.</param>
-        public Slider(int min, int max, SliderSkin skin = SliderSkin.Default, Anchor anchor = Anchor.Auto, Vector2? offset = null) :
-            this(min, max, USE_DEFAULT_SIZE, skin, anchor, offset)
+        /// <param name="orientation">Slider orientation.</param>
+        public Slider(Orientation orientation = Orientation.Horizontal) : 
+            this(
+                (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSliders : UISystem.DefaultStylesheets.VerticalSliders,
+                (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSlidersHandle : UISystem.DefaultStylesheets.VerticalSlidersHandle,
+                orientation)
         {
         }
 
-        /// <summary>
-        /// Create default slider.
-        /// </summary>
-        public Slider() : this(0, 10)
+        /// <inheritdoc/>
+        internal override void DoInteractions(InputState inputState)
         {
-        }
+            // do base interactions
+            base.DoInteractions(inputState);
 
-        /// <summary>
-        /// Get / set slider skin.
-        /// </summary>
-        public SliderSkin SliderSkin
-        {
-            get { return _skin; }
-            set { _skin = value; }
-        }
-
-        /// <summary>
-        /// Get the size of a single step.
-        /// </summary>
-        /// <returns>Size of a single step, eg how much value changes in a step.</returns>
-        public int GetStepSize()
-        {
-            if (StepsCount > 0)
-            {
-                if (Max - Min == StepsCount)
-                {
-                    return 1;
-                }
-                return (int)System.Math.Max(((Max - Min) / StepsCount + 1), 2);
-            }
-            else
-            {
-                return 1;
-            }
-        }
-
-        /// <summary>
-        /// Normalize value to fit slider range and be multiply of steps size.
-        /// </summary>
-        /// <param name="value">Value to normalize.</param>
-        /// <returns>Normalized value.</returns>
-        protected int NormalizeValue(int value)
-        {
-            if (!UserInterface.Active._isDeserializing)
-            {
-                // round to steps
-                float stepSize = (float)GetStepSize();
-                value = (int)(System.Math.Round(((double)value) / stepSize) * stepSize);
-
-                // camp between min and max
-                value = (int)System.Math.Min(System.Math.Max(value, Min), Max);
+            // special case - max value is 0
+            if (ValueRange <= 0) 
+            { 
+                return; 
             }
 
-            // return normalized value
-            return value;
-        }
-
-        /// <summary>
-        /// Current slider value.
-        /// </summary>
-        public int Value
-        {
-            // get current value
-            get { return _value; }
-
-            // set new value
-            set
+            // select value via mouse
+            if (inputState.LeftMouseDown)
             {
-                int prevVal = _value;
-                _value = NormalizeValue(value);
-                if (prevVal != _value) 
+                // get default steps count and step size
+                var stepsCount = (int)StepsCount;
+                var valueRange = ValueRange;
+                if (stepsCount == 0) { stepsCount = valueRange; }
+                var stepSize = valueRange / stepsCount;
+                
+                // get value in percent
+                float valuePercent = (Orientation == Orientation.Horizontal) ?
+                    (((float)inputState.MousePosition.X - LastInternalBoundingRect.Left) / (float)LastInternalBoundingRect.Width) :
+                    (((float)inputState.MousePosition.Y - LastInternalBoundingRect.Top) / (float)LastInternalBoundingRect.Height);
+                if (float.IsNaN(valuePercent)) { valuePercent = 0f; }
+                if (valuePercent < 0f) { valuePercent = 0f; }
+                if (valuePercent > 1f) {  valuePercent = 1f; }
+                if (((Orientation == Orientation.Horizontal) && FlippedDirection) || 
+                    ((Orientation == Orientation.Vertical) && !FlippedDirection)) 
                 { 
-                    DoOnValueChange(); 
+                    valuePercent = 1f - valuePercent; 
+                }
+                int relativeValue = (int)(MathF.Round((valuePercent * valueRange) / stepSize) * stepSize);
+                Value = MinValue + (int)relativeValue;
+            }
+        }
+
+        /// <inheritdoc/>
+        internal override void PerformMouseWheelScroll(int val)
+        {
+            if (MouseWheelStep != 0)
+            {
+                if (val > 0)
+                {
+                    Value = Math.Clamp(Value + MouseWheelStep, MinValue, MaxValue);
+                }
+                if (val < 0)
+                {
+                    Value = Math.Clamp(Value - MouseWheelStep, MinValue, MaxValue);
                 }
             }
         }
 
+        /// <inheritdoc/>
+        protected override void Update(float dt)
+        {
+            base.Update(dt);
+            UpdateHandle(dt);
+        }
 
         /// <summary>
-        /// Change the value of this entity, where there's value to change.
+        /// Update slider handle offset.
         /// </summary>
-        /// <param name="newValue">New value to set.</param>
-        /// <param name="emitEvent">If true and value changed, will emit 'ValueChanged' event.</param>
-        override public void ChangeValue(object newValue, bool emitEvent)
+        protected virtual void UpdateHandle(float dt)
         {
-            var intValue = (int)newValue;
-            if (_value != intValue)
+            // not visible? skip
+            if (!IsCurrentlyVisible()) { return; }
+
+            // special case - no value range
+            if (ValueRange <= 0)
             {
-                _value = intValue;
-                if (emitEvent) { DoOnValueChange(); }
+                Handle.Visible = false;
+                return;
             }
-        }
+            Handle.Visible = true;
 
-        /// <summary>
-        /// Get the value of this entity, where there's value.
-        /// </summary>
-        /// <returns>Value as object.</returns>
-        override public object GetValue()
-        {
-            return _value;
-        }
+            // get relative value
+            int relativeValue = Value - MinValue;
 
-        /// <summary>
-        /// Slider min value (inclusive).
-        /// </summary>
-        public int Min
-        {
-            get { return _min; }
-            set { if (_min != value) { _min = value; if (Value < _min) Value = (int)_min; } }
-        }
-
-        /// <summary>
-        /// Slider max value (inclusive).
-        /// </summary>
-        public int Max
-        {
-            get { return _max; }
-            set { if (_max != value) { _max = value; if (Value > _max) Value = (int)_max; } }
-        }
-
-        /// <summary>
-        /// How many steps (ticks) in slider range.
-        /// </summary>
-        public uint StepsCount
-        {
-            // get current steps count
-            get { return _stepsCount; }
-
-            // set steps count and call Value = Value to normalize current value to new steps count.
-            set { _stepsCount = value; Value = Value; }
-        }
-
-        /// <summary>
-        /// Is the slider a natrually-interactable entity.
-        /// </summary>
-        /// <returns>True.</returns>
-        override internal protected bool IsNaturallyInteractable()
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// Called every frame while mouse button is down over this entity.
-        /// The slider entity override this function to handle slider value change (eg slider mark dragging).
-        /// </summary>
-        override protected void DoWhileMouseDown()
-        {
-            // get mouse position and apply scroll value
-            var mousePos = GetMousePos();
-            mousePos += _lastScrollVal.ToVector2();
-
-            // if mouse x is on the 0 side set to min
-            if (mousePos.X <= _destRect.X + _frameActualWidth)
+            // set horizontal handle position
+            if (Orientation == Orientation.Horizontal)
             {
-                Value = (int)Min;
+                var offsetX = FlippedDirection ?
+                    (int)((1f - (float)relativeValue / ValueRange) * LastInternalBoundingRect.Width) :
+                    (int)(((float)relativeValue / ValueRange) * LastInternalBoundingRect.Width);
+                float newOffset = offsetX - Handle.LastBoundingRect.Width / 2;
+                _currHandleOffset = InterpolateHandlePosition ?
+                    MathUtils.Lerp(_currHandleOffset, newOffset, dt * HandleInterpolationSpeed) : newOffset;
+                Handle.Offset.X.SetPixels((int)_currHandleOffset);
             }
-            // else if mouse x is on the max side, set to max
-            else if (mousePos.X >= _destRect.Right - _frameActualWidth)
-            {
-                Value = (int)Max;
-            }
-            // if in the middle calculate value based on mouse position
+            // set vertical handle position
             else
             {
-                float val = ((mousePos.X - _destRect.X - _frameActualWidth + _markWidth / 2) / (_destRect.Width - _frameActualWidth * 2));
-                Value = (int)(Min + val * (Max - Min));
+                var offsetY = FlippedDirection ?
+                    (int)(((float)relativeValue / ValueRange) * LastInternalBoundingRect.Height) :
+                    (int)((1f - (float)relativeValue / ValueRange) * LastInternalBoundingRect.Height);
+                float newOffset = offsetY - Handle.LastBoundingRect.Height / 2;
+                _currHandleOffset = InterpolateHandlePosition ?
+                    MathUtils.Lerp(_currHandleOffset, newOffset, dt * HandleInterpolationSpeed) : newOffset;
+                Handle.Offset.Y.SetPixels((int)_currHandleOffset);
             }
-
-            // call base handler
-            base.DoWhileMouseDown();
         }
 
-        /// <summary>
-        /// Return current value as a percent between min and max.
-        /// </summary>
-        /// <returns>Current value as percent between min and max (0f-1f).</returns>
-        public float GetValueAsPercent()
+        /// <inheritdoc/>
+        protected override MeasureVector GetDefaultEntityTypeSize()
         {
-            return (float)(_value - Min) / (float)(Max - Min);
-        }
-
-        /// <summary>
-        /// Draw the entity.
-        /// </summary>
-        /// <param name="spriteBatch">Sprite batch to draw on.</param>
-        /// <param name="phase">The phase we are currently drawing.</param>
-        override protected void DrawEntity(SpriteBatch spriteBatch, DrawPhase phase)
-        {
-            // get textures based on skin
-            Texture2D texture = Resources.Instance.SliderTextures[_skin];
-            Texture2D markTexture = Resources.Instance.SliderMarkTextures[_skin];
-
-            // get slider metadata
-            DataTypes.TextureData data = Resources.Instance.SliderData[(int)_skin];
-            float frameWidth = data.FrameWidth;
-
-            // draw slider body
-            UserInterface.Active.DrawUtils.DrawSurface(spriteBatch, texture, _destRect, new Vector2(frameWidth, 0f), 1, FillColor);
-
-            // calc frame actual height and scaling factor (this is needed to calc frame width in pixels)
-            Vector2 frameSizeTexture = new Vector2(texture.Width * frameWidth, texture.Height);
-            Vector2 frameSizeRender = frameSizeTexture;
-            float ScaleXfac = _destRect.Height / frameSizeRender.Y;
-
-            // calc the size of the mark piece
-            int markHeight = _destRect.Height;
-            _markWidth = (int)(((float)markTexture.Width / (float)markTexture.Height) * (float)markHeight);
-
-            // calc frame width in pixels
-            _frameActualWidth = frameWidth * texture.Width * ScaleXfac;
-
-            // now draw mark
-            float markX = _destRect.X + _frameActualWidth + _markWidth * 0.5f + (_destRect.Width - _frameActualWidth * 2 - _markWidth) * GetValueAsPercent();
-            Rectangle markDest = new Rectangle((int)System.Math.Round(markX) - _markWidth / 2, _destRect.Y, _markWidth, markHeight);
-            UserInterface.Active.DrawUtils.DrawImage(spriteBatch, markTexture, markDest, FillColor);
-
-            // call base draw function
-            base.DrawEntity(spriteBatch, phase);
-        }
-
-        /// <summary>
-        /// Handle when mouse wheel scroll and this entity is the active entity.
-        /// Note: Slider entity override this function to change slider value based on wheel scroll.
-        /// </summary>
-        override protected void DoOnMouseWheelScroll()
-        {
-            if (_isMouseOver)
+            var ret = new MeasureVector();
+            if (Orientation == Orientation.Horizontal)
             {
-                Value = _value + MouseInput.MouseWheelChange * GetStepSize();
+                ret.X.SetPercents(100f);
+                ret.Y.SetPixels(16);
             }
+            else
+            {
+                ret.Y.SetPercents(100f);
+                ret.X.SetPixels(16);
+            }
+            return ret;
         }
     }
 }
