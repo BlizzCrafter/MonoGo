@@ -201,3 +201,8 @@
 /importer:
 /processor:
 /copy:../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png;Engine/GUI/DefaultTheme/Textures/UI.png
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_invisible.json
+/importer:
+/processor:
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_invisible.json;Engine/GUI/DefaultTheme/Styles/panel_invisible.json
