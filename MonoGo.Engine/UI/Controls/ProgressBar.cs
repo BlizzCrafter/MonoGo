@@ -25,7 +25,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the progress bar with default stylesheets.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="orientation">Progress bar orientation.</param>
         public ProgressBar(Orientation orientation = Orientation.Horizontal) :
             this(

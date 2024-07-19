@@ -3,13 +3,13 @@
 namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
-    /// Positions in parent entity to position the entity from.
-    /// The anchor also affect the UI entity's offset.
+    /// Positions in parent control to position the control from.
+    /// The anchor also affect the UI control's offset.
     /// </summary>
     public enum Anchor
     {
         /// <summary>
-        /// Auto placement with one entity per row.
+        /// Auto placement with one control per row.
         /// Going left-to-right.
         /// </summary>
         AutoLTR,
@@ -21,7 +21,7 @@ namespace MonoGo.Engine.UI.Defs
         AutoInlineLTR,
 
         /// <summary>
-        /// Auto placement with one entity per row.
+        /// Auto placement with one control per row.
         /// Going right-to-left.
         /// </summary>
         AutoRTL,
@@ -33,7 +33,7 @@ namespace MonoGo.Engine.UI.Defs
         AutoInlineRTL,
 
         /// <summary>
-        /// Auto placement with one entity per row.
+        /// Auto placement with one control per row.
         /// Aligned to center.
         /// </summary>
         AutoCenter,

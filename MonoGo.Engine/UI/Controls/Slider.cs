@@ -153,7 +153,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the slider.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="stylesheet">Slider stylesheet.</param>
         /// <param name="orientation">Slider orientation.</param>
         public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal) : base(stylesheet)

@@ -12,7 +12,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the title.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="stylesheet">Title stylesheet.</param>
         /// <param name="text">Title text.</param>
         public Title(StyleSheet? stylesheet, string text = "New Title") : base(stylesheet, text)

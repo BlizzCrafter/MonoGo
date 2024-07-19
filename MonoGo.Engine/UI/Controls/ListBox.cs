@@ -125,7 +125,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the list box.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="stylesheet">List box panel stylesheet.</param>
         /// <param name="itemsStylesheet">List box items stylesheet. If not set, will use the same as base stylesheet.</param>
         public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null) : base(stylesheet) 
@@ -294,7 +293,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="index">Index to replace.</param>
         /// <param name="value">Item unique value.</param>
         /// <param name="label">Item text to show (or null to show value instead).</param>
-        /// <param name="index">Index to add this item to.</param>
         public void ReplaceItem(int index, string value, string? label = null)
         {
             if (index < 0 || index >= _items.Count) { throw new IndexOutOfRangeException("Invalid index to replace!"); }
@@ -311,7 +309,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="valueToReplace">Value to replace.</param>
         /// <param name="value">Item unique value.</param>
         /// <param name="label">Item text to show (or null to show value instead).</param>
-        /// <param name="index">Index to add this item to.</param>
         public void ReplaceItem(string valueToReplace, string value, string? label = null)
         {
             var index = GetIndexOfValue(valueToReplace);

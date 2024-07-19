@@ -15,7 +15,15 @@ namespace MonoGo.Engine.UI
     /// </summary>
     public static class UISystem
     {
-        public static string ThemeFolder { get; private set; }
+        /// <summary>
+        /// Path to the base theme folder of the UI system.
+        /// </summary>
+        public static string ThemeBaseFolder { get; private set; }
+
+        /// <summary>
+        /// Path to the the current active theme folder.
+        /// </summary>
+        public static string ThemeActiveFolder { get; private set; }
 
         /// <summary>
         /// Total elapsed time this system is running, in seconds.
@@ -33,7 +41,7 @@ namespace MonoGo.Engine.UI
         public static bool ShowCursor = true;
 
         /// <summary>
-        /// Default stylesheets to use for different entity types when no stylesheet is provided.
+        /// Default stylesheets to use for different control types when no stylesheet is provided.
         /// </summary>
         public static class DefaultStylesheets
         {
@@ -62,7 +70,7 @@ namespace MonoGo.Engine.UI
         }
 
         /// <summary>
-        /// Currently-targeted entity (entity we point on with the cursor).
+        /// Currently-targeted control (control we point on with the cursor).
         /// </summary>
         public static Control? TargetedControl { get; private set; }
 
@@ -79,12 +87,12 @@ namespace MonoGo.Engine.UI
 
         /// <summary>
         /// Control events you can register to.
-        /// These events will trigger for any entity in the system.
+        /// These events will trigger for any control in the system.
         /// </summary>
         public static ControlEvents Events;
 
         /// <summary>
-        /// Root entity.
+        /// Root control.
         /// All child controls should be added to this object.
         /// </summary>
         public static Panel Root { get; private set; }
@@ -99,16 +107,16 @@ namespace MonoGo.Engine.UI
         /// <remarks>This property is especially important when there's interpolation on texture change, and switching to interactive state is not immediate.</remarks>
         internal static float TimeToLockInteractiveState => SystemStyleSheet.TimeToLockInteractiveState;
 
-        /// <param name="themeFolder">UI System theme folder path.</param>
-        public static void Init(string themeFolder)
+        internal static void Init(string themeFolder, string themeName)
         {
-            ThemeFolder = Path.Combine(themeFolder, "DefaultTheme");
-            var defaultStyleSheetFilePath = Path.Combine(ThemeFolder, "system_style.json");
+            ThemeBaseFolder = themeFolder;
+            ThemeActiveFolder = Path.Combine(themeFolder, themeName);
+            var defaultStyleSheetFilePath = Path.Combine(ThemeActiveFolder, "system_style.json");
 
             // create renderer and input
-            Renderer.Init(ThemeFolder);
+            Renderer.Init(ThemeActiveFolder);
 
-            // create root entity
+            // create root control
             Root = new Panel(new StyleSheet()) { Identifier = "Root" };
 
             try
@@ -127,22 +135,28 @@ namespace MonoGo.Engine.UI
             }
         }
 
+        /// <param name="themeName">UI System theme name.</param>
+        public static void LoadTheme(string themeName)
+        {
+            Init(ThemeBaseFolder, themeName);
+        }
+
         /// <summary>
         /// Load all default stylesheets from dictionary.
         /// </summary>
-        /// <param name="stylesheetsToLoad">Stylesheets to load. Key = stylesheet entity name, Value = path to load from.</param>
+        /// <param name="stylesheetsToLoad">Stylesheets to load. Key = stylesheet control name, Value = path to load from.</param>
         /// <param name="parentFolder">Folder to load stylesheet files from.</param>
         public static void LoadDefaultStylesheets(Dictionary<string, string> stylesheetsToLoad, string parentFolder)
         {
             foreach (var pair in stylesheetsToLoad)
             {
-                var entityStyleName = pair.Key;
+                var controlStyleName = pair.Key;
                 var path = pair.Value;
 
-                var field = typeof(DefaultStylesheets).GetField(entityStyleName, BindingFlags.Static | BindingFlags.Public);
+                var field = typeof(DefaultStylesheets).GetField(controlStyleName, BindingFlags.Static | BindingFlags.Public);
                 if (field == null)
                 {
-                    throw new FormatException($"Error loading stylesheet for entity style id '{entityStyleName}': entity key not found under 'DefaultStylesheets'.");
+                    throw new FormatException($"Error loading stylesheet for control style id '{controlStyleName}': control key not found under 'DefaultStylesheets'.");
                 }
 
                 var fullPath = Path.Combine(parentFolder, path);
@@ -153,7 +167,7 @@ namespace MonoGo.Engine.UI
                 }
                 catch (FileNotFoundException)
                 {
-                    throw new FormatException($"Error loading stylesheet for entity style id '{entityStyleName}': stylesheet file '{fullPath}' not found!");
+                    throw new FormatException($"Error loading stylesheet for control style id '{controlStyleName}': stylesheet file '{fullPath}' not found!");
                 }
             }
         }
@@ -185,12 +199,12 @@ namespace MonoGo.Engine.UI
             // update all controls
             Root._DoUpdate(deltaTime);
 
-            // check if should lock target entity
+            // check if should lock target control
             bool keepTargetControl = (TargetedControl != null) ? 
                 (TargetedControl.LockFocusOnSelf && TargetedControl.IsCurrentlyVisible() && !TargetedControl.IsCurrentlyLocked() && !TargetedControl.IsCurrentlyDisabled()) 
                 : false;
 
-            // if dragging an entity, we can't lose the target
+            // if dragging an control, we can't lose the target
             if (Input.CheckButton(Buttons.MouseLeft) && (TargetedControl != null) && TargetedControl.LockFocusWhileMouseDown)
             {
                 keepTargetControl = true;
@@ -199,40 +213,40 @@ namespace MonoGo.Engine.UI
             // current mouse position
             var cp = Input.ScreenMousePosition.ToPoint();
 
-            // find new entity we target
+            // find new control we target
             if (!keepTargetControl)
             {
-                // reset target entity
+                // reset target control
                 TargetedControl = null;
 
-                // iterate all controls to see which entity we point on
+                // iterate all controls to see which control we point on
                 List<Control> controlsToPostProcess = new List<Control>();
-                Root.Walk((Control entity) =>
+                Root.Walk((Control control) =>
                 {
                     // skip controls that are without interactions
                     // note: we don't want to skip locked or disabled controls because they can still 'block' other controls.
-                    if (entity.IgnoreInteractions)
+                    if (control.IgnoreInteractions)
                     {
                         return true;
                     }
 
-                    // check if entity can't get focused while mouse is down
-                    if (!entity.CanGetFocusWhileMouseIsDown && Input.CheckButton(Buttons.MouseLeft))
+                    // check if control can't get focused while mouse is down
+                    if (!control.CanGetFocusWhileMouseIsDown && Input.CheckButton(Buttons.MouseLeft))
                     {
                         return true;
                     }
 
                     // check if top most interactions
-                    if (entity.TopMostInteractions)
+                    if (control.TopMostInteractions)
                     {
-                        controlsToPostProcess.Add(entity);
+                        controlsToPostProcess.Add(control);
                         return true;
                     }
 
-                    // check if we point on this entity
-                    if (entity.IsCurrentlyVisible() && entity.IsPointedOn(cp))
+                    // check if we point on this control
+                    if (control.IsCurrentlyVisible() && control.IsPointedOn(cp))
                     {
-                        TargetedControl = entity;
+                        TargetedControl = control;
                     }
 
                     // continue iteration
@@ -240,11 +254,11 @@ namespace MonoGo.Engine.UI
                 });
 
                 // do top-most interactions
-                foreach (var entity in controlsToPostProcess)
+                foreach (var control in controlsToPostProcess)
                 {
-                    if (entity.IsCurrentlyVisible() && entity.IsPointedOn(cp))
+                    if (control.IsCurrentlyVisible() && control.IsPointedOn(cp))
                     {
-                        TargetedControl = entity;
+                        TargetedControl = control;
                     }
                 }
             }
@@ -268,7 +282,7 @@ namespace MonoGo.Engine.UI
             _lastInputState = currInputState;
             CurrentInputState = inputState;
 
-            // do interactions with targeted entity
+            // do interactions with targeted control
             // unless its locked or disabled
             if (TargetedControl != null)
             {
@@ -284,11 +298,11 @@ namespace MonoGo.Engine.UI
             }
 
             // do post interactions
-            Root.Walk((Control entity) =>
+            Root.Walk((Control control) =>
             {
-                if (entity.Interactable)
+                if (control.Interactable)
                 {
-                    entity.PostUpdate(inputState);
+                    control.PostUpdate(inputState);
                 }
                 return true;
             });

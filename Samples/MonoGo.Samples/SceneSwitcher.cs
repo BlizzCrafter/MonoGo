@@ -75,13 +75,13 @@ namespace MonoGo.Samples
             UISystem.Clear();
 
             // load some alt stylesheets that are not loaded by default from the system stylesheet
-            var hProgressBarAltStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeFolder, "Styles", "progress_bar_horizontal_alt.json"));
-            var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
-            var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeFolder, "Styles", "panel_title.json"));
+            var hProgressBarAltStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt.json"));
+            var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
+            var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
 
             // create button for enable/ disable debug mode
             {
-                Button enableDebugModeBtn = new Button("Debug Mode")
+                Button enableDebugModeBtn = new("Debug Mode")
                 {
                     ToggleCheckOnClick = true,
                     Anchor = Anchor.TopRight
@@ -96,7 +96,7 @@ namespace MonoGo.Samples
 
             // create button to open git repo
             {
-                Button openGitRepoBtn = new Button("Git Repo")
+                Button openGitRepoBtn = new("Git Repo")
                 {
                     ToggleCheckOnClick = true,
                     Anchor = Anchor.TopLeft
@@ -112,10 +112,12 @@ namespace MonoGo.Samples
             Panel demoSelection;
             {
                 // create panel to select demo
-                demoSelection = new Panel();
-                demoSelection.Anchor = Anchor.CenterLeft;
-                demoSelection.AutoWidth = true;
-                demoSelection.AutoHeight = true;
+                demoSelection = new Panel
+                {
+                    Anchor = Anchor.CenterLeft,
+                    AutoWidth = true,
+                    AutoHeight = true
+                };
                 UISystem.Root.AddChild(demoSelection);
 
                 // add title and horizontal line
@@ -146,9 +148,11 @@ namespace MonoGo.Samples
                 panel.AddChild(new HorizontalLine());
 
                 // create button to select this demo
-                var button = new Button(demoTitle);
-                button.Identifier = demoTitle;
-                button.Anchor = Anchor.AutoLTR;
+                var button = new Button(demoTitle)
+                {
+                    Identifier = demoTitle,
+                    Anchor = Anchor.AutoLTR
+                };
                 button.Events.OnClick = (Control control) =>
                 {
                     foreach (var sibling in _demoPanels) { sibling.Visible = false; }

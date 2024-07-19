@@ -23,8 +23,10 @@ namespace MonoGo.Engine.UI.Controls
         public Button(StyleSheet? stylesheet, string text = "New Button") : base(stylesheet)
         {
             // create the button paragraph
-            Paragraph = new Paragraph(stylesheet, text);
-            Paragraph.DrawFillTexture = false;
+            Paragraph = new Paragraph(stylesheet, text)
+            {
+                DrawFillTexture = false
+            };
             AddChildInternal(Paragraph);
             Paragraph.CopyStateFrom = this;
             OverflowMode = OverflowMode.HideOverflow;

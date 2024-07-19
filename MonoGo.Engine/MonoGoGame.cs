@@ -48,7 +48,7 @@ namespace MonoGo.Engine
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
-            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"));
+            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "DefaultTheme");
 
             /*UserInterface.Init("Engine/GUI/Styles");
             UserInterface.Active.BlendState = BlendState.AlphaBlend;

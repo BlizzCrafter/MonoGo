@@ -41,7 +41,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the panel.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="stylesheet">Panel stylesheet.</param>
         public Panel(StyleSheet? stylesheet) : base(stylesheet) 
         {
@@ -50,7 +49,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the panel with default stylesheets.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         public Panel() : this(UISystem.DefaultStylesheets.Panels)
         {
         }
