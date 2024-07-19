@@ -91,3 +91,8 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:../../../Content/Engine/Fonts/Regular.spritefont;Engine/Fonts/Regular.spritefont
+
+#begin ../../../Content/Engine/GUI.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:../../../Content/Engine/GUI.spritegroup;Engine/GUI.spritegroup

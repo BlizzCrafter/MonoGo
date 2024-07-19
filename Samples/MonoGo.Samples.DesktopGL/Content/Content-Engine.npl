@@ -48,16 +48,6 @@
         "Engine/Effects/*.fx"
       ]
     },
-    "GUI": {
-      "path": "Engine/GUI/*.*",
-      "recursive": "true",
-      "action": "copy",
-      "importer": null,
-      "processor": null,
-      "watch": [
-        "Engine/GUI/*.*"
-      ]
-    },
     "Fonts": {
       "path": "Engine/Fonts/*.spritefont",
       "recursive": "false",
@@ -71,6 +61,35 @@
       "watch": [
         "Engine/Fonts/*.spritefont"
       ]
+    },
+    "GUIJSON": {
+      "path": "Engine/GUI/*.json",
+      "recursive": "true",
+      "action": "copy",
+      "importer": null,
+      "processor": null,
+      "watch": [
+        "Engine/GUI/*.json"
+      ]
+    },
+    "GUITextures": {
+      "path": "Engine/GUI/*.png",
+      "recursive": true,
+      "action": "build",
+      "importer": "TextureImporter",
+      "processor": "TextureProcessor",
+      "watch": [
+        "Engine/GUI/*.png"
+      ],
+      "processorParam": {
+        "ColorKeyColor": "255,0,255,255",
+        "ColorKeyEnabled": "True",
+        "GenerateMipmaps": "False",
+        "PremultiplyAlpha": "True",
+        "ResizeToPowerOfTwo": "False",
+        "MakeSquare": "False",
+        "TextureFormat": "Color"
+      }
     }
   }
 }
