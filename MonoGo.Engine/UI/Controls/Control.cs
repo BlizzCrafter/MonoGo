@@ -4,15 +4,15 @@ using MonoGo.Engine.UI.Utils;
 using System;
 using System.Collections.Generic;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// Base UI entity.
     /// </summary>
-    public class EntityUI
+    public class Control
     {
         /// <summary>
-        /// Entity identifier.
+        /// Control identifier.
         /// </summary>
         public string? Identifier;
 
@@ -27,19 +27,19 @@ namespace MonoGo.Engine.UI.Entities
         internal bool IsAutoAnchor => ((int)Anchor >= (int)Anchor.AutoLTR) && ((int)Anchor <= (int)Anchor.AutoCenter);
 
         /// <summary>
-        /// Entity offset, based on its anchor in parent entity.
+        /// Control offset, based on its anchor in parent entity.
         /// </summary>
         public MeasureVector Offset;
 
         /// <summary>
-        /// Entity size.
+        /// Control size.
         /// </summary>
         public MeasureVector Size;
 
         /// <summary>
-        /// Entity events you can register to.
+        /// Control events you can register to.
         /// </summary>
-        public EntityEvents Events;
+        public ControlEvents Events;
 
         /// <summary>
         /// Define if the user can drag this entity around.
@@ -68,7 +68,7 @@ namespace MonoGo.Engine.UI.Entities
         internal bool IgnoreScrollOffset;
 
         /// <summary>
-        /// If true, will include this entity when calculating auto anchors for internal entities.
+        /// If true, will include this entity when calculating auto anchors for internal controls.
         /// </summary>
         internal bool IncludeInInternalAutoAnchorCalculation = true;
 
@@ -78,7 +78,7 @@ namespace MonoGo.Engine.UI.Entities
         internal bool WasDraggedToPosition => _draggedPosition.HasValue;
 
         /// <summary>
-        /// Optional user data you can attach to entities.
+        /// Optional user data you can attach to controls.
         /// </summary>
         public object? UserData;
 
@@ -125,7 +125,7 @@ namespace MonoGo.Engine.UI.Entities
         internal float StatesInterpolationSpeed => StyleSheet?.InterpolateStatesSpeed ?? 0f;
 
         /// <summary>
-        /// If true will interpolate between offsets of internal entities when rendering this entity.
+        /// If true will interpolate between offsets of internal controls when rendering this entity.
         /// Affect things like handle of a slider entity and other moving parts.
         /// </summary>
         internal bool InterpolateHandlePosition => HandleInterpolationSpeed > 0f;
@@ -136,39 +136,39 @@ namespace MonoGo.Engine.UI.Entities
         internal float HandleInterpolationSpeed => StyleSheet?.InterpolateOffsetsSpeed ?? 0f;
 
         /// <summary>
-        /// Entity min width.
+        /// Control min width.
         /// </summary>
         internal int MinWidth => StyleSheet?.MinWidth ?? 0;
 
         /// <summary>
-        /// Entity min height.
+        /// Control min height.
         /// </summary>
         internal int MinHeight => StyleSheet?.MinHeight ?? 0;
 
         // interpolation for next state
         protected float _interpolateToNextState = 0f;
-        protected EntityState _lastState = EntityState.Default;
-        protected EntityState _prevState = EntityState.Default;
+        protected ControlState _lastState = ControlState.Default;
+        protected ControlState _prevState = ControlState.Default;
 
         // to prevent 'flickering' with interaction state in case user perform quick clicks, we "lock" state to active when we switch to it for few ms
         float _timeToRemainInteractedState = 0f;
 
         /// <summary>
         /// If set, cursor will be rendered with these properties whenever we point on this entity.
-        /// This will override any other cursor behavior. For example, even if you have a custom cursor for disabled entities and this entity is disabled,
+        /// This will override any other cursor behavior. For example, even if you have a custom cursor for disabled controls and this entity is disabled,
         /// when pointing on it this cursor will be used instead of the disabled cursor style.
         /// </summary>
         public CursorProperties? CursorStyle;
 
         /// <summary>
         /// If true, this entity will ignore all interactions and essentially be click-through.
-        /// Unlike Disabled or Locked, this means that the entity will never be the active target entity, and it will not block the user from clicking entities under it.
+        /// Unlike Disabled or Locked, this means that the entity will never be the active target entity, and it will not block the user from clicking controls under it.
         /// Also, this will not affect the state of the entity, and the state will just remain default.
         /// </summary>
         public bool IgnoreInteractions = false;
 
         /// <summary>
-        /// How to treat child entities that go out of this entity bounds.
+        /// How to treat child controls that go out of this entity bounds.
         /// </summary>
         public OverflowMode OverflowMode = OverflowMode.AllowOverflow;
 
@@ -177,7 +177,7 @@ namespace MonoGo.Engine.UI.Entities
         /// </summary>
         internal virtual bool Interactable => TransferInteractionsTo?.Interactable ?? _overrideInteractableState ?? false;
 
-        // override interactable state for default entities
+        // override interactable state for default controls
         internal bool? _overrideInteractableState = false;
 
         /// <summary>
@@ -190,21 +190,21 @@ namespace MonoGo.Engine.UI.Entities
         /// Parameters are the entity and its current fill color, return value is new color to use.
         /// This method is useful to create color-based animations.
         /// </summary>
-        public Func<EntityUI, Color, Color>? ColorAnimator;
+        public Func<Control, Color, Color>? ColorAnimator;
 
         /// <summary>
         /// Styles to override stylesheet defaults, regardless of entity state.
         /// </summary>
         public StyleSheetState OverrideStyles = new();
 
-        // child entities
-        internal List<EntityUI> _children = new();
+        // child controls
+        internal List<Control> _children = new();
 
-        // internal child entities, for entities that are part of the entity and cannot be removed
-        List<EntityUI> _internalChildren = new();
+        // internal child controls, for controls that are part of the entity and cannot be removed
+        List<Control> _internalChildren = new();
 
-        // internal child entities, for entities that are part of the entity and cannot be removed, but rendered on top of everything
-        List<EntityUI> _internalChildrenTopMost = new();
+        // internal child controls, for controls that are part of the entity and cannot be removed, but rendered on top of everything
+        List<Control> _internalChildrenTopMost = new();
 
         /// <summary>
         /// If true, it means we need to lock focus on this entity while mouse is held down.
@@ -239,13 +239,13 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// If set, will copy the state of this entity instead of calculating its own state.
         /// </summary>
-        internal EntityUI? CopyStateFrom;
+        internal Control? CopyStateFrom;
 
         /// <summary>
         /// If set, will transfer interactions to this entity instead of self.
         /// For example, if we point on this entity, it will be as if we point on the other entity.
         /// </summary>
-        internal EntityUI? TransferInteractionsTo;
+        internal Control? TransferInteractionsTo;
 
         /// <summary>
         /// If false, will not draw fill textures for this entity.
@@ -255,12 +255,12 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// If set, will lock this entity to this state.
         /// </summary>
-        internal EntityState? LockedState;
+        internal ControlState? LockedState;
 
         /// <summary>
         /// Current entity state.
         /// </summary>
-        public EntityState State
+        public ControlState State
         {
             get
             {
@@ -281,7 +281,7 @@ namespace MonoGo.Engine.UI.Entities
                 // special: locked in interactive state
                 if (_timeToRemainInteractedState > 0f)
                 {
-                    _stateCached = EntityState.Interacted;
+                    _stateCached = ControlState.Interacted;
                     return _stateCached.Value;
                 }
 
@@ -293,17 +293,17 @@ namespace MonoGo.Engine.UI.Entities
                 // locked
                 else if (IsCurrentlyLocked())
                 {
-                    _stateCached = _isChecked ? EntityState.Checked : EntityState.Default;
+                    _stateCached = _isChecked ? ControlState.Checked : ControlState.Default;
                 }
                 // disabled / disabled checked
                 else if (IsCurrentlyDisabled())
                 {
-                    _stateCached = _isChecked ? EntityState.DisabledChecked : EntityState.Disabled;
+                    _stateCached = _isChecked ? ControlState.DisabledChecked : ControlState.Disabled;
                 }
                 // interacted state
                 else if (IsBeingPressed)
                 {
-                    _stateCached = EntityState.Interacted;
+                    _stateCached = ControlState.Interacted;
                     if (_timeToRemainInteractedState <= 0f) 
                     {
                         _timeToRemainInteractedState = UISystem.TimeToLockInteractiveState; 
@@ -312,12 +312,12 @@ namespace MonoGo.Engine.UI.Entities
                 // targeted / targeted checked
                 else if (IsTargeted)
                 {
-                    _stateCached = _isChecked ? EntityState.TargetedChecked : EntityState.Targeted;
+                    _stateCached = _isChecked ? ControlState.TargetedChecked : ControlState.Targeted;
                 }
                 // default state
                 else
                 {
-                    _stateCached = _isChecked ? EntityState.Checked : EntityState.Default;
+                    _stateCached = _isChecked ? ControlState.Checked : ControlState.Default;
                 }
 
                 return _stateCached.Value;
@@ -325,10 +325,10 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         // cached state value
-        EntityState? _stateCached;
+        ControlState? _stateCached;
 
         // property to indicate if this entity is checked or not.
-        // for most entities types, this is never used. for entities that can be checked (Radio button, checkbox, button), this property is used.
+        // for most controls types, this is never used. for controls that can be checked (Radio button, checkbox, button), this property is used.
         // we define it in base class because we need it for state calculation.
         protected bool _isChecked = false;
 
@@ -340,7 +340,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Return if this entity is being targeted right now.
         /// </summary>
-        public bool IsTargeted => UISystem.TargetedEntity == this;
+        public bool IsTargeted => UISystem.TargetedControl == this;
 
         // true if last time the mouse pointed on this entity, left mouse button was down
         bool _wasMouseDownLastInteraction;
@@ -360,7 +360,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Parent entity.
         /// </summary>
-        public EntityUI? Parent { get; private set; } = null!;
+        public Control? Parent { get; private set; } = null!;
 
         // empty stylesheet to use when no stylesheet is set
         static internal StyleSheet _emptyStylesheet = new();
@@ -369,8 +369,8 @@ namespace MonoGo.Engine.UI.Entities
         /// Create the entity.
         /// </summary>
         /// <param name="system">Parent UI system.</param>
-        /// <param name="stylesheet">Entity stylesheet.</param>
-        public EntityUI(StyleSheet? stylesheet)
+        /// <param name="stylesheet">Control stylesheet.</param>
+        public Control(StyleSheet? stylesheet)
         {
             // store system and stylesheet
             StyleSheet = stylesheet ?? _emptyStylesheet;
@@ -387,7 +387,7 @@ namespace MonoGo.Engine.UI.Entities
             if (StyleSheet != null)
             {
                 // set default size
-                Size = GetDefaultEntityTypeSize();
+                Size = GetDefaultControlTypeSize();
                 if (StyleSheet.DefaultWidth.HasValue)
                 {
                     Size.X = StyleSheet.DefaultWidth.Value;
@@ -402,7 +402,7 @@ namespace MonoGo.Engine.UI.Entities
                 {
                     Anchor = StyleSheet.DefaultTextAnchor.Value;
                 }
-                // set default anchor for general entities
+                // set default anchor for general controls
                 else if (StyleSheet.DefaultAnchor.HasValue)
                 {
                     Anchor = StyleSheet.DefaultAnchor.Value;
@@ -410,7 +410,7 @@ namespace MonoGo.Engine.UI.Entities
                 // default anchor for entity type
                 else
                 {
-                    Anchor = GetDefaultEntityTypeAnchor();
+                    Anchor = GetDefaultControlTypeAnchor();
                 }
             }
         }
@@ -424,7 +424,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <summary>
-        /// Return true if this entity or any of its parent entities are locked.
+        /// Return true if this entity or any of its parent controls are locked.
         /// </summary>
         /// <returns>True if this entity or one of its parents is locked.</returns>
         public bool IsCurrentlyLocked()
@@ -452,7 +452,7 @@ namespace MonoGo.Engine.UI.Entities
         bool? _lockedState;
 
         /// <summary>
-        /// Return true if this entity or any of its parent entities are disabled.
+        /// Return true if this entity or any of its parent controls are disabled.
         /// </summary>
         /// <returns>True if this entity or one of its parents is disabled.</returns>
         public bool IsCurrentlyDisabled()
@@ -511,7 +511,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Get default entity size for this entity type.
         /// </summary>
-        protected virtual MeasureVector GetDefaultEntityTypeSize()
+        protected virtual MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.SetPercents(100f, 100f);
@@ -521,7 +521,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Get default entity anchor for this entity type.
         /// </summary>
-        protected virtual Anchor GetDefaultEntityTypeAnchor()
+        protected virtual Anchor GetDefaultControlTypeAnchor()
         {
             return Anchor.AutoLTR;
         }
@@ -533,9 +533,9 @@ namespace MonoGo.Engine.UI.Entities
         /// <param name="child">Child entity to add.</param>
         /// <param name="topMost">If true, will add internal child in a way that it will be rendered on top.</param>
         /// <exception cref="Exception">Thrown if child already have a parent.</exception>
-        protected void AddChildInternal(EntityUI child, bool topMost = false)
+        protected void AddChildInternal(Control child, bool topMost = false)
         {
-            if (child.Parent != null) { throw new Exception("Internal Entity to add as child already have a parent entity! Remove it first."); }
+            if (child.Parent != null) { throw new Exception("Internal Control to add as child already have a parent entity! Remove it first."); }
             if (topMost)
             {
                 _internalChildrenTopMost.Add(child);
@@ -553,9 +553,9 @@ namespace MonoGo.Engine.UI.Entities
         /// </summary>
         /// <param name="child">Child entity to remove.</param>
         /// <exception cref="Exception">Thrown if child have a different parent or don't have a parent at all.</exception>
-        protected void RemoveChildInternal(EntityUI child)
+        protected void RemoveChildInternal(Control child)
         {
-            if (child.Parent != this) { throw new Exception("Internal Entity to remove is not a child of this parent entity!"); }
+            if (child.Parent != this) { throw new Exception("Internal Control to remove is not a child of this parent entity!"); }
             _internalChildren.Remove(child);
             _internalChildrenTopMost.Remove(child);
             child.Parent = null!;
@@ -566,9 +566,9 @@ namespace MonoGo.Engine.UI.Entities
         /// </summary>
         /// <param name="child">Child entity to add.</param>
         /// <exception cref="Exception">Thrown if child already have a parent.</exception>
-        public T AddChild<T>(T child) where T : EntityUI
+        public T AddChild<T>(T child) where T : Control
         {
-            if (child.Parent != null) { throw new Exception("Entity to add as child already have a parent entity! Remove it first."); }
+            if (child.Parent != null) { throw new Exception("Control to add as child already have a parent entity! Remove it first."); }
             _children.Add(child);
             child.Parent = this;
             return child;
@@ -579,9 +579,9 @@ namespace MonoGo.Engine.UI.Entities
         /// </summary>
         /// <param name="child">Child entity to remove.</param>
         /// <exception cref="Exception">Thrown if child have a different parent or don't have a parent at all.</exception>
-        public void RemoveChild(EntityUI child)
+        public void RemoveChild(Control child)
         {
-            if (child.Parent != this) { throw new Exception("Entity to remove is not a child of this parent entity!"); }
+            if (child.Parent != this) { throw new Exception("Control to remove is not a child of this parent entity!"); }
             _children.Remove(child);
             child.Parent = null!;
         }
@@ -721,7 +721,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Render this entity and its children.
         /// </summary>
-        /// <param name="parentDrawResult">Parent entity last rendering results. Root entities will get bounding boxes covering the entire screen.</param>
+        /// <param name="parentDrawResult">Parent entity last rendering results. Root controls will get bounding boxes covering the entire screen.</param>
         /// <param name="siblingDrawResult">Older sibling entity last rendering results. For first entity, it will be null.</param>
         /// <returns>Calculated bounding rectangles.</returns>
         internal DrawMethodResult _DoDraw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
@@ -748,7 +748,7 @@ namespace MonoGo.Engine.UI.Entities
                 LastVisibleBoundingRect = LastBoundingRect;
             }
 
-            // apply scissor to hide overflow entities
+            // apply scissor to hide overflow controls
             bool setScissor = (OverflowMode == OverflowMode.HideOverflow);
             bool enqueuedPreviousScissorRegion = false;
             if (setScissor)
@@ -906,7 +906,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Implement per-entity rendering.
         /// </summary>
-        /// <param name="parentDrawResult">Parent entity last rendering results. Root entities will get bounding boxes covering the entire screen.</param>
+        /// <param name="parentDrawResult">Parent entity last rendering results. Root controls will get bounding boxes covering the entire screen.</param>
         /// <param name="siblingDrawResult">Older sibling entity last rendering results. For first entity, it will be null.</param>
         /// <returns>Calculated bounding rectangles.</returns>
         protected virtual DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
@@ -930,7 +930,7 @@ namespace MonoGo.Engine.UI.Entities
             internalBoundingRect.Height -= padding.Top + padding.Bottom;
 
             // perform rendering
-            DrawEntityType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
+            DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
 
             // return rendering result
             return new DrawMethodResult() 
@@ -963,7 +963,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <param name="boundingRect">Self bounding rect.</param>
         /// <param name="internalBoundingRect">Self internal bounding rect.</param>
         /// <param name="parentDrawResult">Parent draw call results.</param>
-        protected virtual void DrawEntityType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected virtual void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
             if (DrawFillTexture)
             {
@@ -971,7 +971,7 @@ namespace MonoGo.Engine.UI.Entities
                 var state = State;
 
                 // draw given state fill textures
-                void DrawStateFill(EntityState state, Rectangle boundingRect, float alpha)
+                void DrawStateFill(ControlState state, Rectangle boundingRect, float alpha)
                 {
                     // get color
                     var color = StyleSheet.GetProperty("FillColor", state, Color.White, OverrideStyles)!;
@@ -1167,8 +1167,8 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Get the entity before this entity in the children list of its parent.
         /// </summary>
-        /// <returns>Entity that comes before this entity, or null if there's none.</returns>
-        internal EntityUI? GetEntityBefore()
+        /// <returns>Control that comes before this entity, or null if there's none.</returns>
+        internal Control? GetControlBefore()
         {
             // no parent? null
             if (Parent == null) { return null; }
@@ -1194,7 +1194,7 @@ namespace MonoGo.Engine.UI.Entities
         /// </summary>
         /// <param name="parentDrawResult">Parent draw results.</param>
         /// <param name="siblingDrawResult">Older sibling draw results.</param>
-        /// <returns>Entity bounding rect.</returns>
+        /// <returns>Control bounding rect.</returns>
         internal protected virtual Rectangle CalculateBoundingRect(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
             // calculated bounding rect
@@ -1209,7 +1209,7 @@ namespace MonoGo.Engine.UI.Entities
             // add older sibling margin
             if (IsAutoAnchor)
             {
-                var olderSibling = GetEntityBefore();
+                var olderSibling = GetControlBefore();
                 if ((olderSibling != null) && !olderSibling.WasDraggedToPosition)
                 {
                     var parentMargin = olderSibling.GetMarginAfter();
@@ -1485,7 +1485,7 @@ namespace MonoGo.Engine.UI.Entities
             if (InterpolateStates)
             {
                 // switch state
-                EntityState state = State;
+                ControlState state = State;
                 if (state != _lastState)
                 {
                     _interpolateToNextState = Math.Max(0, 1f - _interpolateToNextState);
@@ -1527,7 +1527,7 @@ namespace MonoGo.Engine.UI.Entities
         /// To walk the entire tree including children of children, use Walk() instead.
         /// </summary>
         /// <param name="callback">Callback to trigger per entity. Return false to break iteration.</param>
-        public void IterateChildren(Func<EntityUI, bool> callback)
+        public void IterateChildren(Func<Control, bool> callback)
         {
             foreach (var child in _children)
             {
@@ -1539,8 +1539,8 @@ namespace MonoGo.Engine.UI.Entities
         /// Iterate entity and all its children and their children.
         /// First call will always be this entity, then it will walk over its children tree.
         /// </summary>
-        /// <param name="callback">Callback to handle entities. Return false to break iteration.</param>
-        public void Walk(Func<EntityUI, bool> callback)
+        /// <param name="callback">Callback to handle controls. Return false to break iteration.</param>
+        public void Walk(Func<Control, bool> callback)
         {
             bool cont = true;
             _WalkInt(callback, ref cont);
@@ -1554,7 +1554,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Internal walk implementation.
         /// </summary>
-        void _WalkInt(Func<EntityUI, bool> callback, ref bool cont)
+        void _WalkInt(Func<Control, bool> callback, ref bool cont)
         {
             if (!callback(this))
             {
@@ -1594,22 +1594,22 @@ namespace MonoGo.Engine.UI.Entities
     public enum DraggableMode
     {
         /// <summary>
-        /// Entity is not draggable.
+        /// Control is not draggable.
         /// </summary>
         NotDraggable,
 
         /// <summary>
-        /// Entity can be dragged anywhere freely.
+        /// Control can be dragged anywhere freely.
         /// </summary>
         Draggable,
 
         /// <summary>
-        /// Entity can be dragged, but confined to screen internal rectangle.
+        /// Control can be dragged, but confined to screen internal rectangle.
         /// </summary>
         DraggableConfinedToScreen,
 
         /// <summary>
-        /// Entity can be dragged, but confined to parent internal rectangle.
+        /// Control can be dragged, but confined to parent internal rectangle.
         /// </summary>
         DraggableConfinedToParent
     }
@@ -1617,13 +1617,13 @@ namespace MonoGo.Engine.UI.Entities
     /// <summary>
     /// An event callback we can register to.
     /// </summary>
-    /// <param name="entity">Entity the event occurred on.</param>
-    public delegate void EntityEvent(EntityUI entity);
+    /// <param name="entity">Control the event occurred on.</param>
+    public delegate void ControlEvent(Control entity);
 
     /// <summary>
-    /// Set of events we can register to on entities.
+    /// Set of events we can register to on controls.
     /// </summary>
-    public struct EntityEvents
+    public struct ControlEvents
     {
         /// <summary>
         /// Called when the value of this entity changes.
@@ -1633,43 +1633,43 @@ namespace MonoGo.Engine.UI.Entities
         ///     3. Text input change for text input fields.
         ///     4. Selected item change for lists and dropdowns.
         /// </summary>
-        public EntityEvent OnValueChanged;
+        public ControlEvent OnValueChanged;
 
         /// <summary>
         /// Called when this entity is checked.
         /// </summary>
-        public EntityEvent OnChecked;
+        public ControlEvent OnChecked;
 
         /// <summary>
         /// Called when this entity is unchecked.
         /// </summary>
-        public EntityEvent OnUnchecked;
+        public ControlEvent OnUnchecked;
 
         /// <summary>
         /// Called before rendering the entity.
         /// </summary>
-        public EntityEvent BeforeDraw;
+        public ControlEvent BeforeDraw;
 
         /// <summary>
         /// Called after rendering the entity.
         /// </summary>
-        public EntityEvent AfterDraw;
+        public ControlEvent AfterDraw;
 
         /// <summary>
         /// Called before updating the entity.
         /// </summary>
-        public EntityEvent BeforeUpdate;
+        public ControlEvent BeforeUpdate;
 
         /// <summary>
         /// Called after updating the entity.
         /// </summary>
-        public EntityEvent AfterUpdate;
+        public ControlEvent AfterUpdate;
 
         /// <summary>
         /// Called once when left mouse button is released on the entity.
         /// This is just sugarcoat for 'OnLeftMouseReleased' to make code more readable.
         /// </summary>
-        public EntityEvent OnClick
+        public ControlEvent OnClick
         { 
             get => OnLeftMouseReleased;
             set => OnLeftMouseReleased = value;
@@ -1678,46 +1678,46 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Called when mouse wheel scroll up.
         /// </summary>
-        public EntityEvent OnMouseWheelScrollUp;
+        public ControlEvent OnMouseWheelScrollUp;
 
         /// <summary>
         /// Called when mouse wheel scroll down.
         /// </summary>
-        public EntityEvent OnMouseWheelScrollDown;
+        public ControlEvent OnMouseWheelScrollDown;
 
         /// <summary>
         /// Called every frame while mouse left button is down over the entity.
         /// </summary>
-        public EntityEvent OnLeftMouseDown;
+        public ControlEvent OnLeftMouseDown;
 
         /// <summary>
         /// Called once when left mouse button is pressed on the entity.
         /// </summary>
-        public EntityEvent OnLeftMousePressed;
+        public ControlEvent OnLeftMousePressed;
 
         /// <summary>
         /// Called once when left mouse button is released on the entity.
         /// </summary>
-        public EntityEvent OnLeftMouseReleased;
+        public ControlEvent OnLeftMouseReleased;
 
         /// <summary>
         /// Called every frame while mouse right button is down over the entity.
         /// </summary>
-        public EntityEvent OnRightMouseDown;
+        public ControlEvent OnRightMouseDown;
 
         /// <summary>
         /// Called once when right mouse button is pressed on the entity.
         /// </summary>
-        public EntityEvent OnRightMousePressed;
+        public ControlEvent OnRightMousePressed;
 
         /// <summary>
         /// Called once when right mouse button is released on the entity.
         /// </summary>
-        public EntityEvent OnRightMouseReleased;
+        public ControlEvent OnRightMouseReleased;
 
         /// <summary>
         /// Called every frame while mouse hovers the entity (even if mouse don't move).
         /// </summary>
-        public EntityEvent WhileMouseHover;
+        public ControlEvent WhileMouseHover;
     }
 }

@@ -2,7 +2,7 @@
 using MonoGo.Engine.UI.Defs;
 
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// A list of items users can select items from, that collapses while not being interacted with.
@@ -55,12 +55,12 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override void DrawEntityType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected override void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
             // special - if we are rendering in open mode, top most
             if (_isInTopmostDraw)
             {
-                base.DrawEntityType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
+                base.DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
                 return;
             }
 
@@ -75,7 +75,7 @@ namespace MonoGo.Engine.UI.Entities
             {
                 DrawMethodResult parentResults = parentDrawResult;
                 DrawMethodResult? siblingResults = siblingDrawResult;
-                UISystem.RunAfterDrawingEntities(() =>
+                UISystem.RunAfterDrawingControls(() =>
                 {
                     _isInTopmostDraw = true;
                     _DoDraw(parentResults, siblingResults);
@@ -85,7 +85,7 @@ namespace MonoGo.Engine.UI.Entities
             // dropdown is closed - render normally in close state
             else
             {
-                base.DrawEntityType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
+                base.DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
             }
 
             // opened? resize to close state AFTER rendering
@@ -99,7 +99,7 @@ namespace MonoGo.Engine.UI.Entities
         bool _isInTopmostDraw = false;
 
         /// <inheritdoc/>
-        protected override void OnItemClicked(EntityUI entity)
+        protected override void OnItemClicked(Control entity)
         {
             // if closed, open the list
             if (!IsOpened)

@@ -1,5 +1,4 @@
-﻿
-namespace MonoGo.Engine.UI.Defs
+﻿namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
     /// Text alignment properties.

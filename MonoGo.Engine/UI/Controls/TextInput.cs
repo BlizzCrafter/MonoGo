@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// Text input entity.
@@ -210,7 +210,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.X.SetPercents(100f);

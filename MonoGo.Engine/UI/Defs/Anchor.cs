@@ -39,47 +39,47 @@ namespace MonoGo.Engine.UI.Defs
         AutoCenter,
 
         /// <summary>
-        /// Entity is aligned to parent top-left internal corner.
+        /// Control is aligned to parent top-left internal corner.
         /// </summary>
         TopLeft,
 
         /// <summary>
-        /// Entity is aligned to parent top-center internal point.
+        /// Control is aligned to parent top-center internal point.
         /// </summary>
         TopCenter,
 
         /// <summary>
-        /// Entity is aligned to parent top-right internal corner.
+        /// Control is aligned to parent top-right internal corner.
         /// </summary>
         TopRight,
 
         /// <summary>
-        /// Entity is aligned to parent bottom-left internal corner.
+        /// Control is aligned to parent bottom-left internal corner.
         /// </summary>
         BottomLeft,
 
         /// <summary>
-        /// Entity is aligned to parent bottom-center internal point.
+        /// Control is aligned to parent bottom-center internal point.
         /// </summary>
         BottomCenter,
 
         /// <summary>
-        /// Entity is aligned to parent bottom-right internal corner.
+        /// Control is aligned to parent bottom-right internal corner.
         /// </summary>
         BottomRight,
 
         /// <summary>
-        /// Entity is aligned to parent center-left internal point.
+        /// Control is aligned to parent center-left internal point.
         /// </summary>
         CenterLeft,
 
         /// <summary>
-        /// Entity is aligned to parent center internal point.
+        /// Control is aligned to parent center internal point.
         /// </summary>
         Center,
 
         /// <summary>
-        /// Entity is aligned to parent center-right internal point.
+        /// Control is aligned to parent center-right internal point.
         /// </summary>
         CenterRight,
     }

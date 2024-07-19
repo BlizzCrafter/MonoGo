@@ -1,11 +1,11 @@
 ﻿using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// Progress bars are like sliders, but instead of moving a handle they 'fill' an internal entity.
-    /// These entities are useful to show progress, health bars, etc.
+    /// These controls are useful to show progress, health bars, etc.
     /// </summary>
     /// <remarks>By default, progress bars have 'IgnoreInteractions' set to true. If you want the progress bar to behave like a slider and allow users to change its value, set it to false.</remarks>
     public class ProgressBar : Slider
@@ -13,7 +13,6 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Create the progress bar.
         /// </summary>
-        /// <param name="system">Parent UI system.</param>
         /// <param name="stylesheet">Progress bar stylesheet.</param>
         /// <param name="fillStylesheet">Progress bar fill stylesheet.</param>
         /// <param name="orientation">Progress bar orientation.</param>

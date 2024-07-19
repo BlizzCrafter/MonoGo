@@ -1,12 +1,11 @@
 ﻿using MonoGo.Engine.UI.Defs;
 
-
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// Entity type that have 'Checked' property that can be checked / unchecked.
+    /// Control type that have 'Checked' property that can be checked / unchecked.
     /// </summary>
-    public abstract class CheckedEntity : EntityUI
+    public abstract class CheckedControl : Control
     {
         /// <summary>
         /// Set / get if this entity is in 'checked' state.
@@ -23,9 +22,9 @@ namespace MonoGo.Engine.UI.Entities
                     // uncheck siblings
                     if (ExclusiveSelection)
                     {
-                        Parent?.IterateChildren((EntityUI entity) =>
+                        Parent?.IterateChildren((Control entity) =>
                         {
-                            var siblingAsCheckable = entity as CheckedEntity;
+                            var siblingAsCheckable = entity as CheckedControl;
                             if ((siblingAsCheckable != null) && (siblingAsCheckable != this) && (siblingAsCheckable.ExclusiveSelection))
                             {
                                 siblingAsCheckable.Checked = false;
@@ -74,7 +73,7 @@ namespace MonoGo.Engine.UI.Entities
         public bool CanClickToUncheck = true;
 
         /// <inheritdoc/>
-        public CheckedEntity(StyleSheet? stylesheet) : base(stylesheet)
+        public CheckedControl(StyleSheet? stylesheet) : base(stylesheet)
         {
         }
 

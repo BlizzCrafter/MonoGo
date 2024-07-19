@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// A list of items users can select items from.
@@ -32,7 +32,7 @@ namespace MonoGo.Engine.UI.Entities
         // list items
         List<ListItem> _items = new();
 
-        // paragraph entities to present the items
+        // paragraph controls to present the items
         protected List<Paragraph> _paragraphs = new();
 
         /// <summary>
@@ -183,10 +183,10 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override void DrawEntityType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected override void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
             // render base
-            base.DrawEntityType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
+            base.DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
 
             // calculate how many items we should show at any given time
             int paragraphsCount = (int)Math.Ceiling((float)internalBoundingRect.Height / (float)ItemHeight);
@@ -202,7 +202,7 @@ namespace MonoGo.Engine.UI.Entities
                 p.Size.X.SetPercents(100f);
                 
                 // selecting list item value
-                p.Events.OnClick = (EntityUI entity) =>
+                p.Events.OnClick = (Control entity) =>
                 {
                     this.OnItemClicked(entity);
                 };
@@ -235,7 +235,7 @@ namespace MonoGo.Engine.UI.Entities
         /// <summary>
         /// Action to perform when a list item is clicked on.
         /// </summary>
-        protected virtual void OnItemClicked(EntityUI entity)
+        protected virtual void OnItemClicked(Control entity)
         {
             var newValue = entity.UserData as string;
             if (AllowDeselect && (newValue == SelectedValue))
@@ -265,7 +265,7 @@ namespace MonoGo.Engine.UI.Entities
                 paragraph.Visible = true;
                 paragraph.UserData = item.Value;
                 paragraph.Text = item.Label ?? item.Value;
-                paragraph.LockedState = item.Value == SelectedValue ? EntityState.Checked : null;
+                paragraph.LockedState = item.Value == SelectedValue ? ControlState.Checked : null;
             }
         }
 
@@ -367,7 +367,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.X.SetPercents(100f);

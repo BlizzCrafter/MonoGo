@@ -1,7 +1,7 @@
 ﻿using MonoGo.Engine.UI.Defs;
 
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// A title text entity.

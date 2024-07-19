@@ -2,17 +2,17 @@
 using MonoGo.Engine.UI.Utils;
 using System;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// A slider to get numeric input.
     /// </summary>
-    public class Slider : EntityUI
+    public class Slider : Control
     {
         /// <summary>
         /// The entity used as slider handle.
         /// </summary>
-        public EntityUI Handle { get; private set; }
+        public Control Handle { get; private set; }
 
         /// <summary>
         /// Slider orientation.
@@ -163,7 +163,7 @@ namespace MonoGo.Engine.UI.Entities
             CalculateDefaultAnchorAndSize();
 
             // create handle
-            Handle = new EntityUI(handleStylesheet);
+            Handle = new Control(handleStylesheet);
             Handle.CopyStateFrom = this;
             Handle.Anchor = (orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter;
             Handle.TransferInteractionsTo = this;
@@ -288,7 +288,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             if (Orientation == Orientation.Horizontal)

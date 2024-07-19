@@ -21,7 +21,7 @@ namespace MonoGo.Engine.UI.Defs
     }
 
     /// <summary>
-    /// All input properties for entities interactions.
+    /// All input properties for controls interactions.
     /// </summary>
     public struct InputState
     {

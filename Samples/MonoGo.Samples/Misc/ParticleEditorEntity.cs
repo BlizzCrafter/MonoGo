@@ -5,7 +5,7 @@ using MonoGo.Engine.Particles;
 using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
-using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Controls;
 
 namespace MonoGo.Samples.Misc
 {
@@ -84,7 +84,7 @@ namespace MonoGo.Samples.Misc
             {
                 var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
                 textInput.PlaceholderText = "Offest:X=0";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                textInput.OnValueChange += (Control entityUI) =>
                 {
                     if (float.TryParse(entityUI.GetValue().ToString(), out float value))
                     {
@@ -97,7 +97,7 @@ namespace MonoGo.Samples.Misc
             {
                 var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
                 textInput.PlaceholderText = "Offest:Y=0";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                textInput.OnValueChange += (Control entityUI) =>
                 {
                     if (float.TryParse(entityUI.GetValue().ToString(), out float value))
                     {
@@ -110,7 +110,7 @@ namespace MonoGo.Samples.Misc
             {
                 var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
                 textInput.PlaceholderText = "Speed=1";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                textInput.OnValueChange += (Control entityUI) =>
                 {
                     if (float.TryParse(entityUI.GetValue().ToString(), out float value))
                     {

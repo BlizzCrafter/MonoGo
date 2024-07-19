@@ -1,11 +1,11 @@
 ﻿using MonoGo.Engine.UI.Defs;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// Radio button entity type.
     /// </summary>
-    public class RadioButton : CheckedEntity
+    public class RadioButton : CheckedControl
     {
         /// <summary>
         /// Radio button label.
@@ -14,7 +14,6 @@ namespace MonoGo.Engine.UI.Entities
 
         /// <inheritdoc/>
         internal override bool Interactable => true;
-
 
         /// <summary>
         /// Create the radio button.
@@ -45,7 +44,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.X.SetPercents(100f);

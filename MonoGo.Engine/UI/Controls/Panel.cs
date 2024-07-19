@@ -4,12 +4,12 @@ using MonoGo.Engine.UI.Utils;
 using System;
 using System.Runtime.CompilerServices;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// A panel is a container for other entities.
+    /// A panel is a container for other controls.
     /// </summary>
-    public class Panel : EntityUI
+    public class Panel : Control
     {
         // so that scrollbars will work
         /// <inheritdoc/>
@@ -25,7 +25,7 @@ namespace MonoGo.Engine.UI.Entities
 
 
         /// <summary>
-        /// If true, when the scrollbar value changes the offset of the child entities will smoothly interpolate to the new offset.
+        /// If true, when the scrollbar value changes the offset of the child controls will smoothly interpolate to the new offset.
         /// If false, offset will be set immediately.
         /// </summary>
         public bool InterpolateScrollbarOffset = true;
@@ -115,7 +115,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.SetPixels(400, 400);

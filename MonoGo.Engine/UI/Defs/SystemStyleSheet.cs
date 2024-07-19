@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MonoGo.Engine.UI.Defs
 {
@@ -36,12 +34,12 @@ namespace MonoGo.Engine.UI.Defs
         public CursorProperties? CursorLocked { get; set; }
 
         /// <summary>
-        /// Lock entities to interactive state for at least this value in seconds, to make sure the 'interactive' state is properly displayed even for rapid clicks.
+        /// Lock controls to interactive state for at least this value in seconds, to make sure the 'interactive' state is properly displayed even for rapid clicks.
         /// </summary>
         public float TimeToLockInteractiveState { get; set; }
 
         /// <summary>
-        /// Default stylesheets to load for entities.
+        /// Default stylesheets to load for controls.
         /// Key = name of stylesheet to load (for example 'Panels' for 'uiSystem.DefaultStylesheets.Panels'.
         /// Value = path, relative to the folder containing this stylesheet, to load from.
         /// </summary>

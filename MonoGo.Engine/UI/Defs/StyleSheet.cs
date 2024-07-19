@@ -34,7 +34,7 @@ namespace MonoGo.Engine.UI.Defs
         public Color? FillColor { get; set; }
 
         /// <summary>
-        /// Text alignment for entities with text.
+        /// Text alignment for controls with text.
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public TextAlignment? TextAlignment { get; set; }
@@ -83,7 +83,7 @@ namespace MonoGo.Engine.UI.Defs
 
         /// <summary>
         /// Internal padding, in pixels.
-        /// Padding decrease the size of the internal bounding rect of entities.
+        /// Padding decrease the size of the internal bounding rect of controls.
         /// </summary>
         public Sides? Padding { get; set; }
 
@@ -93,12 +93,12 @@ namespace MonoGo.Engine.UI.Defs
         public Sides? ExtraSize { get; set; }
 
         /// <summary>
-        /// Extra offset to add to entities with auto anchor from their siblings.
+        /// Extra offset to add to controls with auto anchor from their siblings.
         /// </summary>
         public Point? MarginBefore { get; set; }
 
         /// <summary>
-        /// Extra offset to add to next entities in parent that has auto anchor from this entity.
+        /// Extra offset to add to next controls in parent that has auto anchor from this entity.
         /// </summary>
         public Point? MarginAfter { get; set; }
     }
@@ -122,12 +122,12 @@ namespace MonoGo.Engine.UI.Defs
         public Measurement? DefaultHeight { get; set; }
 
         /// <summary>
-        /// Entity min width.
+        /// Control min width.
         /// </summary>
         public int? MinWidth { get; set; }
 
         /// <summary>
-        /// Entity min height.
+        /// Control min height.
         /// </summary>
         public int? MinHeight { get; set; }
 
@@ -138,7 +138,7 @@ namespace MonoGo.Engine.UI.Defs
         public Anchor? DefaultAnchor { get; set; }
 
         /// <summary>
-        /// Default text anchor for entities with text.
+        /// Default text anchor for controls with text.
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Anchor? DefaultTextAnchor { get; set; }
@@ -199,17 +199,17 @@ namespace MonoGo.Engine.UI.Defs
         /// <summary>
         /// Get stylesheet for a given entity state.
         /// </summary>
-        public StyleSheetState GetStyle(EntityState state)
+        public StyleSheetState GetStyle(ControlState state)
         {
             StyleSheetState? ret = Default;
             switch (state)
             {
-                case EntityState.Disabled: ret = Disabled; break;
-                case EntityState.DisabledChecked: ret = DisabledChecked; break;
-                case EntityState.Interacted: ret = Interacted; break;
-                case EntityState.Targeted: ret = Targeted; break;
-                case EntityState.TargetedChecked: ret = TargetedChecked; break;
-                case EntityState.Checked: ret = Checked; break;
+                case ControlState.Disabled: ret = Disabled; break;
+                case ControlState.DisabledChecked: ret = DisabledChecked; break;
+                case ControlState.Interacted: ret = Interacted; break;
+                case ControlState.Targeted: ret = Targeted; break;
+                case ControlState.TargetedChecked: ret = TargetedChecked; break;
+                case ControlState.Checked: ret = Checked; break;
             }
             return ret ?? _nullStyle;
         }
@@ -219,11 +219,11 @@ namespace MonoGo.Engine.UI.Defs
         /// </summary>
         /// <typeparam name="T">Property type.</typeparam>
         /// <param name="propertyName">Property name.</param>
-        /// <param name="state">Entity state to get property for.</param>
+        /// <param name="state">Control state to get property for.</param>
         /// <param name="defaultValue">Default value to return if not found.</param>
         /// <param name="overrideProperties">If provided, will first attempt to get property from this state.</param>
         /// <returns>Value from state, from default, or the given default</returns>
-        public T? GetProperty<T>(string propertyName, EntityState state, T? defaultValue, StyleSheetState? overrideProperties)
+        public T? GetProperty<T>(string propertyName, ControlState state, T? defaultValue, StyleSheetState? overrideProperties)
         {
             // get property info
             if (!_cachedProperties.TryGetValue(propertyName, out var propertyInfo))
@@ -259,28 +259,28 @@ namespace MonoGo.Engine.UI.Defs
             }
 
             // special: if state is disabled checked and not defined, revert to disabled state before trying default
-            if (!valueFound && (state == EntityState.DisabledChecked) && (Disabled != null)) 
+            if (!valueFound && (state == ControlState.DisabledChecked) && (Disabled != null)) 
             {
                 object? value = propertyInfo.GetValue(Disabled);
                 if (value != null) { ret = (T?)value; valueFound = true; }
             }
 
             // special: if state is targeted checked and not defined, revert to checked state before trying default
-            if (!valueFound && (state == EntityState.TargetedChecked) && (Checked != null)) 
+            if (!valueFound && (state == ControlState.TargetedChecked) && (Checked != null)) 
             {
                 object? value = propertyInfo.GetValue(Checked);
                 if (value != null) { ret = (T?)value; valueFound = true; }
             }
 
             // special: if state is targeted checked and not defined not even in checked, revert to interacted state before trying default
-            if (!valueFound && (state == EntityState.TargetedChecked) && (Interacted != null))
+            if (!valueFound && (state == ControlState.TargetedChecked) && (Interacted != null))
             {
                 object? value = propertyInfo.GetValue(Interacted);
                 if (value != null) { ret = (T?)value; valueFound = true; }
             }
 
             // special: if state is checked and not defined, revert to interacted state before trying default
-            if (!valueFound && (state == EntityState.Checked) && (Interacted != null))
+            if (!valueFound && (state == ControlState.Checked) && (Interacted != null))
             {
                 object? value = propertyInfo.GetValue(Interacted);
                 if (value != null) { ret = (T?)value; valueFound = true; }

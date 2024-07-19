@@ -1,12 +1,12 @@
 ﻿using MonoGo.Engine.UI.Defs;
 
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// A graphical horizontal line that separates between entities.
+    /// A graphical horizontal line that separates between controls.
     /// </summary>
-    public class HorizontalLine : EntityUI
+    public class HorizontalLine : Control
     {
         /// <summary>
         /// Create the horizontal line.
@@ -24,13 +24,13 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override Anchor GetDefaultEntityTypeAnchor()
+        protected override Anchor GetDefaultControlTypeAnchor()
         {
             return Anchor.AutoCenter;
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.X.SetPercents(100f);

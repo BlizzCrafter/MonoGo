@@ -1,11 +1,11 @@
 ﻿using MonoGo.Engine.UI.Defs;
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
     /// Checkbox entity type.
     /// </summary>
-    public class Checkbox : CheckedEntity
+    public class Checkbox : CheckedControl
     {
         /// <summary>
         /// Checkbox label.
@@ -43,7 +43,7 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override MeasureVector GetDefaultEntityTypeSize()
+        protected override MeasureVector GetDefaultControlTypeSize()
         {
             var ret = new MeasureVector();
             ret.X.SetPercents(100f);

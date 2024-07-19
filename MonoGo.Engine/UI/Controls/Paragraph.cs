@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 
-namespace MonoGo.Engine.UI.Entities
+namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// Entity to render text.
+    /// Control to render text.
     /// </summary>
-    public class Paragraph : EntityUI
+    public class Paragraph : Control
     {
         /// <summary>
         /// Text to render.
@@ -443,10 +443,10 @@ namespace MonoGo.Engine.UI.Entities
         }
 
         /// <inheritdoc/>
-        protected override void DrawEntityType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected override void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
             // call base rendering
-            base.DrawEntityType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
+            base.DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
 
             // draw text part
             if (!string.IsNullOrEmpty(Text))
@@ -482,7 +482,7 @@ namespace MonoGo.Engine.UI.Entities
                 }
 
                 // draw text for a given state
-                void DrawStateText(EntityState state, Rectangle internalBoundingRect, float alpha)
+                void DrawStateText(ControlState state, Rectangle internalBoundingRect, float alpha)
                 {
                     // get colors
                     var fillColor = StyleSheet.GetProperty("TextFillColor", state, Color.White, OverrideStyles)!;

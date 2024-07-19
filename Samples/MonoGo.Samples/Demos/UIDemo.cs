@@ -7,7 +7,7 @@ using MonoGo.Engine.EC;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
 using MonoGo.Engine;
-using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Controls;
 
 namespace MonoGo.Samples.Demos
 {
@@ -35,12 +35,12 @@ namespace MonoGo.Samples.Demos
 
             // add previous example button
             previousExampleButton = new Button("<- GUI.Back", ButtonSkin.Alternative, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(-500, 0));
-            previousExampleButton.OnClick = (EntityUI btn) => { this.PreviousExample(); };
+            previousExampleButton.OnClick = (Control btn) => { this.PreviousExample(); };
             topPanel.AddChild(previousExampleButton);
 
             // add button to enable debug mode
             Button debugBtn = new Button("Debug Mode", anchor: Anchor.TopCenter, size: new Vector2(240, topPanelHeight), offset: new Vector2(-240, 0));
-            debugBtn.OnClick = (EntityUI entity) =>
+            debugBtn.OnClick = (Control entity) =>
             {
                 UserInterface.Active.DebugDraw = !UserInterface.Active.DebugDraw;
             };
@@ -50,7 +50,7 @@ namespace MonoGo.Samples.Demos
 
             // add button to apply transformations
             Button transBtn = new Button("Transform UI", anchor: Anchor.TopCenter, size: new Vector2(240, topPanelHeight), offset: new Vector2(240, 0));
-            transBtn.OnClick = (EntityUI entity) =>
+            transBtn.OnClick = (Control entity) =>
             {
                 UserInterface.Active.UseRenderTargetTransformMatrix = !UserInterface.Active.UseRenderTargetTransformMatrix;
 
@@ -94,7 +94,7 @@ namespace MonoGo.Samples.Demos
             UserInterface.Active.AddUIEntity(eventsPanel);
 
             // whenever events log list size changes, make sure its not too long. if it is, trim it.
-            eventsLog.OnListChange = (EntityUI entity) =>
+            eventsLog.OnListChange = (Control entity) =>
             {
                 SelectList list = (SelectList)entity;
                 if (list.Count > 100)
@@ -104,32 +104,32 @@ namespace MonoGo.Samples.Demos
             };
 
             // listen to all global events - one timers
-            UserInterface.Active.OnClick = (EntityUI entity) => { eventsLog.AddItem("Click: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnRightClick = (EntityUI entity) => { eventsLog.AddItem("RightClick: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnMouseDown = (EntityUI entity) => { eventsLog.AddItem("MouseDown: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnRightMouseDown = (EntityUI entity) => { eventsLog.AddItem("RightMouseDown: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnMouseEnter = (EntityUI entity) => { eventsLog.AddItem("MouseEnter: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnMouseLeave = (EntityUI entity) => { eventsLog.AddItem("MouseLeave: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnMouseReleased = (EntityUI entity) => { eventsLog.AddItem("MouseReleased: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnMouseWheelScroll = (EntityUI entity) => { eventsLog.AddItem("Scroll: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnStartDrag = (EntityUI entity) => { eventsLog.AddItem("StartDrag: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnStopDrag = (EntityUI entity) => { eventsLog.AddItem("StopDrag: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnFocusChange = (EntityUI entity) => { eventsLog.AddItem("FocusChange: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
-            UserInterface.Active.OnValueChange = (EntityUI entity) => { if (entity.Parent == eventsLog) { return; } eventsLog.AddItem("ValueChanged: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnClick = (Control entity) => { eventsLog.AddItem("Click: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnRightClick = (Control entity) => { eventsLog.AddItem("RightClick: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnMouseDown = (Control entity) => { eventsLog.AddItem("MouseDown: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnRightMouseDown = (Control entity) => { eventsLog.AddItem("RightMouseDown: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnMouseEnter = (Control entity) => { eventsLog.AddItem("MouseEnter: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnMouseLeave = (Control entity) => { eventsLog.AddItem("MouseLeave: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnMouseReleased = (Control entity) => { eventsLog.AddItem("MouseReleased: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnMouseWheelScroll = (Control entity) => { eventsLog.AddItem("Scroll: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnStartDrag = (Control entity) => { eventsLog.AddItem("StartDrag: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnStopDrag = (Control entity) => { eventsLog.AddItem("StopDrag: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnFocusChange = (Control entity) => { eventsLog.AddItem("FocusChange: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
+            UserInterface.Active.OnValueChange = (Control entity) => { if (entity.Parent == eventsLog) { return; } eventsLog.AddItem("ValueChanged: " + entity.GetType().Name); eventsLog.scrollToEnd(); };
 
             // clear the current events after every frame they were drawn
-            eventsNow.AfterDraw = (EntityUI entity) => { eventsNow.ClearItems(); };
+            eventsNow.AfterDraw = (Control entity) => { eventsNow.ClearItems(); };
 
             // listen to all global events - happening now
-            UserInterface.Active.WhileDragging = (EntityUI entity) => { eventsNow.AddItem("Dragging: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
-            UserInterface.Active.WhileMouseDown = (EntityUI entity) => { eventsNow.AddItem("MouseDown: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
-            UserInterface.Active.WhileMouseHover = (EntityUI entity) => { eventsNow.AddItem("MouseHover: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
+            UserInterface.Active.WhileDragging = (Control entity) => { eventsNow.AddItem("Dragging: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
+            UserInterface.Active.WhileMouseDown = (Control entity) => { eventsNow.AddItem("MouseDown: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
+            UserInterface.Active.WhileMouseHover = (Control entity) => { eventsNow.AddItem("MouseHover: " + entity.GetType().Name); eventsNow.scrollToEnd(); };
             eventsNow.MaxItems = 4;
 
             // add extra info button
             Button infoBtn = new Button("  Events", anchor: Anchor.TopCenter, size: new Vector2(240, topPanelHeight));
             infoBtn.AddChild(new Icon(IconType.Scroll, Anchor.CenterLeft), true);
-            infoBtn.OnClick = (EntityUI entity) =>
+            infoBtn.OnClick = (Control entity) =>
             {
                 eventsPanel.Visible = !eventsPanel.Visible;
             };
@@ -139,7 +139,7 @@ namespace MonoGo.Samples.Demos
 
             // add next example button
             nextExampleButton = new Button("GUI.Next ->", ButtonSkin.Alternative, Anchor.TopCenter, new Vector2(280, topPanelHeight), offset: new Vector2(500, 0));
-            nextExampleButton.OnClick = (EntityUI btn) => { this.NextExample(); };
+            nextExampleButton.OnClick = (Control btn) => { this.NextExample(); };
             nextExampleButton.Identifier = "next_btn";
             topPanel.AddChild(nextExampleButton);
 
@@ -393,7 +393,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                         panel.AddChild(new LineSpace(2));
                         var entity = panel.AddChild(new Button(@"Fade Out (click to see)"));
                         var animator = entity.AttachAnimator(new Engine.UI.Animators.FadeOutAnimator() { Enabled = false });
-                        entity.OnClick += (EntityUI ent) =>
+                        entity.OnClick += (Control ent) =>
                         {
                             animator.Enabled = true;
                         };
@@ -407,7 +407,7 @@ The most common anchors are 'Auto' and 'AutoInline', which will place entities o
                         {
                             TextToType = @"This is a type writer animation, text will appear as if someone is typing it in real time. {{YELLOW}}Click on the paragraph to reset animation."
                         });
-                        entity.OnClick += (EntityUI ent) =>
+                        entity.OnClick += (Control ent) =>
                         {
                             animator.Reset();
                         };
@@ -687,7 +687,7 @@ Here's a button, to test clicking while scrolled:"));
                     hiddenText.HideInputWithChar = '*';
                     panel.AddChild(hiddenText);
                     var hideCheckbox = new CheckBox("Hide password", isChecked: true);
-                    hideCheckbox.OnValueChange += (EntityUI ent) =>
+                    hideCheckbox.OnValueChange += (Control ent) =>
                     {
                         if (hideCheckbox.Checked)
                             hiddenText.HideInputWithChar = '*';
@@ -752,7 +752,7 @@ Here's a button, to test clicking while scrolled:"));
                     // allow spaces
                     var allowSpaces = new CheckBox("Allow Spaces", isChecked: true);
                     panel.AddChild(allowSpaces);
-                    allowSpaces.OnValueChange = (EntityUI _) =>
+                    allowSpaces.OnValueChange = (Control _) =>
                     {
                         englishValidator.AllowSpaces = allowSpaces.Checked;
                         slugValidator.AllowSpaces = allowSpaces.Checked;
@@ -870,7 +870,7 @@ Maybe something interesting in tab3?"));
                     // button to create simple message box
                     {
                         var btn = new Button("Show Simple Message", ButtonSkin.Default);
-                        btn.OnClick += (EntityUI entity) =>
+                        btn.OnClick += (Control entity) =>
                         {
                             Engine.UI.Utils.MessageBox.ShowMsgBox("Hello World!", "This is a simple message box. It doesn't say much, really.");
                         };
@@ -881,7 +881,7 @@ Maybe something interesting in tab3?"));
                     panel.AddChild(new Paragraph("Or you can create custom message and buttons:"));
                     {
                         var btn = new Button("Show Custom Message", ButtonSkin.Default);
-                        btn.OnClick += (EntityUI entity) =>
+                        btn.OnClick += (Control entity) =>
                         {
                             Engine.UI.Utils.MessageBox.ShowMsgBox("Custom Message!", "In this message there are two custom buttons.\n\nYou can set different actions per button. For example, click on 'Surprise' and see what happens!", new Engine.UI.Utils.MessageBox.MsgBoxOption[] {
                                 new Engine.UI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
@@ -895,13 +895,13 @@ Maybe something interesting in tab3?"));
                     panel.AddChild(new Paragraph("And you can also add extra entities to the message box:"));
                     {
                         var btn = new Button("Message With Extras", ButtonSkin.Default);
-                        btn.OnClick += (EntityUI entity) =>
+                        btn.OnClick += (Control entity) =>
                         {
                             var textInput = new TextInput(false);
                             textInput.PlaceholderText = "Enter your name";
                             Engine.UI.Utils.MessageBox.ShowMsgBox("Message With Extra!", "In this message box we attached an extra entity from outside (a simple text input).\n\nPretty neat, huh?", new Engine.UI.Utils.MessageBox.MsgBoxOption[] {
                                 new Engine.UI.Utils.MessageBox.MsgBoxOption("Close", () => { return true; }),
-                                }, new EntityUI[] { textInput });
+                                }, new Control[] { textInput });
                         };
                         panel.AddChild(btn);
                     }
@@ -922,7 +922,7 @@ Maybe something interesting in tab3?"));
 
                     // add create form button
                     var btn = panel.AddChild(new Button(@"Show Form"));
-                    btn.OnClick += (EntityUI ent) =>
+                    btn.OnClick += (Control ent) =>
                     {
                         var newForm = new Form(new FormFieldData[] {
                             new FormFieldData(FormFieldType.TextInput, "text1", "Text Field") { DefaultValue = "Some Default Val" },
@@ -932,7 +932,7 @@ Maybe something interesting in tab3?"));
                             new FormFieldData(FormFieldType.Section, "newsection", "New Form Section") { },
                             new FormFieldData(FormFieldType.DropDown, "dropdown1", "DropDown field") { Choices = new string[] {"option1", "option2", "option3" } },
                         }, null);
-                        Engine.UI.Utils.MessageBox.ShowMsgBox("Example Form", "", "Close Form And Show Values", extraEntities: new EntityUI[] { newForm.FormPanel }, onDone: () =>
+                        Engine.UI.Utils.MessageBox.ShowMsgBox("Example Form", "", "Close Form And Show Values", extraEntities: new Control[] { newForm.FormPanel }, onDone: () =>
                         {
                             Engine.UI.Utils.MessageBox.ShowMsgBox("Form Values", string.Format(
                                 "Text Field: '{5}{0}{6}'\r\n" +
@@ -966,7 +966,7 @@ Maybe something interesting in tab3?"));
                     // add save file button
                     {
                         var btn = panel.AddChild(new Button(@"Open Save File Dialog"));
-                        btn.OnClick += (EntityUI ent) =>
+                        btn.OnClick += (Control ent) =>
                         {
                             Engine.UI.Utils.MessageBox.OpenSaveFileDialog("", (Engine.UI.Utils.FileDialogResponse res) =>
                             {
@@ -981,7 +981,7 @@ Maybe something interesting in tab3?"));
                     // add load file button
                     {
                         var btn = panel.AddChild(new Button(@"Open Load File Dialog"));
-                        btn.OnClick += (EntityUI ent) =>
+                        btn.OnClick += (Control ent) =>
                         {
                             Engine.UI.Utils.MessageBox.OpenLoadFileDialog("", (Engine.UI.Utils.FileDialogResponse res) =>
                             {
@@ -1017,12 +1017,12 @@ Maybe something interesting in tab3?"));
                     layout.AddMenu("Interactive", 270);
                     layout.AddItemToMenu("Interactive", "Click Me", (Engine.UI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
-                        context.EntityUI.ChangeItem(context.ItemIndex, "I was clicked!");
+                        context.Control.ChangeItem(context.ItemIndex, "I was clicked!");
                     });
                     layout.AddItemToMenu("Interactive", "Toggle Me", (Engine.UI.Utils.MenuBar.MenuCallbackContext context) =>
                     {
-                        context.EntityUI.Tag = context.EntityUI.Tag == "on" ? "off" : "on";
-                        context.EntityUI.ChangeItem(context.ItemIndex, (context.EntityUI.Tag == "on" ? "{{L_GREEN}}" : "") + "Toggle Me");
+                        context.Control.Tag = context.Control.Tag == "on" ? "off" : "on";
+                        context.Control.ChangeItem(context.ItemIndex, (context.Control.Tag == "on" ? "{{L_GREEN}}" : "") + "Toggle Me");
                     });
 
                     var menuBar = Engine.UI.Utils.MenuBar.Create(layout);
@@ -1118,24 +1118,24 @@ Maybe something interesting in tab3?"));
                     // default cursor show
                     {
                         Button btn = new Button("Default", ButtonSkin.Alternative);
-                        btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
-                        btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
+                        btn.OnMouseEnter = (Control entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
+                        btn.OnMouseLeave = (Control entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
                     }
 
                     // pointer cursor show
                     {
                         Button btn = new Button("Pointer", ButtonSkin.Alternative);
-                        btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
-                        btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
+                        btn.OnMouseEnter = (Control entity) => { UserInterface.Active.SetCursor(CursorType.Pointer); };
+                        btn.OnMouseLeave = (Control entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
                     }
 
                     // ibeam cursor show
                     {
                         Button btn = new Button("IBeam", ButtonSkin.Alternative);
-                        btn.OnMouseEnter = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.IBeam); };
-                        btn.OnMouseLeave = (EntityUI entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
+                        btn.OnMouseEnter = (Control entity) => { UserInterface.Active.SetCursor(CursorType.IBeam); };
+                        btn.OnMouseLeave = (Control entity) => { UserInterface.Active.SetCursor(CursorType.Default); };
                         panel.AddChild(btn);
                     }
                 }

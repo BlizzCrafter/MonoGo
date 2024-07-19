@@ -8,7 +8,7 @@ using MonoGo.Engine.SceneSystem;
 using MonoGo.Samples.Demos;
 using MonoGo.Samples.Misc;
 using MonoGo.Engine.UI;
-using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Controls;
 using MonoGo.Engine.PostProcessing;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
@@ -86,9 +86,9 @@ namespace MonoGo.Samples
                     ToggleCheckOnClick = true,
                     Anchor = Anchor.TopRight
                 };
-                enableDebugModeBtn.Events.OnValueChanged = (EntityUI entity) =>
+                enableDebugModeBtn.Events.OnValueChanged = (Control control) =>
                 {
-                    UISystem.DebugRenderEntities = enableDebugModeBtn.Checked;
+                    UISystem.DebugRenderControls = enableDebugModeBtn.Checked;
                 };
                 enableDebugModeBtn.Size.X.SetPixels(200);
                 UISystem.Root.AddChild(enableDebugModeBtn);
@@ -101,7 +101,7 @@ namespace MonoGo.Samples
                     ToggleCheckOnClick = true,
                     Anchor = Anchor.TopLeft
                 };
-                openGitRepoBtn.Events.OnValueChanged = (EntityUI entity) =>
+                openGitRepoBtn.Events.OnValueChanged = (Control control) =>
                 {
                 };
                 openGitRepoBtn.Size.X.SetPixels(200);
@@ -149,7 +149,7 @@ namespace MonoGo.Samples
                 var button = new Button(demoTitle);
                 button.Identifier = demoTitle;
                 button.Anchor = Anchor.AutoLTR;
-                button.Events.OnClick = (EntityUI entity) =>
+                button.Events.OnClick = (Control control) =>
                 {
                     foreach (var sibling in _demoPanels) { sibling.Visible = false; }
                     panel.Visible = true;
@@ -181,7 +181,7 @@ PS. this demo UI theme was made by me and its public domain, so feel free to use
             {
                 var panel = CreateDemoContainer("Anchors", new Point(780, 1));
                 panel.AddChild(new Paragraph(
-                    @"In Iguina, Entities are positioned using Anchors. An Anchor can be a pre-defined position on the parent entity, like Top-Left, or an automatic anchor, like AutoLTR, which places entities in rows from left to right.
+                    @"In Iguina, Controls are positioned using Anchors. An Anchor can be a pre-defined position on the parent control, like Top-Left, or an automatic anchor, like AutoLTR, which places controls in rows from left to right.
 
 The panel below shows all built-in non-automatic anchors:
 "));
@@ -209,7 +209,7 @@ The panel below shows all built-in non-automatic anchors:
                 panel.AddChild(new Paragraph(
                     @"Previously we saw regular Anchors. Now its time to explore the Automatic anchors.
 
-Auto Anchors are a set of anchors that place entities automatically, based on their siblings. For example:
+Auto Anchors are a set of anchors that place controls automatically, based on their siblings. For example:
 "));
 
                 var anchorsPanel = new Panel();
@@ -234,7 +234,7 @@ Auto Anchors are a set of anchors that place entities automatically, based on th
                 anchorsPanel.AddChild(new HorizontalLine());
                 {
                     {
-                        anchorsPanel.AddChild(new Paragraph("We also have inline anchors that arrange entities next to each other, and only break line when need to. For example, AutoInlineLTR buttons:") { Anchor = Anchor.AutoLTR });
+                        anchorsPanel.AddChild(new Paragraph("We also have inline anchors that arrange controls next to each other, and only break line when need to. For example, AutoInlineLTR buttons:") { Anchor = Anchor.AutoLTR });
                         for (int i = 0; i < 5; ++i)
                         {
                             var btn = anchorsPanel.AddChild(new Button("AutoInlineLTR") { Anchor = Anchor.AutoInlineLTR });
@@ -248,7 +248,7 @@ Auto Anchors are a set of anchors that place entities automatically, based on th
             {
                 var panel = CreateDemoContainer("Panels", new Point(650, 1));
                 panel.AddChild(new Paragraph(
-                    @"Panels are simple containers for entities. They can have graphics, like the panel this text is in, or be transparent and used only for grouping.
+                    @"Panels are simple containers for controls. They can have graphics, like the panel this text is in, or be transparent and used only for grouping.
 
 For example, see these two buttons and two paragraphs? Each set is inside an invisible panel that takes up 50% of the parent panel's width. One is aligned left, the other right: 
 "));
@@ -296,7 +296,7 @@ For example, see these two buttons and two paragraphs? Each set is inside an inv
 
                 panel.AddChild(new Paragraph(
                     @"
-Did you know that entities can be draggable? This panel can be dragged, lets try it out!
+Did you know that controls can be draggable? This panel can be dragged, lets try it out!
 The small box in the corner is draggable too:
 "));
                 panel.DraggableMode = DraggableMode.DraggableConfinedToScreen;
@@ -319,7 +319,7 @@ The small box in the corner is draggable too:
                 {
                     int clicksCount = 0;
                     var btn = panel.AddChild(new Button("Click Me!"));
-                    btn.Events.OnClick += (EntityUI entity) =>
+                    btn.Events.OnClick += (Control control) =>
                     {
                         clicksCount++;
                         btn.Paragraph.Text = "Thanks x " + clicksCount;
@@ -363,7 +363,7 @@ And they can even function as a radio button, meaning only one button can be che
             {
                 var panel = CreateDemoContainer("Paragraphs", new Point(650, 1));
                 panel.AddChild(new Paragraph(
-                    @"${FC:00FF00}Paragraphs${RESET} are entities that draw text.
+                    @"${FC:00FF00}Paragraphs${RESET} are controls that draw text.
 They can be used as labels for buttons, titles, or long texts like the one you read now.
 
 ${FC:00FF00}Paragraphs${RESET} support special ${OC:FF0000}style changing commands${RESET}, so you can easily ${OC:00FFFF,FC:000000,OW:2}highlight specific words${RESET} within the paragraph.
@@ -380,7 +380,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                 var panel = CreateDemoContainer("Checkbox / Radio", new Point(680, 1));
 
                 panel.AddChild(new Paragraph(
-                    @"Iguina provides a basic Checkbox entity:
+                    @"Iguina provides a basic Checkbox control:
 "));
                 panel.AddChild(new Checkbox("Checkbox Option 1"));
                 panel.AddChild(new Checkbox("Checkbox Option 2"));
@@ -389,7 +389,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                 panel.AddChild(new HorizontalLine());
 
                 panel.AddChild(new Paragraph(
-                    @"Iguina also provides radio button entities:
+                    @"Iguina also provides radio button controls:
 "));
                 panel.AddChild(new RadioButton("Radio Option 1")).Checked = true;
                 panel.AddChild(new RadioButton("Radio Option 2"));
@@ -407,7 +407,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                     var slider = panel.AddChild(new Slider());
                     var label = panel.AddChild(new Paragraph(@$"Slider Value: {slider.Value}
 "));
-                    slider.Events.OnValueChanged = (EntityUI entity) => { label.Text = $"Slider Value: {slider.Value}\n"; };
+                    slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}\n"; };
                 }
 
                 panel.AddChild(new Paragraph(
@@ -420,7 +420,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                     slider.Offset.X.SetPixels(40);
                     var label = panel.AddChild(new Paragraph(@$"Slider Value: {slider.Value}
 "));
-                    slider.Events.OnValueChanged = (EntityUI entity) => { label.Text = $"Slider Value: {slider.Value}\n"; };
+                    slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}\n"; };
                 }
 
                 {
@@ -444,7 +444,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                     var label = panel.AddChild(new Paragraph(@$"Progress Bar Value: {progressBar.Value}
 "));
                     float _timeForNextValueChange = 3f;
-                    progressBar.Events.AfterUpdate = (EntityUI entity) =>
+                    progressBar.Events.AfterUpdate = (Control control) =>
                     {
                         _timeForNextValueChange -= UISystem.LastDeltaTime;
                         if (_timeForNextValueChange <= 0f)
@@ -453,7 +453,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                             _timeForNextValueChange = 3f;
                         }
                     };
-                    progressBar.Events.OnValueChanged = (EntityUI entity) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
+                    progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
                 }
 
                 panel.AddChild(new Paragraph(
@@ -465,7 +465,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
 "));
                     progressBar.Handle.OverrideStyles.FillColor = new Color(255, 0, 0, 255);
                     progressBar.IgnoreInteractions = false;
-                    progressBar.Events.OnValueChanged = (EntityUI entity) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
+                    progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
                 }
 
                 panel.AddChild(new Paragraph(
@@ -517,7 +517,7 @@ Select Class:"));
                     }
                     var selectedParagraph = panel.AddChild(new Paragraph());
                     selectedParagraph.Text = "Selected Class: None";
-                    listbox.Events.OnValueChanged = (EntityUI entity) =>
+                    listbox.Events.OnValueChanged = (Control control) =>
                     {
                         selectedParagraph.Text = "Selected Class: " + (listbox.SelectedValue ?? "None");
                     };
@@ -529,7 +529,7 @@ Select Class:"));
                 var panel = CreateDemoContainer("Drop Down", new Point(680, 1));
 
                 panel.AddChild(new Paragraph(
-                    @"Drop Down entities are basically list boxes, but they collapse while they are not interacted with. For example:
+                    @"Drop Down controls are basically list boxes, but they collapse while they are not interacted with. For example:
 "));
                 {
                     panel.AddChild(new Paragraph(
@@ -558,7 +558,7 @@ Select Class:"));
                     }
                     var selectedParagraph = panel.AddChild(new Paragraph());
                     selectedParagraph.Text = "Selected Class: None";
-                    dropdown.Events.OnValueChanged = (EntityUI entity) =>
+                    dropdown.Events.OnValueChanged = (Control control) =>
                     {
                         selectedParagraph.Text = "Selected Class: " + (dropdown.SelectedValue ?? "None");
                     };
@@ -572,7 +572,7 @@ Select Class:"));
                 panel.CreateVerticalScrollbar(true);
                 panel.AddChild(new Paragraph(
                     @"Sometimes panels content is too long, and we need scrollbars to show everything.
-This panel has some random entities below that go wayyyy down.
+This panel has some random controls below that go wayyyy down.
 
 Use the scrollbar on the right to see more of it.
 "));
@@ -598,7 +598,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
                 var panel = CreateDemoContainer("Text Input", new Point(680, 1));
 
                 panel.AddChild(new Paragraph(
-                    @"Text Input entity is useful to get free text input from the user:
+                    @"Text Input control is useful to get free text input from the user:
 "));
                 {
                     var textInput = panel.AddChild(new TextInput());
@@ -623,19 +623,19 @@ Text Inputs can also be multiline:
             {
                 var panel = CreateDemoContainer("Locked / Disabled", new Point(780, 1));
                 panel.AddChild(new Paragraph(
-                    @"You can disable entities to make them ignore user interactions and render them with 'disabled' effect (in this demo, grayscale):
+                    @"You can disable controls to make them ignore user interactions and render them with 'disabled' effect (in this demo, grayscale):
 "));
                 panel.AddChild(new Button("Disabled Button") { Enabled = false });
                 panel.AddChild(new Paragraph(
                     @"
-When you disable a panel, all entities under it will be disabled too.
+When you disable a panel, all controls under it will be disabled too.
 
 If you want to just lock items without rendering them with 'disabled' style, you can also set the Locked property. For example the following button is locked, but will render normally:
 "));
                 panel.AddChild(new Button("Locked Button") { Locked = true });
                 panel.AddChild(new Paragraph(
         @"
-Any type of entity can be locked and disabled and locked:
+Any type of control can be locked and disabled and locked:
 "));
                 panel.AddChild(new Slider() { Enabled = false });
                 panel.AddChild(new Checkbox("Disabled Checkbox") { Enabled = false });
@@ -683,7 +683,7 @@ Any type of entity can be locked and disabled and locked:
             _postFXButton = new Button(
                 "FX", ButtonSkin.Fancy, Anchor.TopRight, new Vector2(100, 50))
             {
-                OnClick = (EntityUI btn) =>
+                OnClick = (Control btn) =>
                 {
                     _postFXPanelVisible = !_postFXPanelVisible;
                     if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
@@ -698,7 +698,7 @@ Any type of entity can be locked and disabled and locked:
             {
                 ToggleMode = true,
                 Checked = RenderMgr.PostProcessing,
-                OnClick = (EntityUI btn) => { RenderMgr.PostProcessing = !RenderMgr.PostProcessing; }
+                OnClick = (Control btn) => { RenderMgr.PostProcessing = !RenderMgr.PostProcessing; }
             });
 
             #region Color Grading
@@ -708,7 +708,7 @@ Any type of entity can be locked and disabled and locked:
             {
                 ToggleMode = true,
                 Checked = RenderMgr.ColorGradingFX,
-                OnClick = (EntityUI btn) => { RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX; }
+                OnClick = (Control btn) => { RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX; }
             });
             {
                 Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
@@ -724,7 +724,7 @@ Any type of entity can be locked and disabled and locked:
                 var leftButton = new Button(
                     "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(44, 0))
                 {
-                    OnClick = (EntityUI btn) => { ColorGrading.PreviousLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
+                    OnClick = (Control btn) => { ColorGrading.PreviousLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
                 };
                 leftButton.ButtonParagraph.SetAnchorAndOffset(Anchor.AutoInlineNoBreak, Vector2.Zero);
                 leftButton.AddChild(new Icon(IconType.None, Anchor.Center)
@@ -734,7 +734,7 @@ Any type of entity can be locked and disabled and locked:
                 var rightButton = new Button(
                     "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(10, 0))
                 {
-                    OnClick = (EntityUI btn) => { ColorGrading.NextLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
+                    OnClick = (Control btn) => { ColorGrading.NextLUT(); image.Texture = ColorGrading.CurrentLUT[0].Texture; }
                 };
                 rightButton.ButtonParagraph.SetAnchorAndOffset(Anchor.Center, Vector2.Zero);
                 rightButton.AddChild(new Icon(IconType.None, Anchor.Center)
@@ -754,7 +754,7 @@ Any type of entity can be locked and disabled and locked:
             {
                 ToggleMode = true,
                 Checked = RenderMgr.BloomFX,
-                OnClick = (EntityUI btn) => { RenderMgr.BloomFX = !RenderMgr.BloomFX; }
+                OnClick = (Control btn) => { RenderMgr.BloomFX = !RenderMgr.BloomFX; }
             });
             {
                 Panel panel = new(new Vector2(_postFXPanel.Size.X, 64), PanelSkin.None, Anchor.AutoInline)
@@ -766,7 +766,7 @@ Any type of entity can be locked and disabled and locked:
                 var leftButton = new Button(
                     "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(44, 0))
                 {
-                    OnClick = (EntityUI btn) => { Bloom.PreviousPreset(); }
+                    OnClick = (Control btn) => { Bloom.PreviousPreset(); }
                 };
                 leftButton.ButtonParagraph.SetAnchorAndOffset(Anchor.AutoInlineNoBreak, Vector2.Zero);
                 leftButton.AddChild(new Icon(IconType.None, Anchor.Center)
@@ -782,7 +782,7 @@ Any type of entity can be locked and disabled and locked:
                 var rightButton = new Button(
                     "", ButtonSkin.Alternative, Anchor.AutoInlineNoBreak, new Vector2(64, 64), new Vector2(10, 0))
                 {
-                    OnClick = (EntityUI btn) => { Bloom.NextPreset(); }
+                    OnClick = (Control btn) => { Bloom.NextPreset(); }
                 };
                 rightButton.ButtonParagraph.SetAnchorAndOffset(Anchor.Center, Vector2.Zero);
                 rightButton.AddChild(new Icon(IconType.None, Anchor.Center)
@@ -798,7 +798,7 @@ Any type of entity can be locked and disabled and locked:
                     var slider = new Slider(0, 100)
                     {
                         Value = (int)(100 * Bloom.Threshold),
-                        OnValueChange = (EntityUI entity) => { Bloom.Threshold = MathF.Min(((Slider)entity).Value / 100f, 0.99f); }
+                        OnValueChange = (Control control) => { Bloom.Threshold = MathF.Min(((Slider)control).Value / 100f, 0.99f); }
                     };
                     panel.AddChild(slider);
                 }
@@ -807,7 +807,7 @@ Any type of entity can be locked and disabled and locked:
                     var slider = new Slider(0, 30)
                     {
                         Value = (int)((100 * Bloom.StreakLength) / Bloom.StreakLength),
-                        OnValueChange = (EntityUI entity) => { Bloom.StreakLength = MathF.Min((((Slider)entity).Value / 100f) * 10f, 3f); }
+                        OnValueChange = (Control control) => { Bloom.StreakLength = MathF.Min((((Slider)control).Value / 100f) * 10f, 3f); }
                     };
                     panel.AddChild(slider);
                 }
@@ -839,7 +839,7 @@ Any type of entity can be locked and disabled and locked:
 
             _previousExampleButton = new Button($"<- ({_prevSceneButton}) Back", ButtonSkin.Default, Anchor.CenterLeft, new Vector2(250, 0))
             {
-                OnClick = (EntityUI btn) => { PreviousScene(); }
+                OnClick = (Control btn) => { PreviousScene(); }
             };
             bottomPanel.AddChild(_previousExampleButton);
 
@@ -865,7 +865,7 @@ Any type of entity can be locked and disabled and locked:
             }
 
             _nextExampleButton = new Button($"Next ({_nextSceneButton}) ->", ButtonSkin.Default, Anchor.CenterRight, new Vector2(250, 0));
-            _nextExampleButton.OnClick = (EntityUI btn) => { NextScene(); };
+            _nextExampleButton.OnClick = (Control btn) => { NextScene(); };
             _nextExampleButton.Identifier = "next_btn";
             bottomPanel.AddChild(_nextExampleButton);
 

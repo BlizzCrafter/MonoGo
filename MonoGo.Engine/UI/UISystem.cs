@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGo.Engine.UI.Defs;
-using MonoGo.Engine.UI.Entities;
+using MonoGo.Engine.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,7 +64,7 @@ namespace MonoGo.Engine.UI
         /// <summary>
         /// Currently-targeted entity (entity we point on with the cursor).
         /// </summary>
-        public static EntityUI? TargetedEntity { get; private set; }
+        public static Control? TargetedControl { get; private set; }
 
         /// <summary>
         /// System-level stylesheet.
@@ -73,19 +73,19 @@ namespace MonoGo.Engine.UI
         public static SystemStyleSheet SystemStyleSheet = new SystemStyleSheet();
 
         /// <summary>
-        /// If true, will debug-render entities.
+        /// If true, will debug-render controls.
         /// </summary>
-        public static bool DebugRenderEntities = false;
+        public static bool DebugRenderControls = false;
 
         /// <summary>
-        /// Entity events you can register to.
+        /// Control events you can register to.
         /// These events will trigger for any entity in the system.
         /// </summary>
-        public static EntityEvents Events;
+        public static ControlEvents Events;
 
         /// <summary>
         /// Root entity.
-        /// All child entities should be added to this object.
+        /// All child controls should be added to this object.
         /// </summary>
         public static Panel Root { get; private set; }
 
@@ -93,7 +93,7 @@ namespace MonoGo.Engine.UI
         internal static Queue<Rectangle> _scissorRegionQueue = new();
 
         /// <summary>
-        /// When entities turn into interactive state (for example a button is clicked on), it will be locked in this state for at least this time, in seconds.
+        /// When controls turn into interactive state (for example a button is clicked on), it will be locked in this state for at least this time, in seconds.
         /// This property is useful to make sure the interactive state is properly shown, even if user perform very rapid short clicks.
         /// </summary>
         /// <remarks>This property is especially important when there's interpolation on texture change, and switching to interactive state is not immediate.</remarks>
@@ -182,35 +182,35 @@ namespace MonoGo.Engine.UI
             var screenBounds = Renderer.GetScreenBounds();
             Root.Size.SetPixels(screenBounds.Width, screenBounds.Height);
 
-            // update all entities
+            // update all controls
             Root._DoUpdate(deltaTime);
 
             // check if should lock target entity
-            bool keepTargetEntity = (TargetedEntity != null) ? 
-                (TargetedEntity.LockFocusOnSelf && TargetedEntity.IsCurrentlyVisible() && !TargetedEntity.IsCurrentlyLocked() && !TargetedEntity.IsCurrentlyDisabled()) 
+            bool keepTargetControl = (TargetedControl != null) ? 
+                (TargetedControl.LockFocusOnSelf && TargetedControl.IsCurrentlyVisible() && !TargetedControl.IsCurrentlyLocked() && !TargetedControl.IsCurrentlyDisabled()) 
                 : false;
 
             // if dragging an entity, we can't lose the target
-            if (Input.CheckButton(Buttons.MouseLeft) && (TargetedEntity != null) && TargetedEntity.LockFocusWhileMouseDown)
+            if (Input.CheckButton(Buttons.MouseLeft) && (TargetedControl != null) && TargetedControl.LockFocusWhileMouseDown)
             {
-                keepTargetEntity = true;
+                keepTargetControl = true;
             }
 
             // current mouse position
             var cp = Input.ScreenMousePosition.ToPoint();
 
             // find new entity we target
-            if (!keepTargetEntity)
+            if (!keepTargetControl)
             {
                 // reset target entity
-                TargetedEntity = null;
+                TargetedControl = null;
 
-                // iterate all entities to see which entity we point on
-                List<EntityUI> entitiesToPostProcess = new List<EntityUI>();
-                Root.Walk((EntityUI entity) =>
+                // iterate all controls to see which entity we point on
+                List<Control> controlsToPostProcess = new List<Control>();
+                Root.Walk((Control entity) =>
                 {
-                    // skip entities that are without interactions
-                    // note: we don't want to skip locked or disabled entities because they can still 'block' other entities.
+                    // skip controls that are without interactions
+                    // note: we don't want to skip locked or disabled controls because they can still 'block' other controls.
                     if (entity.IgnoreInteractions)
                     {
                         return true;
@@ -225,14 +225,14 @@ namespace MonoGo.Engine.UI
                     // check if top most interactions
                     if (entity.TopMostInteractions)
                     {
-                        entitiesToPostProcess.Add(entity);
+                        controlsToPostProcess.Add(entity);
                         return true;
                     }
 
                     // check if we point on this entity
                     if (entity.IsCurrentlyVisible() && entity.IsPointedOn(cp))
                     {
-                        TargetedEntity = entity;
+                        TargetedControl = entity;
                     }
 
                     // continue iteration
@@ -240,11 +240,11 @@ namespace MonoGo.Engine.UI
                 });
 
                 // do top-most interactions
-                foreach (var entity in entitiesToPostProcess)
+                foreach (var entity in controlsToPostProcess)
                 {
                     if (entity.IsCurrentlyVisible() && entity.IsPointedOn(cp))
                     {
-                        TargetedEntity = entity;
+                        TargetedControl = entity;
                     }
                 }
             }
@@ -270,21 +270,21 @@ namespace MonoGo.Engine.UI
 
             // do interactions with targeted entity
             // unless its locked or disabled
-            if (TargetedEntity != null)
+            if (TargetedControl != null)
             {
-                if (TargetedEntity.TransferInteractionsTo != null)
+                if (TargetedControl.TransferInteractionsTo != null)
                 {
-                    TargetedEntity = TargetedEntity.TransferInteractionsTo;
+                    TargetedControl = TargetedControl.TransferInteractionsTo;
                 }
 
-                if (!TargetedEntity.IsCurrentlyLocked() && !TargetedEntity.IsCurrentlyDisabled())
+                if (!TargetedControl.IsCurrentlyLocked() && !TargetedControl.IsCurrentlyDisabled())
                 {
-                    TargetedEntity.DoInteractions(inputState);
+                    TargetedControl.DoInteractions(inputState);
                 }
             }
 
             // do post interactions
-            Root.Walk((EntityUI entity) =>
+            Root.Walk((Control entity) =>
             {
                 if (entity.Interactable)
                 {
@@ -303,9 +303,9 @@ namespace MonoGo.Engine.UI
         public static InputState CurrentInputState { get; private set; }
 
         /// <summary>
-        /// Add action to call after rendering entities.
+        /// Add action to call after rendering controls.
         /// </summary>
-        internal static void RunAfterDrawingEntities(Action action)
+        internal static void RunAfterDrawingControls(Action action)
         {
             _postDrawActions.Add(action);
         }
@@ -326,9 +326,9 @@ namespace MonoGo.Engine.UI
             _scissorRegionQueue.Clear();
             Renderer.ClearScissorRegion();
 
-            // draw all entities
+            // draw all controls
             var screenRect = Renderer.GetScreenBounds();
-            var rootDrawResult = new EntityUI.DrawMethodResult()
+            var rootDrawResult = new Control.DrawMethodResult()
             {
                 BoundingRect = screenRect,
                 InternalBoundingRect = screenRect
@@ -347,28 +347,28 @@ namespace MonoGo.Engine.UI
 
             // get which cursor to render
             CursorProperties? cursor = SystemStyleSheet.CursorDefault;
-            if (TargetedEntity?.IsPointedOn(Input.ScreenMousePosition.ToPoint(), true) ?? false)
+            if (TargetedControl?.IsPointedOn(Input.ScreenMousePosition.ToPoint(), true) ?? false)
             {
-                if (TargetedEntity.CursorStyle != null)
+                if (TargetedControl.CursorStyle != null)
                 {
-                    cursor = TargetedEntity.CursorStyle;
+                    cursor = TargetedControl.CursorStyle;
                 }
-                else if (TargetedEntity.IsCurrentlyDisabled())
+                else if (TargetedControl.IsCurrentlyDisabled())
                 {
                     cursor = SystemStyleSheet.CursorDisabled ?? SystemStyleSheet.CursorDefault;
                 }
-                else if (TargetedEntity.IsCurrentlyLocked())
+                else if (TargetedControl.IsCurrentlyLocked())
                 {
                     cursor = SystemStyleSheet.CursorLocked ?? SystemStyleSheet.CursorDefault;
                 }
-                else if (TargetedEntity.Interactable) 
+                else if (TargetedControl.Interactable) 
                 { 
                     cursor = SystemStyleSheet.CursorInteractable ?? SystemStyleSheet.CursorDefault; 
                 }
             }
 
             // debug draw stuff
-            if (DebugRenderEntities)
+            if (DebugRenderControls)
             {
                 Root.DebugDraw(true);
             }
