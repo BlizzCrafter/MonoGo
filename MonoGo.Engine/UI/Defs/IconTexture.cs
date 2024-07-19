@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGo.Engine.UI.Defs
 {
@@ -12,6 +13,11 @@ namespace MonoGo.Engine.UI.Defs
         /// Texture identifier.
         /// </summary>
         public string TextureId { get; set; } = null!;
+
+        /// <summary>
+        /// Texture override.
+        /// </summary>
+        public Texture2D Texture { get; set; }
 
         /// <summary>
         /// The source rectangle of the texture to draw.

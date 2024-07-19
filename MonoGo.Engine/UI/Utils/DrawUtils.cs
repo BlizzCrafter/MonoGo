@@ -213,7 +213,11 @@ namespace MonoGo.Engine.UI.Utils
             // to avoid glitches
             if (dest.Width <= 0 || dest.Height <= 0) { return; }
 
-            Renderer.DrawTexture(effectId, texture.TextureId, dest, texture.SourceRect, color);
+            if (texture.Texture != null)
+            {
+                Renderer.DrawTexture(effectId, texture.Texture, dest, texture.SourceRect, color);
+            }
+            else Renderer.DrawTexture(effectId, texture.TextureId, dest, texture.SourceRect, color);
         }
     }
 }

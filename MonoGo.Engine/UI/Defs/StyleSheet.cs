@@ -323,7 +323,7 @@ namespace MonoGo.Engine.UI.Defs
         /// <returns>Json content.</returns>
         public string SaveToJsonMemory()
         {
-            return JsonSerializer.Serialize(this);
+            return JsonSerializer.Serialize(this, JsonConverters.SerializerOptions);
         }
 
         /// <summary>

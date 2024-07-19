@@ -1,15 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Resources;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MonoGo.Engine.UI
 {
     internal static class Renderer
     {
         private static GraphicsDevice _device;
+        private static ContentManager _content;
         private static SpriteBatch _spriteBatch;
         private static string _assetsRoot;
         private static Texture2D _whiteTexture;
@@ -28,6 +31,7 @@ namespace MonoGo.Engine.UI
             _device = GraphicsMgr.Device;
             _spriteBatch = new SpriteBatch(_device);
             _assetsRoot = assetsPath;
+            _content = new ContentManager(GameMgr.Game.Services, _assetsRoot);
 
             // create white texture
             _whiteTexture = new Texture2D(_device, 1, 1);
@@ -39,7 +43,7 @@ namespace MonoGo.Engine.UI
         /// </summary>
         public static SpriteFont GetFont(string? fontName)
         {
-            var fontNameOrDefault = fontName ?? "Bold";
+            var fontNameOrDefault = fontName ?? "Regular";
             if (_fonts.TryGetValue(fontNameOrDefault, out var font)) 
             { 
                 return font; 
@@ -60,8 +64,7 @@ namespace MonoGo.Engine.UI
                 return texture;
             }
 
-            var path = System.IO.Path.Combine(_assetsRoot, textureId);
-            var ret = Texture2D.FromFile(_device, path);
+            var ret = _content.Load<Texture2D>(Path.ChangeExtension(textureId, null));
             _textures[textureId] = ret;
             return ret;
         }
@@ -130,6 +133,17 @@ namespace MonoGo.Engine.UI
             int screenWidth = _device.Viewport.Width;
             int screenHeight = _device.Viewport.Height;
             return new Rectangle(0, 0, screenWidth, screenHeight);
+        }
+
+        /// <inheritdoc/>
+        public static void DrawTexture(string? effectIdentifier, Texture2D texture, Rectangle destRect, Rectangle sourceRect, Color color)
+        {
+            SetEffect(effectIdentifier);
+            var colorMg = ToMgColor(color);
+            _spriteBatch.Draw(texture,
+                new Rectangle(destRect.X, destRect.Y, destRect.Width, destRect.Height),
+                new Rectangle(sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height),
+                colorMg);
         }
 
         /// <inheritdoc/>
