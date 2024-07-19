@@ -42,17 +42,14 @@ namespace MonoGo.Engine
         {
             GraphicsMgr.Init(GraphicsDevice);
 
-            //new SpriteGroupResourceBox("GUISprites", "Engine/GUI");
+            //var resourcePaths = ResourceInfoMgr.GetResourcePaths("**");
+
             new SpriteGroupResourceBox("ParticleSprites", "Engine/Particles");
             new SpriteGroupResourceBox("LUTSprites", "Engine/LUT");
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
             UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "DefaultTheme");
-
-            /*UserInterface.Init("Engine/GUI/Styles");
-            UserInterface.Active.BlendState = BlendState.AlphaBlend;
-            UserInterface.Active.SamplerState = SamplerState.PointWrap;*/
         }
 
         protected override void UnloadContent()
