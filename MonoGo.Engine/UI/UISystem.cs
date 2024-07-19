@@ -83,7 +83,9 @@ namespace MonoGo.Engine.UI
         /// <summary>
         /// If true, will debug-render controls.
         /// </summary>
-        public static bool DebugRenderControls = false;
+        public static bool DebugDraw = false;
+
+        public static bool UseRenderTargetTransformMatrix = false;
 
         /// <summary>
         /// Control events you can register to.
@@ -382,7 +384,7 @@ namespace MonoGo.Engine.UI
             }
 
             // debug draw stuff
-            if (DebugRenderControls)
+            if (DebugDraw)
             {
                 Root.DebugDraw(true);
             }

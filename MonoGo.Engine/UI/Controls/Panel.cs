@@ -23,7 +23,6 @@ namespace MonoGo.Engine.UI.Controls
         /// <inheritdoc/>
         protected override bool HaveScrollbars => VerticalScrollbar != null;
 
-
         /// <summary>
         /// If true, when the scrollbar value changes the offset of the child controls will smoothly interpolate to the new offset.
         /// If false, offset will be set immediately.
@@ -51,6 +50,14 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         public Panel() : this(UISystem.DefaultStylesheets.Panels)
         {
+        }
+
+        /// <summary>
+        /// Scroll to end if this panel has scrollbars.
+        /// </summary>
+        public void ScrollToEnd()
+        {
+            VerticalScrollbar?.ScrollToEnd();
         }
 
         /// <inheritdoc/>

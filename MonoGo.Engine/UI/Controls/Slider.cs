@@ -220,6 +220,11 @@ namespace MonoGo.Engine.UI.Controls
             }
         }
 
+        public void ScrollToEnd()
+        {
+            Value = MaxValue;
+        }
+
         /// <inheritdoc/>
         internal override void PerformMouseWheelScroll(int val)
         {
