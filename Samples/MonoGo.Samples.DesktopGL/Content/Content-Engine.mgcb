@@ -206,3 +206,8 @@
 /importer:
 /processor:
 /copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_invisible.json;Engine/GUI/DefaultTheme/Styles/panel_invisible.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_nopadding.json
+/importer:
+/processor:
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_nopadding.json;Engine/GUI/DefaultTheme/Styles/panel_nopadding.json
