@@ -41,15 +41,19 @@ namespace MonoGo.Samples
 
 			GraphicsMgr.VertexBatch.SamplerState = SamplerState.PointWrap; // Will make textures repeat without interpolation.
 
-			DefaultRasterizer = new RasterizerState();
-			DefaultRasterizer.CullMode = CullMode.CullCounterClockwiseFace;
-			DefaultRasterizer.FillMode = FillMode.Solid;
-			DefaultRasterizer.MultiSampleAntiAlias = false;
+            DefaultRasterizer = new RasterizerState
+            {
+                CullMode = CullMode.CullCounterClockwiseFace,
+                FillMode = FillMode.Solid,
+                MultiSampleAntiAlias = false
+            };
 
-			WireframeRasterizer = new RasterizerState();
-			WireframeRasterizer.CullMode = CullMode.CullCounterClockwiseFace;
-			WireframeRasterizer.FillMode = FillMode.WireFrame;
-			WireframeRasterizer.MultiSampleAntiAlias = false;
+            WireframeRasterizer = new RasterizerState
+            {
+                CullMode = CullMode.CullCounterClockwiseFace,
+                FillMode = FillMode.WireFrame,
+                MultiSampleAntiAlias = false
+            };
 
 			GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
 

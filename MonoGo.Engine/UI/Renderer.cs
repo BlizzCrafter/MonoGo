@@ -253,13 +253,15 @@ namespace MonoGo.Engine.UI
             {
                 _device.ScissorRectangle = new Rectangle(_currScissorRegion.Value.X, _currScissorRegion.Value.Y, _currScissorRegion.Value.Width, _currScissorRegion.Value.Height);
             }
-            var raster = new RasterizerState();
-            raster.CullMode = _device.RasterizerState.CullMode;
-            raster.DepthBias = _device.RasterizerState.DepthBias;
-            raster.FillMode = _device.RasterizerState.FillMode;
-            raster.MultiSampleAntiAlias = _device.RasterizerState.MultiSampleAntiAlias;
-            raster.SlopeScaleDepthBias = _device.RasterizerState.SlopeScaleDepthBias;
-            raster.ScissorTestEnable = _currScissorRegion.HasValue;
+            var raster = new RasterizerState
+            {
+                CullMode = _device.RasterizerState.CullMode,
+                DepthBias = _device.RasterizerState.DepthBias,
+                FillMode = _device.RasterizerState.FillMode,
+                MultiSampleAntiAlias = _device.RasterizerState.MultiSampleAntiAlias,
+                SlopeScaleDepthBias = _device.RasterizerState.SlopeScaleDepthBias,
+                ScissorTestEnable = _currScissorRegion.HasValue
+            };
             _device.RasterizerState = raster;
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect, rasterizerState: raster);
         }

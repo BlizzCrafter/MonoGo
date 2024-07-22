@@ -80,7 +80,6 @@ namespace MonoGo.Samples
 			var rotationDirection = Input.CheckButton(RotateLeftButton).ToInt() - Input.CheckButton(RotateRightButton).ToInt();
 			Camera.Rotation += TimeKeeper.Global.Time(_rotationSpeed) * rotationDirection;
 			// Rotation.
-			
 		}
 
 		public void Reset()

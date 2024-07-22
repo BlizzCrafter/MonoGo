@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Cameras;
@@ -15,6 +16,7 @@ namespace MonoGo.Engine.SceneSystem
 	/// <summary>
 	/// A layer is a container for entities and components.
 	/// </summary>
+    [DebuggerDisplay("{Name, nq}")]
 	public class Layer : IEntityMethods
 	{
 		/// <summary>
@@ -268,8 +270,6 @@ namespace MonoGo.Engine.SceneSystem
 		}
 
 		#endregion Ordering.
-
-
 
 		#region Events.
 		

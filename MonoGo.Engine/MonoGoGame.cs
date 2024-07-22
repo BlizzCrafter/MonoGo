@@ -34,7 +34,6 @@ namespace MonoGo.Engine
                 DepthBufferWriteEnable = true
             };
             GraphicsMgr.Device.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8;
-
             GraphicsMgr.VertexBatch.DepthStencilState = depth;
         }
 

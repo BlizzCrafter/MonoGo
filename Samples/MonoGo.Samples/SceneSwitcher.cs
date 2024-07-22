@@ -374,7 +374,6 @@ namespace MonoGo.Samples
             UISystem.Draw();
         }
 
-
 		public void NextScene()
         {
             CurrentFactory.DestroyScene();
@@ -389,7 +388,7 @@ namespace MonoGo.Samples
 
 			_cameraController.Reset();
 
-            CreateUI();
+            ((IHaveGUI)this).Init(this);
         }
 
 
@@ -409,7 +408,6 @@ namespace MonoGo.Samples
 
             CreateUI();
         }
-
 
 		public void RestartScene()
 		{
