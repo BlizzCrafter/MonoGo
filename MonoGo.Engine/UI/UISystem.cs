@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.UI.Defs;
+using MonoGo.Engine.EC;
+using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI.Controls;
+using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -138,9 +140,6 @@ namespace MonoGo.Engine.UI
 
             // create renderer and input
             Renderer.Init(ThemeActiveFolder);
-
-            // create root control
-            Root = new Panel(new StyleSheet()) { Identifier = "Root" };
 
             try
             {
@@ -389,6 +388,15 @@ namespace MonoGo.Engine.UI
                 _postDrawActions.Clear();
             }
 
+            // debug draw stuff
+            if (DebugDraw)
+            {
+                Root.DebugDraw(true);
+            }
+
+            Renderer.EndFrame();
+        }
+
         public static void DrawCursor()
         {
             Renderer.StartCursor();
@@ -409,9 +417,9 @@ namespace MonoGo.Engine.UI
                 {
                     cursor = SystemStyleSheet.CursorLocked ?? SystemStyleSheet.CursorDefault;
                 }
-                else if (TargetedControl.Interactable) 
-                { 
-                    cursor = SystemStyleSheet.CursorInteractable ?? SystemStyleSheet.CursorDefault; 
+                else if (TargetedControl.Interactable)
+                {
+                    cursor = SystemStyleSheet.CursorInteractable ?? SystemStyleSheet.CursorDefault;
                 }
             }
 

@@ -7,7 +7,6 @@ using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Controls;
 using MonoGo.Engine.UI.Defs;
-using MonoGo.Samples.Misc;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,7 +42,7 @@ namespace MonoGo.Samples.Demos
             };
             topPanel.Size.Y.SetPixels(topPanelHeight + 2);
             topPanel.StyleSheet.Default.MarginAfter = new Point(0, 50);
-            UISystem.Root.AddChild(topPanel);
+            UISystem.Add(topPanel);
 
             // add previous example button
             previousExampleButton = new("<- GUI.Back")
@@ -162,7 +161,7 @@ Please click the ${FC:FF0000}GUI.Next${RESET} button at the top to see more GUI-
                     panel.Anchor = Anchor.Center;
                     panel.AutoHeight = true;
                     panel.OverflowMode = OverflowMode.HideOverflow;
-                    UISystem.Root.AddChild(panel);
+                    UISystem.Add(panel);
                     panels.Add(panel);
 
                     if (demoTitle != null)

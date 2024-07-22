@@ -72,7 +72,7 @@ namespace MonoGo.Samples
 
         public void CreateUI()
         {
-            UISystem.Clear();
+            if (CurrentScene == null) CurrentFactory.CreateScene();
 
             var panelInvisibleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_invisible.json"));
             var panelNoPaddingStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_nopadding.json"));
@@ -263,7 +263,7 @@ namespace MonoGo.Samples
                 Identifier = "BottomPanel"
             };
             bottomPanel.Size.SetPixels((int)GameMgr.WindowManager.CanvasSize.X, panelHeight);
-            UISystem.Root.AddChild(bottomPanel);
+            UISystem.Add(bottomPanel);
 
             _previousExampleButton = new Button($"<- ({_prevSceneButton}) Back")
             {
@@ -357,15 +357,6 @@ namespace MonoGo.Samples
             }
 
             if (_FPS_Paragraph != null) _FPS_Paragraph.Text = "FPS: ${FC:FFFF00}" + GameMgr.FPS + "${RESET}";
-
-            UISystem.Update();
-        }
-
-		public override void Draw()
-        {
-            base.Draw();
-
-            UISystem.Draw();
         }
 
 		public void NextScene()
@@ -384,7 +375,6 @@ namespace MonoGo.Samples
 
             ((IHaveGUI)this).Init(this);
         }
-
 
 		public void PreviousScene()
 		{

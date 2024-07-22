@@ -13,18 +13,16 @@ namespace MonoGo.Samples
 {
 	public class GameController : Entity
 	{
-		public Camera2D MainCamera = new Camera2D(new Vector2(1600, 900));
-
-		Layer _guiLayer;
+		public Camera2D MainCamera = new(new Vector2(1600, 900));
 
 		public static RasterizerState DefaultRasterizer;
 		public static RasterizerState WireframeRasterizer;
 
-        private Stopwatch _updateStopwatch = new Stopwatch();
-        private Stopwatch _drawStopwatch = new Stopwatch();
+        private readonly Stopwatch _updateStopwatch = new();
+        private readonly Stopwatch _drawStopwatch = new();
 		private double _elapsedUpdate, _elapsedDraw; 
 
-		public static RandomExt Random = new RandomExt();
+		public static RandomExt Random = new();
 
 		public GameController() : base(SceneMgr.DefaultLayer)
 		{
@@ -55,7 +53,7 @@ namespace MonoGo.Samples
                 MultiSampleAntiAlias = false
             };
 
-			GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
+            GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
 
 			var cameraController = new CameraController(MainCamera);
             var switcher = new SceneSwitcher(cameraController);
