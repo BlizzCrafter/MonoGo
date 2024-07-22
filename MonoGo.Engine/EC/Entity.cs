@@ -5,18 +5,16 @@ using MonoGo.Engine.Utils.Coroutines;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.Utils.CustomCollections;
 using MonoGo.Engine.Cameras;
-using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
-using System.ComponentModel;
 
 namespace MonoGo.Engine.EC
 {
-	/// <summary>
-	/// Parent class of every in-game object.
-	/// Can hold components, or implement its own logic.
-	/// </summary>
-	public class Entity
-	{		
+    /// <summary>
+    /// Parent class of every in-game object.
+    /// Can hold components, or implement its own logic.
+    /// </summary>
+    public class Entity
+	{
 		/// <summary>
 		/// Depth of Draw event. Objects with the lowest depth draw the last.
 		/// </summary>
@@ -159,7 +157,9 @@ namespace MonoGo.Engine.EC
 			{
 				component.Destroy();
 			}
-		}
+
+            if (this is IHaveGUI GUI) GUI.Clear();
+        }
 
 		#endregion Events.
 

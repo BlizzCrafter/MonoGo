@@ -6,18 +6,17 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Cameras;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
-using MonoGo.Engine.Utils;
 using MonoGo.Engine.Utils.CustomCollections;
 
 namespace MonoGo.Engine.SceneSystem
 {
 	public delegate void LayerEventDelegate(Layer layer);
 
-	/// <summary>
-	/// A layer is a container for entities and components.
-	/// </summary>
+    /// <summary>
+    /// A layer is a container for entities and components.
+    /// </summary>
     [DebuggerDisplay("{Name, nq}")]
-	public class Layer : IEntityMethods
+    public class Layer : IEntityMethods
 	{
 		/// <summary>
 		/// Layer's parent scene.
@@ -407,10 +406,14 @@ namespace MonoGo.Engine.SceneSystem
 		{
 			_entities.Add(entity);
 			_depthListEntitiesOutdated = true;
+			if (entity is IHaveGUI GUI) GUI.Init(entity);
 		}
 
-		internal void RemoveEntity(Entity entity) =>
+		internal void RemoveEntity(Entity entity)
+		{
 			_entities.Remove(entity);
+            if (entity is IHaveGUI GUI) GUI.Clear();
+        }		
 
 		internal void UpdateEntityList()
 		{

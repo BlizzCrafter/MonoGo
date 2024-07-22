@@ -18,7 +18,7 @@ using System.IO;
 
 namespace MonoGo.Samples
 {
-	public class SceneSwitcher : Entity
+	public class SceneSwitcher : Entity, IHaveGUI
 	{
         public static readonly string Description =
             "Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
@@ -312,12 +312,6 @@ namespace MonoGo.Samples
             bottomPanel.AddChild(_nextExampleButton);
 
             #endregion Bottom Panel
-
-            // Create other GUIs last so that we don't steal input focus their.
-            CurrentScene?.GetEntityList<Entity>()
-                .Where(x => x is IHaveGUI)
-                .Select(x => x as IHaveGUI).ToList()
-                .ForEach(x => x.CreateUI());
         }
 
 		public override void Update()
@@ -406,7 +400,7 @@ namespace MonoGo.Samples
 
 			_cameraController.Reset();
 
-            CreateUI();
+            ((IHaveGUI)this).Init(this);
         }
 
 		public void RestartScene()
@@ -414,7 +408,7 @@ namespace MonoGo.Samples
             CurrentFactory.RestartScene();
 			_cameraController.Reset();
 
-            CreateUI();
+            ((IHaveGUI)this).Init(this);
         }
     }
 }
