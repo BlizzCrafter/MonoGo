@@ -111,14 +111,23 @@ namespace MonoGo.Engine.UI
         /// <remarks>This property is especially important when there's interpolation on texture change, and switching to interactive state is not immediate.</remarks>
         internal static float TimeToLockInteractiveState => SystemStyleSheet.TimeToLockInteractiveState;
 
+        /// <summary>
+        /// Set this <b>before</b> creating <see cref="Control"/>'s to give them an owner.
+        /// </summary>
+        /// <remarks>
+        /// Each newly created control will be added to a "root owner" panel inside the UI system.
+        /// This makes it easy to add or remove entity specific UI controls.
+        /// <b>Note:</b> Inherit from <see cref="IHaveGUI"/> in your owner entity!
+        /// </remarks>
+        /// <param name="owner">Owner of the control.</param>
         public static void SetCurrentOwner(Entity owner) => _currentOwner = owner;
         internal static Entity? _currentOwner = null;
 
         /// <summary>
         /// Adds a control to the root owner or the root itself if there is no UI owner.
         /// </summary>
-        /// <param name="control"></param>
-        /// <param name="owner"></param>
+        /// <param name="control">Control to add.</param>
+        /// <param name="owner">Owner of the control.</param>
         public static void Add(Control control, Entity? owner = null)
         {
             var entity = owner ?? _currentOwner;
