@@ -203,6 +203,13 @@ namespace MonoGo.Engine.UI
             }
         }
 
+        public static Vector2 TransformMousePosition()
+        {
+            Matrix matrix = Matrix.Invert(RenderMgr.GUITransformMatrix);
+            var mousePos = Input.ScreenMousePosition;
+            return Vector2.Transform(mousePos, matrix);
+        }
+
         /// <summary>
         /// Perform UI updates.
         /// Must be called every update frame in your game main loop.
@@ -234,7 +241,7 @@ namespace MonoGo.Engine.UI
             }
 
             // current mouse position
-            var cp = Input.ScreenMousePosition.ToPoint();
+            var cp = TransformMousePosition().ToPoint();
 
             // find new control we target
             if (!keepTargetControl)
