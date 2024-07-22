@@ -65,7 +65,7 @@ namespace MonoGo.Samples
 
         CameraController _cameraController;
 
-        public SceneSwitcher(Layer layer, CameraController cameraController) : base(layer)
+        public SceneSwitcher(CameraController cameraController) : base(SceneMgr.DefaultLayer)
 		{
 			_cameraController = cameraController;
         }

@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace MonoGo.Engine
 {
-	public static class GameMgr
+    public static class GameMgr
 	{
 		public static Platform CurrentPlatform { get; internal set; } = Platform.Other;
 		public static GraphicsBackend CurrentGraphicsBackend { get; internal set; } = GraphicsBackend.Other;
@@ -99,11 +99,8 @@ namespace MonoGo.Engine
             StuffResolver.GetStuff<ITextInputBinder>()?.Init();
             JsonConverters.Init();
 			ResourceInfoMgr.Init();
-
-            var defScene = SceneMgr.CreateScene("default");
-			defScene.CreateLayer("default");
-		}
-
+			SceneMgr.Init();
+        }
 
 		/// <summary>
 		/// Performs update-related routines and calls Update events for entities and systems.

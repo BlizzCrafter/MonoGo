@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.Utils;
-using MonoGo.Engine.Cameras;
 using MonoGo.Engine.Utils.CustomCollections;
 
 namespace MonoGo.Engine.SceneSystem
 {
-	public delegate void SceneMgrEventDelegate();
+    public delegate void SceneMgrEventDelegate();
 
 	/// <summary>
 	/// Manager of all scenes. Updates entities and components.
@@ -23,14 +21,29 @@ namespace MonoGo.Engine.SceneSystem
 		internal static SafeSortedList<Scene> _scenes = new SafeSortedList<Scene>(x => x.Priority);
 
 		/// <summary>
-		/// Current active scene.
+		/// Get the default scene.
 		/// </summary>
-		public static Scene CurrentScene {get; private set;}
+		public static Scene DefaultScene {get; private set;}
 
-		/// <summary>
-		/// True, when the current frame is the frame on which FixedUpdate will be executed.
-		/// </summary>
-		public static bool IsFixedUpdateFrame {get; private set;}
+        /// <summary>
+        /// Get the default layer from the default scene.
+        /// </summary>
+        public static Layer DefaultLayer { get; private set; }
+
+        /// <summary>
+        /// Get the gui layer from the default scene.
+        /// </summary>
+        public static Layer GUILayer { get; private set; }
+
+        /// <summary>
+        /// Current active scene.
+        /// </summary>
+        public static Scene CurrentScene { get; private set; }
+
+        /// <summary>
+        /// True, when the current frame is the frame on which FixedUpdate will be executed.
+        /// </summary>
+        public static bool IsFixedUpdateFrame {get; private set;}
 
 		/// <summary>
 		/// Counts time until next fixed update.
@@ -48,6 +61,13 @@ namespace MonoGo.Engine.SceneSystem
 		/// </summary>
 		public static event Action<Scene, Exception> OnCrash;
 
+		internal static void Init()
+        {
+            DefaultScene = CreateScene("default");
+            DefaultLayer = DefaultScene.CreateLayer("default");
+            GUILayer = DefaultScene.CreateLayer("gui");
+            GUILayer.IsGUI = true;
+        }
 
 		/// <summary>
 		/// Creates new scene with given name.

@@ -26,7 +26,7 @@ namespace MonoGo.Samples
 
 		public static RandomExt Random = new RandomExt();
 
-		public GameController() : base(SceneMgr.GetScene("default")["default"])
+		public GameController() : base(SceneMgr.DefaultLayer)
 		{
 			GameMgr.MaxGameSpeed = 60;
 			GameMgr.MinGameSpeed = 60; // Fixing framerate on 60.
@@ -57,14 +57,8 @@ namespace MonoGo.Samples
 
 			GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
 
-			_guiLayer = Scene.CreateLayer("gui");
-			_guiLayer.IsGUI = true;
-
-			var cameraController = new CameraController(_guiLayer, MainCamera);
-
-			var switcher = new SceneSwitcher(_guiLayer, cameraController);
-			switcher.CurrentFactory.CreateScene();
-			switcher.CreateUI();
+			var cameraController = new CameraController(MainCamera);
+            var switcher = new SceneSwitcher(cameraController);
 
 			// Enabling applying postprocessing effects to separate layers.
 			// Note that this will create an additional surface.
