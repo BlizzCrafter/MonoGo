@@ -67,7 +67,9 @@ namespace MonoGo.Engine
         {
             GameMgr.Draw(gameTime);
 
-            //UserInterface.Active.DrawCursor();
+            // Drawing the ui cursor here so that it is outside of the gui surface, because
+            // the mouse cursor shouldn't be included in the gui render target.
+            UISystem.DrawCursor();
 
             base.Draw(gameTime);
         }

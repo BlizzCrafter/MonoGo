@@ -127,6 +127,16 @@ namespace MonoGo.Engine.UI
             _spriteBatch.End();
         }
 
+        public static void StartCursor()
+        {
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        }
+
+        public static void EndCursor()
+        {
+            _spriteBatch.End();
+        }
+
         /// <inheritdoc/>
         public static Rectangle GetScreenBounds()
         {
