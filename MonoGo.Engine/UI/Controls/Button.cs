@@ -21,7 +21,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Button stylesheet.</param>
         /// <param name="text">Button text.</param>
-        public Button(StyleSheet? stylesheet, string text = "New Button", Entity? owner = null ) : base(stylesheet, owner)
+        public Button(StyleSheet? stylesheet, string text = "New Button", IHaveGUI? owner = null ) : base(stylesheet, owner)
         {
             // create the button paragraph
             Paragraph = new Paragraph(stylesheet, text, owner)
@@ -37,7 +37,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the button with default stylesheets.
         /// </summary>
         /// <param name="text">Button text.</param>
-        public Button(string text = "New Button", Entity? owner = null) : this(UISystem.DefaultStylesheets.Buttons, text, owner)
+        public Button(string text = "New Button", IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.Buttons, text, owner)
         {
         }
 

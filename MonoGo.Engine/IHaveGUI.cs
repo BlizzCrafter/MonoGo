@@ -8,12 +8,12 @@ namespace MonoGo.Engine
     {
         void CreateUI();
 
-        void Init(Entity owner)
+        void Init()
         {
             Clear();
 
-            UISystem._currentOwner = owner;
-            var rootOwner = UISystem.Root.AddChild(new Panel(stylesheet: null!) { Identifier = $"Owner:{owner.GetType().Name}", Anchor = UI.Defs.Anchor.Center });
+            UISystem._currentOwner = this;
+            var rootOwner = UISystem.Root.AddChild(new Panel(stylesheet: null!) { Identifier = $"Owner:{GetType().Name}", Anchor = UI.Defs.Anchor.Center });
             rootOwner.Size.SetPercents(100, 100);
             rootOwner.IgnoreInteractions = true;
             CreateUI();

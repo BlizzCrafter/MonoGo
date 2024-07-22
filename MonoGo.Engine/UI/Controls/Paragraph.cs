@@ -159,7 +159,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Paragraph stylesheet.</param>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph", Entity? owner = null) : base(stylesheet, owner)
+        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph", IHaveGUI? owner = null) : base(stylesheet, owner)
         {
             _textValue = text;
         }
@@ -168,7 +168,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the paragraph with default stylesheets.
         /// </summary>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(string text = "New paragraph", Entity? owner = null) : this(UISystem.DefaultStylesheets.Paragraphs, text, owner)
+        public Paragraph(string text = "New paragraph", IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.Paragraphs, text, owner)
         {
         }
 

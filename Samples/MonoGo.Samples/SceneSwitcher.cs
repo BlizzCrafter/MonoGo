@@ -373,7 +373,7 @@ namespace MonoGo.Samples
 
 			_cameraController.Reset();
 
-            ((IHaveGUI)this).Init(this);
+            ((IHaveGUI)this).Init();
         }
 
 		public void PreviousScene()
@@ -390,7 +390,7 @@ namespace MonoGo.Samples
 
 			_cameraController.Reset();
 
-            ((IHaveGUI)this).Init(this);
+            ((IHaveGUI)this).Init();
         }
 
 		public void RestartScene()
@@ -398,7 +398,7 @@ namespace MonoGo.Samples
             CurrentFactory.RestartScene();
 			_cameraController.Reset();
 
-            ((IHaveGUI)this).Init(this);
+            ((IHaveGUI)this).Init();
         }
     }
 }

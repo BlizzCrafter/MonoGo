@@ -112,23 +112,19 @@ namespace MonoGo.Engine.UI
         internal static float TimeToLockInteractiveState => SystemStyleSheet.TimeToLockInteractiveState;
 
         /// <summary>
-        /// Set this <b>before</b> creating <see cref="Control"/>'s to give them an owner.
+        /// The current owner of newly created UI controls.
         /// </summary>
         /// <remarks>
-        /// Each newly created control will be added to a "root owner" panel inside the UI system.
-        /// This makes it easy to add or remove entity specific UI controls.
-        /// <b>Note:</b> Inherit from <see cref="IHaveGUI"/> in your owner entity!
+        /// <b>Note:</b> Sets automatically when inheriting from <see cref="IHaveGUI"/> in your entity.
         /// </remarks>
-        /// <param name="owner">Owner of the control.</param>
-        public static void SetCurrentOwner(Entity owner) => _currentOwner = owner;
-        internal static Entity? _currentOwner = null;
+        internal static IHaveGUI? _currentOwner = null;
 
         /// <summary>
-        /// Adds a control to the root owner or the root itself if there is no UI owner.
+        /// Adds a control to the current owner or the root itself if there is no current UI owner.
         /// </summary>
         /// <param name="control">Control to add.</param>
         /// <param name="owner">Owner of the control.</param>
-        public static void Add(Control control, Entity? owner = null)
+        public static void Add(Control control, IHaveGUI? owner = null)
         {
             var entity = owner ?? _currentOwner;
             var rootOwner = Root._children.Find(x => x.Owner == entity);
@@ -138,10 +134,9 @@ namespace MonoGo.Engine.UI
 
         internal static void Init(string themeFolder, string themeName)
         {
-            Root = new Panel(new StyleSheet(), new UIController(SceneMgr.GUILayer)) 
-            { 
-                Identifier = "Root" 
-            };
+            Root = new Panel() {Identifier = "Root" };
+
+            new UIController(SceneMgr.GUILayer);
 
             ThemeBaseFolder = themeFolder;
             ThemeActiveFolder = Path.Combine(themeFolder, themeName);

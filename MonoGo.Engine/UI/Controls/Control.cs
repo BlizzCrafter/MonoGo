@@ -15,7 +15,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// The owner of this control.
         /// </summary>
-        public Entity Owner { get; private set; }
+        public IHaveGUI Owner { get; private set; }
 
         /// <summary>
         /// Control identifier.
@@ -375,9 +375,9 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the control.
         /// </summary>
         /// <param name="stylesheet">Control stylesheet.</param>
-        public Control(StyleSheet? stylesheet, Entity? owner = null )
+        public Control(StyleSheet? stylesheet, IHaveGUI? owner = null )
         {
-            Owner = owner ?? UISystem._currentOwner;
+            Owner = owner ?? UISystem._currentOwner!;
 
             // store system and stylesheet
             StyleSheet = stylesheet ?? _emptyStylesheet;

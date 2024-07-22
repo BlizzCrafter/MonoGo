@@ -15,7 +15,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Title stylesheet.</param>
         /// <param name="text">Title text.</param>
-        public Title(StyleSheet? stylesheet, string text = "New Title", Entity? owner = null) : base(stylesheet, text, owner)
+        public Title(StyleSheet? stylesheet, string text = "New Title", IHaveGUI? owner = null) : base(stylesheet, text, owner)
         {
         }
 
@@ -23,7 +23,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the title with default stylesheets.
         /// </summary>
         /// <param name="text">Title text.</param>
-        public Title(string text = "New Title", Entity? owner = null) : this(UISystem.DefaultStylesheets.Titles, text, owner)
+        public Title(string text = "New Title", IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.Titles, text, owner)
         {
         }
     }

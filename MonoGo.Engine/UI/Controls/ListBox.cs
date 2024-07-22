@@ -128,7 +128,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">List box panel stylesheet.</param>
         /// <param name="itemsStylesheet">List box items stylesheet. If not set, will use the same as base stylesheet.</param>
-        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null, Entity? owner = null) : base(stylesheet, owner) 
+        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null, IHaveGUI? owner = null) : base(stylesheet, owner) 
         {
             _itemsStylesheet = itemsStylesheet ?? StyleSheet;
 
@@ -155,7 +155,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the list box with default stylesheets.
         /// </summary>
-        public ListBox(Entity? owner = null) : this(
+        public ListBox(IHaveGUI? owner = null) : this(
             UISystem.DefaultStylesheets.ListPanels ?? UISystem.DefaultStylesheets.Panels,
             UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs,
             owner)

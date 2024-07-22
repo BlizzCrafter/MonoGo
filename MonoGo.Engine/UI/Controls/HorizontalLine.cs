@@ -13,14 +13,14 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the horizontal line.
         /// </summary>
         /// <param name="stylesheet">Horizontal line stylesheet.</param>
-        public HorizontalLine(StyleSheet? stylesheet, Entity? owner = null) : base(stylesheet, owner)
+        public HorizontalLine(StyleSheet? stylesheet, IHaveGUI? owner = null) : base(stylesheet, owner)
         {
         }
 
         /// <summary>
         /// Create the horizontal line with default stylesheets.
         /// </summary>
-        public HorizontalLine(Entity? owner = null) : this(UISystem.DefaultStylesheets.HorizontalLines, owner)
+        public HorizontalLine(IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.HorizontalLines, owner)
         {
         }
 

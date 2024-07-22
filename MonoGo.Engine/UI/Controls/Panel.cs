@@ -39,17 +39,25 @@ namespace MonoGo.Engine.UI.Controls
         float _scrollbarOffset = 0f;
 
         /// <summary>
+        /// Useful for creating a root panel without the need of having an "IHaveGui Entity" as an owner.
+        /// </summary>
+        internal Panel() : base(new StyleSheet())
+        {
+
+        }
+
+        /// <summary>
         /// Create the panel.
         /// </summary>
         /// <param name="stylesheet">Panel stylesheet.</param>
-        public Panel(StyleSheet? stylesheet, Entity? owner = null) : base(stylesheet, owner) 
+        public Panel(StyleSheet? stylesheet, IHaveGUI? owner = null) : base(stylesheet, owner) 
         {
         }
 
         /// <summary>
         /// Create the panel with default stylesheets.
         /// </summary>
-        public Panel(Entity? owner = null) : this(UISystem.DefaultStylesheets.Panels, owner)
+        public Panel(IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.Panels, owner)
         {
         }
 

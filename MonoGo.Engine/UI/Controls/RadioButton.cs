@@ -21,7 +21,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Radio button stylesheet.</param>
         /// <param name="text">Radio button text.</param>
-        public RadioButton(StyleSheet? stylesheet, string text = "New Radio Button", Entity? owner = null) : base(stylesheet, owner)
+        public RadioButton(StyleSheet? stylesheet, string text = "New Radio Button", IHaveGUI? owner = null) : base(stylesheet, owner)
         {
             // create the radio button paragraph
             Paragraph = new Paragraph(stylesheet, owner: owner);
@@ -39,7 +39,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the radio button with default stylesheets.
         /// </summary>
         /// <param name="text">Radio button text.</param>
-        public RadioButton(string text = "New Radio Button", Entity? owner = null) : 
+        public RadioButton(string text = "New Radio Button", IHaveGUI? owner = null) : 
             this(UISystem.DefaultStylesheets.RadioButtons ?? UISystem.DefaultStylesheets.CheckBoxes, text, owner)
         {
         }
