@@ -88,7 +88,7 @@ namespace MonoGo.Engine
 		public static void Init(Game game)
 		{
             Game = game;
-			Game.IsMouseVisible = true;
+			Game.IsMouseVisible = false;
 
 			Input.MaxGamepadCount = 2;
 
