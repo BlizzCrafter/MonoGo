@@ -130,9 +130,8 @@ namespace MonoGo.Engine.UI
         /// <inheritdoc/>
         public static Rectangle GetScreenBounds()
         {
-            int screenWidth = _device.Viewport.Width;
-            int screenHeight = _device.Viewport.Height;
-            return new Rectangle(0, 0, screenWidth, screenHeight);
+            var size = GameMgr.WindowManager.CanvasSize;
+            return new Rectangle(0, 0, (int)size.X, (int)size.Y);
         }
 
         /// <inheritdoc/>
