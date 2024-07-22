@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 
 namespace MonoGo.Engine.UI.Controls
@@ -16,7 +17,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="stylesheet">Progress bar stylesheet.</param>
         /// <param name="fillStylesheet">Progress bar fill stylesheet.</param>
         /// <param name="orientation">Progress bar orientation.</param>
-        public ProgressBar(StyleSheet? stylesheet, StyleSheet? fillStylesheet, Orientation orientation = Orientation.Horizontal) : base(stylesheet, fillStylesheet, orientation)
+        public ProgressBar(StyleSheet? stylesheet, StyleSheet? fillStylesheet, Orientation orientation = Orientation.Horizontal, Entity? owner = null) : base(stylesheet, fillStylesheet, orientation, owner)
         {
             Handle.IgnoreInteractions = IgnoreInteractions = true;
             Handle.Anchor = Handle.StyleSheet?.DefaultAnchor ?? stylesheet?.DefaultAnchor ?? ((orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter);
@@ -26,11 +27,12 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the progress bar with default stylesheets.
         /// </summary>
         /// <param name="orientation">Progress bar orientation.</param>
-        public ProgressBar(Orientation orientation = Orientation.Horizontal) :
+        public ProgressBar(Orientation orientation = Orientation.Horizontal, Entity ? owner = null) :
             this(
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalProgressBars : UISystem.DefaultStylesheets.VerticalProgressBars,
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalProgressBarsFill : UISystem.DefaultStylesheets.VerticalProgressBarsFill,
-                orientation)
+                orientation,
+                owner)
         {
         }
 

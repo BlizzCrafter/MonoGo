@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -20,10 +21,10 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Radio button stylesheet.</param>
         /// <param name="text">Radio button text.</param>
-        public RadioButton(StyleSheet? stylesheet, string text = "New Radio Button") : base(stylesheet)
+        public RadioButton(StyleSheet? stylesheet, string text = "New Radio Button", Entity? owner = null) : base(stylesheet, owner)
         {
             // create the radio button paragraph
-            Paragraph = new Paragraph(stylesheet, text);
+            Paragraph = new Paragraph(stylesheet, owner: owner);
             Paragraph.DrawFillTexture = false;
             AddChildInternal(Paragraph);
             Paragraph.CopyStateFrom = this;
@@ -38,8 +39,8 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the radio button with default stylesheets.
         /// </summary>
         /// <param name="text">Radio button text.</param>
-        public RadioButton(string text = "New Radio Button") : 
-            this(UISystem.DefaultStylesheets.RadioButtons ?? UISystem.DefaultStylesheets.CheckBoxes, text)
+        public RadioButton(string text = "New Radio Button", Entity? owner = null) : 
+            this(UISystem.DefaultStylesheets.RadioButtons ?? UISystem.DefaultStylesheets.CheckBoxes, text, owner)
         {
         }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
@@ -127,7 +128,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">List box panel stylesheet.</param>
         /// <param name="itemsStylesheet">List box items stylesheet. If not set, will use the same as base stylesheet.</param>
-        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null) : base(stylesheet) 
+        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null, Entity? owner = null) : base(stylesheet, owner) 
         {
             _itemsStylesheet = itemsStylesheet ?? StyleSheet;
 
@@ -135,7 +136,7 @@ namespace MonoGo.Engine.UI.Controls
             OverflowMode = OverflowMode.HideOverflow;
 
             // create paragraph to calculate item height
-            var paragraph = new Paragraph(_itemsStylesheet);
+            var paragraph = new Paragraph(_itemsStylesheet, owner: owner);
             if (_itemsStylesheet.DefaultHeight?.Units == MeasureUnit.Pixels)
             {
                 ItemHeight = (int)(_itemsStylesheet.DefaultHeight.Value.Value);
@@ -154,9 +155,10 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the list box with default stylesheets.
         /// </summary>
-        public ListBox() : this(
+        public ListBox(Entity? owner = null) : this(
             UISystem.DefaultStylesheets.ListPanels ?? UISystem.DefaultStylesheets.Panels,
-            UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs)
+            UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs,
+            owner)
         {
         }
 
@@ -194,7 +196,7 @@ namespace MonoGo.Engine.UI.Controls
             // create new item paragraphs
             while (_paragraphs.Count < paragraphsCount)
             {
-                var p = new Paragraph(_itemsStylesheet);
+                var p = new Paragraph(_itemsStylesheet, owner: Owner);
                 p.TextOverflowMode = TextOverflowMode.Overflow;
                 p.ShrinkWidthToMinimalSize = false;
                 p._overrideInteractableState = true;

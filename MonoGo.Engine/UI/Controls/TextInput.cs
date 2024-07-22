@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,15 +119,17 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the text input.
         /// </summary>
         /// <param name="stylesheet">Text input stylesheet.</param>
-        public TextInput(StyleSheet? stylesheet) : base(stylesheet)
+        public TextInput(StyleSheet? stylesheet, Entity? owner = null) : base(stylesheet, owner)
         {
             // create paragraph to display the input text
-            _valueParagraph = new Paragraph(stylesheet);
-            _valueParagraph.CopyStateFrom = this;
-            _valueParagraph.DrawFillTexture = false;
-            _valueParagraph.IgnoreInteractions = true;
-            _valueParagraph.TransferInteractionsTo = this;
-            _valueParagraph.EnableStyleCommands = false;
+            _valueParagraph = new Paragraph(stylesheet, owner: owner)
+            {
+                CopyStateFrom = this,
+                DrawFillTexture = false,
+                IgnoreInteractions = true,
+                TransferInteractionsTo = this,
+                EnableStyleCommands = false
+            };
 
             // hide overflow by default
             OverflowMode = OverflowMode.HideOverflow;
@@ -185,7 +188,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the text input with default stylesheets.
         /// </summary>
-        public TextInput() : this(UISystem.DefaultStylesheets.TextInput)
+        public TextInput(Entity? owner = null) : this(UISystem.DefaultStylesheets.TextInput, owner)
         {
         }
 

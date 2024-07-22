@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -73,7 +74,7 @@ namespace MonoGo.Engine.UI.Controls
         public bool CanClickToUncheck = true;
 
         /// <inheritdoc/>
-        public CheckedControl(StyleSheet? stylesheet) : base(stylesheet)
+        public CheckedControl(StyleSheet? stylesheet, Entity? owner = null) : base(stylesheet, owner)
         {
         }
 

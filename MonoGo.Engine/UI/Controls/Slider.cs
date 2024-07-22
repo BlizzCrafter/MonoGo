@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 using System;
 
@@ -155,17 +156,19 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Slider stylesheet.</param>
         /// <param name="orientation">Slider orientation.</param>
-        public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal) : base(stylesheet)
+        public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal, Entity? owner = null) : base(stylesheet, owner)
         {
             // set orientation and call default anchor and size again
             Orientation = orientation;
             CalculateDefaultAnchorAndSize();
 
             // create handle
-            Handle = new Control(handleStylesheet);
-            Handle.CopyStateFrom = this;
-            Handle.Anchor = (orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter;
-            Handle.TransferInteractionsTo = this;
+            Handle = new Control(handleStylesheet, owner)
+            {
+                CopyStateFrom = this,
+                Anchor = (orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter,
+                TransferInteractionsTo = this
+            };
             AddChildInternal(Handle);
             Handle.IgnoreScrollOffset = true;
         }
@@ -174,11 +177,12 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the slider with default stylesheets.
         /// </summary>
         /// <param name="orientation">Slider orientation.</param>
-        public Slider(Orientation orientation = Orientation.Horizontal) : 
+        public Slider(Orientation orientation = Orientation.Horizontal, Entity? owner = null) : 
             this(
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSliders : UISystem.DefaultStylesheets.VerticalSliders,
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSlidersHandle : UISystem.DefaultStylesheets.VerticalSlidersHandle,
-                orientation)
+                orientation,
+                owner)
         {
         }
 

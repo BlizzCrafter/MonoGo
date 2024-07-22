@@ -109,8 +109,29 @@ namespace MonoGo.Engine.UI
         /// <remarks>This property is especially important when there's interpolation on texture change, and switching to interactive state is not immediate.</remarks>
         internal static float TimeToLockInteractiveState => SystemStyleSheet.TimeToLockInteractiveState;
 
+        public static void SetCurrentOwner(Entity owner) => _currentOwner = owner;
+        internal static Entity? _currentOwner = null;
+
+        /// <summary>
+        /// Adds a control to the root owner or the root itself if there is no UI owner.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="owner"></param>
+        public static void Add(Control control, Entity? owner = null)
+        {
+            var entity = owner ?? _currentOwner;
+            var rootOwner = Root._children.Find(x => x.Owner == entity);
+            if (rootOwner == null) Root.AddChild(control);
+            else rootOwner.AddChild(control);
+        }
+
         internal static void Init(string themeFolder, string themeName)
         {
+            Root = new Panel(new StyleSheet(), new UIController(SceneMgr.GUILayer)) 
+            { 
+                Identifier = "Root" 
+            };
+
             ThemeBaseFolder = themeFolder;
             ThemeActiveFolder = Path.Combine(themeFolder, themeName);
             var defaultStyleSheetFilePath = Path.Combine(ThemeActiveFolder, "system_style.json");

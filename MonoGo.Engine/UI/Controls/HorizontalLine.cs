@@ -1,4 +1,5 @@
-﻿using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.EC;
+using MonoGo.Engine.UI.Defs;
 
 
 namespace MonoGo.Engine.UI.Controls
@@ -12,14 +13,14 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the horizontal line.
         /// </summary>
         /// <param name="stylesheet">Horizontal line stylesheet.</param>
-        public HorizontalLine(StyleSheet? stylesheet) : base(stylesheet)
+        public HorizontalLine(StyleSheet? stylesheet, Entity? owner = null) : base(stylesheet, owner)
         {
         }
 
         /// <summary>
         /// Create the horizontal line with default stylesheets.
         /// </summary>
-        public HorizontalLine() : this(UISystem.DefaultStylesheets.HorizontalLines)
+        public HorizontalLine(Entity? owner = null) : this(UISystem.DefaultStylesheets.HorizontalLines, owner)
         {
         }
 

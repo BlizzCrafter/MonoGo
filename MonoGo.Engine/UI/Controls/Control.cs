@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 using System;
@@ -11,6 +12,11 @@ namespace MonoGo.Engine.UI.Controls
     /// </summary>
     public class Control
     {
+        /// <summary>
+        /// The owner of this control.
+        /// </summary>
+        public Entity Owner { get; private set; }
+
         /// <summary>
         /// Control identifier.
         /// </summary>
@@ -369,8 +375,10 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the control.
         /// </summary>
         /// <param name="stylesheet">Control stylesheet.</param>
-        public Control(StyleSheet? stylesheet)
+        public Control(StyleSheet? stylesheet, Entity? owner = null )
         {
+            Owner = owner ?? UISystem._currentOwner;
+
             // store system and stylesheet
             StyleSheet = stylesheet ?? _emptyStylesheet;
 

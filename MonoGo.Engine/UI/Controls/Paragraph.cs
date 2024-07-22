@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
@@ -158,7 +159,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Paragraph stylesheet.</param>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph") : base(stylesheet)
+        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph", Entity? owner = null) : base(stylesheet, owner)
         {
             _textValue = text;
         }
@@ -167,7 +168,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the paragraph with default stylesheets.
         /// </summary>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(string text = "New paragraph") : this(UISystem.DefaultStylesheets.Paragraphs, text)
+        public Paragraph(string text = "New paragraph", Entity? owner = null) : this(UISystem.DefaultStylesheets.Paragraphs, text, owner)
         {
         }
 
