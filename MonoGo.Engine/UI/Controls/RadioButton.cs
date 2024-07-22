@@ -24,7 +24,7 @@ namespace MonoGo.Engine.UI.Controls
         public RadioButton(StyleSheet? stylesheet, string text = "New Radio Button", IHaveGUI? owner = null) : base(stylesheet, owner)
         {
             // create the radio button paragraph
-            Paragraph = new Paragraph(stylesheet, owner: owner);
+            Paragraph = new Paragraph(stylesheet, text, owner);
             Paragraph.DrawFillTexture = false;
             AddChildInternal(Paragraph);
             Paragraph.CopyStateFrom = this;
