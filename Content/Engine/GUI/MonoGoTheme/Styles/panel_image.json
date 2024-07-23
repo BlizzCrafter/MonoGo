@@ -1,7 +1,7 @@
 {
 	"Default": {
 		"Icon": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"SourceRect": {"X": 0, "Y": 0, "Width": 256, "Height": 256},
 			"TextureScale": 1
 		}

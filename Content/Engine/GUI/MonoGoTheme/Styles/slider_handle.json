@@ -1,14 +1,14 @@
 {
 	"Default": {
 		"Icon": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"SourceRect": {"X": 139, "Y": 96, "Width": 11, "Height": 11},
 			"TextureScale": 3
 		}
 	},
     "Interacted": {
 		"Icon": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"SourceRect": {"X": 128, "Y": 96, "Width": 11, "Height": 11},
 			"TextureScale": 3
 		}

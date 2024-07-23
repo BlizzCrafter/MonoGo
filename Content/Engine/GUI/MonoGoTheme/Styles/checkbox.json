@@ -1,8 +1,8 @@
 {
 	"Default": {
         "Icon": {
-			"TextureId": "Textures/UI.png",
-			"SourceRect": {"X": 80, "Y": 112, "Width": 16, "Height": 16},
+			"TextureId": "Textures/Yellow.png",
+			"SourceRect": {"X": 80, "Y": 96, "Width": 16, "Height": 16},
 			"TextureScale": 3
 		},
         "TextFillColor": {"R": 255, "G": 255, "B": 255, "A": 255},
@@ -15,8 +15,8 @@
 	},
     "Targeted": {
 		"Icon": {
-			"TextureId": "Textures/UI.png",
-			"SourceRect": {"X": 112, "Y": 112, "Width": 16, "Height": 16},
+			"TextureId": "Textures/Yellow.png",
+			"SourceRect": {"X": 112, "Y": 96, "Width": 16, "Height": 16},
 			"TextureScale": 3
 		},
         "TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255}
@@ -26,8 +26,8 @@
 	},
     "Interacted": {
 		"Icon": {
-			"TextureId": "Textures/UI.png",
-			"SourceRect": {"X": 96, "Y": 112, "Width": 16, "Height": 16},
+			"TextureId": "Textures/Yellow.png",
+			"SourceRect": {"X": 96, "Y": 96, "Width": 16, "Height": 16},
 			"TextureScale": 3
 		},
         "TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255}

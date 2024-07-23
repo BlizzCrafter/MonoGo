@@ -1,6 +1,6 @@
 {
 	"Default": {
-		"TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255},
+		"TextFillColor": {"R": 0, "G": 230, "B": 225, "A": 255},
         "TextOutlineColor": {"R": 0, "G": 0, "B": 0, "A": 255},
         "FontSize": 32,
         "TextOutlineWidth": 3,

@@ -1,7 +1,7 @@
 {
 	"Default": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 116, "Y": 4, "Width": 72, "Height": 24},
 			"ExternalSourceRect": {"X": 112, "Y": 0, "Width": 80, "Height": 32},
 			"TextureScale": 3
@@ -17,24 +17,24 @@
 	},
     "Targeted": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 116, "Y": 36, "Width": 72, "Height": 24},
 			"ExternalSourceRect": {"X": 112, "Y": 32, "Width": 80, "Height": 32},
 			"TextureScale": 3
 		},
-        "TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255}
+        "TextFillColor": {"R": 0, "G": 230, "B": 225, "A": 255}
 	},
     "Interacted": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 116, "Y": 68, "Width": 72, "Height": 24},
 			"ExternalSourceRect": {"X": 112, "Y": 64, "Width": 80, "Height": 32},
 			"TextureScale": 3
 		},
-        "TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255}
+        "TextFillColor": {"R": 0, "G": 230, "B": 225, "A": 255}
 	},
     "TargetedChecked": {
-        "TextFillColor": {"R": 0, "G": 255, "B": 255, "A": 255}
+        "TextFillColor": {"R": 0, "G": 230, "B": 225, "A": 255}
 	},
     "Checked": {
         "TextFillColor": {"R": 255, "G": 255, "B": 255, "A": 255}

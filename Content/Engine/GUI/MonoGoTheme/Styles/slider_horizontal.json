@@ -1,7 +1,7 @@
 {
 	"Default": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 5, "Y": 112, "Width": 70, "Height": 7},
 			"ExternalSourceRect": {"X": 0, "Y": 112, "Width": 80, "Height": 7},
 			"TextureScale": 3
@@ -12,7 +12,7 @@
 	},
     "Targeted": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 5, "Y": 119, "Width": 70, "Height": 7},
 			"ExternalSourceRect": {"X": 0, "Y": 119, "Width": 80, "Height": 7},
 			"TextureScale": 3
@@ -20,7 +20,7 @@
 	},
     "Interacted": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/UI.png",
+			"TextureId": "Textures/Yellow.png",
 			"InternalSourceRect": {"X": 5, "Y": 119, "Width": 70, "Height": 7},
 			"ExternalSourceRect": {"X": 0, "Y": 119, "Width": 80, "Height": 7},
 			"TextureScale": 3

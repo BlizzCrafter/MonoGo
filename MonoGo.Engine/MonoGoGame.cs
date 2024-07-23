@@ -48,7 +48,7 @@ namespace MonoGo.Engine
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
-            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "DefaultTheme");
+            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "MonoGoTheme");
         }
 
         protected override void UnloadContent()
