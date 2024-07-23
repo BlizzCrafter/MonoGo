@@ -48,26 +48,12 @@
         "Engine/Effects/*.fx"
       ]
     },
-    "Fonts": {
-      "path": "Engine/Fonts/*.spritefont",
-      "recursive": "false",
-      "action": "build",
-      "importer": "FontDescriptionImporter",
-      "processor": "FontDescriptionProcessor",
-      "processorParam": {
-        "PremultiplyAlpha": "True",
-        "TextureFormat": "Compressed"
-      },
-      "watch": [
-        "Engine/Fonts/*.spritefont"
-      ]
-    },
     "GUIJSON": {
       "path": "Engine/GUI/*.json",
       "recursive": "true",
       "action": "copy",
-      "importer": null,
-      "processor": null,
+      "importer": "NONE",
+      "processor": "NONE",
       "watch": [
         "Engine/GUI/*.json"
       ]
@@ -90,6 +76,20 @@
         "MakeSquare": "False",
         "TextureFormat": "Color"
       }
+    },
+    "Fonts": {
+      "path": "Engine/Fonts/*.spritefont",
+      "recursive": "false",
+      "action": "build",
+      "importer": "FontDescriptionImporter",
+      "processor": "FontDescriptionProcessor",
+      "processorParam": {
+        "PremultiplyAlpha": "True",
+        "TextureFormat": "Compressed"
+      },
+      "watch": [
+        "Engine/Fonts/*.spritefont"
+      ]
     }
   }
 }
