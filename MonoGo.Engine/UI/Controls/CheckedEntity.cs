@@ -74,7 +74,7 @@ namespace MonoGo.Engine.UI.Controls
         public bool CanClickToUncheck = true;
 
         /// <inheritdoc/>
-        public CheckedControl(StyleSheet? stylesheet, IHaveGUI? owner = null) : base(stylesheet, owner)
+        public CheckedControl(StyleSheet? stylesheet) : base(stylesheet)
         {
         }
 

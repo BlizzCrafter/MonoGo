@@ -119,10 +119,10 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the text input.
         /// </summary>
         /// <param name="stylesheet">Text input stylesheet.</param>
-        public TextInput(StyleSheet? stylesheet, IHaveGUI? owner = null) : base(stylesheet, owner)
+        public TextInput(StyleSheet? stylesheet) : base(stylesheet)
         {
             // create paragraph to display the input text
-            _valueParagraph = new Paragraph(stylesheet, owner: owner)
+            _valueParagraph = new Paragraph(stylesheet)
             {
                 CopyStateFrom = this,
                 DrawFillTexture = false,
@@ -188,7 +188,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the text input with default stylesheets.
         /// </summary>
-        public TextInput(IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.TextInput, owner)
+        public TextInput() : this(UISystem.DefaultStylesheets.TextInput)
         {
         }
 

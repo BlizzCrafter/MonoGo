@@ -39,25 +39,17 @@ namespace MonoGo.Engine.UI.Controls
         float _scrollbarOffset = 0f;
 
         /// <summary>
-        /// Useful for creating a root panel without the need of having an "IHaveGui Entity" as an owner.
-        /// </summary>
-        internal Panel() : base(new StyleSheet())
-        {
-
-        }
-
-        /// <summary>
         /// Create the panel.
         /// </summary>
         /// <param name="stylesheet">Panel stylesheet.</param>
-        public Panel(StyleSheet? stylesheet, IHaveGUI? owner = null) : base(stylesheet, owner) 
+        public Panel(StyleSheet? stylesheet) : base(stylesheet) 
         {
         }
 
         /// <summary>
         /// Create the panel with default stylesheets.
         /// </summary>
-        public Panel(IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.Panels, owner)
+        public Panel() : this(UISystem.DefaultStylesheets.Panels)
         {
         }
 
@@ -182,7 +174,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="autoSetScrollbarMax">If true, will set the scrollbar max value automatically based on panel height vs. most-bottom entity.</param>
         public void CreateVerticalScrollbar(StyleSheet? stylesheet, StyleSheet? handleStylesheet, bool autoSetScrollbarMax = true)
         {
-            VerticalScrollbar = new(stylesheet, handleStylesheet, Orientation.Vertical, Owner)
+            VerticalScrollbar = new(stylesheet, handleStylesheet, Orientation.Vertical)
             {
                 Anchor = Anchor.TopRight,
                 IncludeInInternalAutoAnchorCalculation = false,

@@ -112,24 +112,42 @@ namespace MonoGo.Engine.UI
         internal static float TimeToLockInteractiveState => SystemStyleSheet.TimeToLockInteractiveState;
 
         /// <summary>
-        /// The current owner of newly created UI controls.
+        /// The owner stack of newly created IHaveGUI objects.
         /// </summary>
-        /// <remarks>
-        /// <b>Note:</b> Sets automatically when inheriting from <see cref="IHaveGUI"/> in your entity.
-        /// </remarks>
-        internal static IHaveGUI? _currentOwner = null;
+        internal static Stack<IHaveGUI> _ownerStack = new();
 
         /// <summary>
         /// Adds a control to the current owner or the root itself if there is no current UI owner.
         /// </summary>
         /// <param name="control">Control to add.</param>
-        /// <param name="owner">Owner of the control.</param>
-        public static void Add(Control control, IHaveGUI? owner = null)
+        public static void Add(Control control)
         {
-            var entity = owner ?? _currentOwner;
-            var rootOwner = Root._children.Find(x => x.Owner == entity);
+            var rootOwner = FindRootOwner(_ownerStack.Peek());
+
             if (rootOwner == null) Root.AddChild(control);
             else rootOwner.AddChild(control);
+        }
+
+        /// <summary>
+        /// Find the root owner of an <see cref="IHaveGUI"/> object.
+        /// </summary>
+        /// <param name="owner">The owner object.</param>
+        /// <returns>The root control of the owner.</returns>
+        public static Panel? FindRootOwner(IHaveGUI owner)
+        {
+            Panel? rootOwner = null;
+            Root.IterateChildren(
+                control =>
+                {
+                    var identifier = control.Identifier?.Split(':').Last();
+                    if (identifier != null && identifier == owner.GetType().Name)
+                    {
+                        rootOwner = control as Panel;
+                        return false;
+                    }
+                    return true;
+                });
+            return rootOwner;
         }
 
         internal static void Init(string themeFolder, string themeName)

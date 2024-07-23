@@ -31,17 +31,16 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Drop down panel stylesheet.</param>
         /// <param name="itemsStylesheet">Drop down box items stylesheet. If not set, will use the same as base stylesheet.</param>
-        public DropDown(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null, IHaveGUI? owner = null) : base(stylesheet, itemsStylesheet, owner)
+        public DropDown(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null) : base(stylesheet, itemsStylesheet)
         {
         }
 
         /// <summary>
         /// Create the drop down with default stylesheets.
         /// </summary>
-        public DropDown(IHaveGUI? owner = null) : this(
+        public DropDown() : this(
             UISystem.DefaultStylesheets.DropDownPanels ?? UISystem.DefaultStylesheets.ListPanels ?? UISystem.DefaultStylesheets.Panels,
-            UISystem.DefaultStylesheets.DropDownItems ?? UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs,
-            owner)
+            UISystem.DefaultStylesheets.DropDownItems ?? UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs)
         {
         }
 

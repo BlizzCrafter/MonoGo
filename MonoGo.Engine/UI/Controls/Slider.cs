@@ -156,14 +156,14 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Slider stylesheet.</param>
         /// <param name="orientation">Slider orientation.</param>
-        public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal, IHaveGUI? owner = null) : base(stylesheet, owner)
+        public Slider(StyleSheet? stylesheet, StyleSheet? handleStylesheet, Orientation orientation = Orientation.Horizontal) : base(stylesheet)
         {
             // set orientation and call default anchor and size again
             Orientation = orientation;
             CalculateDefaultAnchorAndSize();
 
             // create handle
-            Handle = new Control(handleStylesheet, owner)
+            Handle = new Control(handleStylesheet)
             {
                 CopyStateFrom = this,
                 Anchor = (orientation == Orientation.Horizontal) ? Anchor.CenterLeft : Anchor.TopCenter,
@@ -177,12 +177,11 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the slider with default stylesheets.
         /// </summary>
         /// <param name="orientation">Slider orientation.</param>
-        public Slider(Orientation orientation = Orientation.Horizontal, IHaveGUI? owner = null) : 
+        public Slider(Orientation orientation = Orientation.Horizontal) : 
             this(
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSliders : UISystem.DefaultStylesheets.VerticalSliders,
                 (orientation == Orientation.Horizontal) ? UISystem.DefaultStylesheets.HorizontalSlidersHandle : UISystem.DefaultStylesheets.VerticalSlidersHandle,
-                orientation,
-                owner)
+                orientation)
         {
         }
 

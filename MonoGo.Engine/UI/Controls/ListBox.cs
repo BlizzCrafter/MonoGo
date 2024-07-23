@@ -128,7 +128,7 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">List box panel stylesheet.</param>
         /// <param name="itemsStylesheet">List box items stylesheet. If not set, will use the same as base stylesheet.</param>
-        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null, IHaveGUI? owner = null) : base(stylesheet, owner) 
+        public ListBox(StyleSheet? stylesheet, StyleSheet? itemsStylesheet = null) : base(stylesheet) 
         {
             _itemsStylesheet = itemsStylesheet ?? StyleSheet;
 
@@ -136,7 +136,7 @@ namespace MonoGo.Engine.UI.Controls
             OverflowMode = OverflowMode.HideOverflow;
 
             // create paragraph to calculate item height
-            var paragraph = new Paragraph(_itemsStylesheet, owner: owner);
+            var paragraph = new Paragraph(_itemsStylesheet);
             if (_itemsStylesheet.DefaultHeight?.Units == MeasureUnit.Pixels)
             {
                 ItemHeight = (int)(_itemsStylesheet.DefaultHeight.Value.Value);
@@ -155,10 +155,9 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create the list box with default stylesheets.
         /// </summary>
-        public ListBox(IHaveGUI? owner = null) : this(
+        public ListBox() : this(
             UISystem.DefaultStylesheets.ListPanels ?? UISystem.DefaultStylesheets.Panels,
-            UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs,
-            owner)
+            UISystem.DefaultStylesheets.ListItems ?? UISystem.DefaultStylesheets.Paragraphs)
         {
         }
 
@@ -196,7 +195,7 @@ namespace MonoGo.Engine.UI.Controls
             // create new item paragraphs
             while (_paragraphs.Count < paragraphsCount)
             {
-                var p = new Paragraph(_itemsStylesheet, owner: Owner);
+                var p = new Paragraph(_itemsStylesheet);
                 p.TextOverflowMode = TextOverflowMode.Overflow;
                 p.ShrinkWidthToMinimalSize = false;
                 p._overrideInteractableState = true;

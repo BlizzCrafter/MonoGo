@@ -21,10 +21,10 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Checkbox stylesheet.</param>
         /// <param name="text">Checkbox text.</param>
-        public Checkbox(StyleSheet? stylesheet, string text = "New Checkbox", IHaveGUI? owner = null) : base(stylesheet, owner)
+        public Checkbox(StyleSheet? stylesheet, string text = "New Checkbox") : base(stylesheet)
         {
             // create the checkbox paragraph
-            Paragraph = new Paragraph(stylesheet, text, owner);
+            Paragraph = new Paragraph(stylesheet, text);
             Paragraph.DrawFillTexture = false;
             AddChildInternal(Paragraph);
             Paragraph.CopyStateFrom = this;
@@ -39,7 +39,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the checkbox with default stylesheets.
         /// </summary>
         /// <param name="text">Checkbox text.</param>
-        public Checkbox(string text = "New Button", IHaveGUI? owner = null) : this(UISystem.DefaultStylesheets.CheckBoxes, text, owner)
+        public Checkbox(string text = "New Button") : this(UISystem.DefaultStylesheets.CheckBoxes, text)
         {
         }
 
