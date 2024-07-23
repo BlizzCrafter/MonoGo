@@ -292,7 +292,7 @@ namespace MonoGo.Samples
                     _FPS_Paragraph.Offset.Y.SetPixels(30);
                     descriptionPanel.AddChild(_FPS_Paragraph);
 
-                    var title = new Title(CurrentScene.Name);
+                    var title = new Title(CurrentScene.Name) { Anchor = Anchor.AutoCenter };
                     title.Offset.Y.SetPixels(-40);
 
                     descriptionPanel.AddChild(title);

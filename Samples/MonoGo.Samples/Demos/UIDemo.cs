@@ -237,11 +237,9 @@ Please click the ${FC:FF0000}GUI.Next${RESET} button at the top to see more GUI-
 
                 // panels
                 {
-                    var panel = CreateDemoContainer("Panels", new Point(900, 1));
+                    var panel = CreateDemoContainer("Panels", new Point(800, 1));
                     panel.AddChild(new Paragraph(
-                        @"Panels are simple containers for controls. They can have graphics, like the panel this text is in, or be transparent and used only for grouping.
-
-For example, see these two buttons and two paragraphs? Each set is inside an invisible panel that takes up 50% of the parent panel's width. One is aligned left, the other right: 
+                        @"Panels are simple containers for controls. They can have graphics or be transparent and used only for grouping.
 "));
                     panel.AddChild(new HorizontalLine());
 
@@ -252,7 +250,7 @@ For example, see these two buttons and two paragraphs? Each set is inside an inv
                         panelLeft.Anchor = Anchor.AutoInlineLTR;
                         panel.AddChild(panelLeft);
 
-                        panelLeft.AddChild(new Paragraph("This is left panel!\n"));
+                        panelLeft.AddChild(new Paragraph("Invisible left panel.\n"));
                         panelLeft.AddChild(new Button());
                     }
                     {
@@ -262,16 +260,17 @@ For example, see these two buttons and two paragraphs? Each set is inside an inv
                         panelRight.Anchor = Anchor.AutoInlineLTR;
                         panel.AddChild(panelRight);
 
-                        panelRight.AddChild(new Paragraph("This is right panel!\n"));
+                        panelRight.AddChild(new Paragraph("Invisible right panel.\n"));
                         panelRight.AddChild(new Button());
                     }
 
                     panel.AddChild(new Paragraph(
-                        @"You can add a small title to panels when you create them. It's not a built-in feature in Iguina, but its very easy to pull off:"));
+                        @"You can add a small title to panels when you create them by using a custom style sheet:
+"));
                     {
                         var titledPanel = new Panel();
+                        titledPanel.AutoHeight = true;
                         titledPanel.Size.X.SetPercents(100f);
-                        titledPanel.Size.Y.SetPixels(150);
                         titledPanel.Anchor = Anchor.AutoLTR;
                         panel.AddChild(titledPanel);
 
@@ -283,8 +282,8 @@ For example, see these two buttons and two paragraphs? Each set is inside an inv
                         titledPanel.AddChild(new Paragraph("Looks nice, isn't it? Check out the source code to see how it works."));
                     }
 
-                    panel.AddChild(new Paragraph(
-                        @"BTW: This panel can be dragged, lets try it out! The small box in the corner is draggable too:"));
+                    panel.AddChild(new Paragraph(@"
+BTW: This panel can be dragged, lets try it out! The small box in the corner is draggable too:"));
                     panel.DraggableMode = DraggableMode.DraggableConfinedToScreen;
 
                     // create draggable small box
@@ -467,7 +466,9 @@ Another thing to keep in mind about paragraphs is that you can change the way th
 
                 // list box
                 {
-                    var panel = CreateDemoContainer("List Box", new Point(680, 1));
+                    var panel = CreateDemoContainer("List Box", new Point(800, 700));
+                    panel.AutoHeight = false;
+                    panel.CreateVerticalScrollbar(true);
 
                     panel.AddChild(new Paragraph(
                         @"List Boxes allow you to add items and select them from a list. For example:
