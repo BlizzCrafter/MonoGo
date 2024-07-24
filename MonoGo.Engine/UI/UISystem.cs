@@ -127,12 +127,14 @@ namespace MonoGo.Engine.UI
         internal static Stack<IHaveGUI> _ownerStack = new();
 
         /// <summary>
-        /// Adds a control to the current owner or the root itself if there is no current UI owner.
+        /// Adds a control to the current owner, a different owner or the root itself if there is no other UI owner.
         /// </summary>
         /// <param name="control">Control to add.</param>
-        public static void Add(Control control)
+        /// <param name="otherOwner">Add this control to a different owner.</param>
+        public static void Add(Control control, IHaveGUI? otherOwner = null)
         {
-            var rootOwner = FindRootOwner(_ownerStack.Peek());
+            var owner = otherOwner ?? _ownerStack.Peek();
+            var rootOwner = FindRootOwner(owner);
 
             if (rootOwner == null) Root.AddChild(control);
             else rootOwner.AddChild(control);
@@ -166,7 +168,7 @@ namespace MonoGo.Engine.UI
 
             if (!SceneMgr.GUILayer.EntityExists<UIController>())
             {
-            new UIController(SceneMgr.GUILayer);
+                new UIController(SceneMgr.GUILayer);
             }
             ThemeBaseFolder = themeFolder;
             ThemeActiveFolder = Path.Combine(themeFolder, themeName);
