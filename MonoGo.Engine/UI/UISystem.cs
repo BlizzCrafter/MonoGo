@@ -154,8 +154,10 @@ namespace MonoGo.Engine.UI
         {
             Root = new Panel(null!) {Identifier = "Root" };
 
+            if (!SceneMgr.GUILayer.EntityExists<UIController>())
+            {
             new UIController(SceneMgr.GUILayer);
-
+            }
             ThemeBaseFolder = themeFolder;
             ThemeActiveFolder = Path.Combine(themeFolder, themeName);
             var defaultStyleSheetFilePath = Path.Combine(ThemeActiveFolder, "system_style.json");
