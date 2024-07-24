@@ -74,5 +74,15 @@ namespace MonoGo.Engine.UI.Defs
         /// Offset in pixels.
         /// </summary>
         public Point Offset { get; set; }
+
+        public FramedTexture DeepCopy()
+        {
+            FramedTexture copy = (FramedTexture)MemberwiseClone();
+            copy.TextureId = new string(TextureId);
+            copy.InternalSourceRect = new Rectangle(InternalSourceRect.X, InternalSourceRect.Y, InternalSourceRect.Width, InternalSourceRect.Height);
+            copy.ExternalSourceRect = new Rectangle(ExternalSourceRect.X, ExternalSourceRect.Y, ExternalSourceRect.Width, ExternalSourceRect.Height);
+            copy.TextureScale = TextureScale;
+            return copy;
+        }
     }
 }

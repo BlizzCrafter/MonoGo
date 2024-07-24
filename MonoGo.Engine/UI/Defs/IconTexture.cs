@@ -28,5 +28,14 @@ namespace MonoGo.Engine.UI.Defs
         /// Will scale icon by this factor.
         /// </summary>
         public float TextureScale { get; set; } = 1f;
+
+        public IconTexture DeepCopy()
+        {
+            IconTexture copy = (IconTexture)MemberwiseClone();
+            copy.TextureId = new string(TextureId);
+            copy.SourceRect = new Rectangle(SourceRect.X, SourceRect.Y, SourceRect.Width, SourceRect.Height);
+            copy.TextureScale = TextureScale;
+            return copy;
+        }
     }
 }

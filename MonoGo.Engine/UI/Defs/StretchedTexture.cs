@@ -21,5 +21,14 @@ namespace MonoGo.Engine.UI.Defs
         /// Add extra size to the sides of this texture when rendering it.
         /// </summary>
         public Sides? ExtraSize { get; set; }
+
+        public StretchedTexture DeepCopy()
+        {
+            StretchedTexture copy = (StretchedTexture)MemberwiseClone ();
+            copy.TextureId = new string(TextureId);
+            copy.SourceRect = new Rectangle(SourceRect.X, SourceRect.Y, SourceRect.Width, SourceRect.Height);
+            copy.ExtraSize = ExtraSize.HasValue ? new Sides(ExtraSize.Value.Left, ExtraSize.Value.Right, ExtraSize.Value.Top, ExtraSize.Value.Bottom) : null;
+            return copy;
+        }
     }
 }
