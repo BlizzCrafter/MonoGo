@@ -38,6 +38,7 @@ namespace MonoGo.Samples.Demos
             int topPanelHeight = 65;
             Panel topPanel = new(null!)
             {
+                Identifier = "Top Panel",
                 Anchor = Anchor.TopCenter
             };
             topPanel.Size.Y.SetPixels(topPanelHeight + 2);
