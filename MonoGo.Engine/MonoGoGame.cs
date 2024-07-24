@@ -38,7 +38,7 @@ namespace MonoGo.Engine
         }
 
         protected override void LoadContent()
-        {
+        {            
             GraphicsMgr.Init(GraphicsDevice);
 
             //var resourcePaths = ResourceInfoMgr.GetResourcePaths("**");

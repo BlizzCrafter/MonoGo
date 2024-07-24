@@ -19,11 +19,13 @@ namespace MonoGo.Samples.Demos
 	public class TiledDemo : Entity
 	{
 		public static readonly string Description =
-			"Build > {{L_GREEN}}Collision{{DEFAULT}}: {{YELLOW}}" + BuildCustomMapBuilderButton + "{{L_GREEN}} Default{{DEFAULT}}: {{YELLOW}}" + BuildDefaultMapBuilderButton + "{{DEFAULT}}" + " Delete > {{YELLOW}}" + DestroyMapButton + "{{DEFAULT}}" + Environment.NewLine +
-			"Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
-			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}";
+			"Build > ${FC:96FF5F}Collision${RESET}: ${FC:FFDB5F}" + BuildCustomMapBuilderButton + "${FC:96FF5F} Default${RESET}: ${FC:FFDB5F}" + BuildDefaultMapBuilderButton + "${RESET}" + " Delete > ${FC:FFDB5F}" + DestroyMapButton + "${RESET}" + Environment.NewLine +
+			"Move > ${FC:FFDB5F}WASD${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Move${RESET}: ${FC:FFDB5F}" + CameraController.UpButton + "${RESET} / ${FC:FFDB5F}" + CameraController.DownButton + "${RESET} / ${FC:FFDB5F}" + CameraController.LeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Rotate${RESET}: ${FC:FFDB5F}" + CameraController.RotateLeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RotateRightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Zoom${RESET}: ${FC:FFDB5F}" + CameraController.ZoomInButton + "${RESET} / ${FC:FFDB5F}" + CameraController.ZoomOutButton + "${RESET}" + Environment.NewLine;
 
-		MapBuilder _builder;
+        MapBuilder _builder;
 
 		public const Buttons BuildCustomMapBuilderButton = Buttons.B;
 		public const Buttons BuildDefaultMapBuilderButton = Buttons.N;

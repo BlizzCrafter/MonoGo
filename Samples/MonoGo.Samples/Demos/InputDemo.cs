@@ -13,9 +13,9 @@ namespace MonoGo.Samples.Demos
 	public class InputDemo : Entity
 	{
 		public static readonly string Description =
-            "Input > {{YELLOW}}" + KeyboardTestButton + " / " + GamepadTestButton + " / " + MouseTestButton + "{{DEFAULT}}" + Environment.NewLine +
-            "Keyboard > {{YELLOW}}Press any Key{{DEFAULT}}" + Environment.NewLine +
-            "Gamepad > {{L_GREEN}}Rumble{{DEFAULT}}: {{YELLOW}}Move Triggers{{DEFAULT}}";
+            "Input > ${FC:FFDB5F}" + KeyboardTestButton + "${RESET} / ${FC:FFDB5F}" + GamepadTestButton + "${RESET} / ${FC:FFDB5F}" + MouseTestButton + "${RESET}" + Environment.NewLine +
+            "Keyboard > ${FC:FFDB5F}Press any Key${RESET}" + Environment.NewLine +
+            "Gamepad > ${FC:96FF5F}Rumble${RESET}: ${FC:FFDB5F}Move Triggers${RESET}";
 
 		Color _mainColor = Color.White;
 

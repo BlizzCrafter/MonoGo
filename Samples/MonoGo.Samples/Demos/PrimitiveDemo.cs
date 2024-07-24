@@ -10,11 +10,12 @@ namespace MonoGo.Samples.Demos
 {
 	public class PrimitiveDemo : Entity
 	{
-		public static readonly string Description = "Wireframe > {{YELLOW}}" + ToggleWireframeButton + "{{DEFAULT}}" + Environment.NewLine +
-			"Camera > {{L_GREEN}}Move{{DEFAULT}}: {{YELLOW}}" + CameraController.UpButton + " / " + CameraController.DownButton + " / " + CameraController.LeftButton + " / " + CameraController.RightButton + "{{DEFAULT}}" + Environment.NewLine +
-            "Camera > {{L_GREEN}}Rotate{{DEFAULT}}: {{YELLOW}}" + CameraController.RotateLeftButton + " / " + CameraController.RotateRightButton + " {{L_GREEN}}Zoom{{DEFAULT}}: {{YELLOW}}" + CameraController.ZoomInButton + " / " + CameraController.ZoomOutButton + "{{DEFAULT}}";
+		public static readonly string Description = "Wireframe > ${FC:FFDB5F}" + ToggleWireframeButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Move${RESET}: ${FC:FFDB5F}" + CameraController.UpButton + "${RESET} / ${FC:FFDB5F}" + CameraController.DownButton + "${RESET} / ${FC:FFDB5F}" + CameraController.LeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Rotate${RESET}: ${FC:FFDB5F}" + CameraController.RotateLeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RotateRightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Zoom${RESET}: ${FC:FFDB5F}" + CameraController.ZoomInButton + "${RESET} / ${FC:FFDB5F}" + CameraController.ZoomOutButton + "${RESET}" + Environment.NewLine;
 
-		Color _mainColor = new Color(238, 170, 0);
+        Color _mainColor = new Color(238, 170, 0);
 		Color _secondaryColor = new Color(231, 60, 0);
 		Color _secondaryColor2 = new Color(196, 0, 230);
 
