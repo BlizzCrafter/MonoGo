@@ -23,9 +23,19 @@ namespace MonoGo.Engine.UI
         public static string ThemeBaseFolder { get; private set; }
 
         /// <summary>
-        /// Path to the the current active theme folder.
+        /// All the available theme folders from the compiled content directory.
+        /// </summary>
+        public static string[] ThemeFolders => Directory.GetDirectories(ThemeBaseFolder).Select(x => Path.GetFileNameWithoutExtension(x)!).ToArray();
+
+        /// <summary>
+        /// Path to the current active theme folder.
         /// </summary>
         public static string ThemeActiveFolder { get; private set; }
+
+        /// <summary>
+        /// Name of the current active theme folder.
+        /// </summary>
+        public static string ThemeActiveName = Path.GetFileNameWithoutExtension(ThemeActiveFolder)!;
 
         /// <summary>
         /// Total elapsed time this system is running, in seconds.
