@@ -16,10 +16,11 @@ namespace MonoGo.Samples.Demos
 {
     public class UIDemo : Entity, IHaveGUI
     {
+        public static int CurrentExample = 0;
+
         List<Panel> panels = new();
         Button nextExampleButton;
         Button previousExampleButton;
-        int currExample = 0;
 
         public UIDemo(Layer layer) : base(layer)
         {
@@ -661,7 +662,7 @@ Have a nice day!
         /// </summary>
         public void NextExample()
         {
-            currExample++;
+            CurrentExample++;
             UpdateAfterExampleChange();
         }
 
@@ -670,7 +671,7 @@ Have a nice day!
         /// </summary>
         public void PreviousExample()
         {
-            currExample--;
+            CurrentExample--;
             UpdateAfterExampleChange();
         }
 
@@ -686,11 +687,11 @@ Have a nice day!
             {
                 panel.Visible = false;
             }
-            panels[currExample].Visible = true;
+            panels[CurrentExample].Visible = true;
 
             // disable / enable next and previous buttons
-            nextExampleButton.Enabled = currExample != panels.Count - 1;
-            previousExampleButton.Enabled = currExample != 0;
+            nextExampleButton.Enabled = CurrentExample != panels.Count - 1;
+            previousExampleButton.Enabled = CurrentExample != 0;
         }
     }
 }
