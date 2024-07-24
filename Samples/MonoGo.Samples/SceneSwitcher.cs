@@ -74,9 +74,6 @@ namespace MonoGo.Samples
         {
             if (CurrentScene == null) CurrentFactory.CreateScene();
 
-            var panelInvisibleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_invisible.json"));
-            var panelNoPaddingStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_nopadding.json"));
-
             /*#region PostFX Panel
 
             _postFXPanel = new(new Vector2(-_postFXPanelOffsetX, GameMgr.WindowManager.CanvasSize.Y), PanelSkin.Default, Anchor.TopRight, new Vector2(_postFXPanelOffsetX, 0))
@@ -257,11 +254,12 @@ namespace MonoGo.Samples
                 panelHeight = 65;
             }
 
-            Panel bottomPanel = new(isUIDemo ? panelInvisibleStyle : panelNoPaddingStyle)
+            Panel bottomPanel = new(isUIDemo ? null! : UISystem.DefaultStylesheets.Panels.DeepCopy())
             {
                 Anchor = Anchor.BottomCenter,
                 Identifier = "BottomPanel"
             };
+            if (!isUIDemo) bottomPanel.StyleSheet.Default.Padding = Sides.Zero;
             bottomPanel.Size.SetPixels((int)GameMgr.WindowManager.CanvasSize.X, panelHeight);
             UISystem.Add(bottomPanel);
 
@@ -277,12 +275,11 @@ namespace MonoGo.Samples
             {
                 //Scene Name
                 {
-                    Panel descriptionPanel = new(panelInvisibleStyle)
+                    Panel descriptionPanel = new(null!)
                     {
                         Anchor = Anchor.AutoInlineLTR,
                         Identifier = "DescriptionPanel"
                     };
-                    descriptionPanel.StyleSheet.Default.Padding = new Sides(5, 5, -5, 0);
                     descriptionPanel.Size.X.SetPixels((int)bottomPanel.Size.X.Value - 500);
 
                     _FPS_Paragraph = new Paragraph("")

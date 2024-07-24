@@ -31,17 +31,15 @@ namespace MonoGo.Samples.Demos
             var hProgressBarAltStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt.json"));
             var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
             var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
-            var panelInvisibleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_invisible.json"));
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
 
             // create top panel
             int topPanelHeight = 65;
-            Panel topPanel = new(panelInvisibleStyle)
+            Panel topPanel = new(null!)
             {
                 Anchor = Anchor.TopCenter
             };
             topPanel.Size.Y.SetPixels(topPanelHeight + 2);
-            topPanel.StyleSheet.Default.MarginAfter = new Point(0, 50);
             UISystem.Add(topPanel);
 
             // add previous example button
@@ -131,8 +129,7 @@ namespace MonoGo.Samples.Demos
 
                     // add title and text
                     var panel = CreateDemoContainer(null, new Point(1200, -1));
-                    panel.StyleSheet = panelInvisibleStyle;
-                    panel.Anchor = Anchor.AutoCenter;
+                    panel.StyleSheet = new StyleSheet(); // Empty StyleSheet to hide the panel.
                     var welcomeText = new Paragraph(@"Welcome!
 
 This special game engine is built ontop of ${FC:FF0000}MonoGame${RESET},the powerfull gamedev framework which is running under the hood of many fantastic games like ${FC:FF0000}Stardew Valley${RESET} and ${FC:FF0000}Celeste${RESET}.

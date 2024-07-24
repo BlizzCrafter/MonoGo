@@ -132,16 +132,6 @@
 /processor:NONE
 /copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_image.json;Engine/GUI/MonoGoTheme/Styles/panel_image.json
 
-#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_invisible.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_invisible.json;Engine/GUI/MonoGoTheme/Styles/panel_invisible.json
-
-#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_nopadding.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_nopadding.json;Engine/GUI/MonoGoTheme/Styles/panel_nopadding.json
-
 #begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json
 /importer:NONE
 /processor:NONE
@@ -340,16 +330,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png;Engine/GUI/DefaultTheme/Textures/UI.png
-
-#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_invisible.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_invisible.json;Engine/GUI/DefaultTheme/Styles/panel_invisible.json
-
-#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_nopadding.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_nopadding.json;Engine/GUI/DefaultTheme/Styles/panel_nopadding.json
 
 #begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json
 /importer:NONE
