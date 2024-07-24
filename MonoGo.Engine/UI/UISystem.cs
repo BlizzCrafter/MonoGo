@@ -152,7 +152,7 @@ namespace MonoGo.Engine.UI
 
         internal static void Init(string themeFolder, string themeName)
         {
-            Root = new Panel() {Identifier = "Root" };
+            Root = new Panel(null!) {Identifier = "Root" };
 
             new UIController(SceneMgr.GUILayer);
 
@@ -182,6 +182,7 @@ namespace MonoGo.Engine.UI
         /// <param name="themeName">UI System theme name.</param>
         public static void LoadTheme(string themeName)
         {
+            Clear();
             Init(ThemeBaseFolder, themeName);
         }
 
