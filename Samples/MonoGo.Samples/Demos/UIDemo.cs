@@ -60,7 +60,7 @@ namespace MonoGo.Samples.Demos
                 {
                     Anchor = Anchor.TopCenter,
                     ToggleCheckOnClick = true
-            };
+                };
                 button.Size.SetPixels(240, topPanelHeight);
                 button.Offset.X.SetPixels(-240);
                 button.Events.OnClick = (Control control) => UISystem.DebugDraw = !UISystem.DebugDraw;
@@ -91,18 +91,9 @@ namespace MonoGo.Samples.Demos
                 topPanel.AddChild(button);
             }
 
-            // create button to open git repo
-            {
-                Button button = new("GitHub")
-                {
-                    Anchor = Anchor.TopCenter
-                };
-                button.Events.OnValueChanged = (Control control) =>
-                {
-                };
-                button.Size.SetPixels(240, topPanelHeight);
-                topPanel.AddChild(button);
-            }
+            //
+            // The Theme Switcher control gets created in the SceneSwitcher.cs class!
+            // 
 
             // add next example button
             nextExampleButton = new("GUI.Next ->")

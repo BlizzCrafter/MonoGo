@@ -74,6 +74,9 @@ namespace MonoGo.Samples
         {
             if (CurrentScene == null) CurrentFactory.CreateScene();
 
+            var listPanelCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_panel_centered.json"));
+            var listItemCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_item_centered.json"));
+
             /*#region PostFX Panel
 
             _postFXPanel = new(new Vector2(-_postFXPanelOffsetX, GameMgr.WindowManager.CanvasSize.Y), PanelSkin.Default, Anchor.TopRight, new Vector2(_postFXPanelOffsetX, 0))
@@ -298,6 +301,39 @@ namespace MonoGo.Samples
                     descriptionPanel.OverflowMode = OverflowMode.HideOverflow;
                     bottomPanel.AddChild(descriptionPanel);
                 }
+            }
+            else if (isUIDemo)
+            {
+                UISystem.Root.Walk(
+                    x =>
+                    {
+                        if (x.Identifier == "Top Panel")
+                        {
+                            DropDown themeDropDown = new(listPanelCentered, listItemCentered)
+                            {
+                                Identifier = "Theme Switcher",
+                                Anchor = Anchor.TopCenter,
+                                AllowDeselect = false,
+                                AutoHeight = true
+                            };
+                            themeDropDown.Size.SetPixels(240, (int)x.Size.Y.Value);
+                            foreach (string theme in UISystem.ThemeFolders)
+                            {
+                                themeDropDown.AddItem(theme);
+                            }
+                            themeDropDown.SelectedValue = UISystem.ThemeActiveName;
+                            themeDropDown.Events.OnValueChanged = (Control control) =>
+                            {
+                                UISystem.LoadTheme(themeDropDown.SelectedValue);
+                                RestartScene();
+                            };
+                            x.AddChild(themeDropDown);
+
+                            return false;
+
+                        }
+                        return true;
+                    });
             }
 
             _nextExampleButton = new Button($"({_nextSceneButton}) Next ->")
