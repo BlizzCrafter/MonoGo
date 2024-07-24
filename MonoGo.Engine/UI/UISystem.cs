@@ -35,7 +35,7 @@ namespace MonoGo.Engine.UI
         /// <summary>
         /// Name of the current active theme folder.
         /// </summary>
-        public static string ThemeActiveName = Path.GetFileNameWithoutExtension(ThemeActiveFolder)!;
+        public static string ThemeActiveName => Path.GetFileNameWithoutExtension(ThemeActiveFolder)!;
 
         /// <summary>
         /// Total elapsed time this system is running, in seconds.
