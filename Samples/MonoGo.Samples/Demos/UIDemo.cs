@@ -9,6 +9,7 @@ using MonoGo.Engine.UI.Controls;
 using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -72,7 +73,7 @@ namespace MonoGo.Samples.Demos
                 Button button = new("GitHub")
                 {
                     Anchor = Anchor.TopCenter
-            };
+                };
                 button.Size.SetPixels(240, topPanelHeight);
                 button.Offset.X.SetPixels(240);
                 button.Events.OnClick = (Control control) =>
