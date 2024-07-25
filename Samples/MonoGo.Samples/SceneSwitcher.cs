@@ -79,6 +79,8 @@ namespace MonoGo.Samples
 
             #region PostFX Panel
 
+            if (CurrentFactory?.Type != typeof(UIDemo))
+            {
             _postFXPanel = new()
             {
                 Identifier = "PostFXPanel",
@@ -86,7 +88,7 @@ namespace MonoGo.Samples
             };
             _postFXPanel.Size.SetPixels(-_postFXPanelOffsetX, (int)GameMgr.WindowManager.CanvasSize.Y);
             _postFXPanel.Offset.X.SetPixels(_postFXPanelOffsetX);
-            _postFXPanel.StyleSheet.Default.Padding = new Sides(0, 0, 5, 5);
+                _postFXPanel.StyleSheet.Default.Padding = new Sides(0, 0, 20, 20);
             UISystem.Add(_postFXPanel);
 
             _postFXPanelAnimation = new Animation()
@@ -291,7 +293,7 @@ namespace MonoGo.Samples
             }
 
             #endregion Bloom
-
+            }
             #endregion PostFX Panel
             #region Bottom Panel
 
