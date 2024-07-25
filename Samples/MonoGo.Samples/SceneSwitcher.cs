@@ -140,13 +140,15 @@ namespace MonoGo.Samples
 
                 #region Color Grading
 
-                var colorGradingEnableButton = new Button("Color Grading")
+                var colorGradingEnableButton = new Button(
+                    UISystem.DefaultStylesheets.Buttons.DeepCopy(), "Color Grading")
                 {
                     Anchor = Anchor.AutoCenter,
                     ToggleCheckOnClick = true,
                     Checked = RenderMgr.ColorGradingFX
                 };
                 colorGradingEnableButton.Size.SetPixels(300, 50);
+                colorGradingEnableButton.StyleSheet.Default.MarginAfter = new Point(0, 5);
                 colorGradingEnableButton.Events.OnClick = (Control control) =>
                 {
                     RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX;
@@ -204,13 +206,16 @@ namespace MonoGo.Samples
                 #endregion Color Grading Panel
                 #region Bloom
 
-                var bloomEnableButton = new Button("Bloom")
+                var bloomEnableButton = new Button(
+                    UISystem.DefaultStylesheets.Buttons.DeepCopy(), "Bloom")
                 {
                     Anchor = Anchor.AutoCenter,
                     ToggleCheckOnClick = true,
                     Checked = RenderMgr.BloomFX
                 };
                 bloomEnableButton.Size.SetPixels(300, 50);
+                bloomEnableButton.StyleSheet.Default.MarginBefore = new Point(0, 5);
+                bloomEnableButton.StyleSheet.Default.MarginAfter = new Point(0, 5);
                 bloomEnableButton.Events.OnClick = (Control control) =>
                 {
                     RenderMgr.BloomFX = !RenderMgr.BloomFX;
