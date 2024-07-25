@@ -19,6 +19,7 @@ namespace MonoGo.Engine.UI
 
         private static Dictionary<string, SpriteFont> _fonts = new();
         private static Dictionary<string, Texture2D> _textures = new();
+        private static Dictionary<string, Sprite> _sprites = new();
 
         public static float GlobalTextScale = 1f;
 
@@ -66,6 +67,19 @@ namespace MonoGo.Engine.UI
 
             var ret = _content.Load<Texture2D>(Path.ChangeExtension(textureId, null));
             _textures[textureId] = ret;
+            return ret;
+        }
+
+        public static Sprite GetSprite(string textureId)
+        {
+            if (_sprites.TryGetValue(textureId, out var sprite))
+            {
+                return sprite;
+            }
+
+            var texture = _content.Load<Texture2D>(Path.ChangeExtension(textureId, null));
+            var ret = new Sprite(new Frame(texture, RectangleF.Empty, Vector2.Zero), Vector2.Zero, textureId);
+            _sprites[textureId] = ret;
             return ret;
         }
 
@@ -164,6 +178,20 @@ namespace MonoGo.Engine.UI
             _spriteBatch.Draw(texture,
                 new Rectangle(destRect.X, destRect.Y, destRect.Width, destRect.Height),
                 new Rectangle(sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height),
+                colorMg);
+        }
+
+        /// <inheritdoc/>
+        public static void DrawSprite(string textureId, Rectangle destRect, Rectangle sourceRect, Color color)
+        {
+            var sprite = GetSprite(textureId);
+            var colorMg = ToMgColor(color);
+
+            sprite.Draw(
+                destRect.ToRectangleF(), 
+                0,
+                sourceRect.ToRectangleF(),
+                Angle.Right, 
                 colorMg);
         }
 

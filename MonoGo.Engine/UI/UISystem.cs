@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
+using MonoGo.Engine.Cameras;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI.Controls;
 using MonoGo.Engine.UI.Defs;
@@ -434,11 +434,11 @@ namespace MonoGo.Engine.UI
 
         public static void DrawCursor()
         {
-            Renderer.StartCursor();
+            var pos = Input.ScreenMousePosition.ToPoint();
 
             // get which cursor to render
             CursorProperties? cursor = SystemStyleSheet.CursorDefault;
-            if (TargetedControl?.IsPointedOn(CurrentInputState.MousePosition, true) ?? false)
+            if (TargetedControl?.IsPointedOn(pos, true) ?? false)
             {
                 if (TargetedControl.CursorStyle != null)
                 {
@@ -461,16 +461,15 @@ namespace MonoGo.Engine.UI
             // render cursor
             if (ShowCursor && cursor != null)
             {
-                var mousePos = Input.ScreenMousePosition.ToPoint();
+                var mousePos = pos;
                 var destRect = cursor.SourceRect;
                 destRect.X = mousePos.X + (int)(cursor.Offset.X * cursor.Scale);
                 destRect.Y = mousePos.Y + (int)(cursor.Offset.Y * cursor.Scale);
                 destRect.Width = (int)(destRect.Width * cursor.Scale);
                 destRect.Height = (int)(destRect.Height * cursor.Scale);
-                Renderer.DrawTexture(cursor.EffectIdentifier, cursor.TextureId, destRect, cursor.SourceRect, cursor.FillColor);
+                //Renderer.DrawTexture(cursor.EffectIdentifier, cursor.TextureId, destRect, cursor.SourceRect, cursor.FillColor);
+                Renderer.DrawSprite(cursor.TextureId, destRect, cursor.SourceRect, cursor.FillColor);
             }
-
-            Renderer.EndCursor();
         }
     }
 }
