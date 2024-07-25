@@ -293,7 +293,6 @@ namespace MonoGo.Samples
             #endregion Bloom
 
             #endregion PostFX Panel
-
             #region Bottom Panel
 
             var sceneDescription = Description;
