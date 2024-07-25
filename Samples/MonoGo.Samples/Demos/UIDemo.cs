@@ -67,26 +67,21 @@ namespace MonoGo.Samples.Demos
                 topPanel.AddChild(button);
             }
 
-            // add button to apply transformations
+            // add button to the GitHub repo
             {
-                Button button = new("Transform UI")
+                Button button = new("GitHub")
                 {
-                    Anchor = Anchor.TopCenter,
-                    ToggleCheckOnClick = true
+                    Anchor = Anchor.TopCenter
             };
                 button.Size.SetPixels(240, topPanelHeight);
                 button.Offset.X.SetPixels(240);
                 button.Events.OnClick = (Control control) =>
                 {
-                    UISystem.UseRenderTargetTransformMatrix = !UISystem.UseRenderTargetTransformMatrix;
-
-                    if (UISystem.UseRenderTargetTransformMatrix)
+                    Process.Start(new ProcessStartInfo
                     {
-                        RenderMgr.GUITransformMatrix = Matrix.CreateScale(0.6f) *
-                            Matrix.CreateRotationZ(0.05f) *
-                            Matrix.CreateTranslation(new Vector3(150, 150, 0));
-                    }
-                    else RenderMgr.GUITransformMatrix = Matrix.Identity;
+                        FileName = "https://github.com/BlizzCrafter/MonoGo",
+                        UseShellExecute = true
+                    });
                 };
                 topPanel.AddChild(button);
             }
