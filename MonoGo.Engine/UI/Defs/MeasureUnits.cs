@@ -31,6 +31,15 @@ namespace MonoGo.Engine.UI.Defs
         }
 
         /// <summary>
+        /// Set value as pixels.
+        /// </summary>
+        public void SetPixels(float value)
+        {
+            Value = value;
+            Units = MeasureUnit.Pixels;
+        }
+
+        /// <summary>
         /// Set value as percents.
         /// </summary>
         public void SetPercents(float percent)
