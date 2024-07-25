@@ -81,218 +81,218 @@ namespace MonoGo.Samples
 
             if (CurrentFactory?.Type != typeof(UIDemo))
             {
-            _postFXPanel = new()
-            {
-                Identifier = "PostFXPanel",
-                Anchor = Anchor.TopRight
-            };
-            _postFXPanel.Size.SetPixels(-_postFXPanelOffsetX, (int)GameMgr.WindowManager.CanvasSize.Y);
-            _postFXPanel.Offset.X.SetPixels(_postFXPanelOffsetX);
+                _postFXPanel = new(UISystem.DefaultStylesheets.Panels.DeepCopy())
+                {
+                    Identifier = "PostFXPanel",
+                    Anchor = Anchor.TopRight
+                };
+                _postFXPanel.Size.SetPixels(-_postFXPanelOffsetX, (int)GameMgr.WindowManager.CanvasSize.Y);
+                _postFXPanel.Offset.X.SetPixels(_postFXPanelOffsetX);
                 _postFXPanel.StyleSheet.Default.Padding = new Sides(0, 0, 20, 20);
-            UISystem.Add(_postFXPanel);
+                UISystem.Add(_postFXPanel);
 
-            _postFXPanelAnimation = new Animation()
-            {
-                Easing = Easing.EaseInBounce,
-                Looping = false,
-                Speed = 1,
-                Invert = true
-            };
-            _postFXPanelAnimation.AnimationEndEvent += (e) => 
-            {
-                _postFXPanelAnimation.Invert = !_postFXPanelAnimation.Invert;
-                if (_postFXPanelAnimation.Invert)
+                _postFXPanelAnimation = new Animation()
                 {
-                    _postFXPanelAnimation.Easing = Easing.EaseInBounce;
-                }
-                else
-                {
-                    _postFXPanelAnimation.Easing = Easing.EaseOutBounce;
-                }
-            };
-
-            _postFXButton = new Button("FX")
-            {
-                Anchor = Anchor.TopRight
-            };
-            _postFXButton.Size.SetPixels(100, 50);
-            _postFXButton.Events.OnClick = (Control control) =>
-            {
-                _postFXPanelVisible = !_postFXPanelVisible;
-                if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
-            };
-            UISystem.Add(_postFXButton);
-
-            _postFXPanel.AddChild(new Title("Post FX") { Anchor = Anchor.AutoCenter });
-            _postFXPanel.AddChild(new HorizontalLine());
-            var postFXEnableButton = new Button("Post Processing")
-            {
-                Anchor = Anchor.AutoCenter,
-                ToggleCheckOnClick = true,
-                Checked = RenderMgr.PostProcessing
-            };
-            postFXEnableButton.Size.SetPixels(300, 50);
-            postFXEnableButton.Events.OnClick = (Control control) =>
-            {
-                RenderMgr.PostProcessing = !RenderMgr.PostProcessing;
-            };
-            _postFXPanel.AddChild(postFXEnableButton);
-
-            #region Color Grading
-            
-            var colorGradingEnableButton = new Button("Color Grading")
-            {
-                Anchor = Anchor.AutoCenter,
-                ToggleCheckOnClick = true,
-                Checked = RenderMgr.ColorGradingFX
-            };
-            colorGradingEnableButton.Size.SetPixels(300, 50);
-            colorGradingEnableButton.Events.OnClick = (Control control) =>
-            {
-                RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX;
-            };
-            _postFXPanel.AddChild(colorGradingEnableButton);
-            
-            {
-                Panel panel = new(null!)
-                {
-                    Anchor = Anchor.AutoInlineLTR
+                    Easing = Easing.EaseInBounce,
+                    Looping = false,
+                    Speed = 1,
+                    Invert = true
                 };
-                //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
-                panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
-                _postFXPanel.AddChild(panel);
-
-                var logo = new Panel(panelImageStyle.DeepCopy())
+                _postFXPanelAnimation.AnimationEndEvent += (e) =>
                 {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                var logoTexture = ColorGrading.CurrentLUT[0].Texture;
-                logo.StyleSheet.Default.Icon.Texture = logoTexture;
-                logo.Size.SetPixels(64, 64);
-                logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
-                logo.Offset.X.SetPixels(10);
-
-                var leftButton = new Button("P")
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                leftButton.Size.SetPixels(64, 64);
-                leftButton.Offset.X.SetPixels(44);
-                leftButton.Events.OnClick = (Control control) =>
-                {
-                    ColorGrading.PreviousLUT(); 
-                    logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
-                };
-
-                var rightButton = new Button("N")
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                rightButton.Size.SetPixels(64, 64);
-                rightButton.Offset.X.SetPixels(10);
-                rightButton.Events.OnClick = (Control control) =>
-                {
-                    ColorGrading.NextLUT(); 
-                    logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
-                };
-
-                panel.AddChild(leftButton);
-                panel.AddChild(logo);
-                panel.AddChild(rightButton);
-            }
-
-            #endregion Color Grading Panel
-            #region Bloom
-
-            var bloomEnableButton = new Button("Bloom")
-            {
-                Anchor = Anchor.AutoCenter,
-                ToggleCheckOnClick = true,
-                Checked = RenderMgr.BloomFX
-            };
-            bloomEnableButton.Size.SetPixels(300, 50);
-            bloomEnableButton.Events.OnClick = (Control control) =>
-            {
-                RenderMgr.BloomFX = !RenderMgr.BloomFX;
-            };
-            _postFXPanel.AddChild(bloomEnableButton);
-
-            {
-                Panel panel = new(null!)
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
-                panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
-                _postFXPanel.AddChild(panel);
-
-                var logo = new Panel(panelImageStyle.DeepCopy())
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                var logoTexture = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel")[0].Texture;
-                logo.StyleSheet.Default.Icon.Texture = logoTexture;
-                logo.Size.SetPixels(64, 64);
-                logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
-                logo.Offset.X.SetPixels(10);
-
-                var leftButton = new Button("P")
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                leftButton.Size.SetPixels(64, 64);
-                leftButton.Offset.X.SetPixels(44);
-                leftButton.Events.OnClick = (Control control) =>
-                {
-                    Bloom.PreviousPreset();
-                };
-
-                var rightButton = new Button("N")
-                {
-                    Anchor = Anchor.AutoInlineLTR
-                };
-                rightButton.Size.SetPixels(64, 64);
-                rightButton.Offset.X.SetPixels(10);
-                rightButton.Events.OnClick = (Control control) =>
-                {
-                    Bloom.NextPreset();
-                };
-
-                panel.AddChild(leftButton);
-                panel.AddChild(logo);
-                panel.AddChild(rightButton);
-
-                panel.AddChild(new Title("Threshold") { Anchor = Anchor.AutoCenter });
-                {
-                    var slider = new Slider()
+                    _postFXPanelAnimation.Invert = !_postFXPanelAnimation.Invert;
+                    if (_postFXPanelAnimation.Invert)
                     {
-                        MinValue = 0,
-                        MaxValue = 100,
-                        Value = (int)(100 * Bloom.Threshold)
-                    };
-                    slider.Events.OnValueChanged = (Control control) =>
+                        _postFXPanelAnimation.Easing = Easing.EaseInBounce;
+                    }
+                    else
                     {
-                        Bloom.Threshold = MathF.Min(((Slider)control).Value / 100f, 0.99f);
-                    };
-                    panel.AddChild(slider);
-                }
-                {
-                    panel.AddChild(new Title("Streak") { Anchor = Anchor.AutoCenter });
-                    var slider = new Slider()
-                    {
-                        MinValue = 0,
-                        MaxValue = 30,
-                        Value = (int)((10 * Bloom.StreakLength) / Bloom.StreakLength)
-                    };
-                    slider.Events.OnValueChanged = (Control control) =>
-                    {
-                        Bloom.StreakLength = MathF.Min((((Slider)control).Value / 100f) * 10f, 3f);
-                    };
-                    panel.AddChild(slider);
-                }
-            }
+                        _postFXPanelAnimation.Easing = Easing.EaseOutBounce;
+                    }
+                };
 
-            #endregion Bloom
+                _postFXButton = new Button("FX")
+                {
+                    Anchor = Anchor.TopRight
+                };
+                _postFXButton.Size.SetPixels(100, 50);
+                _postFXButton.Events.OnClick = (Control control) =>
+                {
+                    _postFXPanelVisible = !_postFXPanelVisible;
+                    if (!_postFXPanelAnimation.Running) _postFXPanelAnimation.Start(false);
+                };
+                UISystem.Add(_postFXButton);
+
+                _postFXPanel.AddChild(new Title("Post FX") { Anchor = Anchor.AutoCenter });
+                _postFXPanel.AddChild(new HorizontalLine());
+                var postFXEnableButton = new Button("Post Processing")
+                {
+                    Anchor = Anchor.AutoCenter,
+                    ToggleCheckOnClick = true,
+                    Checked = RenderMgr.PostProcessing
+                };
+                postFXEnableButton.Size.SetPixels(300, 50);
+                postFXEnableButton.Events.OnClick = (Control control) =>
+                {
+                    RenderMgr.PostProcessing = !RenderMgr.PostProcessing;
+                };
+                _postFXPanel.AddChild(postFXEnableButton);
+
+                #region Color Grading
+
+                var colorGradingEnableButton = new Button("Color Grading")
+                {
+                    Anchor = Anchor.AutoCenter,
+                    ToggleCheckOnClick = true,
+                    Checked = RenderMgr.ColorGradingFX
+                };
+                colorGradingEnableButton.Size.SetPixels(300, 50);
+                colorGradingEnableButton.Events.OnClick = (Control control) =>
+                {
+                    RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX;
+                };
+                _postFXPanel.AddChild(colorGradingEnableButton);
+
+                {
+                    Panel panel = new(null!)
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
+                    panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
+                    _postFXPanel.AddChild(panel);
+
+                    var logo = new Panel(panelImageStyle.DeepCopy())
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    var logoTexture = ColorGrading.CurrentLUT[0].Texture;
+                    logo.StyleSheet.Default.Icon.Texture = logoTexture;
+                    logo.Size.SetPixels(64, 64);
+                    logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
+                    logo.Offset.X.SetPixels(10);
+
+                    var leftButton = new Button("P")
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    leftButton.Size.SetPixels(64, 64);
+                    leftButton.Offset.X.SetPixels(44);
+                    leftButton.Events.OnClick = (Control control) =>
+                    {
+                        ColorGrading.PreviousLUT();
+                        logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
+                    };
+
+                    var rightButton = new Button("N")
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    rightButton.Size.SetPixels(64, 64);
+                    rightButton.Offset.X.SetPixels(10);
+                    rightButton.Events.OnClick = (Control control) =>
+                    {
+                        ColorGrading.NextLUT();
+                        logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
+                    };
+
+                    panel.AddChild(leftButton);
+                    panel.AddChild(logo);
+                    panel.AddChild(rightButton);
+                }
+
+                #endregion Color Grading Panel
+                #region Bloom
+
+                var bloomEnableButton = new Button("Bloom")
+                {
+                    Anchor = Anchor.AutoCenter,
+                    ToggleCheckOnClick = true,
+                    Checked = RenderMgr.BloomFX
+                };
+                bloomEnableButton.Size.SetPixels(300, 50);
+                bloomEnableButton.Events.OnClick = (Control control) =>
+                {
+                    RenderMgr.BloomFX = !RenderMgr.BloomFX;
+                };
+                _postFXPanel.AddChild(bloomEnableButton);
+
+                {
+                    Panel panel = new(null!)
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
+                    panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
+                    _postFXPanel.AddChild(panel);
+
+                    var logo = new Panel(panelImageStyle.DeepCopy())
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    var logoTexture = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel")[0].Texture;
+                    logo.StyleSheet.Default.Icon.Texture = logoTexture;
+                    logo.Size.SetPixels(64, 64);
+                    logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
+                    logo.Offset.X.SetPixels(10);
+
+                    var leftButton = new Button("P")
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    leftButton.Size.SetPixels(64, 64);
+                    leftButton.Offset.X.SetPixels(44);
+                    leftButton.Events.OnClick = (Control control) =>
+                    {
+                        Bloom.PreviousPreset();
+                    };
+
+                    var rightButton = new Button("N")
+                    {
+                        Anchor = Anchor.AutoInlineLTR
+                    };
+                    rightButton.Size.SetPixels(64, 64);
+                    rightButton.Offset.X.SetPixels(10);
+                    rightButton.Events.OnClick = (Control control) =>
+                    {
+                        Bloom.NextPreset();
+                    };
+
+                    panel.AddChild(leftButton);
+                    panel.AddChild(logo);
+                    panel.AddChild(rightButton);
+
+                    panel.AddChild(new Title("Threshold") { Anchor = Anchor.AutoCenter });
+                    {
+                        var slider = new Slider()
+                        {
+                            MinValue = 0,
+                            MaxValue = 100,
+                            Value = (int)(100 * Bloom.Threshold)
+                        };
+                        slider.Events.OnValueChanged = (Control control) =>
+                        {
+                            Bloom.Threshold = MathF.Min(((Slider)control).Value / 100f, 0.99f);
+                        };
+                        panel.AddChild(slider);
+                    }
+                    {
+                        panel.AddChild(new Title("Streak") { Anchor = Anchor.AutoCenter });
+                        var slider = new Slider()
+                        {
+                            MinValue = 0,
+                            MaxValue = 30,
+                            Value = (int)((10 * Bloom.StreakLength) / Bloom.StreakLength)
+                        };
+                        slider.Events.OnValueChanged = (Control control) =>
+                        {
+                            Bloom.StreakLength = MathF.Min((((Slider)control).Value / 100f) * 10f, 3f);
+                        };
+                        panel.AddChild(slider);
+                    }
+                }
+
+                #endregion Bloom
             }
             #endregion PostFX Panel
             #region Bottom Panel
@@ -399,7 +399,7 @@ namespace MonoGo.Samples
             #endregion Bottom Panel
         }
 
-		public override void Update()
+        public override void Update()
 		{
 			base.Update();
 
