@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.PostProcessing;
 using MonoGo.Engine.SceneSystem;
+using MonoGo.Engine.UI;
 
 namespace MonoGo.Engine
 {
@@ -14,8 +15,6 @@ namespace MonoGo.Engine
 
         public static Surface SceneSurface { get; set; }
         public static Surface GUISurface { get; set; }
-
-        public static Matrix GUITransformMatrix { get; set; } = Matrix.Identity;
 
         public static void Init()
         {
@@ -67,13 +66,11 @@ namespace MonoGo.Engine
             }
             else SceneSurface.Draw();
 
-            if (GUITransformMatrix == Matrix.Identity) GUISurface.Draw();
-            else
-            {
-                GraphicsMgr.VertexBatch.PushViewMatrix(GUITransformMatrix);
-                GUISurface.Draw();
-                GraphicsMgr.VertexBatch.PopViewMatrix();
-            }
+            GUISurface.Draw();
+
+            // Drawing the ui cursor here so that it is outside of the gui surface, because
+            // the mouse cursor shouldn't be included in the gui render target.
+            UISystem.DrawCursor();
         }
 
         private static void DrawPostFXScene()

@@ -97,8 +97,6 @@ namespace MonoGo.Engine.UI
         /// </summary>
         public static bool DebugDraw = false;
 
-        public static bool UseRenderTargetTransformMatrix = false;
-
         /// <summary>
         /// Control events you can register to.
         /// These events will trigger for any control in the system.
@@ -241,9 +239,9 @@ namespace MonoGo.Engine.UI
 
         public static Vector2 TransformMousePosition()
         {
-            Matrix matrix = Matrix.Invert(RenderMgr.GUITransformMatrix);
+            Matrix cam = CameraMgr.Cameras[0].View;
             var mousePos = Input.ScreenMousePosition;
-            return Vector2.Transform(mousePos, matrix);
+            return Vector2.Transform(mousePos, Matrix.Identity) - new Vector2(cam.Translation.X, cam.Translation.Y);
         }
 
         /// <summary>
