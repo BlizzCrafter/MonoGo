@@ -11,7 +11,6 @@ namespace MonoGo.Engine.UI
 {
     internal static class Renderer
     {
-        private static GraphicsDevice _device;
         private static ContentManager _content;
         private static SpriteBatch _spriteBatch;
         private static string _assetsRoot;
@@ -29,14 +28,13 @@ namespace MonoGo.Engine.UI
         /// <param name="assetsPath">Root directory to load assets from. Check out the demo project for details.</param>
         public static void Init(string assetsPath)
         {
-            _device = GraphicsMgr.Device;
-            _spriteBatch = new SpriteBatch(_device);
             _assetsRoot = assetsPath;
+
+            _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
             _content = new ContentManager(GameMgr.Game.Services, _assetsRoot);
 
             // create white texture
-            _whiteTexture = new Texture2D(_device, 1, 1);
-            _whiteTexture.SetData(new[] { Color.White });
+            _whiteTexture = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel")[0].Texture;
         }
 
         /// <summary>
@@ -137,16 +135,6 @@ namespace MonoGo.Engine.UI
         /// Called at the end of every frame.
         /// </summary>
         public static void EndFrame()
-        {
-            _spriteBatch.End();
-        }
-
-        public static void StartCursor()
-        {
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-        }
-
-        public static void EndCursor()
         {
             _spriteBatch.End();
         }
@@ -289,18 +277,18 @@ namespace MonoGo.Engine.UI
             var effect = GetEffect(_currEffectId);
             if (_currScissorRegion != null)
             {
-                _device.ScissorRectangle = new Rectangle(_currScissorRegion.Value.X, _currScissorRegion.Value.Y, _currScissorRegion.Value.Width, _currScissorRegion.Value.Height);
+                GraphicsMgr.Device.ScissorRectangle = new Rectangle(_currScissorRegion.Value.X, _currScissorRegion.Value.Y, _currScissorRegion.Value.Width, _currScissorRegion.Value.Height);
             }
             var raster = new RasterizerState
             {
-                CullMode = _device.RasterizerState.CullMode,
-                DepthBias = _device.RasterizerState.DepthBias,
-                FillMode = _device.RasterizerState.FillMode,
-                MultiSampleAntiAlias = _device.RasterizerState.MultiSampleAntiAlias,
-                SlopeScaleDepthBias = _device.RasterizerState.SlopeScaleDepthBias,
+                CullMode = GraphicsMgr.Device.RasterizerState.CullMode,
+                DepthBias = GraphicsMgr.Device.RasterizerState.DepthBias,
+                FillMode = GraphicsMgr.Device.RasterizerState.FillMode,
+                MultiSampleAntiAlias = GraphicsMgr.Device.RasterizerState.MultiSampleAntiAlias,
+                SlopeScaleDepthBias = GraphicsMgr.Device.RasterizerState.SlopeScaleDepthBias,
                 ScissorTestEnable = _currScissorRegion.HasValue
             };
-            _device.RasterizerState = raster;
+            GraphicsMgr.Device.RasterizerState = raster;
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect, rasterizerState: raster);
         }
 
