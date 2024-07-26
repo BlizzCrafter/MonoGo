@@ -28,9 +28,7 @@ namespace MonoGo.Samples.Demos
         private static Button _nextExampleButton;
         private static Button _previousExampleButton;
 
-        public UIDemo(Layer layer) : base(layer)
-        {
-        }
+        public UIDemo(Layer layer) : base(layer) { }
 
         public void CreateUI()
         {
