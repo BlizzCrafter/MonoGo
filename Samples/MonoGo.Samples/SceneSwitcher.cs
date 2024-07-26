@@ -463,6 +463,11 @@ namespace MonoGo.Samples
 
 			CurrentFactory.CreateScene();
 
+            if (CurrentFactory?.Type == typeof(UIDemo))
+            {
+                UIDemo.ResetCurrentExample();
+            }
+
 			_cameraController.Reset();
 
             ((IHaveGUI)this).Init();
@@ -480,7 +485,12 @@ namespace MonoGo.Samples
 
 			CurrentFactory.CreateScene();
 
-			_cameraController.Reset();
+            if (CurrentFactory?.Type == typeof(UIDemo))
+            {
+                UIDemo.ResetCurrentExample();
+            }
+
+            _cameraController.Reset();
 
             ((IHaveGUI)this).Init();
         }

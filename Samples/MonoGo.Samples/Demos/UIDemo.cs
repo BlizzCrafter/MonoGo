@@ -17,11 +17,16 @@ namespace MonoGo.Samples.Demos
 {
     public class UIDemo : Entity, IHaveGUI
     {
-        public static int CurrentExample = 0;
+        public static void ResetCurrentExample()
+        {
+            _currentExample = 0;
+            UpdateAfterExampleChange();
+        } 
+        private static int _currentExample = 0;
 
-        List<Panel> panels = new();
-        Button nextExampleButton;
-        Button previousExampleButton;
+        private static List<Panel> _panels = new();
+        private static Button _nextExampleButton;
+        private static Button _previousExampleButton;
 
         public UIDemo(Layer layer) : base(layer)
         {
@@ -29,6 +34,8 @@ namespace MonoGo.Samples.Demos
 
         public void CreateUI()
         {
+            _panels.Clear();
+
             // load some alt stylesheets that are not loaded by default from the system stylesheet
             var hProgressBarAltStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt.json"));
             var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
@@ -46,14 +53,14 @@ namespace MonoGo.Samples.Demos
             UISystem.Add(topPanel);
 
             // add previous example button
-            previousExampleButton = new("<- GUI.Back")
+            _previousExampleButton = new("<- GUI.Back")
             {
                 Anchor = Anchor.TopCenter
             };
-            previousExampleButton.Size.SetPixels(280, topPanelHeight);
-            previousExampleButton.Offset.X.SetPixels(-500);
-            previousExampleButton.Events.OnClick = (Control control) => PreviousExample();
-            topPanel.AddChild(previousExampleButton);
+            _previousExampleButton.Size.SetPixels(280, topPanelHeight);
+            _previousExampleButton.Offset.X.SetPixels(-500);
+            _previousExampleButton.Events.OnClick = (Control control) => PreviousExample();
+            topPanel.AddChild(_previousExampleButton);
 
             // add button to enable debug mode
             {
@@ -92,15 +99,15 @@ namespace MonoGo.Samples.Demos
             // 
 
             // add next example button
-            nextExampleButton = new("GUI.Next ->")
+            _nextExampleButton = new("GUI.Next ->")
             {
                 Anchor = Anchor.TopCenter
             };
-            nextExampleButton.Size.SetPixels(280, topPanelHeight);
-            nextExampleButton.Offset.X.SetPixels(500);
-            nextExampleButton.Identifier = "next_btn";
-            nextExampleButton.Events.OnClick = (Control control) => NextExample();
-            topPanel.AddChild(nextExampleButton);
+            _nextExampleButton.Size.SetPixels(280, topPanelHeight);
+            _nextExampleButton.Offset.X.SetPixels(500);
+            _nextExampleButton.Identifier = "next_btn";
+            _nextExampleButton.Events.OnClick = (Control control) => NextExample();
+            topPanel.AddChild(_nextExampleButton);
 
             // init all examples
             if (true)
@@ -148,7 +155,7 @@ Please click the ${FC:FF0000}GUI.Next${RESET} button at the top to see more GUI-
                     panel.AutoHeight = true;
                     panel.OverflowMode = OverflowMode.HideOverflow;
                     UISystem.Add(panel);
-                    panels.Add(panel);
+                    _panels.Add(panel);
 
                     if (demoTitle != null)
                     {
@@ -650,7 +657,7 @@ Have a nice day!
         /// </summary>
         public void NextExample()
         {
-            CurrentExample++;
+            _currentExample++;
             UpdateAfterExampleChange();
         }
 
@@ -659,7 +666,7 @@ Have a nice day!
         /// </summary>
         public void PreviousExample()
         {
-            CurrentExample--;
+            _currentExample--;
             UpdateAfterExampleChange();
         }
 
@@ -668,18 +675,18 @@ Have a nice day!
         /// except for the currently active example + disable prev / next buttons if
         /// needed (if first or last example).
         /// </summary>
-        protected void UpdateAfterExampleChange()
+        private static void UpdateAfterExampleChange()
         {
             // hide all panels and show current example panel
-            foreach (Panel panel in panels)
+            foreach (Panel panel in _panels)
             {
                 panel.Visible = false;
             }
-            panels[CurrentExample].Visible = true;
+            _panels[_currentExample].Visible = true;
 
             // disable / enable next and previous buttons
-            nextExampleButton.Enabled = CurrentExample != panels.Count - 1;
-            previousExampleButton.Enabled = CurrentExample != 0;
+            _nextExampleButton.Enabled = _currentExample != _panels.Count - 1;
+            _previousExampleButton.Enabled = _currentExample != 0;
         }
     }
 }
