@@ -3,7 +3,7 @@
 namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
-    /// Different states an entity can be in.
+    /// Different states a control can be in.
     /// </summary>
     public enum ControlState
     {

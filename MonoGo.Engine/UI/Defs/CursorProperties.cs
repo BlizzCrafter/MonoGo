@@ -21,7 +21,7 @@ namespace MonoGo.Engine.UI.Defs
         public Rectangle SourceRect { get; set; }
 
         /// <summary>
-        /// Fill color tint.
+        /// Fill color for textures.
         /// </summary>
         public Color FillColor { get; set; } = new Color(255, 255, 255, 255);
 
