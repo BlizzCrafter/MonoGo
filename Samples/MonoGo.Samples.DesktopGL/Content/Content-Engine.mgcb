@@ -355,3 +355,70 @@
 /importer:NONE
 /processor:NONE
 /copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel_centered.json;Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json;Engine/GUI/DefaultTheme/Styles/color_picker.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json;Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json;Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/label.json;Engine/GUI/DefaultTheme/Styles/label.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json;Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json;Engine/GUI/DefaultTheme/Styles/numeric_input.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json;Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json;Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json;Engine/GUI/DefaultTheme/Styles/vertical_line.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png;Engine/GUI/DefaultTheme/Textures/Icons.png

@@ -13,12 +13,12 @@ namespace MonoGo.Engine.UI.Defs
         Default,
 
         /// <summary>
-        /// Control is currently being targeted. For example, the mouse points on the entity.
+        /// Control is currently being targeted. For example, the mouse points on the Control.
         /// </summary>
         Targeted,
 
         /// <summary>
-        /// Control is currently being interacted with, for example text input entity we're currently typing into, or a button that is being pressed.
+        /// Control is currently being interacted with, for example text input Control we're currently typing into, or a button that is being pressed.
         /// </summary>
         Interacted,
 
@@ -28,7 +28,7 @@ namespace MonoGo.Engine.UI.Defs
         Checked,
 
         /// <summary>
-        /// Control is currently being targeted, and also checked. For example, the mouse points on the entity.
+        /// Control is currently being targeted, and also checked. For example, the mouse points on the Control.
         /// </summary>
         TargetedChecked,
 

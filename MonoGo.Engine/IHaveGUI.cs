@@ -12,7 +12,7 @@ namespace MonoGo.Engine
             Clear();
 
             UISystem._ownerStack.Push(this);
-            var rootOwner = UISystem.Root.AddChild(new Panel(stylesheet: null!) { Identifier = $"Owner:{GetType().Name}", Anchor = UI.Defs.Anchor.Center });
+            var rootOwner = UISystem.Root.AddChild(new Panel(stylesheet: null!) { Identifier = $"Owner:{GetType().Name}", Anchor = UI.Defs.Anchor.Center }, true);
             rootOwner.Size.SetPercents(100, 100);
             rootOwner.IgnoreInteractions = true;
             CreateUI();
@@ -21,7 +21,8 @@ namespace MonoGo.Engine
 
         void Clear()
         {
-            UISystem.FindRootOwner(this)?.RemoveSelf();
+            UISystem.FindRootOwner(this)?.RemoveSelf(true);
+            UISystem.Root.ToString();
         }
     }
 }

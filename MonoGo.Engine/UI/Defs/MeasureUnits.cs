@@ -106,7 +106,7 @@ namespace MonoGo.Engine.UI.Defs
 
         /// <summary>
         /// Value is percent of parent size.
-        /// For example if the measure is talking about position x, it will be in perents of parent entity width.
+        /// For example if the measure is talking about position x, it will be in perents of parent Control width.
         /// </summary>
         PercentOfParent = 1
     }

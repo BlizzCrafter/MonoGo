@@ -1,5 +1,4 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -9,8 +8,8 @@ namespace MonoGo.Engine.UI.Controls
     public abstract class CheckedControl : Control
     {
         /// <summary>
-        /// Set / get if this entity is in 'checked' state.
-        /// Useful for buttons anc checkboxes, but can be set for any type of entity.
+        /// Set / get if this Control is in 'checked' state.
+        /// Useful for buttons anc checkboxes, but can be set for any type of Control.
         /// </summary>
         public virtual bool Checked
         {
@@ -23,9 +22,9 @@ namespace MonoGo.Engine.UI.Controls
                     // uncheck siblings
                     if (ExclusiveSelection)
                     {
-                        Parent?.IterateChildren((Control entity) =>
+                        Parent?.IterateChildren((Control Control) =>
                         {
-                            var siblingAsCheckable = entity as CheckedControl;
+                            var siblingAsCheckable = Control as CheckedControl;
                             if ((siblingAsCheckable != null) && (siblingAsCheckable != this) && (siblingAsCheckable.ExclusiveSelection))
                             {
                                 siblingAsCheckable.Checked = false;
@@ -57,18 +56,18 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <summary>
-        /// If true, this entity will check / uncheck itself when clicked on.
+        /// If true, this Control will check / uncheck itself when clicked on.
         /// </summary>
         public bool ToggleCheckOnClick = false;
 
         /// <summary>
-        /// If true, when this entity is checked, all its direct siblings with this property will be automatically unchecked.
+        /// If true, when this Control is checked, all its direct siblings with this property will be automatically unchecked.
         /// This is used for things like radio button where only one option can be checked at any given moment.
         /// </summary>
         public bool ExclusiveSelection = false;
 
         /// <summary>
-        /// If false, it will be impossible to uncheck this entity once its checked by clicking on it.
+        /// If false, it will be impossible to uncheck this Control once its checked by clicking on it.
         /// However, if the 'ExclusiveSelection' is set, you can still uncheck it by checking another sibling.
         /// </summary>
         public bool CanClickToUncheck = true;

@@ -114,6 +114,7 @@ namespace MonoGo.Samples.Demos
                 {
                     var logo = new Panel(panelImageStyle)
                     {
+                        Identifier = "LOGO",
                         Anchor = Anchor.AutoCenter
                     };
                     var logoTexture = ResourceHub.GetResource<Sprite>("DemoSprites", "Logo")[0].Texture;
@@ -433,7 +434,7 @@ Another thing to keep in mind about paragraphs is that you can change the way th
                         var progressBar = panel.AddChild(new ProgressBar());
                         var label = panel.AddChild(new Paragraph(@$"Progress Bar Value: {progressBar.Value}
 "));
-                        progressBar.Handle.OverrideStyles.FillColor = new Color(255, 0, 0, 255);
+                        progressBar.Handle.OverrideStyles.TintColor = new Color(255, 0, 0, 255);
                         progressBar.IgnoreInteractions = false;
                         progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
                     }

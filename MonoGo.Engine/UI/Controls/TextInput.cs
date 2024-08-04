@@ -1,5 +1,4 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +6,24 @@ using System.Linq;
 namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// Text input entity.
+    /// Text input Control.
     /// </summary>
     public class TextInput : Panel
     {
         /// <summary>
         /// Text to show if input is empty.
         /// </summary>
-        public string? PlaceholderText = null;
+        public virtual string? PlaceholderText
+        {
+            get => _placeholder;
+            set => _placeholder = value;
+        }
+        string? _placeholder;
 
         /// <summary>
         /// Text input value.
         /// </summary>
-        public string Value
+        public virtual string Value
         {
             get => _value;
             set 
@@ -38,6 +42,11 @@ namespace MonoGo.Engine.UI.Controls
             }
         }
 
+        /// <summary>
+        /// If set, will show this character instead of the actual input value.
+        /// Used for password input fields.
+        /// </summary>
+        public char? MaskingCharacter = null;
         // current value
         string _value = string.Empty;
 
@@ -50,14 +59,14 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// If true, text input will support line breaks.
         /// </summary>
-        public bool Multiline
+        public virtual bool Multiline
         {
             get => _multiline;
             set 
             {
                 if (!value && _value.Contains('\n'))
                 {
-                    throw new Exception("Text input value contains line breaks, but multiline flag was turned to false!");
+                    throw new InvalidOperationException("Text input value contains line breaks, but multiline flag was turned to false!");
                 }
                 _multiline = value; 
                 _valueParagraph.TextOverflowMode = value ? TextOverflowMode.WrapWords : TextOverflowMode.Overflow; 
@@ -70,7 +79,7 @@ namespace MonoGo.Engine.UI.Controls
 
         /// <inheritdoc/>
         internal override bool LockFocusOnSelf => _lockSelf;
-        bool _lockSelf = true;
+        internal bool _lockSelf = true;
 
         /// <summary>
         /// Max lines limit, when multiline input is true.
@@ -203,7 +212,14 @@ namespace MonoGo.Engine.UI.Controls
             }
             else
             {
-                _valueParagraph.Text = Value;
+                if (MaskingCharacter == null)
+                {
+                    _valueParagraph.Text = Value;
+                }
+                else
+                {
+                    _valueParagraph.Text = new string(MaskingCharacter.Value, Value.Length);
+                }
             }
             _valueParagraph.UseEmptyValueTextColor = noValue;
 
@@ -259,7 +275,7 @@ namespace MonoGo.Engine.UI.Controls
             if (MaxLength.HasValue && Value.Length > MaxLength.Value) { return 0; }
 
             // check max width
-            if (!Multiline && ((_valueParagraph.LastBoundingRect.Right + _valueParagraph.MeasureText(" ").X * 2) >= (LastInternalBoundingRect.Right - GetPadding().Right)))
+            if (!Multiline && ((_valueParagraph.LastBoundingRect.Right + _valueParagraph.MeasureText(" ").X * 2) >= GetInputMaxWidth()))
             {
                 return 0;
             }
@@ -279,6 +295,13 @@ namespace MonoGo.Engine.UI.Controls
             return 1;
         }
 
+        /// <summary>
+        /// Get max width for text input.
+        /// </summary>
+        protected virtual int GetInputMaxWidth()
+        {
+            return (LastInternalBoundingRect.Right - GetPadding().Right);
+        }
         /// <summary>
         /// Insert character at caret position, from string value.
         /// </summary>
@@ -321,6 +344,12 @@ namespace MonoGo.Engine.UI.Controls
                 _isEditing = false; 
             }
 
+            // if clicked outside, release lock
+            if (_isEditing && inputState.LeftMouseDown && !IsPointedOn(inputState.MousePosition, true))
+            {
+                _isEditing = false;
+                _lockSelf = false;
+            }
             // if editing, calculate some useful values
             if (_isEditing)
             {
@@ -409,7 +438,7 @@ namespace MonoGo.Engine.UI.Controls
                 _isEditing = true;
             }
 
-            // if clicked on editing, decide if should lock target entity or not
+            // if clicked on editing, decide if should lock target Control or not
             if (_isEditing)
             {
                 if (inputState.LeftMouseDown && !IsPointedOn(inputState.MousePosition, true))

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
+using MonoGo.Engine.UI.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
-
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -77,12 +77,12 @@ namespace MonoGo.Engine.UI.Controls
         static public bool ExceptionOnInvalidStyleCommands = true;
 
         /// <summary>
-        /// If true, will shrink entity width to text actual size.
+        /// If true, will shrink Control width to text actual size.
         /// </summary>
         public bool ShrinkWidthToMinimalSize = true;
 
         /// <summary>
-        /// If true, will shrink entity height to text actual size.
+        /// If true, will shrink Control height to text actual size.
         /// </summary>
         public bool ShrinkHeightToMinimalSize = true;
 
@@ -133,6 +133,15 @@ namespace MonoGo.Engine.UI.Controls
             public int? OutlineWidth;
 
             /// <summary>
+            /// Icon to embed in text.
+            /// </summary>
+            public IconTexture? Icon;
+
+            /// <summary>
+            /// If true, will use text current color for icon (if icon is set).
+            /// </summary>
+            public bool IconUseTextColor;
+            /// <summary>
             /// Reset all style commands.
             /// </summary>
             public bool ResetAll;
@@ -159,16 +168,17 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Paragraph stylesheet.</param>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph") : base(stylesheet)
+        public Paragraph(StyleSheet? stylesheet, string text = "New paragraph", bool ignoreInteractions = true) : base(stylesheet)
         {
             _textValue = text;
+            IgnoreInteractions = ignoreInteractions;
         }
 
         /// <summary>
         /// Create the paragraph with default stylesheets.
         /// </summary>
         /// <param name="text">Paragraph text.</param>
-        public Paragraph(string text = "New paragraph") : this(UISystem.DefaultStylesheets.Paragraphs, text)
+        public Paragraph(string text = "New paragraph", bool ignoreInteractions = true) : this(UISystem.DefaultStylesheets.Paragraphs, text, ignoreInteractions)
         {
         }
 
@@ -236,6 +246,33 @@ namespace MonoGo.Engine.UI.Controls
                                 currCommand.OutlineColor = ColorHelper.HexToColor(value!);
                                 expectedValuesCount = 1;
                                 break;
+                            case "ICO":
+                                expectedValuesCount = 1;
+                                var iconParams = value!.Split('|').Select(x => x.Trim()).ToArray();
+                                currCommand.Icon = new IconTexture()
+                                {
+                                    TextureId = iconParams[0],
+                                    SourceRect = new Rectangle(int.Parse(iconParams[1]), int.Parse(iconParams[2]), int.Parse(iconParams[3]), int.Parse(iconParams[4])),
+                                    TextureScale = (iconParams.Length == 5) ? 1f : float.Parse(iconParams[5])
+                                };
+                                if (iconParams.Length == 7)
+                                {
+                                    if (iconParams[6] == "y")
+                                    {
+                                        currCommand.IconUseTextColor = true;
+                                    }
+                                    else if (iconParams[6] == "n")
+                                    {
+                                        currCommand.IconUseTextColor = false;
+                                    }
+                                    else
+                                    {
+                                        throw new Exception("Icon 'use text color' flag must be either 'y' or 'n'");
+                                    }
+                                }
+                                break;
+                            default:
+                                throw new Exception("Unknown style command!");
                         }
                     }
                     catch (Exception e)
@@ -424,12 +461,20 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <summary>
+        /// Get current font size.
+        /// </summary>
+        int GetFontSize()
+        {
+            var scale = StyleSheet.GetProperty<float>("TextScale", State, 1f, OverrideStyles);
+            return (int)((float)StyleSheet.GetProperty<int>("FontSize", State, 24, OverrideStyles) * scale * UISystem.TextsScale);
+        }
+        /// <summary>
         /// Measure text line height, in pixels.
         /// </summary>
         public int MeasureTextLineHeight()
         {
+            var fontSize = GetFontSize();
             var font = StyleSheet.GetProperty<string?>("FontIdentifier", State, null, OverrideStyles);
-            var fontSize = StyleSheet.GetProperty<int>("FontSize", State, 24, OverrideStyles);
             return Renderer.GetTextLineHeight(font, fontSize);
         }
 
@@ -438,8 +483,8 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         public Point MeasureText(string txt)
         {
+            var fontSize = GetFontSize();
             var font = StyleSheet.GetProperty<string?>("FontIdentifier", State, null, OverrideStyles);
-            var fontSize = StyleSheet.GetProperty<int>("FontSize", State, 24, OverrideStyles);
             return Renderer.MeasureText(txt, font, fontSize, 1f);
         }
 
@@ -457,8 +502,8 @@ namespace MonoGo.Engine.UI.Controls
 
                 // calculate text params
                 var state = State;
+                var fontSize = GetFontSize();
                 var font = StyleSheet.GetProperty<string?>("FontIdentifier", state, null, OverrideStyles);
-                var fontSize = StyleSheet.GetProperty<int>("FontSize", state, 24, OverrideStyles);
                 var alignment = StyleSheet.GetProperty("TextAlignment", state, TextAlignment.Left, OverrideStyles)!;
                 var spacing = StyleSheet.GetProperty<float>("TextSpacing", state, 1f, OverrideStyles);
 
@@ -581,6 +626,19 @@ namespace MonoGo.Engine.UI.Controls
                                 // merge styles
                                 currTextStyle.MergeSelfWith(newStyleCommand);
 
+                                // calculate text segment position
+                                var segmentPosition = new Point(position.X + offsetX, position.Y);
+
+                                // draw style command icon
+                                if (newStyleCommand.Icon != null)
+                                {
+                                    var dest = new Rectangle(segmentPosition.X, segmentPosition.Y + _lineHeight / 2, 
+                                        (int)(newStyleCommand.Icon.SourceRect.Width * newStyleCommand.Icon.TextureScale * UISystem.TextsScale), 
+                                        (int)(newStyleCommand.Icon.SourceRect.Height * newStyleCommand.Icon.TextureScale * UISystem.TextsScale));
+                                    dest.Y -= dest.Height / 2;
+                                    var color = (newStyleCommand.IconUseTextColor) ? (currTextStyle.FillColor ?? fillColor) : (currTextStyle.FillColor ?? Color.White);
+                                    DrawUtils.Draw(effectId, newStyleCommand.Icon, dest, color);
+                                }
                                 // get range and segment to render
                                 var toIndex = (i + 1) < styleCommands.Count ? (styleCommands[i + 1].Index - newStyleCommand.Index) : -1;
                                 var segment = toIndex >= 0 ? line.Line.Substring(newStyleCommand.Index, toIndex) : line.Line.Substring(newStyleCommand.Index);
@@ -592,7 +650,6 @@ namespace MonoGo.Engine.UI.Controls
                                 }
 
                                 // calculate position and render
-                                var segmentPosition = new Point(position.X + offsetX, position.Y);
                                 Renderer.DrawText(effectId, segment, font, fontSize, segmentPosition, currTextStyle.FillColor ?? fillColor, currTextStyle.OutlineColor ?? outlineColor, currTextStyle.OutlineWidth ?? outlineWidth, spacing);
                                 offsetX += Renderer.MeasureText(segment, font, fontSize, spacing).X;
 

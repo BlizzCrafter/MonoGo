@@ -1,6 +1,4 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
-
+﻿using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -15,6 +13,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="stylesheet">Horizontal line stylesheet.</param>
         public HorizontalLine(StyleSheet? stylesheet) : base(stylesheet)
         {
+            IgnoreInteractions = true;
         }
 
         /// <summary>

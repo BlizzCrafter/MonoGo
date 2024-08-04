@@ -1,11 +1,9 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
-
+﻿using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// A title text entity.
+    /// A title text Control.
     /// Same as a paragraph, but with different defaults values and stylesheet.
     /// </summary>
     public class Title : Paragraph

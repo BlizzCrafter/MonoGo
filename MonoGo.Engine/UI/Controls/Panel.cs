@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 using System;
-using System.Runtime.CompilerServices;
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -17,7 +15,7 @@ namespace MonoGo.Engine.UI.Controls
         protected override bool WalkInternalChildren => true;
 
         /// <summary>
-        /// Vertical scrollbar entity, if set.
+        /// Vertical scrollbar Control, if set.
         /// </summary>
         public Slider? VerticalScrollbar { get; private set; }
 
@@ -158,7 +156,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Create a vertical scrollbar for this panel with default stylesheet.
         /// </summary>
-        /// <param name="autoSetScrollbarMax">If true, will set the scrollbar max value automatically based on panel height vs. most-bottom entity.</param>
+        /// <param name="autoSetScrollbarMax">If true, will set the scrollbar max value automatically based on panel height vs. most-bottom Control.</param>
         public void CreateVerticalScrollbar(bool autoSetScrollbarMax = true)
         {
             CreateVerticalScrollbar(
@@ -171,19 +169,17 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="stylesheet">Vertical scrollbar style.</param>
         /// <param name="handleStylesheet">Vertical scrollbar handle style.</param>
-        /// <param name="autoSetScrollbarMax">If true, will set the scrollbar max value automatically based on panel height vs. most-bottom entity.</param>
+        /// <param name="autoSetScrollbarMax">If true, will set the scrollbar max value automatically based on panel height vs. most-bottom Control.</param>
         public void CreateVerticalScrollbar(StyleSheet? stylesheet, StyleSheet? handleStylesheet, bool autoSetScrollbarMax = true)
         {
-            VerticalScrollbar = new(stylesheet, handleStylesheet, Orientation.Vertical)
-            {
-                Anchor = Anchor.TopRight,
-                IncludeInInternalAutoAnchorCalculation = false,
-                Value = 0,
-                MaxValue = 0,
-                FlippedDirection = true,
-                MouseWheelStep = -1,
-                IgnoreScrollOffset = true
-            };
+            VerticalScrollbar = new Slider(stylesheet, handleStylesheet, Orientation.Vertical);
+            VerticalScrollbar.Anchor = Anchor.TopRight;
+            VerticalScrollbar.IncludeInInternalAutoAnchorCalculation = false;
+            VerticalScrollbar.Value = 0;
+            VerticalScrollbar.MaxValue = 0;
+            VerticalScrollbar.FlippedDirection = true;
+            VerticalScrollbar.MouseWheelStep = -1;
+            VerticalScrollbar.IgnoreScrollOffset = true;
             _autoSetScrollbarMax = autoSetScrollbarMax;
             AddChildInternal(VerticalScrollbar, true);
             VerticalScrollbar.IgnoreScrollOffset = true;

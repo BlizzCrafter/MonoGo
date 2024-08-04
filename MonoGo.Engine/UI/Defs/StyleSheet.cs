@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
-    /// Define the graphics style of a GUI entity and a state.
+    /// Define the graphics style of a GUI Control and a state.
     /// </summary>
     public class StyleSheetState
     {
@@ -29,12 +29,17 @@ namespace MonoGo.Engine.UI.Defs
         public IconTexture? Icon { get; set; }
 
         /// <summary>
-        /// Fill color tint.
+        /// Tint color for textures.
         /// </summary>
-        public Color? FillColor { get; set; }
+        public Color? TintColor { get; set; }
 
         /// <summary>
-        /// Text alignment for controls with text.
+        /// Background color to draw.
+        /// </summary>
+        public Color? BackgroundColor { get; set; }
+
+        /// <summary>
+        /// Text alignment for entities with text.
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public TextAlignment? TextAlignment { get; set; }
@@ -50,7 +55,7 @@ namespace MonoGo.Engine.UI.Defs
         public Color? TextFillColor { get; set; }
 
         /// <summary>
-        /// Text fill color to use when entity has no value.
+        /// Text fill color to use when Control has no value.
         /// </summary>
         public Color? NoValueTextFillColor { get; set; }
 
@@ -76,7 +81,13 @@ namespace MonoGo.Engine.UI.Defs
         public int? FontSize { get; set; }
 
         /// <summary>
-        /// Effect to use while rendering this entity.
+        /// If defined, will scale texts by this factor.
+        /// This is useful combined with inheritance - you can define font size in one place, and use scale to adjust size for specific Control types based on it.
+        /// </summary>
+        public float? TextScale { get; set; }
+
+        /// <summary>
+        /// Effect to use while rendering this Control.
         /// This can be used by the host application as actual shader name, a flag identifier to change rendering, or any other purpose.
         /// </summary>
         public string? EffectIdentifier { get; set; }
@@ -88,7 +99,7 @@ namespace MonoGo.Engine.UI.Defs
         public Sides? Padding { get; set; }
 
         /// <summary>
-        /// Expand the bounding rectangle of this entity by these values.
+        /// Expand the bounding rectangle of this Control by these values.
         /// </summary>
         public Sides? ExtraSize { get; set; }
 
@@ -98,9 +109,23 @@ namespace MonoGo.Engine.UI.Defs
         public Point? MarginBefore { get; set; }
 
         /// <summary>
-        /// Extra offset to add to next controls in parent that has auto anchor from this entity.
+        /// Extra offset to add to next controls in parent that has auto anchor from this Control.
         /// </summary>
         public Point? MarginAfter { get; set; }
+        /// <summary>
+        /// Outline width, in pixels, around the bounding rectangle borders of the Control.
+        /// </summary>
+        public Sides? BoxOutlineWidth { get; set; }
+
+        /// <summary>
+        /// Box outline offset, in pixels.
+        /// </summary>
+        public Point? BoxOutlineOffset { get; set; }
+
+        /// <summary>
+        /// Outline color for the bounding rectangle outlines, if set.
+        /// </summary>
+        public Color? BoxOutlineColor { get; set; }
 
         public StyleSheetState DeepCopy()
         {
@@ -108,7 +133,7 @@ namespace MonoGo.Engine.UI.Defs
             copy.FillTextureFramed = FillTextureFramed?.DeepCopy();
             copy.FillTextureStretched = FillTextureStretched?.DeepCopy();
             copy.Icon = Icon?.DeepCopy();
-            copy.FillColor = FillColor.HasValue ? new Color(FillColor.Value.R, FillColor.Value.G, FillColor.Value.B, FillColor.Value.A) : null;
+            copy.TintColor = TintColor.HasValue ? new Color(TintColor.Value.R, TintColor.Value.G, TintColor.Value.B, TintColor.Value.A) : null;
             copy.TextAlignment = TextAlignment;
             copy.FontIdentifier = new string(FontIdentifier);
             copy.TextFillColor = TextFillColor.HasValue ? new Color(TextFillColor.Value.R, TextFillColor.Value.G, TextFillColor.Value.B, TextFillColor.Value.A) : null;
@@ -127,7 +152,7 @@ namespace MonoGo.Engine.UI.Defs
     }
 
     /// <summary>
-    /// Define the graphics style of a GUI entity.
+    /// Define the graphics style of a GUI Control.
     /// </summary>
     public class StyleSheet
     {
@@ -135,12 +160,17 @@ namespace MonoGo.Engine.UI.Defs
         static Dictionary<string, PropertyInfo> _cachedProperties = new();
 
         /// <summary>
-        /// Default entity width.
+        /// Inherit properties from another stylesheet file.
+        /// Only works when loading from files.
+        /// </summary>
+        public string? InheritFrom { get; set; }
+        /// <summary>
+        /// Default Control width.
         /// </summary>
         public Measurement? DefaultWidth { get; set; }
 
         /// <summary>
-        /// Default entity height.
+        /// Default Control height.
         /// </summary>
         public Measurement? DefaultHeight { get; set; }
 
@@ -155,7 +185,7 @@ namespace MonoGo.Engine.UI.Defs
         public int? MinHeight { get; set; }
 
         /// <summary>
-        /// Default anchor for the entity.
+        /// Default anchor for the Control.
         /// </summary>
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Anchor? DefaultAnchor { get; set; }
@@ -172,32 +202,32 @@ namespace MonoGo.Engine.UI.Defs
         public StyleSheetState? Default { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is targeted.
+        /// Stylesheet for when the Control is targeted.
         /// </summary>
         public StyleSheetState? Targeted { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is interacted with.
+        /// Stylesheet for when the Control is interacted with.
         /// </summary>
         public StyleSheetState? Interacted { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is checked.
+        /// Stylesheet for when the Control is checked.
         /// </summary>
         public StyleSheetState? Checked { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is targeted checked.
+        /// Stylesheet for when the Control is targeted checked.
         /// </summary>
         public StyleSheetState? TargetedChecked { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is disabled.
+        /// Stylesheet for when the Control is disabled.
         /// </summary>
         public StyleSheetState? Disabled { get; set; }
 
         /// <summary>
-        /// Stylesheet for when the entity is disabled, but also checked.
+        /// Stylesheet for when the Control is disabled, but also checked.
         /// </summary>
         public StyleSheetState? DisabledChecked { get; set; }
 
@@ -205,16 +235,16 @@ namespace MonoGo.Engine.UI.Defs
         static StyleSheetState _nullStyle = new StyleSheetState();
 
         /// <summary>
-        /// If bigger than 0, will interpolate between states of the entity using this value as speed factor.
+        /// If bigger than 0, will interpolate between states of the Control using this value as speed factor.
         /// If this value is 0 (default), will not perform interpolation.
         /// </summary>
         /// <remarks>This value affect textures and colors, but not other state properties.</remarks>
         public float? InterpolateStatesSpeed { get; set; }
 
         /// <summary>
-        /// If bigger than 0, will interpolate internal moving parts of this entity using this value as speed factor.
+        /// If bigger than 0, will interpolate internal moving parts of this Control using this value as speed factor.
         /// If this value is 0, will not perform interpolation on offset.
-        /// Note: this does not affect the entire entity offset, its only for things like slider entity handle offset and internal mechanisms.
+        /// Note: this does not affect the entire Control offset, its only for things like slider Control handle offset and internal mechanisms.
         /// Default value is 0.
         /// </summary>
         public float? InterpolateOffsetsSpeed { get; set; }
@@ -241,7 +271,7 @@ namespace MonoGo.Engine.UI.Defs
         }
 
         /// <summary>
-        /// Get stylesheet for a given entity state.
+        /// Get stylesheet for a given Control state.
         /// </summary>
         public StyleSheetState GetStyle(ControlState state)
         {
@@ -259,7 +289,7 @@ namespace MonoGo.Engine.UI.Defs
         }
 
         /// <summary>
-        /// Get property value by entity state, or return Default if not set for given state.
+        /// Get property value by Control state, or return Default if not set for given state.
         /// </summary>
         /// <typeparam name="T">Property type.</typeparam>
         /// <param name="propertyName">Property name.</param>
@@ -358,9 +388,63 @@ namespace MonoGo.Engine.UI.Defs
         /// <returns>Loaded stylesheet.</returns>
         public static StyleSheet LoadFromJsonFile(string filename)
         {
-            return LoadFromJsonMemory(File.ReadAllText(filename));
+            var ret = LoadFromJsonMemory(File.ReadAllText(filename));
+            if (ret.InheritFrom != null)
+            {
+                var folder = Path.GetDirectoryName(filename)!;
+                var parent = LoadFromJsonFile(Path.Combine(folder, ret.InheritFrom));
+                ret.InterpolateOffsetsSpeed = ret.InterpolateOffsetsSpeed ?? parent.InterpolateOffsetsSpeed;
+                ret.InterpolateStatesSpeed = ret.InterpolateStatesSpeed ?? parent.InterpolateStatesSpeed;
+                ret.DefaultTextAnchor = ret.DefaultTextAnchor ?? parent.DefaultTextAnchor;
+                ret.DefaultAnchor = ret.DefaultAnchor ?? parent.DefaultAnchor;
+                ret.MinHeight = ret.MinHeight ?? parent.MinHeight;
+                ret.MinWidth = ret.MinWidth ?? parent.MinWidth;
+                ret.DefaultWidth = ret.DefaultWidth ?? parent.DefaultWidth;
+                ret.DefaultHeight = ret.DefaultHeight ?? parent.DefaultHeight;
+                ret.Default = InheritStylesheetState(parent.Default, ret.Default);
+                ret.Targeted = InheritStylesheetState(parent.Targeted, ret.Targeted);
+                ret.TargetedChecked = InheritStylesheetState(parent.TargetedChecked, ret.TargetedChecked);
+                ret.DisabledChecked = InheritStylesheetState(parent.DisabledChecked, ret.DisabledChecked);
+                ret.Checked = InheritStylesheetState(parent.Checked, ret.Checked);
+                ret.Interacted = InheritStylesheetState(parent.Interacted, ret.Interacted);
+                ret.Disabled = InheritStylesheetState(parent.Disabled, ret.Disabled);
+            }
+            return ret;
         }
 
+        /// <summary>
+        /// Combine parent and derived Control stylesheet state.
+        /// </summary>
+        public static StyleSheetState? InheritStylesheetState(StyleSheetState? parent, StyleSheetState? derived)
+        {
+            // if both are null, return null
+            if ((parent == null) && (derived == null))
+            {
+                return null;
+            }
+
+            // if one of them is null, return the other
+            if ((parent == null) || (derived == null))
+            {
+                return derived ?? parent;
+            }
+
+            // perform merge of all stylesheet properties
+            var ret = new StyleSheetState();
+            PropertyInfo[] properties = typeof(StyleSheetState).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.CanRead && property.CanWrite)
+                {
+                    object? value = property.GetValue(derived) ?? property.GetValue(parent);
+                    if (value != null)
+                    {
+                        property.SetValue(ret, value);
+                    }
+                }
+            }
+            return ret;
+        }
         /// <summary>
         /// Serialize this stylesheet into Json content.
         /// </summary>

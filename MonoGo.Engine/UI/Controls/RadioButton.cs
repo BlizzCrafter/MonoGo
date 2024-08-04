@@ -1,10 +1,9 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Engine.UI.Controls
 {
     /// <summary>
-    /// Radio button entity type.
+    /// Radio button Control type.
     /// </summary>
     public class RadioButton : CheckedControl
     {

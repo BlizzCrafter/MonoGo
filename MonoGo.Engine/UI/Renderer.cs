@@ -301,6 +301,51 @@ namespace MonoGo.Engine.UI
             BeginBatch();
         }
 
+        /// <inheritdoc/>
+        public static Color GetPixelFromTexture(string textureId, Point sourcePosition)
+        {
+            var texture = GetTexture(textureId);
+            var pixelData = new Color[1];
+            if (sourcePosition.X < 0) sourcePosition.X = 0;
+            if (sourcePosition.Y < 0) sourcePosition.Y = 0;
+            if (sourcePosition.X >= texture.Width) sourcePosition.X = texture.Width - 1;
+            if (sourcePosition.Y >= texture.Height) sourcePosition.Y = texture.Height - 1;
+            texture.GetData(0, new Rectangle(sourcePosition.X, sourcePosition.Y, 1, 1), pixelData, 0, 1);
+            var pixelColor = pixelData[0];
+            return new Color(pixelColor.R, pixelColor.G, pixelColor.B, pixelColor.A);
+        }
+
+        /// <inheritdoc/>
+        public static Point? FindPixelOffsetInTexture(string textureId, Rectangle sourceRect, Color color, bool returnNearestColor)
+        {
+            var texture = GetTexture(textureId);
+            var pixelData = new Color[sourceRect.Width * sourceRect.Height];
+            texture.GetData(0, new Rectangle(sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height), pixelData, 0, pixelData.Length);
+            Point? ret = null;
+            float nearestDistance = 255f * 255f * 255f * 255f;
+            for (int x = 0; x < sourceRect.Width; x++)
+            {
+                for (int y = 0; y < sourceRect.Height; y++)
+                {
+                    var curr = pixelData[x + y * sourceRect.Width];
+                    if (curr.R == color.R && curr.G == color.G && curr.B == color.B && curr.A == color.A)
+                    {
+                        return new Point(x, y);
+                    }
+                    else if (returnNearestColor)
+                    {
+                        float distance = Vector4.Distance(new Vector4(curr.R, curr.G, curr.B, curr.A), new Vector4(color.R, color.G, color.B, color.A));
+                        if (distance < nearestDistance)
+                        {
+                            nearestDistance = distance;
+                            ret = new Point(x, y);
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+
         /// <summary>
         /// MonoGame measure string sucks and return wrong result.
         /// So I copied the code that render string and changed it to measure instead.

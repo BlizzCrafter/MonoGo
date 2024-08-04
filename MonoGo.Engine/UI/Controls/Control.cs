@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 using System;
@@ -53,6 +52,11 @@ namespace MonoGo.Engine.UI.Controls
         public bool IsDraggable => DraggableMode != DraggableMode.NotDraggable;
 
         /// <summary>
+        /// If true and Control is being dragged, will automatically bring it to front.
+        /// </summary>
+        public bool BringToFrontIfDragged = true;
+
+		/// <summary>
         /// If true, once this control becomes the active target it will lock itself as active until this flag turns false.
         /// </summary>
         internal virtual bool LockFocusOnSelf => false;
@@ -146,11 +150,19 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         internal int MinHeight => StyleSheet?.MinHeight ?? 0;
 
+        /// <summary>
+        /// Extra pixels to add to sides of the control when checking collision detection for user interactions.
+        /// </summary>
+        internal Sides ExtraMarginForInteractions = new Sides();
         // interpolation for next state
         protected float _interpolateToNextState = 0f;
         protected ControlState _lastState = ControlState.Default;
         protected ControlState _prevState = ControlState.Default;
 
+        // to protect against exception while adding / removing children from events that could occur while iterating children list
+        int _childrenListLocked;
+        List<(Control Control, int? InsertAt)> _entitiesToAdd = new();
+        List<Control> _entitiesToRemove = new();
         // to prevent 'flickering' with interaction state in case user perform quick clicks, we "lock" state to active when we switch to it for few ms
         float _timeToRemainInteractedState = 0f;
 
@@ -225,12 +237,12 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Last drawn internal bounding rect.
         /// </summary>
-        public Rectangle LastInternalBoundingRect { get; private set; }
+        public Rectangle LastInternalBoundingRect { get; protected set; }
 
         /// <summary>
         /// Last drawn bounding rect.
         /// </summary>
-        public Rectangle LastBoundingRect { get; private set; }
+        public Rectangle LastBoundingRect { get; protected set; }
 
         /// <summary>
         /// Last drawn visible bounding rect, with parents visible region taken into consideration.
@@ -527,6 +539,24 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <summary>
+        /// Get default entity size for this entity type.
+        /// </summary>
+        protected virtual MeasureVector GetDefaultEntityTypeSize()
+        {
+            var ret = new MeasureVector();
+            ret.SetPercents(100f, 100f);
+            return ret;
+        }
+
+        /// <summary>
+        /// Get default entity anchor for this entity type.
+        /// </summary>
+        protected virtual Anchor GetDefaultEntityTypeAnchor()
+        {
+            return Anchor.AutoLTR;
+        }
+
+        /// <summary>
         /// Add a child control internally.
         /// This is transparent to the user, and the control cannot be removed.
         /// </summary>
@@ -565,11 +595,31 @@ namespace MonoGo.Engine.UI.Controls
         /// Add a child control.
         /// </summary>
         /// <param name="child">Child control to add.</param>
+        /// <param name="index">Index to add child to.</param>
         /// <exception cref="Exception">Thrown if child already have a parent.</exception>
-        public T AddChild<T>(T child) where T : Control
+        public T AddChild<T>(T child, bool forceAdd = false, int? index = null) where T : Control
         {
             if (child.Parent != null) { throw new Exception("Control to add as child already have a parent control! Remove it first."); }
-            _children.Add(child);
+
+            // if children list is locked, add later
+            if (!forceAdd && _childrenListLocked > 0)
+            {
+                _entitiesToAdd.Add((child, index));
+                _entitiesToRemove.Remove(child);
+            }
+            // add to children list
+            else
+            {
+                if (index.HasValue)
+                {
+                    _children.Insert(index.Value, child);
+                }
+                else
+                {
+                    _children.Add(child);
+                }
+            }
+
             child.Parent = this;
             return child;
         }
@@ -579,19 +629,86 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="child">Child control to remove.</param>
         /// <exception cref="Exception">Thrown if child have a different parent or don't have a parent at all.</exception>
-        public void RemoveChild(Control child)
+        public void RemoveChild(Control child, bool forceRemoval = false)
         {
-            if (child.Parent != this) { throw new Exception("Control to remove is not a child of this parent control!"); }
-            _children.Remove(child);
+            if (child.Parent != this) { throw new Exception("Control to remove is not a child of this parent Control!"); }
+
+            // if children list is locked, remove later
+            if (!forceRemoval && _childrenListLocked > 0)
+            {
+                _entitiesToRemove.Add(child);
+                _entitiesToAdd.RemoveAll(x => x.Control == child);
+            }
+            // remove from children list
+            else
+            {
+                _children.Remove(child);
+            }
+
             child.Parent = null!;
+        }
+        /// <summary>
+        /// Bring this Control to the top-most position of its parent.
+        /// </summary>
+        public void BringToFront()
+        {
+            var parent = Parent;
+            if ((parent != null) && (parent._children[parent._children.Count - 1] != this))
+            {
+                RemoveSelf();
+                parent.AddChild(this);
+            }
         }
 
         /// <summary>
+        /// Push this Control to the back position of its parent.
+        /// </summary>
+        public void PushToBack()
+        {
+            var parent = Parent;
+            if ((parent != null) && (parent._children[0] != this))
+            {
+                RemoveSelf();
+                parent.AddChild(this, index: 0);
+            }
+        }
+
+        /// <summary>
+        /// Add / remove entities that are delayed because children list was locked.
+        /// </summary>
+        void AddAndRemoveDelayedEntities()
+        {
+            if (_entitiesToRemove.Count > 0)
+            {
+                foreach (var Control in _entitiesToRemove)
+                {
+                    _children.Remove(Control);
+                }
+                _entitiesToRemove.Clear();
+            }
+
+            if (_entitiesToAdd.Count > 0)
+            {
+                foreach (var Control in _entitiesToAdd)
+                {
+                    if (Control.InsertAt.HasValue)
+                    {
+                        _children.Insert(Control.InsertAt.Value, Control.Control);
+                    }
+                    else
+                    {
+                        _children.Add(Control.Control);
+                    }
+                }
+                _entitiesToAdd.Clear();
+            }
+        }
+        /// <summary>
         /// Remove self from parent.
         /// </summary>
-        public void RemoveSelf()
+        public void RemoveSelf(bool forceRemoval = false)
         {
-            Parent?.RemoveChild(this);
+            Parent?.RemoveChild(this, forceRemoval);
         }
 
         /// <summary>
@@ -622,7 +739,7 @@ namespace MonoGo.Engine.UI.Controls
             Color fillColor;
             if (IsCurrentlyLocked())
             {
-                fillColor = new Color(255, 0, 0, 65);
+                fillColor = new Color(255, 0, 50, 65);
             }
             else if (IsCurrentlyDisabled())
             {
@@ -630,7 +747,8 @@ namespace MonoGo.Engine.UI.Controls
             }
             else if (IsTargeted)
             {
-                fillColor = new Color((byte)0, (byte)255, (byte)Math.Clamp(100 + 155 * Math.Sin(UISystem.ElapsedTime * 5), (byte)0, (byte)255), (byte)50);
+                var animatedColor = (byte)Math.Clamp(100 + 155 * Math.Sin(UISystem.ElapsedTime * 5), 0, 255);
+                fillColor = new Color((byte)(255 - animatedColor), (byte)255, animatedColor, (byte)50);
             }
             else if (Interactable)
             {
@@ -638,7 +756,14 @@ namespace MonoGo.Engine.UI.Controls
             }
             else
             {
-                fillColor = new Color(0, 155, 0, 50);
+                if (IgnoreInteractions)
+                {
+                    fillColor = new Color(10, 0, 175, 50);
+                }
+                else
+                {
+                	fillColor = new Color(0, 155, 0, 50);
+                }
             }
 
             // draw internal rect
@@ -650,6 +775,25 @@ namespace MonoGo.Engine.UI.Controls
                 Renderer.DrawRectangle(LastBoundingRect, fillColor);
             }
 
+            // draw marings
+            var marginBefore = GetMarginBefore();
+            var marginAfter = GetMarginAfter();
+            if (marginBefore.X > 0)
+            {
+                Renderer.DrawRectangle(new Rectangle(LastBoundingRect.X - marginBefore.X, LastBoundingRect.Y + LastBoundingRect.Height / 2 - 4, marginBefore.X, 8), new Color(255, 255, 0, 100));
+            }
+            if (marginBefore.Y > 0)
+            {
+                Renderer.DrawRectangle(new Rectangle(LastBoundingRect.X + LastBoundingRect.Width / 2 - 4, LastBoundingRect.Y - marginBefore.Y, 8, marginBefore.Y), new Color(255, 255, 0, 100));
+            }
+            if (marginAfter.X > 0)
+            {
+                Renderer.DrawRectangle(new Rectangle(LastBoundingRect.Right, LastBoundingRect.Y + LastBoundingRect.Height / 2 - 4, marginAfter.X, 8), new Color(255, 255, 0, 100));
+            }
+            if (marginAfter.Y > 0)
+            {
+                Renderer.DrawRectangle(new Rectangle(LastBoundingRect.X + LastBoundingRect.Width / 2 - 4, LastBoundingRect.Bottom, 8, marginAfter.Y), new Color(255, 255, 0, 100));
+            }
             // draw anchor
             Point? anchorPosition = null;
             switch (Anchor)
@@ -698,10 +842,12 @@ namespace MonoGo.Engine.UI.Controls
             // debug draw children
             if (debugDrawChildren)
             {
+                _childrenListLocked++;
                 foreach (var child in _children)
                 {
                     child.DebugDraw(debugDrawChildren);
                 }
+                _childrenListLocked--;
             }
 
             // debug draw drag position
@@ -755,6 +901,10 @@ namespace MonoGo.Engine.UI.Controls
             {
                 // if we already have scissor region set, queue it.
                 var newRegion = LastInternalBoundingRect;
+                newRegion.X -= 2;
+                newRegion.Y -= 2;
+                newRegion.Width += 4;
+                newRegion.Height += 4;
                 var currentRegion = Renderer.GetScissorRegion();
                 if (currentRegion.HasValue)
                 {
@@ -812,6 +962,7 @@ namespace MonoGo.Engine.UI.Controls
             siblingDrawResult = null;
             int maxWidth = 0;
             int maxHeight = 0;
+            _childrenListLocked++;
             foreach (var child in _children)
             {
                 if (child.Visible)
@@ -821,14 +972,17 @@ namespace MonoGo.Engine.UI.Controls
                     PostDrawingChild(siblingDrawResult);
 
                     // adjust auto size
-                    if (AutoWidth) { 
-                        maxWidth = (int)MathF.Max(maxWidth, siblingDrawResult.Value.BoundingRect.Right - LastBoundingRect.Left + (LastBoundingRect.Width - LastInternalBoundingRect.Width) / 2); 
+                    if (AutoWidth) {
+                        var margin = child.GetMarginAfter();
+                        maxWidth = (int)MathF.Max(maxWidth, margin.X + siblingDrawResult.Value.BoundingRect.Right - LastBoundingRect.Left + (LastBoundingRect.Width - LastInternalBoundingRect.Width) / 2); 
                     }
-                    if (AutoHeight) { 
-                        maxHeight = (int)MathF.Max(maxHeight, siblingDrawResult.Value.BoundingRect.Bottom - LastBoundingRect.Top + (LastBoundingRect.Height - LastInternalBoundingRect.Height) / 2); 
+                    if (AutoHeight) {
+                        var margin = child.GetMarginAfter();
+                        maxHeight = (int)MathF.Max(maxHeight, margin.Y + siblingDrawResult.Value.BoundingRect.Bottom - LastBoundingRect.Top + (LastBoundingRect.Height - LastInternalBoundingRect.Height) / 2); 
                     }
                 }
             }
+            _childrenListLocked--;
 
             // draw top internal children
             siblingDrawResult = null;
@@ -932,6 +1086,8 @@ namespace MonoGo.Engine.UI.Controls
             // perform rendering
             DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
 
+            // add optional box outline
+            DrawBoxOutline(boundingRect);
             // return rendering result
             return new DrawMethodResult() 
             { 
@@ -941,6 +1097,37 @@ namespace MonoGo.Engine.UI.Controls
             };
         }
 
+        /// <summary>
+        /// Render box outline, if set.
+        /// </summary>
+        protected virtual void DrawBoxOutline(Rectangle boundingRect)
+        {
+            var boxOutline = StyleSheet.GetProperty("BoxOutlineWidth", State, Sides.Zero, OverrideStyles);
+            if (boxOutline.Left > 0 || boxOutline.Right > 0 || boxOutline.Top > 0 || boxOutline.Bottom > 0)
+            {
+                var color = StyleSheet.GetProperty("BoxOutlineColor", State, Color.White, OverrideStyles);
+                var offset = StyleSheet.GetProperty("BoxOutlineOffset", State, Point.Zero, OverrideStyles);
+                if (color.A > 0)
+                {
+                    if (boxOutline.Top > 0)
+                    {
+                        Renderer.DrawRectangle(new Rectangle(offset.X + boundingRect.Left - boxOutline.Left, offset.Y + boundingRect.Top - boxOutline.Top, boundingRect.Width + boxOutline.Left + boxOutline.Right, boxOutline.Top), color);
+                    }
+                    if (boxOutline.Bottom > 0)
+                    {
+                        Renderer.DrawRectangle(new Rectangle(offset.X + boundingRect.Left - boxOutline.Left, offset.Y + boundingRect.Bottom, boundingRect.Width + boxOutline.Left + boxOutline.Right, boxOutline.Bottom), color);
+                    }
+                    if (boxOutline.Left > 0)
+                    {
+                        Renderer.DrawRectangle(new Rectangle(offset.X + boundingRect.Left - boxOutline.Left, offset.Y + boundingRect.Top, boxOutline.Left, boundingRect.Height), color);
+                    }
+                    if (boxOutline.Right > 0)
+                    {
+                        Renderer.DrawRectangle(new Rectangle(offset.X + boundingRect.Right, offset.Y + boundingRect.Top, boxOutline.Right, boundingRect.Height), color);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Get scrollbars offset, if scrollbars are set.
         /// </summary>
@@ -965,6 +1152,13 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="parentDrawResult">Parent draw call results.</param>
         protected virtual void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
+            DrawFillTextures(boundingRect);
+        }
+        /// <summary>
+        /// Draw just the fill textures of this Control.
+        /// </summary>
+        protected virtual void DrawFillTextures(Rectangle boundingRect)
+        {
             if (DrawFillTexture)
             {
                 // get current state
@@ -974,7 +1168,8 @@ namespace MonoGo.Engine.UI.Controls
                 void DrawStateFill(ControlState state, Rectangle boundingRect, float alpha)
                 {
                     // get color
-                    var color = StyleSheet.GetProperty("FillColor", state, Color.White, OverrideStyles)!;
+                    var color = StyleSheet.GetProperty("TintColor", state, Color.White, OverrideStyles)!;
+                    var backColor = StyleSheet.GetProperty("BackgroundColor", state, new Color(0, 0, 0, 0), OverrideStyles)!;
 
                     // animate colors
                     if (ColorAnimator != null)
@@ -986,11 +1181,16 @@ namespace MonoGo.Engine.UI.Controls
                     if (alpha <= 1f)
                     {
                         color.A = (byte)((float)color.A * alpha);
+                        backColor.A = (byte)((float)backColor.A * alpha);
                     }
 
+                    // draw background color
+                    if (backColor.A > 0)
+                    {
+                        Renderer.DrawRectangle(boundingRect, backColor);
+                    }
                     // not visible? skip
                     if (color.A == 0) { return; }
-
 
                     // get effect
                     var effectId = StyleSheet.GetProperty<string>("EffectIdentifier", state, null, OverrideStyles);
@@ -1038,6 +1238,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="inputState">Current input state.</param>
         internal virtual void PostUpdate(InputState inputState)
         {
+            AddAndRemoveDelayedEntities();
         }
 
         /// <summary>
@@ -1143,6 +1344,10 @@ namespace MonoGo.Engine.UI.Controls
                     {
                         _dragHandlePosition = inputState.MousePosition;
                         _dragHandleOffset = new Point(LastBoundingRect.X - inputState.MousePosition.X, LastBoundingRect.Y - inputState.MousePosition.Y);
+                        if (BringToFrontIfDragged)
+                        {
+                            BringToFront();
+                        }
                     }
                 }
                 // stop dragging
@@ -1454,10 +1659,12 @@ namespace MonoGo.Engine.UI.Controls
             {
                 child._DoUpdate(dt);
             }
+            _childrenListLocked++;
             foreach (var child in _children)
             {
                 child._DoUpdate(dt);
             }
+            _childrenListLocked--;
 
             // post update event
             Events.AfterUpdate?.Invoke(this);
@@ -1473,6 +1680,7 @@ namespace MonoGo.Engine.UI.Controls
             _lockedState = null;
             _disabledState = null;
             _visibilityState = null;
+            AddAndRemoveDelayedEntities();
         }
 
         /// <summary>
@@ -1514,12 +1722,12 @@ namespace MonoGo.Engine.UI.Controls
             if (useVisibleRect)
             {
                 return (
-                (cp.X >= LastVisibleBoundingRect.X) && (cp.X <= (LastVisibleBoundingRect.X + LastVisibleBoundingRect.Width)) &&
-                (cp.Y >= LastVisibleBoundingRect.Y) && (cp.Y <= (LastVisibleBoundingRect.Y + LastVisibleBoundingRect.Height)));
+                (cp.X >= (LastVisibleBoundingRect.X - ExtraMarginForInteractions.Left)) && (cp.X <= (LastVisibleBoundingRect.X + LastVisibleBoundingRect.Width + ExtraMarginForInteractions.Right)) &&
+                (cp.Y >= (LastVisibleBoundingRect.Y - ExtraMarginForInteractions.Top)) && (cp.Y <= (LastVisibleBoundingRect.Y + LastVisibleBoundingRect.Height + ExtraMarginForInteractions.Bottom)));
             }
             return (
-                (cp.X >= LastBoundingRect.X) && (cp.X <= (LastBoundingRect.X + LastBoundingRect.Width)) &&
-                (cp.Y >= LastBoundingRect.Y) && (cp.Y <= (LastBoundingRect.Y + LastBoundingRect.Height)));
+                (cp.X >= (LastBoundingRect.X - ExtraMarginForInteractions.Left)) && (cp.X <= (LastBoundingRect.X + LastBoundingRect.Width + ExtraMarginForInteractions.Right)) &&
+                (cp.Y >= (LastBoundingRect.Y - ExtraMarginForInteractions.Top)) && (cp.Y <= (LastBoundingRect.Y + LastBoundingRect.Height + ExtraMarginForInteractions.Bottom)));
         }
 
         /// <summary>
@@ -1529,10 +1737,12 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="callback">Callback to trigger per control. Return false to break iteration.</param>
         public void IterateChildren(Func<Control, bool> callback)
         {
+            _childrenListLocked++;
             foreach (var child in _children)
             {
                 if (!callback(child)) { return; }
             }
+            _childrenListLocked--;
         }
 
         /// <summary>
@@ -1571,11 +1781,13 @@ namespace MonoGo.Engine.UI.Controls
                 }
             }
 
+            _childrenListLocked++;
             foreach (var child in _children)
             {
                 child._WalkInt(callback, ref cont);
                 if (!cont) { return; }
             }
+            _childrenListLocked--;
 
             if (WalkInternalChildren)
             {

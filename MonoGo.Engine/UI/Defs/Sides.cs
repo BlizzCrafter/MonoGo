@@ -18,6 +18,19 @@
             Bottom = bottom; 
         }
 
+        public void TurnToZero()
+        {
+            Left = Right = Top = Bottom = 0;
+        }
+
+        public void Set(int left, int right, int top, int bottom)
+        {
+            Left = left;
+            Right = right;
+            Top = top;
+            Bottom = bottom;
+        }
+
         public static readonly Sides Zero = new Sides(0, 0, 0, 0);
     }
 }

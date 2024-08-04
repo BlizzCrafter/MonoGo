@@ -1,5 +1,4 @@
-﻿using MonoGo.Engine.EC;
-using MonoGo.Engine.UI.Defs;
+﻿using MonoGo.Engine.UI.Defs;
 using MonoGo.Engine.UI.Utils;
 using System;
 
@@ -11,7 +10,7 @@ namespace MonoGo.Engine.UI.Controls
     public class Slider : Control
     {
         /// <summary>
-        /// The entity used as slider handle.
+        /// The Control used as slider handle.
         /// </summary>
         public Control Handle { get; private set; }
 
@@ -40,7 +39,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Slider min value.
         /// </summary>
-        public int MinValue
+        public virtual int MinValue
         {
             get => _minValue;
             set
@@ -61,7 +60,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Slider max value.
         /// </summary>
-        public int MaxValue
+        public virtual int MaxValue
         {
             get => _maxValue;
             set
@@ -151,6 +150,10 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         public int ValueRange => MaxValue - MinValue;
 
+        /// <summary>
+        /// If true, this slider will set its range (min, max, and steps count) automatically, based on the Control size.
+        /// </summary>
+        public bool AutoSetRange = false;
         /// <summary>
         /// Create the slider.
         /// </summary>
@@ -248,9 +251,29 @@ namespace MonoGo.Engine.UI.Controls
         protected override void Update(float dt)
         {
             base.Update(dt);
+            if (AutoSetRange)
+            {
+                SetAutoRange();
+            }
             UpdateHandle(dt);
         }
 
+        /// <summary>
+        /// Auto set slider min, max, and steps count.
+        /// </summary>
+        protected virtual void SetAutoRange()
+        {
+            MinValue = 0;
+            if (Orientation == Orientation.Horizontal)
+            {
+                MaxValue = Math.Max(LastBoundingRect.Width, 10);
+            }
+            else
+            {
+                MaxValue = Math.Max(LastBoundingRect.Height, 10);
+            }
+            StepsCount = (uint)MaxValue;
+        }
         /// <summary>
         /// Update slider handle offset.
         /// </summary>

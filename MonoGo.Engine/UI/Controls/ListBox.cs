@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.EC;
 using MonoGo.Engine.UI.Defs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 
 namespace MonoGo.Engine.UI.Controls
 {
@@ -43,6 +41,20 @@ namespace MonoGo.Engine.UI.Controls
 
         /// <inheritdoc/>
         internal override bool Interactable => true;
+        /// <summary>
+        /// Styles to override stylesheet defaults, regardless of Control state, for the list items paragraphs.
+        /// </summary>
+        public StyleSheetState OverrideItemStyles = new();
+
+        /// <summary>
+        /// Styles to override stylesheet defaults, regardless of Control state, for the selected item paragraphs.
+        /// </summary>
+        public StyleSheetState OverrideSelectedItemStyles = new();
+
+        /// <summary>
+        /// Styles to override stylesheet defaults, regardless of Control state, for a specific list item by value.
+        /// </summary>
+        public Dictionary<string, StyleSheetState> OverrideItemStyleByValue = new();
 
         /// <summary>
         /// Get / set selected index.
@@ -182,6 +194,13 @@ namespace MonoGo.Engine.UI.Controls
             }
         }
 
+        /// <summary>
+        /// Get extra paragraphs count for this list.
+        /// </summary>
+        protected virtual int GetExtraParagraphsCount()
+        {
+            return 0;
+        }
         /// <inheritdoc/>
         protected override void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
@@ -189,22 +208,23 @@ namespace MonoGo.Engine.UI.Controls
             base.DrawControlType(ref boundingRect, ref internalBoundingRect, parentDrawResult, siblingDrawResult);
 
             // calculate how many items we should show at any given time
-            int paragraphsCount = (int)Math.Ceiling((float)internalBoundingRect.Height / (float)ItemHeight);
+            int paragraphsCount = (int)Math.Ceiling((float)internalBoundingRect.Height / (float)ItemHeight) + GetExtraParagraphsCount();
+            if (paragraphsCount < 1) { paragraphsCount = 1; }
             if (paragraphsCount > _items.Count) { paragraphsCount = _items.Count; }
 
             // create new item paragraphs
             while (_paragraphs.Count < paragraphsCount)
             {
-                var p = new Paragraph(_itemsStylesheet);
+                var p = new Paragraph(_itemsStylesheet ?? UISystem.DefaultStylesheets.Paragraphs, "", false);
                 p.TextOverflowMode = TextOverflowMode.Overflow;
                 p.ShrinkWidthToMinimalSize = false;
                 p._overrideInteractableState = true;
                 p.Size.X.SetPercents(100f);
                 
                 // selecting list item value
-                p.Events.OnClick = (Control entity) =>
+                p.Events.OnClick = (Control Control) =>
                 {
-                    this.OnItemClicked(entity);
+                    this.OnItemClicked(Control);
                 };
                 AddChildInternal(p);
                 p.IgnoreScrollOffset = true;
@@ -235,37 +255,54 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Action to perform when a list item is clicked on.
         /// </summary>
-        protected virtual void OnItemClicked(Control entity)
+        protected virtual void OnItemClicked(Control Control)
         {
-            var newValue = entity.UserData as string;
-            if (AllowDeselect && (newValue == SelectedValue))
+            var newValue = Control.UserData as string;
+            if (newValue != null)
             {
-                SelectedValue = null;
-            }
-            else
-            {
-                SelectedValue = newValue;
-            }
+            	if (AllowDeselect && (newValue == SelectedValue))
+            	{
+                	SelectedValue = null;
+            	}
+            	else
+            	{
+                	SelectedValue = newValue;
+            	}
+        	}
         }
 
         /// <summary>
+        /// Set the height of this list to show exactly this number of items.
+        /// </summary>
+        /// <param name="items">How many items should be visible.</param>
+        public virtual void SetVisibleItemsCount(int items)
+        {
+            AutoHeight = false;
+            Size.Y.SetPixels(ItemHeight * items);
+        }
+        /// <summary>
         /// Set the values and texts of the paragraphs.
         /// </summary>
-        protected virtual void SetParagraphs(int scrollOffset)
+        protected virtual void SetParagraphs(int scrollOffset, int startIndex = 0)
         {
-            for (var i = 0; i < _paragraphs.Count; ++i)
+            for (var i = startIndex; i < _paragraphs.Count; ++i)
             {
-                if (i + scrollOffset >= _items.Count)
+                var itemIndex = i + scrollOffset - startIndex;
+                if ((itemIndex < 0) || (itemIndex > _items.Count)) { continue; }
+                if (itemIndex >= _items.Count)
                 {
                     _paragraphs[i].Visible = false;
                     break;
                 }
-                var item = _items[i + scrollOffset];
+                var item = _items[itemIndex];
                 var paragraph = _paragraphs[i];
                 paragraph.Visible = true;
                 paragraph.UserData = item.Value;
                 paragraph.Text = item.Label ?? item.Value;
-                paragraph.LockedState = item.Value == SelectedValue ? ControlState.Checked : null;
+                bool selected = item.Value == SelectedValue;
+                paragraph.LockedState = selected ? ControlState.Checked : null;
+                OverrideItemStyleByValue.TryGetValue(item.Value, out var perItemStyleValue);
+                paragraph.OverrideStyles = selected ? OverrideSelectedItemStyles : (perItemStyleValue ?? OverrideItemStyles);
             }
         }
 
@@ -321,6 +358,43 @@ namespace MonoGo.Engine.UI.Controls
             _items[index] = new ListItem() { Value = value, Label = label };
         }
 
+        /// <summary>
+        /// Change the label of an item in the list, without changing its value.
+        /// </summary>
+        /// <param name="valueToSet">Value to set label for (must exist in list).</param>
+        /// <param name="label">New label to set, or null to remove label and use the item value as label.</param>
+        public void SetItemLabel(string valueToSet, string? label)
+        {
+            ReplaceItem(valueToSet, valueToSet, label);
+        }
+
+        /// <summary>
+        /// Change the label of an item in the list, without changing its value, and add icon to the beginning of the label.
+        /// </summary>
+        /// <param name="valueToSet">Value to set label for (must exist in list).</param>
+        /// <param name="label">New label to set, or null to remove label and use the item value as label.</param>
+        /// <param name="icon">Icon to set.</param>
+        /// <param name="iconUseTextColor">If true, icon will use the same tint color as the text.</param>
+        public void SetItemLabel(string valueToSet, string label, IconTexture icon, bool iconUseTextColor)
+        {
+            var iconWidth = icon.SourceRect.Width * icon.TextureScale;
+            var tempParagraph = new Paragraph(_itemsStylesheet ?? UISystem.DefaultStylesheets.Paragraphs, "", false);
+            var spaceWidth = tempParagraph.MeasureText(" ").X;
+            var spacesCount = (int)(Math.Ceiling(iconWidth / spaceWidth) + 1);
+            var iconUseTextureColorVal = iconUseTextColor ? "y" : "n";
+            SetItemLabel(valueToSet, $"${{ICO:{icon.TextureId}|{icon.SourceRect.X}|{icon.SourceRect.Y}|{icon.SourceRect.Width}|{icon.SourceRect.Height}|{icon.TextureScale}|{iconUseTextureColorVal}}}" + new string(' ', spacesCount) + label);
+        }
+
+        /// <summary>
+        /// Change the label of an item in the list, without changing its value, to be an icon + the value itself.
+        /// </summary>
+        /// <param name="valueToSet">Value to set label for (must exist in list).</param>
+        /// <param name="icon">Icon to set.</param>
+        /// <param name="iconUseTextColor">If true, icon will use the same tint color as the text.</param>
+        public void SetItemLabel(string valueToSet, IconTexture icon, bool iconUseTextColor)
+        {
+            SetItemLabel(valueToSet, valueToSet, icon, iconUseTextColor);
+        }
         /// <summary>
         /// Get item index, or -1 if not found.
         /// </summary>

@@ -58,30 +58,45 @@ namespace MonoGo.Engine.UI
         public static class DefaultStylesheets
         {
             public static StyleSheet? Panels;
+            public static StyleSheet? MessageBoxPanels;
+            public static StyleSheet? MessageBoxParagraphs;
+            public static StyleSheet? MessageBoxTitles;
+            public static StyleSheet? MessageBoxButtons;
+            public static StyleSheet? MessageBoxBackdrop;
             public static StyleSheet? Paragraphs;
             public static StyleSheet? Titles;
+			public static StyleSheet? Labels;
             public static StyleSheet? Buttons;
             public static StyleSheet? HorizontalLines;
+			public static StyleSheet? VerticalLines;
             public static StyleSheet? CheckBoxes;
             public static StyleSheet? RadioButtons;
             public static StyleSheet? HorizontalSliders;
             public static StyleSheet? HorizontalSlidersHandle;
             public static StyleSheet? VerticalSliders;
             public static StyleSheet? VerticalSlidersHandle;
+			public static StyleSheet? HorizontalColorSliders;
+            public static StyleSheet? HorizontalColorSlidersHandle;
+            public static StyleSheet? VerticalColorSliders;
+            public static StyleSheet? VerticalColorSlidersHandle;
             public static StyleSheet? ListPanels;
             public static StyleSheet? ListItems;
             public static StyleSheet? DropDownPanels;
             public static StyleSheet? DropDownItems;
+			public static StyleSheet? DropDownIcon;
             public static StyleSheet? VerticalScrollbars;
             public static StyleSheet? VerticalScrollbarsHandle;
             public static StyleSheet? TextInput;
+			public static StyleSheet? NumericTextInput;
+            public static StyleSheet? NumericTextInputButton;
             public static StyleSheet? HorizontalProgressBars;
             public static StyleSheet? HorizontalProgressBarsFill;
             public static StyleSheet? VerticalProgressBars;
             public static StyleSheet? VerticalProgressBarsFill;
+			public static StyleSheet? ColorPickers;
+            public static StyleSheet? ColorPickersHandle;
         }
 
-        /// <summary>
         /// Currently-targeted control (control we point on with the cursor).
         /// </summary>
         public static Control? TargetedControl { get; private set; }
@@ -102,6 +117,11 @@ namespace MonoGo.Engine.UI
         /// These events will trigger for any control in the system.
         /// </summary>
         public static ControlEvents Events;
+
+        /// <summary>
+        /// Scale all the texts in this UI system.
+        /// </summary>
+        public static float TextsScale => SystemStyleSheet.TextScale;
 
         /// <summary>
         /// Root control.
@@ -462,12 +482,12 @@ namespace MonoGo.Engine.UI
             if (ShowCursor && cursor != null)
             {
                 var mousePos = pos;
+				var scale = cursor.Scale * SystemStyleSheet.CursorScale;
                 var destRect = cursor.SourceRect;
-                destRect.X = mousePos.X + (int)(cursor.Offset.X * cursor.Scale);
-                destRect.Y = mousePos.Y + (int)(cursor.Offset.Y * cursor.Scale);
-                destRect.Width = (int)(destRect.Width * cursor.Scale);
-                destRect.Height = (int)(destRect.Height * cursor.Scale);
-                //Renderer.DrawTexture(cursor.EffectIdentifier, cursor.TextureId, destRect, cursor.SourceRect, cursor.FillColor);
+                destRect.X = mousePos.X + (int)(cursor.Offset.X * scale);
+                destRect.Y = mousePos.Y + (int)(cursor.Offset.Y * scale);
+                destRect.Width = (int)(destRect.Width * scale);
+                destRect.Height = (int)(destRect.Height * scale);
                 Renderer.DrawSprite(cursor.TextureId, destRect, cursor.SourceRect, cursor.FillColor);
             }
         }
