@@ -1,7 +1,7 @@
 ﻿namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
-    /// Defines entity orientation: vertical or horizontal.
+    /// Defines control orientation: vertical or horizontal.
     /// </summary>
     public enum Orientation
     {

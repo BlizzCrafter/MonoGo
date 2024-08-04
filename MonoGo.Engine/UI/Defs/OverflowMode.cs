@@ -1,7 +1,7 @@
 ﻿namespace MonoGo.Engine.UI.Defs
 {
     /// <summary>
-    /// Define how to handle child controls that go out of the entity's bounds.
+    /// Define how to handle child controls that go out of the controls's bounds.
     /// </summary>
     public enum OverflowMode
     {

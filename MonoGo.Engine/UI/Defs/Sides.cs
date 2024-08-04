@@ -10,8 +10,6 @@
         public int Top { get; set; }
         public int Bottom { get; set; }
 
-        //public Sides() { }
-
         public Sides(int left, int right, int top, int bottom) 
         {
             Left = left;
