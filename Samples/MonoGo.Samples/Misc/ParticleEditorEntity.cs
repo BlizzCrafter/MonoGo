@@ -5,7 +5,9 @@ using MonoGo.Engine.EC;
 using MonoGo.Engine.Particles;
 using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
+using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Controls;
+using MonoGo.Engine.UI.Defs;
 
 namespace MonoGo.Samples.Misc
 {
@@ -31,8 +33,8 @@ namespace MonoGo.Samples.Misc
 
             if (_activeParticlesParagraph != null)
             {
-                _activeParticlesParagraph.Text = 
-                    "Active Particles:{{YELLOW}}" + ParticleEffectComponent.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
+                _activeParticlesParagraph.Text =
+                    "Active Particles:${FC:FFDB5F} " + ParticleEffectComponent.ParticleEffect.ActiveParticles + "${RESET}";
             }
         }
 
@@ -69,15 +71,22 @@ namespace MonoGo.Samples.Misc
         }
 
         public void CreateUI()
-        { 
-            /*var topPanel = new Panel(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
-            _activeParticlesParagraph = new RichParagraph("", Anchor.Center);
-            topPanel.ClickThrough = true;
+        {
+            var topPanel = new Panel(null!)
+            {
+                Anchor = Anchor.TopCenter,
+                IgnoreInteractions = true
+            };
+            topPanel.Size.Y.SetPixels(60);
+            UISystem.Add(topPanel);
+
+            _activeParticlesParagraph = new Paragraph("")
+            {
+                Anchor = Anchor.Center
+            };
             topPanel.AddChild(_activeParticlesParagraph);
 
-            UserInterface.Active.AddUIEntity(topPanel);
-
-            var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
+            /*var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
             bottomPanel.Size = new Vector2(0, 180);
 
             var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);

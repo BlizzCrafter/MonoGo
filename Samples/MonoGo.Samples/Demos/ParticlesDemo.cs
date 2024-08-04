@@ -17,10 +17,7 @@ namespace MonoGo.Samples.Demos
     {
         public static readonly string Description =
             "Move > ${FC:FFDB5F}WASD${RESET}" + Environment.NewLine +
-            "Emitter > ${FC:96FF5F}Update${RESET}: ${FC:FFDB5F}" + ToggleEnabledButton + " ${FC:96FF5F}Draw${RESET}: ${FC:FFDB5F}" + ToggleVisibilityButton + " ${RESET}" + "${FC:96FF5F}Follow${RESET}: ${FC:FFDB5F}" + ToggleFollowButton + " ${RESET}" + "${FC:96FF5F}Attract${RESET}: ${FC:FFDB5F}" + ToggleAttractButton + " ${RESET}" + "${FC:96FF5F}Inside${RESET}: ${FC:FFDB5F}" + ToggleInsideButton + " ${RESET}" + Environment.NewLine +
-            "Camera > ${FC:96FF5F}Move${RESET}: ${FC:FFDB5F}" + CameraController.UpButton + "${RESET} / ${FC:FFDB5F}" + CameraController.DownButton + "${RESET} / ${FC:FFDB5F}" + CameraController.LeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RightButton + "${RESET}" + Environment.NewLine +
-            "Camera > ${FC:96FF5F}Rotate${RESET}: ${FC:FFDB5F}" + CameraController.RotateLeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RotateRightButton + "${RESET}" + Environment.NewLine +
-            "Camera > ${FC:96FF5F}Zoom${RESET}: ${FC:FFDB5F}" + CameraController.ZoomInButton + "${RESET} / ${FC:FFDB5F}" + CameraController.ZoomOutButton + "${RESET}" + Environment.NewLine;
+            "Emitter > ${FC:96FF5F}Update${RESET}: ${FC:FFDB5F}" + ToggleEnabledButton + " ${FC:96FF5F}Draw${RESET}: ${FC:FFDB5F}" + ToggleVisibilityButton + " ${RESET}" + "${FC:96FF5F}Follow${RESET}: ${FC:FFDB5F}" + ToggleFollowButton + " ${RESET}" + "${FC:96FF5F}Attract${RESET}: ${FC:FFDB5F}" + ToggleAttractButton + " ${RESET}" + "${FC:96FF5F}Inside${RESET}: ${FC:FFDB5F}" + ToggleInsideButton + " ${RESET}";
 
         public const Buttons ToggleVisibilityButton = Buttons.N;
         public const Buttons ToggleEnabledButton = Buttons.M;
