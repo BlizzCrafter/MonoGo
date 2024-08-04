@@ -629,12 +629,12 @@ namespace MonoGo.Engine.UI.Controls
         /// </summary>
         /// <param name="child">Child control to remove.</param>
         /// <exception cref="Exception">Thrown if child have a different parent or don't have a parent at all.</exception>
-        public void RemoveChild(Control child, bool forceRemoval = false)
+        public void RemoveChild(Control child, bool forceRemove = false)
         {
             if (child.Parent != this) { throw new Exception("Control to remove is not a child of this parent Control!"); }
 
             // if children list is locked, remove later
-            if (!forceRemoval && _childrenListLocked > 0)
+            if (!forceRemove && _childrenListLocked > 0)
             {
                 _entitiesToRemove.Add(child);
                 _entitiesToAdd.RemoveAll(x => x.Control == child);
@@ -706,9 +706,9 @@ namespace MonoGo.Engine.UI.Controls
         /// <summary>
         /// Remove self from parent.
         /// </summary>
-        public void RemoveSelf(bool forceRemoval = false)
+        public void RemoveSelf(bool forceRemove = false)
         {
-            Parent?.RemoveChild(this, forceRemoval);
+            Parent?.RemoveChild(this, forceRemove);
         }
 
         /// <summary>
