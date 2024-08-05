@@ -196,8 +196,10 @@ Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more 
                 // auto anchors
                 {
                     var panel = CreateDemoContainer("Auto Anchors", new Point(750, 1));
-                    panel.AddChild(new Paragraph(@"Placing controls automatically, based on their siblings."));
+                    panel.AddChild(new Paragraph(
+                        @"Previously we saw regular Anchors. Now its time to explore the Automatic anchors."));
 
+                    panel.AddChild(new RowsSpacer());
                     var anchorsPanel = new Panel();
                     anchorsPanel.Size.X.SetPercents(100f);
                     anchorsPanel.AutoHeight = true;
@@ -220,7 +222,7 @@ Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more 
                     anchorsPanel.AddChild(new HorizontalLine());
                     {
                         {
-                            anchorsPanel.AddChild(new Paragraph("Inline anchors arrange controls next to each other, and only break line when need to.") { Anchor = Anchor.AutoLTR });
+                            anchorsPanel.AddChild(new Paragraph("We also have inline anchors that arrange entities next to each other, and only break line when need to. For example, AutoInlineLTR buttons:") { Anchor = Anchor.AutoLTR });
                             for (int i = 0; i < 5; ++i)
                             {
                                 var btn = anchorsPanel.AddChild(new Button("AutoInlineLTR") { Anchor = Anchor.AutoInlineLTR });
@@ -232,38 +234,40 @@ Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more 
 
                 // panels
                 {
-                    var panel = CreateDemoContainer("Panels", new Point(800, 1));
+                    var panel = CreateDemoContainer("Panels", new Point(650, 1));
                     panel.AddChild(new Paragraph(
-                        @"Panels are simple containers for controls. They can have graphics or be transparent and used only for grouping.
-"));
+                        @"Panels are simple containers for entities. They can have graphics, like the panel this text is in, or be transparent and used only for grouping."));
                     panel.AddChild(new HorizontalLine());
-
+                    panel.AddChild(new RowsSpacer());
                     {
                         var panelLeft = new Panel(null!);
+                        panelLeft.IgnoreInteractions = true;
+                        panelLeft.AutoHeight = true;
                         panelLeft.Size.X.SetPercents(50f);
-                        panelLeft.Size.Y.SetPixels(160);
                         panelLeft.Anchor = Anchor.AutoInlineLTR;
                         panel.AddChild(panelLeft);
 
-                        panelLeft.AddChild(new Paragraph("Invisible left panel.\n"));
+                        panelLeft.AddChild(new Paragraph("Left Panel"));
                         panelLeft.AddChild(new Button());
                     }
                     {
                         var panelRight = new Panel(null!);
+                        panelRight.IgnoreInteractions = true;
+                        panelRight.AutoHeight = true;
                         panelRight.Size.X.SetPercents(50f);
-                        panelRight.Size.Y.SetPixels(160);
                         panelRight.Anchor = Anchor.AutoInlineLTR;
                         panel.AddChild(panelRight);
 
-                        panelRight.AddChild(new Paragraph("Invisible right panel.\n"));
+                        panelRight.AddChild(new Paragraph("Right Panel"));
                         panelRight.AddChild(new Button());
                     }
 
-                    panel.AddChild(new Paragraph(
-                        @"You can add a small title to panels when you create them by using a custom style sheet:
-"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"You can add a small title to panels when you create them:"));
+                    panel.AddChild(new RowsSpacer(2));
                     {
                         var titledPanel = new Panel();
+                        titledPanel.IgnoreInteractions = true;
                         titledPanel.AutoHeight = true;
                         titledPanel.Size.X.SetPercents(100f);
                         titledPanel.Anchor = Anchor.AutoLTR;
@@ -274,18 +278,20 @@ Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more 
                         title.Anchor = Anchor.TopCenter;
                         title.Offset.Y.SetPixels(-26);
 
-                        titledPanel.AddChild(new Paragraph("Looks nice, isn't it? Check out the source code to see how it works."));
+                        titledPanel.AddChild(new Paragraph("Looks nice, isn't it? Check out the source code to see how we did it."));
                     }
 
-                    panel.AddChild(new Paragraph(@"
-BTW: This panel can be dragged, lets try it out! The small box in the corner is draggable too:"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(
+                        @"This panel can be dragged by the way, lets try it out!
+The small box in the corner is draggable too:"));
                     panel.DraggableMode = DraggableMode.DraggableConfinedToScreen;
 
                     // create draggable small box
                     var draggableBox = panel.AddChild(new Panel()
                     {
                         DraggableMode = DraggableMode.DraggableConfinedToParent,
-                        Anchor = Anchor.BottomRight,
+                        Anchor = Anchor.AutoRTL,
                     });
                     draggableBox.Size.SetPixels(20, 20);
                 }
@@ -304,15 +310,15 @@ BTW: This panel can be dragged, lets try it out! The small box in the corner is 
                         };
                     }
 
-                    panel.AddChild(new Paragraph(@"
-Buttons can also function as checkboxes, allowing you to click on them to toggle their state (checked/unchecked):"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"Buttons can also function as checkboxes, allowing you to click on them to toggle their state (checked/unchecked):"));
                     {
                         var btn = panel.AddChild(new Button("Toggle Me!"));
                         btn.ToggleCheckOnClick = true;
                     }
 
-                    panel.AddChild(new Paragraph(@"
-And they can even function as a radio button, meaning only one button can be checked at any given time:"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"And they can even function as a radio button, meaning only one button can be checked at any given time:"));
                     {
                         var btn = panel.AddChild(new Button("First Option"));
                         btn.ToggleCheckOnClick = true;
@@ -351,19 +357,15 @@ And you can even embed icons {smileyIcon} inside text paragraphs!"));
                 // checkbox and radio
                 {
                     var panel = CreateDemoContainer("Checkbox / Radio", new Point(680, 1));
-
-                    panel.AddChild(new Paragraph(
-                        @"Basic Checkbox control:
-"));
+                    
+                    panel.AddChild(new Paragraph(@"Basic Checkbox control:"));
                     panel.AddChild(new Checkbox("Checkbox Option 1"));
                     panel.AddChild(new Checkbox("Checkbox Option 2"));
                     panel.AddChild(new Checkbox("Checkbox Option 3"));
 
                     panel.AddChild(new HorizontalLine());
 
-                    panel.AddChild(new Paragraph(
-                        @"Radio button controls:
-"));
+                    panel.AddChild(new Paragraph(@"Radio button controls:"));
                     panel.AddChild(new RadioButton("Radio Option 1")).Checked = true;
                     panel.AddChild(new RadioButton("Radio Option 2"));
                     panel.AddChild(new RadioButton("Radio Option 3"));
@@ -373,35 +375,22 @@ And you can even embed icons {smileyIcon} inside text paragraphs!"));
                 {
                     var panel = CreateDemoContainer("Sliders", new Point(680, 1));
 
-                    panel.AddChild(new Paragraph(
-                        @"Sliders are useful to select numeric values:
-"));
+                    panel.AddChild(new Paragraph(@"Sliders are useful to select numeric values:"));
                     {
                         var slider = panel.AddChild(new Slider());
-                        var label = panel.AddChild(new Paragraph(@$"Slider Value: {slider.Value}
-"));
-                        slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}\n"; };
+                        var label = panel.AddChild(new Label(@$"Slider Value: {slider.Value}"));
+                        panel.AddChild(new RowsSpacer(2));
+                        slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}"; };
                     }
 
-                    panel.AddChild(new Paragraph(
-                        @"Sliders can also be vertical and scrollbars:
-"));
+                    panel.AddChild(new Paragraph(@"Sliders can also be vertical:"));
                     {
                         var slider = panel.AddChild(new Slider(Orientation.Vertical));
 
                         slider.Size.Y.SetPixels(280);
                         slider.Offset.X.SetPixels(40);
-                        var label = panel.AddChild(new Paragraph(@$"Slider Value: {slider.Value}
-"));
-                        slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}\n"; };
-                    }
-
-                    {
-                        var slider = panel.AddChild(new Slider(UISystem.DefaultStylesheets.VerticalScrollbars, UISystem.DefaultStylesheets.VerticalScrollbarsHandle, Orientation.Vertical));
-                        slider.Size.Y.SetPixels(260);
-                        slider.Offset.X.SetPixels(140);
-                        slider.Offset.Y.SetPixels(90);
-                        slider.Anchor = Anchor.BottomLeft;
+                        var label = panel.AddChild(new Label(@$"Slider Value: {slider.Value}"));
+                        slider.Events.OnValueChanged = (Control control) => { label.Text = $"Slider Value: {slider.Value}"; };
                     }
                 }
 
@@ -409,13 +398,11 @@ And you can even embed icons {smileyIcon} inside text paragraphs!"));
                 {
                     var panel = CreateDemoContainer("Progress Bars", new Point(680, 1));
 
-                    panel.AddChild(new Paragraph(
-                        @"Progress Bars are similar to sliders, but are designed to show progress or things like health bars:
-"));
+                    panel.AddChild(new Paragraph(@"Progress Bars are similar to sliders, but are designed to show progress or things like health bars:"));
                     {
                         var progressBar = panel.AddChild(new ProgressBar());
-                        var label = panel.AddChild(new Paragraph(@$"Progress Bar Value: {progressBar.Value}
-"));
+                        var label = panel.AddChild(new Label(@$"Progress Bar Value: {progressBar.Value}"));
+                        panel.AddChild(new RowsSpacer());
                         float _timeForNextValueChange = 3f;
                         progressBar.Events.AfterUpdate = (Control control) =>
                         {
@@ -426,24 +413,20 @@ And you can even embed icons {smileyIcon} inside text paragraphs!"));
                                 _timeForNextValueChange = 3f;
                             }
                         };
-                        progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
+                        progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}"; };
                     }
 
-                    panel.AddChild(new Paragraph(
-                        @"By default Progress Bars are not interactable, but you can make them behave like sliders by settings 'IgnoreInteractions' to false:
-"));
+                    panel.AddChild(new Paragraph(@"By default Progress Bars are not interactable, but you can make them behave like sliders by settings 'IgnoreInteractions' to false:"));
                     {
                         var progressBar = panel.AddChild(new ProgressBar());
-                        var label = panel.AddChild(new Paragraph(@$"Progress Bar Value: {progressBar.Value}
-"));
+                        var label = panel.AddChild(new Label(@$"Progress Bar Value: {progressBar.Value}"));
+                        panel.AddChild(new RowsSpacer());
                         progressBar.Handle.OverrideStyles.TintColor = new Color(255, 0, 0, 255);
                         progressBar.IgnoreInteractions = false;
-                        progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}\n"; };
+                        progressBar.Events.OnValueChanged = (Control control) => { label.Text = $"Progress Bar Value: {progressBar.Value}"; };
                     }
 
-                    panel.AddChild(new Paragraph(
-                        @"And finally, here's an alternative progress bar design, without animation:
-"));
+                    panel.AddChild(new Paragraph(@"And finally, here's an alternative progress bar design, without animation:"));
                     {
                         var progressBar = panel.AddChild(new ProgressBar(hProgressBarAltStyle, hProgressBarAltFillStyle));
                         progressBar.Size.X.SetPixels(420 + 36);
@@ -460,32 +443,31 @@ And you can even embed icons {smileyIcon} inside text paragraphs!"));
 
                 // list box
                 {
-                    var panel = CreateDemoContainer("List Box", new Point(800, 700));
-                    panel.AutoHeight = false;
-                    panel.CreateVerticalScrollbar(true);
+                    var panel = CreateDemoContainer("List Box", new Point(680, 1));
 
-                    panel.AddChild(new Paragraph(
-                        @"List Boxes allow you to add items and select them from a list. For example:
-"));
+                    panel.AddChild(new Paragraph(@"List Boxes allow you to add items and select them from a list:"));
+                    panel.AddChild(new RowsSpacer());
                     {
-                        panel.AddChild(new Paragraph(
-                        @"
-Select Race:"));
+                        panel.AddChild(new Label(@"Select Race:"));
                         var listbox = panel.AddChild(new ListBox());
                         listbox.AddItem("Human");
+                        listbox.SetItemLabel("Human", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(0, 0, 32, 32) }, true);
                         listbox.AddItem("Elf");
+                        listbox.SetItemLabel("Elf", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(32, 0, 32, 32) }, true);
                         listbox.AddItem("Orc");
+                        listbox.SetItemLabel("Orc", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(64, 0, 32, 32) }, true);
                         listbox.AddItem("Dwarf");
+                        listbox.SetItemLabel("Dwarf", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(96, 0, 32, 32) }, true);
                         listbox.AutoHeight = true;
                         listbox.AllowDeselect = false;
-                        panel.AddChild(new Paragraph(
-                        @"Did you notice that you can't clear selection once a value is set? That is a configurable property. In the class selection below, you can clear by clicking the selected item again."));
                     }
                     {
-                        panel.AddChild(new Paragraph(
-                        @"
-Select Class:"));
+                        panel.AddChild(new Paragraph(@"Clear the selection by clicking the selected item again."));
+                        panel.AddChild(new RowsSpacer());
+                        panel.AddChild(new Label(@"Select Class:"));
                         var listbox = panel.AddChild(new ListBox());
+                        listbox.AutoHeight = false;
+                        listbox.Size.Y.SetPixels(250);
                         foreach (var val in dndClasses)
                         {
                             listbox.AddItem(val);
@@ -503,29 +485,33 @@ Select Class:"));
                 {
                     var panel = CreateDemoContainer("Drop Down", new Point(680, 1));
 
-                    panel.AddChild(new Paragraph(
-                        @"Drop Down controls are basically list boxes, but they collapse while they are not interacted with. For example:
-"));
+                    panel.AddChild(new Paragraph(@"Drop Down entities are basically list boxes, but the list is hidden while not interacted with. For example:"));
+                    panel.AddChild(new RowsSpacer());
                     {
-                        panel.AddChild(new Paragraph(
-                        @"
-Select Race:"));
+                        panel.AddChild(new Label(@"Select Race:"));
                         var dropdown = panel.AddChild(new DropDown());
                         dropdown.DefaultSelectedText = "< Select Race >";
                         dropdown.AddItem("Human");
+                        dropdown.SetItemLabel("Human", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(0, 0, 32, 32) }, true);
                         dropdown.AddItem("Elf");
+                        dropdown.SetItemLabel("Elf", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(32, 0, 32, 32) }, true);
                         dropdown.AddItem("Orc");
+                        dropdown.SetItemLabel("Orc", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(64, 0, 32, 32) }, true);
                         dropdown.AddItem("Dwarf");
+                        dropdown.SetItemLabel("Dwarf", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(96, 0, 32, 32) }, true);
+                        dropdown.AddItem("Gnome");
+                        dropdown.SetItemLabel("Gnome", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(128, 0, 32, 32) }, true);
+                        dropdown.AddItem("Tiefling");
+                        dropdown.SetItemLabel("Tiefling", new IconTexture() { TextureId = "Textures/Icons.png", SourceRect = new Rectangle(160, 0, 32, 32) }, true);
                         dropdown.AllowDeselect = false;
                         dropdown.AutoHeight = true;
-                        panel.AddChild(new Paragraph(
-                        @"Did you notice that you can't clear selection once a value is set? That is a configurable property. In the class selection below, you can clear by clicking the selected item again."));
                     }
                     {
-                        panel.AddChild(new Paragraph(
-                        @"
-Select Class:"));
+                        panel.AddChild(new Paragraph(@"In the dropdown below, you can clear selection by clicking the selected item again."));
+                        panel.AddChild(new RowsSpacer());
+                        panel.AddChild(new Label(@"Select Class:"));
                         var dropdown = panel.AddChild(new DropDown());
+                        dropdown.SetVisibleItemsCount(7);
                         dropdown.DefaultSelectedText = "< Select Class >";
                         foreach (var val in dndClasses)
                         {
@@ -537,6 +523,116 @@ Select Class:"));
                         {
                             selectedParagraph.Text = "Selected Class: " + (dropdown.SelectedValue ?? "None");
                         };
+                    }
+                }
+
+                // color inputs
+                {
+                    var panel = CreateDemoContainer("Color Pickers", new Point(650, 350));
+                    panel.AutoHeight = true;
+
+                    // color slider
+                    {
+                        panel.AddChild(new Paragraph(@"Color Slider entities can be used to get a color value from a range using a slider and a source texture:"));
+                        var slider = panel.AddChild(new ColorSlider());
+                        var value = panel.AddChild(new Label());
+                        slider.Events.OnValueChanged = (Control control) =>
+                        {
+                            var color = slider.ColorValue;
+                            value.Text = $"Color value: {color.R}, {color.G}, {color.B}, {color.A}";
+                            value.OverrideStyles.TextFillColor = color;
+                        };
+                        slider.Value = 1;
+
+                        {
+                            var colorBtn = panel.AddChild(new Button("Red"));
+                            colorBtn.Anchor = Anchor.AutoLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                slider.SetColorValueApproximate(new Color(255, 0, 0, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Green"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                slider.SetColorValueApproximate(new Color(0, 255, 0, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Blue"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                slider.SetColorValueApproximate(new Color(0, 0, 255, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Purple"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                slider.SetColorValueApproximate(new Color(255, 0, 255, 255));
+                            };
+                        }
+                    }
+
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new HorizontalLine());
+
+                    // color picker
+                    {
+                        panel.AddChild(new Paragraph(@"Color Picker entities can be used to get a color value from a rectangle region by picking pixels off a source texture:"));
+                        var picker = panel.AddChild(new ColorPicker());
+                        var value = panel.AddChild(new Label());
+                        picker.Events.OnValueChanged = (Control control) =>
+                        {
+                            var color = picker.ColorValue;
+                            value.Text = $"Color value: {color.R}, {color.G}, {color.B}, {color.A}";
+                            value.OverrideStyles.TextFillColor = color;
+                        };
+
+                        {
+                            var colorBtn = panel.AddChild(new Button("Red"));
+                            colorBtn.Anchor = Anchor.AutoLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                picker.SetColorValueApproximate(new Color(255, 0, 0, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Green"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                picker.SetColorValueApproximate(new Color(0, 255, 0, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Blue"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                picker.SetColorValueApproximate(new Color(0, 0, 255, 255));
+                            };
+                        }
+                        {
+                            var colorBtn = panel.AddChild(new Button("Purple"));
+                            colorBtn.Anchor = Anchor.AutoInlineLTR;
+                            colorBtn.Size.X.SetPercents(24f);
+                            colorBtn.Events.OnClick = (Control control) =>
+                            {
+                                picker.SetColorValueApproximate(new Color(255, 0, 255, 255));
+                            };
+                        }
                     }
                 }
 
