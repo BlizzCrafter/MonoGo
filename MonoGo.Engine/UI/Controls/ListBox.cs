@@ -201,6 +201,7 @@ namespace MonoGo.Engine.UI.Controls
         {
             return 0;
         }
+
         /// <inheritdoc/>
         protected override void DrawControlType(ref Rectangle boundingRect, ref Rectangle internalBoundingRect, DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
         {
@@ -395,6 +396,7 @@ namespace MonoGo.Engine.UI.Controls
         {
             SetItemLabel(valueToSet, valueToSet, icon, iconUseTextColor);
         }
+
         /// <summary>
         /// Get item index, or -1 if not found.
         /// </summary>
