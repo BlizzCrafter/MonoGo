@@ -360,6 +360,12 @@ namespace MonoGo.Engine.UI
                 matrix.M42 = 0;
             }
 
+            // fix a bug in measuring just a single space
+            if (text.Length == 1) 
+            {
+                var singleRet = spriteFont.MeasureString(text);
+                return new Point((int)Math.Ceiling(singleRet.X * scale), (int)Math.Ceiling(singleRet.Y * scale));
+            }
             bool flag3 = true;
             var zero2 = Vector2.Zero;
             Point ret = new Point();
