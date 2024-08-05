@@ -63,7 +63,7 @@ namespace MonoGo.Engine.UI.Controls
         /// Create the color picker.
         /// </summary>
         /// <param name="stylesheet">Color picker stylesheet.</param>
-        /// <param name="stylesheet">Color picker handle stylesheet.</param>
+        /// <param name="handleStylesheet">Color picker handle stylesheet.</param>
         public ColorPicker(StyleSheet? stylesheet, StyleSheet? handleStylesheet) : base(stylesheet)
         {
             // create handle

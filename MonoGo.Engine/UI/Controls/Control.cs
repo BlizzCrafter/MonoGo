@@ -1088,6 +1088,7 @@ namespace MonoGo.Engine.UI.Controls
 
             // add optional box outline
             DrawBoxOutline(boundingRect);
+
             // return rendering result
             return new DrawMethodResult() 
             { 
