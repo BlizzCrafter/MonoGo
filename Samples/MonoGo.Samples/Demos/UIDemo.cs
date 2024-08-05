@@ -40,6 +40,9 @@ namespace MonoGo.Samples.Demos
             var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
 
+            // smiley icon
+            var smileyIcon = $"${{ICO:{UISystem.DefaultStylesheets.Panels.Default.FillTextureFramed.TextureId}|0|64|16|16|2}}  ";
+
             // create top panel
             int topPanelHeight = 65;
             Panel topPanel = new(null!)
@@ -125,19 +128,19 @@ namespace MonoGo.Samples.Demos
                     // add title and text
                     var panel = CreateDemoContainer(null, new Point(1200, -1));
                     panel.StyleSheet = new StyleSheet(); // Empty StyleSheet to hide the panel.
-                    var welcomeText = new Paragraph(@"Welcome!
+                    var welcomeText = new Paragraph(@$"Welcome!
 
-This special game engine is built ontop of ${FC:FF0000}MonoGame${RESET},the powerfull gamedev framework which is running under the hood of many fantastic games like ${FC:FF0000}Stardew Valley${RESET} and ${FC:FF0000}Celeste${RESET}.
+This special game engine is built ontop of ${{FC:e60000}}MonoGame${{RESET}},the powerfull gamedev framework which is running under the hood of many fantastic games like ${{FC:e64600}}Stardew Valley${{RESET}} and ${{FC:6e00e6}}Celeste${{RESET}}.
 
-Stay tuned for more things to come! (probably ${FC:FFFF00}:)${RESET})
+Stay tuned for more things to come! (probably {smileyIcon} )
 
-Please click the ${FC:FF0000}GUI.Next${RESET} button at the top to see more GUI-DEMOS or the ${FC:FFFF00}Next${RESET} button below to see more SAMPLE-DEMOS of the engine.
+Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more GUI-DEMOS or the ${{FC:FFDB5F}}Next${{RESET}} button below to see more SAMPLE-DEMOS of the engine.
 
 ") { TextOverflowMode = TextOverflowMode.WrapWords };
                     welcomeText.StyleSheet.Default.FontSize = 28;
                     panel.AddChild(logo);
                     panel.AddChild(welcomeText);
-                    var version = new Paragraph("${FC:FFFF00}v" + Assembly.GetAssembly(typeof(Entity)).GetName().Version + "${RESET}")
+                    var version = new Paragraph("${FC:FFDB5F}v" + Assembly.GetAssembly(typeof(Entity)).GetName().Version + "${RESET}")
                     {
                         Anchor = Anchor.AutoRTL
                     };
@@ -334,15 +337,14 @@ And they can even function as a radio button, meaning only one button can be che
                 {
                     var panel = CreateDemoContainer("Paragraphs", new Point(650, 1));
                     panel.AddChild(new Paragraph(
-                        @"${FC:00FF00}Paragraphs${RESET} are controls that draw text.
+                        @$"${{FC:00FF00}}Paragraphs${{RESET}} are entities that draw text.
 They can be used as labels for buttons, titles, or long texts like the one you read now.
 
-${FC:00FF00}Paragraphs${RESET} support special ${OC:FF0000}style changing commands${RESET}, so you can easily ${OC:00FFFF,FC:000000,OW:2}highlight specific words${RESET} within the paragraph.
+${{FC:00FF00}}Paragraphs${{RESET}} support special ${{OC:FF0000}}style changing commands${{RESET}}, so you can easily ${{OC:00FFFF,FC:000000,OW:2}}highlight specific words${{RESET}} within the paragraph.
 
-You can change ${FC:00FF00}Fill Color${RESET}, ${OC:AA0000}Outline Color${RESET}, and ${OW:0}Outline Width${RESET}.
+You can change ${{FC:00FF00}}Fill Color${{RESET}}, ${{OC:AA0000}}Outline Color${{RESET}}, and ${{OW:0}}Outline Width${{RESET}}. 
 
-Another thing to keep in mind about paragraphs is that you can change the way they wrap when exceeding the parent width. They can either wrap with breaking words, wrap while keeping words intact, or overflow without wrapping.
-"));
+And you can even embed icons {smileyIcon} inside text paragraphs!"));
 
                 }
 
