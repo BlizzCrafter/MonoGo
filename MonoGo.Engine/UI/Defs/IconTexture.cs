@@ -35,6 +35,7 @@ namespace MonoGo.Engine.UI.Defs
             copy.TextureId = new string(TextureId);
             copy.SourceRect = new Rectangle(SourceRect.X, SourceRect.Y, SourceRect.Width, SourceRect.Height);
             copy.TextureScale = TextureScale;
+            copy.Texture = Texture;
             return copy;
         }
     }
