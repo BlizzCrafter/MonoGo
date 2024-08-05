@@ -112,6 +112,7 @@ namespace MonoGo.Engine.UI.Defs
         /// Extra offset to add to next controls in parent that has auto anchor from this Control.
         /// </summary>
         public Point? MarginAfter { get; set; }
+
         /// <summary>
         /// Outline width, in pixels, around the bounding rectangle borders of the Control.
         /// </summary>
@@ -147,6 +148,9 @@ namespace MonoGo.Engine.UI.Defs
             copy.ExtraSize = ExtraSize.HasValue ? new Sides(ExtraSize.Value.Left, ExtraSize.Value.Right, ExtraSize.Value.Top, ExtraSize.Value.Bottom) : null;
             copy.MarginBefore = MarginBefore.HasValue ? new Point(MarginBefore.Value.X, MarginBefore.Value.Y) : null;
             copy.MarginAfter = MarginAfter.HasValue ? new Point(MarginAfter.Value.X, MarginAfter.Value.Y) : null;
+            copy.BoxOutlineWidth = BoxOutlineWidth.HasValue ? new Sides(BoxOutlineWidth.Value.Left, BoxOutlineWidth.Value.Right, BoxOutlineWidth.Value.Top, BoxOutlineWidth.Value.Bottom) : null;
+            copy.BoxOutlineOffset = BoxOutlineOffset.HasValue ? new Point(BoxOutlineOffset.Value.X, BoxOutlineOffset.Value.Y) : null;
+            copy.BoxOutlineColor = BoxOutlineColor.HasValue ? new Color(BoxOutlineColor.Value.R, BoxOutlineColor.Value.G, BoxOutlineColor.Value.B, TextFillColor.Value.A) : null;
             return copy;
         }
     }
@@ -164,6 +168,7 @@ namespace MonoGo.Engine.UI.Defs
         /// Only works when loading from files.
         /// </summary>
         public string? InheritFrom { get; set; }
+
         /// <summary>
         /// Default Control width.
         /// </summary>

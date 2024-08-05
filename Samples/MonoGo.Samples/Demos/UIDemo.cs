@@ -139,7 +139,7 @@ Please click the ${FC:FF0000}GUI.Next${RESET} button at the top to see more GUI-
                     panel.AddChild(welcomeText);
                     var version = new Paragraph("${FC:FFFF00}v" + Assembly.GetAssembly(typeof(Entity)).GetName().Version + "${RESET}")
                     {
-                        Anchor = Anchor.BottomRight
+                        Anchor = Anchor.AutoRTL
                     };
                     panel.AddChild(version);
                 }
