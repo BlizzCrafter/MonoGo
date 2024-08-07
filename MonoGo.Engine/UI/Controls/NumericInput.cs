@@ -88,8 +88,8 @@ namespace MonoGo.Engine.UI.Controls
                     }
 
                     // set value
-                    base.Value = value;
                     _valueFloat = result;
+                    base.Value = value;
                 }
 
                 // failed to parse? don't change value!
@@ -243,7 +243,7 @@ namespace MonoGo.Engine.UI.Controls
                 _plusButton = plusButton;
             }
 
-            // add + button
+            // add - button
             if (addMinusButton)
             {
                 var minusButton = new Button(buttonStyle, "-");
