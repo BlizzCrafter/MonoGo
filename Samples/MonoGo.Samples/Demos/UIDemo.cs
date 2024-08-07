@@ -24,6 +24,8 @@ namespace MonoGo.Samples.Demos
         } 
         private static int _currentExample = 0;
 
+        public static bool HasTextInput = false;
+
         private static List<Panel> _panels = new();
         private static Button _nextExampleButton;
         private static Button _previousExampleButton;
@@ -668,18 +670,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
                 {
                     var panel = CreateDemoContainer("Text Input", new Point(680, 1));
 
-                    panel.AddChild(new Paragraph(
-                        @"Text Input control is useful to get free text input from the user:
-"));
+                    panel.AddChild(new Paragraph(@"Text Input entity is useful to get free text input from users. This is a single-line text input:"));
                     {
                         var textInput = panel.AddChild(new TextInput());
                         textInput.PlaceholderText = "Click to edit text input.";
                     }
 
-                    panel.AddChild(new Paragraph(
-        @"
-Text Inputs can also be multiline:
-"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"And here's a multiline text input:"));
                     {
                         var textInput = panel.AddChild(new TextInput());
                         textInput.PlaceholderText = "A multiline text input..\nClick to edit.";
@@ -687,6 +685,19 @@ Text Inputs can also be multiline:
                         textInput.Multiline = true;
                         //textInput.MaxLines = 8;
                         textInput.CreateVerticalScrollbar();
+                    }
+
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"You can also mask the text, for password input:"));
+                    {
+                        var textInput = panel.AddChild(new TextInput());
+                        textInput.PlaceholderText = "Password";
+                        textInput.MaskingCharacter = '*';
+                        var showPassword = panel.AddChild(new Checkbox("Show Password"));
+                        showPassword.Events.OnValueChanged = (Control control) =>
+                        {
+                            textInput.MaskingCharacter = showPassword.Checked ? null : '*';
+                        };
                     }
                 }
 
@@ -747,6 +758,32 @@ Have a nice day!
                 UpdateAfterExampleChange();
 
             }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            _panels[_currentExample].IterateChildren(
+                x =>
+                {
+                    if (x is TextInput)
+                    {
+                        if (x.IsTargeted)
+                        {
+                            HasTextInput = true;
+                            x.UserData = "!Target!";
+                            return false;
+                        }
+                        else if (x.UserData != null && x.UserData.Equals("!Target!"))
+                        {
+                            HasTextInput = false;
+                            x.UserData = null;
+                            return false;
+                        }
+                    }
+                    return true;
+                });
         }
 
         /// <summary>

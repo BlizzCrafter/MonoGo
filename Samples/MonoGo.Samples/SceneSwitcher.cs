@@ -37,6 +37,8 @@ namespace MonoGo.Samples
         bool _postFXPanelVisible = false;
         readonly int _postFXPanelOffsetX = -302;
 
+        bool _isUIDemo = false;
+
         Button _nextExampleButton;
         Button _previousExampleButton;
         Paragraph _FPS_Paragraph;
@@ -307,19 +309,19 @@ namespace MonoGo.Samples
             if (hasDescription) sceneDescription = CurrentFactory.Description;
 
             int panelHeight = 250;
-            var isUIDemo = false;
+            _isUIDemo = false;
             if (CurrentFactory?.Type == typeof(UIDemo))
             {
-                isUIDemo = true;
+                _isUIDemo = true;
                 panelHeight = 65;
             }
 
-            Panel bottomPanel = new(isUIDemo ? null! : UISystem.DefaultStylesheets.Panels.DeepCopy())
+            Panel bottomPanel = new(_isUIDemo ? null! : UISystem.DefaultStylesheets.Panels.DeepCopy())
             {
                 Anchor = Anchor.BottomCenter,
                 Identifier = "BottomPanel"
             };
-            if (!isUIDemo) bottomPanel.StyleSheet.Default.Padding = Sides.Zero;
+            if (!_isUIDemo) bottomPanel.StyleSheet.Default.Padding = Sides.Zero;
             bottomPanel.Size.SetPixels((int)GameMgr.WindowManager.CanvasSize.X, panelHeight);
             UISystem.Add(bottomPanel);
 
@@ -331,7 +333,7 @@ namespace MonoGo.Samples
             _previousExampleButton.Events.OnClick = (Control btn) => { PreviousScene(); };
             bottomPanel.AddChild(_previousExampleButton);
 
-            if (CurrentScene != null && !isUIDemo)
+            if (CurrentScene != null && !_isUIDemo)
             {
                 //Scene Name
                 {
@@ -359,7 +361,7 @@ namespace MonoGo.Samples
                     bottomPanel.AddChild(descriptionPanel);
                 }
             }
-            else if (isUIDemo)
+            else if (_isUIDemo)
             {
                 UISystem.Root.Walk(
                     x =>
@@ -430,12 +432,16 @@ namespace MonoGo.Samples
 
 			if (Input.CheckButtonPress(_nextSceneButton))
 			{
+                if (_isUIDemo && UIDemo.HasTextInput) return;
+
 				NextScene();
 			}
 
 			if (Input.CheckButtonPress(_prevSceneButton))
 			{
-				PreviousScene();
+                if (_isUIDemo && UIDemo.HasTextInput) return;
+
+                PreviousScene();
 			}
 
 			if (Input.CheckButtonPress(_toggleFullscreenButton))
