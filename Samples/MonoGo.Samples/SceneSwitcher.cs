@@ -24,6 +24,8 @@ namespace MonoGo.Samples
             "Camera > ${FC:96FF5F}Zoom${RESET}: ${FC:FFDB5F}" + CameraController.ZoomInButton + "${RESET} / ${FC:FFDB5F}" + CameraController.ZoomOutButton + "${RESET}" + Environment.NewLine +
             "Demo > Restart: ${FC:FFDB5F}" + _restartButton + "${RESET} GUI: ${FC:FFDB5F}" + _toggleUIButton + "${RESET} Fullscreen: ${FC:FFDB5F}" + _toggleFullscreenButton + "${RESET} Exit: ${FC:FFDB5F}" + _exitButton;
 
+        public static Panel DescriptionPanel;
+
         const Buttons _prevSceneButton = Buttons.Q;
         const Buttons _nextSceneButton = Buttons.E;
         const Buttons _restartButton = Buttons.F1;
@@ -38,6 +40,7 @@ namespace MonoGo.Samples
         readonly int _postFXPanelOffsetX = -302;
 
         bool _isUIDemo = false;
+        bool _initialSceneCreated = false;
 
         Button _nextExampleButton;
         Button _previousExampleButton;
@@ -61,7 +64,6 @@ namespace MonoGo.Samples
         };
 
 		public int CurrentSceneID { get; private set; } = 0;
-		public Scene CurrentScene => CurrentFactory.Scene;
 		public SceneFactory CurrentFactory => Factories[CurrentSceneID];
 
         CameraController _cameraController;
@@ -73,7 +75,11 @@ namespace MonoGo.Samples
 
         public void CreateUI()
         {
-            if (CurrentScene == null) CurrentFactory.CreateScene();
+            if (!_initialSceneCreated)
+            {
+                _initialSceneCreated = true;
+                CurrentFactory.CreateScene();
+            }
 
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
             var listPanelCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_panel_centered.json"));
@@ -333,32 +339,32 @@ namespace MonoGo.Samples
             _previousExampleButton.Events.OnClick = (Control btn) => { PreviousScene(); };
             bottomPanel.AddChild(_previousExampleButton);
 
-            if (CurrentScene != null && !_isUIDemo)
+            if (!_isUIDemo)
             {
                 //Scene Name
                 {
-                    Panel descriptionPanel = new(null!)
+                    DescriptionPanel = new(null!)
                     {
                         Anchor = Anchor.AutoInlineLTR,
                         Identifier = "DescriptionPanel"
                     };
-                    descriptionPanel.Size.X.SetPixels((int)bottomPanel.Size.X.Value - 500);
+                    DescriptionPanel.Size.X.SetPixels((int)bottomPanel.Size.X.Value - 500);
 
                     _FPS_Paragraph = new Paragraph("")
                     {
                         Anchor = Anchor.TopRight
                     };
                     _FPS_Paragraph.Offset.Y.SetPixels(30);
-                    descriptionPanel.AddChild(_FPS_Paragraph);
+                    DescriptionPanel.AddChild(_FPS_Paragraph);
 
-                    var title = new Title(CurrentScene.Name) { Anchor = Anchor.AutoCenter };
+                    var title = new Title(CurrentFactory.Type.Name) { Anchor = Anchor.AutoCenter };
                     title.Offset.Y.SetPixels(-40);
 
-                    descriptionPanel.AddChild(title);
-                    descriptionPanel.AddChild(new HorizontalLine());
-                    descriptionPanel.AddChild(new Paragraph(sceneDescription));
-                    descriptionPanel.OverflowMode = OverflowMode.HideOverflow;
-                    bottomPanel.AddChild(descriptionPanel);
+                    DescriptionPanel.AddChild(title);
+                    DescriptionPanel.AddChild(new HorizontalLine());
+                    DescriptionPanel.AddChild(new Paragraph(sceneDescription));
+                    //descriptionPanel.OverflowMode = OverflowMode.HideOverflow;
+                    bottomPanel.AddChild(DescriptionPanel);
                 }
             }
             else if (_isUIDemo)
@@ -461,13 +467,15 @@ namespace MonoGo.Samples
         {
             CurrentFactory.DestroyScene();
 
-			CurrentSceneID += 1;
+            CurrentSceneID += 1;
 			if (CurrentSceneID >= Factories.Count)
 			{
 				CurrentSceneID = 0;
-			}
+            }
 
-			CurrentFactory.CreateScene();
+            ((IHaveGUI)this).Init();
+
+            CurrentFactory.CreateScene();
 
             if (CurrentFactory?.Type == typeof(UIDemo))
             {
@@ -475,21 +483,21 @@ namespace MonoGo.Samples
             }
 
 			_cameraController.Reset();
-
-            ((IHaveGUI)this).Init();
         }
 
 		public void PreviousScene()
 		{
             CurrentFactory.DestroyScene();
 
-			CurrentSceneID -= 1;
+            CurrentSceneID -= 1;
 			if (CurrentSceneID < 0)
 			{
 				CurrentSceneID = Factories.Count - 1;
-			}
+            }
 
-			CurrentFactory.CreateScene();
+            ((IHaveGUI)this).Init();
+
+            CurrentFactory.CreateScene();
 
             if (CurrentFactory?.Type == typeof(UIDemo))
             {
@@ -497,16 +505,17 @@ namespace MonoGo.Samples
             }
 
             _cameraController.Reset();
-
-            ((IHaveGUI)this).Init();
         }
 
 		public void RestartScene()
 		{
-            CurrentFactory.RestartScene();
-			_cameraController.Reset();
+            CurrentFactory.DestroyScene();
 
             ((IHaveGUI)this).Init();
+
+            CurrentFactory.CreateScene();
+
+            _cameraController.Reset();
         }
     }
 }
