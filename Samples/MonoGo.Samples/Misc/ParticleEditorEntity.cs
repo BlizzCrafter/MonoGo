@@ -86,49 +86,76 @@ namespace MonoGo.Samples.Misc
             };
             topPanel.AddChild(_activeParticlesParagraph);
 
-            /*var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
-            bottomPanel.Size = new Vector2(0, 180);
+            //var bottomPanel = UISystem.Find("BottomPanel");
+            //bottomPanel.Size = new Vector2(0, 180);
 
-            var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
+            // left panel
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:X=0";
-                textInput.OnValueChange += (Control entityUI) =>
+                var panel = new Panel(null!)
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        OffsetX(value); 
-                    }
+                    Anchor = Anchor.AutoLTR
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput();
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    OffsetX((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Offset: X"));
             }
+            // center panel
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:Y=0";
-                textInput.OnValueChange += (Control entityUI) =>
+                var panel = new Panel(null!)
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        OffsetY(value);
-                    }
+                    Anchor = Anchor.AutoInlineLTR
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    OffsetY((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Offest:Y"));
             }
+            // right panel
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Speed=1";
-                textInput.OnValueChange += (Control entityUI) =>
+                var panel = new Panel(null!)
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        Speed(value);
-                    }
+                    Anchor = Anchor.AutoInlineLTR
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
-            }*/
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    Speed((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Speed"));
+            }
+        }
+
+        public void OnCreated(IHaveGUI owner)
+        {
         }
     }
 }
