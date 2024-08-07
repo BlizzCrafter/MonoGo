@@ -539,7 +539,7 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <summary>
-        /// Get default entity size for this entity type.
+        /// Get default control size for this control type.
         /// </summary>
         protected virtual MeasureVector GetDefaultEntityTypeSize()
         {
@@ -549,7 +549,7 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <summary>
-        /// Get default entity anchor for this entity type.
+        /// Get default control anchor for this control type.
         /// </summary>
         protected virtual Anchor GetDefaultEntityTypeAnchor()
         {

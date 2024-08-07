@@ -25,11 +25,5 @@ namespace MonoGo.Samples
 
 		public void DestroyScene() =>
 			SceneMgr.DestroyScene(Scene);
-
-		public void RestartScene()
-		{
-			DestroyScene();
-			CreateScene();
-		}
 	}
 }
