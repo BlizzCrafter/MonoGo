@@ -177,8 +177,7 @@ Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more 
                 // anchors
                 {
                     var panel = CreateDemoContainer("Anchors", new Point(780, 1));
-                    panel.AddChild(new Paragraph(@"Controls are positioned using Anchors. An Anchor can be a pre-defined position on the parent control, like Top-Left, or Center.
-"));
+                    panel.AddChild(new Paragraph(@"Controls are positioned using Anchors. An Anchor can be a pre-defined position on the parent control, like Top-Left, or Center."));
 
                     var anchorsPanel = new Panel();
                     anchorsPanel.Size.X.SetPercents(100f);
