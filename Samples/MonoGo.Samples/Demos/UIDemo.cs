@@ -7,6 +7,7 @@ using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Controls;
 using MonoGo.Engine.UI.Defs;
+using MonoGo.Engine.UI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,8 +43,9 @@ namespace MonoGo.Samples.Demos
             var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
 
-            // smiley icon
-            var smileyIcon = $"${{ICO:{UISystem.DefaultStylesheets.Panels.Default.FillTextureFramed.TextureId}|0|64|16|16|2}}  ";
+            // icons
+            var blizzCrafterIcon = $"${{ICO:Textures/Icons|0|32|32|32|1}}  ";
+            var smileyIcon = $"${{ICO:Textures/Icons|32|32|16|16|2}}  ";
 
             // create top panel
             int topPanelHeight = 65;
@@ -134,7 +136,7 @@ namespace MonoGo.Samples.Demos
 
 This special game engine is built ontop of ${{FC:e60000}}MonoGame${{RESET}},the powerfull gamedev framework which is running under the hood of many fantastic games like ${{FC:e64600}}Stardew Valley${{RESET}} and ${{FC:6e00e6}}Celeste${{RESET}}.
 
-Stay tuned for more things to come! (probably {smileyIcon} )
+Stay tuned for more things to come! (probably ${{FC:f8c102}}{smileyIcon}${{RESET}} )
 
 Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more GUI-DEMOS or the ${{FC:FFDB5F}}Next${{RESET}} button below to see more SAMPLE-DEMOS of the engine.
 
@@ -701,26 +703,72 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
                     }
                 }
 
+                // numeric text input
+                {
+                    var panel = CreateDemoContainer("Numeric Input", new Point(680, 1));
+
+                    panel.AddChild(new Paragraph(@"Numeric text input get float or integer value from the user in a form similar to a text input. For example, with decimal point:"));
+                    {
+                        var textInput = panel.AddChild(new NumericInput());
+                    }
+
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"This Numeric Input don't accept a decimal point:"));
+                    {
+                        var textInput = panel.AddChild(new NumericInput());
+                        textInput.AcceptsDecimal = false;
+                    }
+
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"This Numeric Input has min and max limits (-10, 10):"));
+                    {
+                        var textInput = panel.AddChild(new NumericInput());
+                        textInput.MinValue = -10;
+                        textInput.MaxValue = 10;
+                    }
+
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"You can also create a Numeric Input entity without the buttons:"));
+                    {
+                        var textInput = panel.AddChild(new NumericInput(false, false));
+                    }
+                }
+
+                // message boxes
+                {
+                    var panel = CreateDemoContainer("Message Boxes", new Point(780, 1));
+                    panel.AddChild(new Paragraph(@"Message boxes are useful to get quick input from the user. 
+Click below to see an example."));
+
+                    panel.AddChild(new Button("Show Message Box")).Events.OnClick = (Control control) =>
+                    {
+                        MessageBoxUtils.ShowConfirmMessageBox("Hi There!",
+                            @"This is a simple message box with just confirm / cancel options.
+
+Note that message boxes can have their own stylesheets, and you can set their defaults per-system.
+
+This specific message box won't do much.
+You can just close it.");
+                    };
+
+                    panel.AddChild(new RowsSpacer());
+                }
+
                 // locked / disabled
                 {
                     var panel = CreateDemoContainer("Locked / Disabled", new Point(900, 600));
                     panel.AutoHeight = false;
-                    panel.CreateVerticalScrollbar(true);
-                    panel.AddChild(new Paragraph(
-                        @"You can disable controls to make them ignore user interactions and render them with 'disabled' effect (in this demo, grayscale):
-"));
+                    panel.CreateVerticalScrollbar();
+                    panel.AddChild(new Paragraph(@"You can disable controls to make them ignore user interactions and render them with 'disabled' effect (you can create your own effects for this):"));
                     panel.AddChild(new Button("Disabled Button") { Enabled = false });
-                    panel.AddChild(new Paragraph(
-                        @"
-When you disable a panel, all controls under it will be disabled too.
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"When you disable a panel, all controls under it will be disabled too.
 
-If you want to just lock items without rendering them with 'disabled' style, you can also set the Locked property. For example the following button is locked, but will render normally:
-"));
+If you want to just lock items without rendering them with 'disabled' style, you can also set the Locked property. For example the following button is locked, but will render normally:"));
+                    panel.AddChild(new RowsSpacer());
                     panel.AddChild(new Button("Locked Button") { Locked = true });
-                    panel.AddChild(new Paragraph(
-            @"
-Any type of control can be locked and disabled and locked:
-"));
+                    panel.AddChild(new RowsSpacer());
+                    panel.AddChild(new Paragraph(@"Any type of control can be locked and disabled:"));
                     panel.AddChild(new Slider() { Enabled = false });
                     panel.AddChild(new Checkbox("Disabled Checkbox") { Enabled = false });
                     panel.AddChild(new RadioButton("Disabled Radio Button") { Enabled = false });
@@ -733,26 +781,22 @@ Any type of control can be locked and disabled and locked:
                     listbox.Enabled = false;
                 }
 
-                /*// example: epilogue
+                // example: epilogue
                 {
-                    // create panel and add to list of panels and manager
-                    Panel panel = new Panel(new Vector2(520, 400), PanelSkin.None);
-                    panels.Add(panel);
-                    UISystem.Root.AddChild(panel);
+                    var panel = CreateDemoContainer("End Of GUI-DEMO", new Point(700, 400));
+                    panel.StyleSheet = new StyleSheet();
 
                     // add title and text
-                    panel.AddChild(new Paragraph("End Of GUI-DEMO"));
-                    panel.AddChild(new HorizontalLine());
-                    panel.AddChild(new Paragraph(@"That was only the GUI-DEMO! There is still much to learn about {{MG_YELLOW}}Mono{{MG_RED}}Go{{DEFAULT}}.
+                    panel.AddChild(new Paragraph($@"That was only the GUI-DEMO! There is still much to learn about ${{FC:FFDB5F}}Mono${{FC:e60000}}Go${{RESET}}.
 
-Try more samples by clicking the {{MG_YELLOW}}Next{{DEFAULT}} button below.
+Try more samples by clicking the ${{FC:FFDB5F}}Next${{RESET}} button below.
 
-If you like this engine then don't forget to star the repo on GitHub.
+If you like this engine then don't forget to star the repo on ${{FC:96FF5F}}GitHub${{RESET}} with the button above.
 
 Have a nice day!
 
-:: {{MG_FANCY}}BlizzCrafter{{DEFAULT}} =)"));
-                }*/
+{blizzCrafterIcon} ${{FC:df00e6}}BlizzCrafter${{RESET}}"));
+                }
 
                 // init panels and buttons
                 UpdateAfterExampleChange();
