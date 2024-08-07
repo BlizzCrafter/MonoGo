@@ -180,6 +180,68 @@ namespace MonoGo.Engine.UI
             return rootOwner;
         }
 
+        /// <summary>
+        /// Find the root owner of an <see cref="IHaveGUI"/> object.
+        /// </summary>
+        /// <returns>The root owner controls.</returns>
+        public static List<IHaveGUI> GetRootOwners()
+        {
+            var owners = new List<IHaveGUI>();
+            Root.IterateChildren(
+                control =>
+                {
+                    var identifier = control.Identifier?.Split(':').First();
+                    if (identifier != null && identifier == "Owner")
+                    {
+                        if (control.UserData != null && control.UserData is IHaveGUI owner)
+                        {
+                            owners.Add(owner);
+                        }
+                    }
+                    return true;
+                });
+            return owners;
+        }
+
+        /// <summary>
+        /// Find and return first occurance of a control with a given identifier and specific type.
+        /// </summary>
+        /// <typeparam name="T">Control type to get.</typeparam>
+        /// <param name="identifier">Identifier to find.</param>
+        /// <returns>First found control with given identifier and type, or null if nothing found.</returns>
+        public static T? Find<T>(string identifier) where T : Control
+        {
+            // should we return any control type?
+            bool anyType = typeof(T) == typeof(Control);
+            T? ret = default;
+
+            // iterate children
+            Root.Walk(
+                x =>
+                {
+                    // check if identifier and type matches - if so, return it
+                    if (x.Identifier == identifier && (anyType || (x.GetType() == typeof(T))))
+                    {
+                        ret = (T)x;
+                        return false;
+                    }
+                    return true;
+                });
+
+            // not found?
+            return ret;
+        }
+
+        /// <summary>
+        /// Find and return first occurance of a control with a given identifier.
+        /// </summary>
+        /// <param name="identifier">Identifier to find.</param>
+        /// <returns>First found control with given identifier, or null if nothing found.</returns>
+        public static Control? Find(string identifier)
+        {
+            return Find<Control>(identifier);
+        }
+
         internal static void Init(string themeFolder, string themeName)
         {
             Root = new Panel(null!) {Identifier = "Root" };
