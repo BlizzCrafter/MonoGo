@@ -41,6 +41,7 @@ namespace MonoGo.Engine.UI.Controls
 
         /// <inheritdoc/>
         internal override bool Interactable => true;
+
         /// <summary>
         /// Styles to override stylesheet defaults, regardless of Control state, for the list items paragraphs.
         /// </summary>
