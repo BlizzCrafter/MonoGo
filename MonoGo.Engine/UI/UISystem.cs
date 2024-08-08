@@ -38,6 +38,11 @@ namespace MonoGo.Engine.UI
         public static string ThemeActiveName => Path.GetFileNameWithoutExtension(ThemeActiveFolder)!;
 
         /// <summary>
+        /// Triggers after a UI theme was loaded.
+        /// </summary>
+        public static Action OnThemeChanged { get; set; }
+
+        /// <summary>
         /// Total elapsed time this system is running, in seconds.
         /// </summary>
         public static double ElapsedTime { get; private set; }
@@ -278,6 +283,7 @@ namespace MonoGo.Engine.UI
         {
             Clear();
             Init(ThemeBaseFolder, themeName);
+            OnThemeChanged?.Invoke();
         }
 
         /// <summary>
