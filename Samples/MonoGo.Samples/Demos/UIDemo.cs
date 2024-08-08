@@ -42,6 +42,8 @@ namespace MonoGo.Samples.Demos
             var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
             var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
+            var listPanelCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_panel_centered.json"));
+            var listItemCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_item_centered.json"));
 
             // icons
             var blizzCrafterIcon = $"${{ICO:Textures/Icons|0|32|32|32|1}}  ";
@@ -99,9 +101,25 @@ namespace MonoGo.Samples.Demos
                 topPanel.AddChild(button);
             }
 
-            //
-            // The Theme Switcher control gets created in the SceneSwitcher.cs class!
-            // 
+            // theme switcher drop down.
+            DropDown themeDropDown = new(listPanelCentered, listItemCentered)
+            {
+                Identifier = "Theme Switcher",
+                Anchor = Anchor.TopCenter,
+                AllowDeselect = false,
+                AutoHeight = true
+            };
+            themeDropDown.Size.SetPixels(240, (int)topPanel.Size.Y.Value);
+            foreach (string theme in UISystem.ThemeFolders)
+            {
+                themeDropDown.AddItem(theme);
+            }
+            themeDropDown.SelectedValue = UISystem.ThemeActiveName;
+            themeDropDown.Events.OnValueChanged = (Control control) =>
+            {
+                UISystem.LoadTheme(themeDropDown.SelectedValue);
+            };
+            topPanel.AddChild(themeDropDown);
 
             // add next example button
             _nextExampleButton = new("GUI.Next ->")

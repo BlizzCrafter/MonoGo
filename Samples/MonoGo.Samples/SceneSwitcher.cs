@@ -71,6 +71,8 @@ namespace MonoGo.Samples
         public SceneSwitcher(CameraController cameraController) : base(SceneMgr.DefaultLayer)
 		{
 			_cameraController = cameraController;
+
+            UISystem.OnThemeChanged = () => RestartScene();
         }
 
         public void CreateUI()
@@ -82,8 +84,6 @@ namespace MonoGo.Samples
             }
 
             var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
-            var listPanelCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_panel_centered.json"));
-            var listItemCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_item_centered.json"));
 
             #region PostFX Panel
 
@@ -366,39 +366,6 @@ namespace MonoGo.Samples
                     //descriptionPanel.OverflowMode = OverflowMode.HideOverflow;
                     bottomPanel.AddChild(DescriptionPanel);
                 }
-            }
-            else if (_isUIDemo)
-            {
-                UISystem.Root.Walk(
-                    x =>
-                    {
-                        if (x.Identifier == "Top Panel")
-                        {
-                            DropDown themeDropDown = new(listPanelCentered, listItemCentered)
-                            {
-                                Identifier = "Theme Switcher",
-                                Anchor = Anchor.TopCenter,
-                                AllowDeselect = false,
-                                AutoHeight = true
-                            };
-                            themeDropDown.Size.SetPixels(240, (int)x.Size.Y.Value);
-                            foreach (string theme in UISystem.ThemeFolders)
-                            {
-                                themeDropDown.AddItem(theme);
-                            }
-                            themeDropDown.SelectedValue = UISystem.ThemeActiveName;
-                            themeDropDown.Events.OnValueChanged = (Control control) =>
-                            {
-                                UISystem.LoadTheme(themeDropDown.SelectedValue);
-                                RestartScene();
-                            };
-                            x.AddChild(themeDropDown);
-
-                            return false;
-
-                        }
-                        return true;
-                    });
             }
 
             _nextExampleButton = new Button($"({_nextSceneButton}) Next ->")
