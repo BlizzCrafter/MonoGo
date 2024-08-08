@@ -187,7 +187,7 @@ namespace MonoGo.Engine.UI.Controls
                 UISystem.RunAfterDrawingControls(() =>
                 {
                     _isCurrentlyDrawingOpenedListTopMost = true;
-                    _DoDraw(parentResults, siblingResults);
+                    _DoDraw(parentResults, siblingResults, false);
                     _isCurrentlyDrawingOpenedListTopMost = false;
                 });
             }

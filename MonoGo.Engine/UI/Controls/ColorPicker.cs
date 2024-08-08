@@ -154,14 +154,14 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <inheritdoc/>
-        protected override DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected override DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult, bool dryRun)
         {
             // update handle offset
             var factor = GetDestToSourceFactor();
             Handle.Offset.X.Value = MathF.Ceiling(_offsetInSource.X / factor.X - Handle.LastBoundingRect.Width / 2);
             Handle.Offset.Y.Value = MathF.Ceiling(_offsetInSource.Y / factor.Y - Handle.LastBoundingRect.Height / 2);
 
-            return base.Draw(parentDrawResult, siblingDrawResult);
+            return base.Draw(parentDrawResult, siblingDrawResult, dryRun);
         }
     }
 }

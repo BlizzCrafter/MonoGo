@@ -67,6 +67,8 @@ namespace MonoGo.Engine.UI.Controls
         Point? _dragOffsetFromParent;
         Point _dragHandleOffset;
 
+        // indicating that this entity was never drawn before since it was added to parent / created
+        bool _isFirstDrawCall = true;
         /// <summary>
         /// If true, this control will ignore scrollbar offset.
         /// </summary>
@@ -575,6 +577,7 @@ namespace MonoGo.Engine.UI.Controls
                 _internalChildren.Add(child);
             }
             child.Parent = this;
+            child._isFirstDrawCall = true;
         }
 
         /// <summary>
@@ -621,6 +624,7 @@ namespace MonoGo.Engine.UI.Controls
             }
 
             child.Parent = this;
+            child._isFirstDrawCall = true;
             return child;
         }
 
@@ -870,24 +874,40 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="parentDrawResult">Parent control last rendering results. Root controls will get bounding boxes covering the entire screen.</param>
         /// <param name="siblingDrawResult">Older sibling control last rendering results. For first control, it will be null.</param>
         /// <returns>Calculated bounding rectangles.</returns>
-        internal DrawMethodResult _DoDraw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        internal DrawMethodResult _DoDraw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult, bool dryRun)
         {
             // skip if not visible
             if (!Visible) { return new DrawMethodResult(); }
 
+            // if its first draw call, perform dry run first to arrange all entities
+            // note: do dry run twice, so auto-sizing would have opportunity to work
+            if (_isFirstDrawCall && !dryRun)
+            {
+                _isFirstDrawCall = false;
+                _DoDraw(parentDrawResult, siblingDrawResult, true);
+                _DoDraw(parentDrawResult, siblingDrawResult, true);
+            }
             Events.BeforeDraw?.Invoke(this);
             UISystem.Events.BeforeDraw?.Invoke(this);
 
+            // get current scissor region
+            var beforeDrawScissorRegion = Renderer.GetScissorRegion();
+
+            // special: in dry run we set empty scissor region so nothing will be drawn
+            if (dryRun)
+            {
+                Renderer.SetScissorRegion(new Rectangle(0, 0, 1, 1));
+            }
             // draw self and get bounding rect
-            var selfRect = Draw(parentDrawResult, siblingDrawResult);
+            var selfRect = Draw(parentDrawResult, siblingDrawResult, dryRun);
 
             // set last bounding rects
             LastBoundingRect = selfRect.BoundingRect;
             LastInternalBoundingRect = selfRect.InternalBoundingRect;
-            var scissorRegion = Renderer.GetScissorRegion();
-            if (scissorRegion.HasValue)
+
+            if (beforeDrawScissorRegion.HasValue)
             {
-                LastVisibleBoundingRect = Extensions.MergeRectangles(LastBoundingRect, scissorRegion.Value);
+                LastVisibleBoundingRect = Extensions.MergeRectangles(LastBoundingRect, beforeDrawScissorRegion.Value);
             }
             else
             {
@@ -895,7 +915,7 @@ namespace MonoGo.Engine.UI.Controls
             }
 
             // apply scissor to hide overflow controls
-            bool setScissor = (OverflowMode == OverflowMode.HideOverflow);
+            bool setScissor = !dryRun && (OverflowMode == OverflowMode.HideOverflow);
             bool enqueuedPreviousScissorRegion = false;
             if (setScissor)
             {
@@ -924,7 +944,7 @@ namespace MonoGo.Engine.UI.Controls
             {
                 if (child.Visible && child.IgnoreScrollOffset)
                 {
-                    var newSiblingDrawResult = child._DoDraw(selfRect, siblingDrawResult);
+                    var newSiblingDrawResult = child._DoDraw(selfRect, siblingDrawResult, dryRun);
                     if (child.IncludeInInternalAutoAnchorCalculation) { siblingDrawResult = newSiblingDrawResult; }
                 }
             }
@@ -953,7 +973,7 @@ namespace MonoGo.Engine.UI.Controls
             {
                 if (child.Visible && !child.IgnoreScrollOffset)
                 {
-                    var newSiblingDrawResult = child._DoDraw(selfRectScrolled, siblingDrawResult);
+                    var newSiblingDrawResult = child._DoDraw(selfRectScrolled, siblingDrawResult, dryRun);
                     if (child.IncludeInInternalAutoAnchorCalculation) { siblingDrawResult = newSiblingDrawResult; }
                 }
             }
@@ -968,7 +988,7 @@ namespace MonoGo.Engine.UI.Controls
                 if (child.Visible)
                 {
                     // draw child
-                    siblingDrawResult = child._DoDraw(child.IgnoreScrollOffset ? selfRect : selfRectScrolled, siblingDrawResult);
+                    siblingDrawResult = child._DoDraw(child.IgnoreScrollOffset ? selfRect : selfRectScrolled, siblingDrawResult, dryRun);
                     PostDrawingChild(siblingDrawResult);
 
                     // adjust auto size
@@ -990,11 +1010,23 @@ namespace MonoGo.Engine.UI.Controls
             {
                 if (child.Visible)
                 {
-                    var newSiblingDrawResult = child._DoDraw(selfRect, siblingDrawResult);
+                    var newSiblingDrawResult = child._DoDraw(selfRect, siblingDrawResult, dryRun);
                     if (child.IncludeInInternalAutoAnchorCalculation) { siblingDrawResult = newSiblingDrawResult; }
                 }
             }
 
+            // special - clear dryrun fake scissor
+            if (dryRun)
+            {
+                if (beforeDrawScissorRegion != null)
+                {
+                    Renderer.SetScissorRegion(beforeDrawScissorRegion.Value);
+                }
+                else
+                {
+                    Renderer.ClearScissorRegion();
+                }
+            }
             // reset scissor region if set
             if (setScissor)
             {
@@ -1009,7 +1041,10 @@ namespace MonoGo.Engine.UI.Controls
             }
 
             // set auto size
-            SetAutoSizes(maxWidth, maxHeight);
+            if (AutoHeight || AutoWidth)
+            {
+                SetAutoSizes(maxWidth, maxHeight);
+            }
 
             // trigger event
             Events.AfterDraw?.Invoke(this);
@@ -1063,7 +1098,7 @@ namespace MonoGo.Engine.UI.Controls
         /// <param name="parentDrawResult">Parent control last rendering results. Root controls will get bounding boxes covering the entire screen.</param>
         /// <param name="siblingDrawResult">Older sibling control last rendering results. For first control, it will be null.</param>
         /// <returns>Calculated bounding rectangles.</returns>
-        protected virtual DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected virtual DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult, bool dryRun)
         {
             // calculate bounding rect
             Rectangle boundingRect = CalculateBoundingRect(parentDrawResult, siblingDrawResult);

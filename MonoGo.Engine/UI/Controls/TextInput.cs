@@ -202,7 +202,7 @@ namespace MonoGo.Engine.UI.Controls
         }
 
         /// <inheritdoc/>
-        protected override DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult)
+        protected override DrawMethodResult Draw(DrawMethodResult parentDrawResult, DrawMethodResult? siblingDrawResult, bool dryRun)
         {
             // update paragraph to display text
             var noValue = string.IsNullOrEmpty(Value);
@@ -224,7 +224,7 @@ namespace MonoGo.Engine.UI.Controls
             _valueParagraph.UseEmptyValueTextColor = noValue;
 
             // call base drawing method
-            var ret = base.Draw(parentDrawResult, siblingDrawResult);
+            var ret = base.Draw(parentDrawResult, siblingDrawResult, dryRun);
             return ret;
         }
 
