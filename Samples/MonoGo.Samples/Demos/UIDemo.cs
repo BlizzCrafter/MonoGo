@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace MonoGo.Samples.Demos
@@ -106,10 +107,9 @@ namespace MonoGo.Samples.Demos
             {
                 Identifier = "Theme Switcher",
                 Anchor = Anchor.TopCenter,
-                AllowDeselect = false,
-                AutoHeight = true
+                AllowDeselect = false
             };
-            themeDropDown.Size.SetPixels(240, (int)topPanel.Size.Y.Value);
+            themeDropDown.Size.X.SetPixels(240);
             foreach (string theme in UISystem.ThemeFolders)
             {
                 themeDropDown.AddItem(theme);
