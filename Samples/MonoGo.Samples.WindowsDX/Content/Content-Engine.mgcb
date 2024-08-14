@@ -91,3 +91,401 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:../../../Content/Engine/Fonts/Regular.spritefont;Engine/Fonts/Regular.spritefont
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/system_style.json;Engine/GUI/DefaultTheme/system_style.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/system_style.json;Engine/GUI/MonoGoTheme/system_style.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/button.json;Engine/GUI/DefaultTheme/Styles/button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/checkbox.json;Engine/GUI/DefaultTheme/Styles/checkbox.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json;Engine/GUI/DefaultTheme/Styles/color_picker.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json;Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json;Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/horizontal_line.json;Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/label.json;Engine/GUI/DefaultTheme/Styles/label.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_item.json;Engine/GUI/DefaultTheme/Styles/list_item.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_item_centered.json;Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel.json;Engine/GUI/DefaultTheme/Styles/list_panel.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel_centered.json;Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json;Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json;Engine/GUI/DefaultTheme/Styles/numeric_input.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json;Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel.json;Engine/GUI/DefaultTheme/Styles/panel.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json;Engine/GUI/DefaultTheme/Styles/panel_image.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_title.json;Engine/GUI/DefaultTheme/Styles/panel_title.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph.json;Engine/GUI/DefaultTheme/Styles/paragraph.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json;Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/radio_button.json;Engine/GUI/DefaultTheme/Styles/radio_button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json;Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json;Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_handle.json;Engine/GUI/DefaultTheme/Styles/slider_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_horizontal.json;Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_vertical.json;Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/text_input.json;Engine/GUI/DefaultTheme/Styles/text_input.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/title.json;Engine/GUI/DefaultTheme/Styles/title.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json;Engine/GUI/DefaultTheme/Styles/vertical_line.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/button.json;Engine/GUI/MonoGoTheme/Styles/button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/checkbox.json;Engine/GUI/MonoGoTheme/Styles/checkbox.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker.json;Engine/GUI/MonoGoTheme/Styles/color_picker.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json;Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json;Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json;Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json;Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/horizontal_line.json;Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/label.json;Engine/GUI/MonoGoTheme/Styles/label.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item.json;Engine/GUI/MonoGoTheme/Styles/list_item.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item_centered.json;Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel.json;Engine/GUI/MonoGoTheme/Styles/list_panel.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json;Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json;Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input.json;Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json;Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel.json;Engine/GUI/MonoGoTheme/Styles/panel.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_image.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_image.json;Engine/GUI/MonoGoTheme/Styles/panel_image.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json;Engine/GUI/MonoGoTheme/Styles/panel_title.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph.json;Engine/GUI/MonoGoTheme/Styles/paragraph.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json;Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/radio_button.json;Engine/GUI/MonoGoTheme/Styles/radio_button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json;Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json;Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_handle.json;Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json;Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_vertical.json;Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/text_input.json;Engine/GUI/MonoGoTheme/Styles/text_input.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/title.json;Engine/GUI/MonoGoTheme/Styles/title.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/vertical_line.json;Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png;Engine/GUI/DefaultTheme/Textures/Icons.png
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png;Engine/GUI/DefaultTheme/Textures/UI.png
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/Icons.png;Engine/GUI/MonoGoTheme/Textures/Icons.png
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/Yellow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/Yellow.png;Engine/GUI/MonoGoTheme/Textures/Yellow.png
