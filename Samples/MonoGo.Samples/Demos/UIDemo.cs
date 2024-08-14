@@ -42,7 +42,6 @@ namespace MonoGo.Samples.Demos
             var hProgressBarAltStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt.json"));
             var hProgressBarAltFillStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "progress_bar_horizontal_alt_fill.json"));
             var panelTitleStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_title.json"));
-            var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
             var listPanelCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_panel_centered.json"));
             var listItemCentered = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "list_item_centered.json"));
 
@@ -137,15 +136,19 @@ namespace MonoGo.Samples.Demos
             {
                 // example: welcome message
                 {
-                    var logo = new Panel(panelImageStyle)
+                    var logo = new Panel(null!)
                     {
                         Identifier = "LOGO",
                         Anchor = Anchor.AutoCenter
                     };
                     var logoTexture = ResourceHub.GetResource<Sprite>("DemoSprites", "Logo")[0].Texture;
-                    logo.StyleSheet.Default.Icon.Texture = logoTexture;
+                    logo.OverrideStyles.Icon = new IconTexture
+                    {
+                        Texture = logoTexture,
+                        SourceRect = new Rectangle(0, 0, logoTexture.Width, logoTexture.Height)
+                    };
+                    logo.OverrideStyles.MarginAfter = new Point(0, 25);
                     logo.Size.SetPixels(logoTexture.Width, logoTexture.Height);
-                    logo.StyleSheet.Default.MarginAfter = new Point(0, 25);
 
                     // add title and text
                     var panel = CreateDemoContainer(null, new Point(1200, -1));
@@ -159,7 +162,7 @@ Stay tuned for more things to come! (probably ${{FC:f8c102}}{smileyIcon}${{RESET
 Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more GUI-DEMOS or the ${{FC:FFDB5F}}Next${{RESET}} button below to see more SAMPLE-DEMOS of the engine.
 
 ") { TextOverflowMode = TextOverflowMode.WrapWords };
-                    welcomeText.StyleSheet.Default.FontSize = 28;
+                    welcomeText.OverrideStyles.FontSize = 28;
                     panel.AddChild(logo);
                     panel.AddChild(welcomeText);
                     var version = new Paragraph("${FC:FFDB5F}v" + Assembly.GetAssembly(typeof(Entity)).GetName().Version + "${RESET}")

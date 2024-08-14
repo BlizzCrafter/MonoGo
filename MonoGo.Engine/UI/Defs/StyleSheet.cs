@@ -127,32 +127,6 @@ namespace MonoGo.Engine.UI.Defs
         /// Outline color for the bounding rectangle outlines, if set.
         /// </summary>
         public Color? BoxOutlineColor { get; set; }
-
-        public StyleSheetState DeepCopy()
-        {
-            StyleSheetState copy = (StyleSheetState)MemberwiseClone();
-            copy.FillTextureFramed = FillTextureFramed?.DeepCopy();
-            copy.FillTextureStretched = FillTextureStretched?.DeepCopy();
-            copy.Icon = Icon?.DeepCopy();
-            copy.TintColor = TintColor.HasValue ? new Color(TintColor.Value.R, TintColor.Value.G, TintColor.Value.B, TintColor.Value.A) : null;
-            copy.TextAlignment = TextAlignment;
-            copy.FontIdentifier = new string(FontIdentifier);
-            copy.TextFillColor = TextFillColor.HasValue ? new Color(TextFillColor.Value.R, TextFillColor.Value.G, TextFillColor.Value.B, TextFillColor.Value.A) : null;
-            copy.NoValueTextFillColor = NoValueTextFillColor.HasValue ? new Color(NoValueTextFillColor.Value.R, NoValueTextFillColor.Value.G, NoValueTextFillColor.Value.B, NoValueTextFillColor.Value.A) : null;
-            copy.TextOutlineColor = TextOutlineColor.HasValue ? new Color(TextOutlineColor.Value.R, TextOutlineColor.Value.G, TextOutlineColor.Value.B, TextOutlineColor.Value.A) : null;
-            copy.TextOutlineWidth = TextOutlineWidth;
-            copy.TextSpacing = TextSpacing;
-            copy.FontSize = FontSize;
-            copy.EffectIdentifier = EffectIdentifier;
-            copy.Padding = Padding.HasValue ? new Sides(Padding.Value.Left, Padding.Value.Right, Padding.Value.Top, Padding.Value.Bottom) : null;
-            copy.ExtraSize = ExtraSize.HasValue ? new Sides(ExtraSize.Value.Left, ExtraSize.Value.Right, ExtraSize.Value.Top, ExtraSize.Value.Bottom) : null;
-            copy.MarginBefore = MarginBefore.HasValue ? new Point(MarginBefore.Value.X, MarginBefore.Value.Y) : null;
-            copy.MarginAfter = MarginAfter.HasValue ? new Point(MarginAfter.Value.X, MarginAfter.Value.Y) : null;
-            copy.BoxOutlineWidth = BoxOutlineWidth.HasValue ? new Sides(BoxOutlineWidth.Value.Left, BoxOutlineWidth.Value.Right, BoxOutlineWidth.Value.Top, BoxOutlineWidth.Value.Bottom) : null;
-            copy.BoxOutlineOffset = BoxOutlineOffset.HasValue ? new Point(BoxOutlineOffset.Value.X, BoxOutlineOffset.Value.Y) : null;
-            copy.BoxOutlineColor = BoxOutlineColor.HasValue ? new Color(BoxOutlineColor.Value.R, BoxOutlineColor.Value.G, BoxOutlineColor.Value.B, TextFillColor.Value.A) : null;
-            return copy;
-        }
     }
 
     /// <summary>
@@ -253,27 +227,6 @@ namespace MonoGo.Engine.UI.Defs
         /// Default value is 0.
         /// </summary>
         public float? InterpolateOffsetsSpeed { get; set; }
-
-        public StyleSheet DeepCopy()
-        {
-            StyleSheet copy = (StyleSheet)MemberwiseClone();
-            copy.DefaultWidth = DefaultWidth.HasValue ? new Measurement() { Value = DefaultWidth.Value.Value, Units = DefaultWidth.Value.Units } : null;
-            copy.DefaultHeight = DefaultHeight.HasValue ? new Measurement() { Value = DefaultHeight.Value.Value, Units = DefaultHeight.Value.Units } : null;
-            copy.MinWidth = MinWidth;
-            copy.MinHeight = MinHeight;
-            copy.DefaultAnchor = DefaultAnchor;
-            copy.DefaultTextAnchor = DefaultTextAnchor;
-            copy.Default = Default?.DeepCopy();
-            copy.Targeted = Targeted?.DeepCopy();
-            copy.Interacted = Interacted?.DeepCopy();
-            copy.Checked = Checked?.DeepCopy();
-            copy.TargetedChecked = TargetedChecked?.DeepCopy();
-            copy.Disabled = Disabled?.DeepCopy();
-            copy.DisabledChecked = DisabledChecked?.DeepCopy();
-            copy.InterpolateStatesSpeed = InterpolateStatesSpeed;
-            copy.InterpolateOffsetsSpeed = InterpolateOffsetsSpeed;
-            return copy;
-        }
 
         /// <summary>
         /// Get stylesheet for a given Control state.

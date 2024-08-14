@@ -83,20 +83,18 @@ namespace MonoGo.Samples
                 CurrentFactory.CreateScene();
             }
 
-            var panelImageStyle = StyleSheet.LoadFromJsonFile(Path.Combine(UISystem.ThemeActiveFolder, "Styles", "panel_image.json"));
-
             #region PostFX Panel
 
             if (CurrentFactory?.Type != typeof(UIDemo))
             {
-                _postFXPanel = new(UISystem.DefaultStylesheets.Panels.DeepCopy())
+                _postFXPanel = new()
                 {
                     Identifier = "PostFXPanel",
                     Anchor = Anchor.TopRight
                 };
                 _postFXPanel.Size.SetPixels(-_postFXPanelOffsetX, (int)GameMgr.WindowManager.CanvasSize.Y);
                 _postFXPanel.Offset.X.SetPixels(_postFXPanelOffsetX);
-                _postFXPanel.StyleSheet.Default.Padding = new Sides(0, 0, 20, 20);
+                _postFXPanel.OverrideStyles.Padding = new Sides(0, 0, 20, 20);
                 UISystem.Add(_postFXPanel);
 
                 _postFXPanelAnimation = new Animation()
@@ -123,6 +121,7 @@ namespace MonoGo.Samples
                 {
                     Anchor = Anchor.TopRight
                 };
+                _postFXButton.OverrideStyles.TintColor = new Color(150, 150, 250);
                 _postFXButton.Size.SetPixels(100, 50);
                 _postFXButton.Events.OnClick = (Control control) =>
                 {
@@ -148,15 +147,14 @@ namespace MonoGo.Samples
 
                 #region Color Grading
 
-                var colorGradingEnableButton = new Button(
-                    UISystem.DefaultStylesheets.Buttons.DeepCopy(), "Color Grading")
+                var colorGradingEnableButton = new Button("Color Grading")
                 {
                     Anchor = Anchor.AutoCenter,
                     ToggleCheckOnClick = true,
                     Checked = RenderMgr.ColorGradingFX
                 };
                 colorGradingEnableButton.Size.SetPixels(300, 50);
-                colorGradingEnableButton.StyleSheet.Default.MarginAfter = new Point(0, 5);
+                colorGradingEnableButton.OverrideStyles.MarginAfter = new Point(0, 5);
                 colorGradingEnableButton.Events.OnClick = (Control control) =>
                 {
                     RenderMgr.ColorGradingFX = !RenderMgr.ColorGradingFX;
@@ -168,18 +166,21 @@ namespace MonoGo.Samples
                     {
                         Anchor = Anchor.AutoInlineLTR
                     };
-                    //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
+                    panel.OverrideStyles.Padding = new Sides(1, 1, 1, 1);
                     panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
                     _postFXPanel.AddChild(panel);
 
-                    var logo = new Panel(panelImageStyle.DeepCopy())
+                    var logo = new Panel(null!)
                     {
                         Anchor = Anchor.AutoInlineLTR
                     };
                     var logoTexture = ColorGrading.CurrentLUT[0].Texture;
-                    logo.StyleSheet.Default.Icon.Texture = logoTexture;
-                    logo.Size.SetPixels(64, 64);
-                    logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
+                    logo.OverrideStyles.Icon = new IconTexture
+                    {
+                        Texture = logoTexture,
+                        SourceRect = new Rectangle(0, 0, logoTexture.Width, logoTexture.Height)
+                    };
+                    logo.Size.SetPixels(logoTexture.Width, logoTexture.Height);
                     logo.Offset.X.SetPixels(10);
 
                     var leftButton = new Button("P")
@@ -191,7 +192,7 @@ namespace MonoGo.Samples
                     leftButton.Events.OnClick = (Control control) =>
                     {
                         ColorGrading.PreviousLUT();
-                        logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
+                        logo.OverrideStyles.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
                     };
 
                     var rightButton = new Button("N")
@@ -203,7 +204,7 @@ namespace MonoGo.Samples
                     rightButton.Events.OnClick = (Control control) =>
                     {
                         ColorGrading.NextLUT();
-                        logo.StyleSheet.Default.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
+                        logo.OverrideStyles.Icon.Texture = ColorGrading.CurrentLUT[0].Texture;
                     };
 
                     panel.AddChild(leftButton);
@@ -214,16 +215,15 @@ namespace MonoGo.Samples
                 #endregion Color Grading Panel
                 #region Bloom
 
-                var bloomEnableButton = new Button(
-                    UISystem.DefaultStylesheets.Buttons.DeepCopy(), "Bloom")
+                var bloomEnableButton = new Button("Bloom")
                 {
                     Anchor = Anchor.AutoCenter,
                     ToggleCheckOnClick = true,
                     Checked = RenderMgr.BloomFX
                 };
                 bloomEnableButton.Size.SetPixels(300, 50);
-                bloomEnableButton.StyleSheet.Default.MarginBefore = new Point(0, 5);
-                bloomEnableButton.StyleSheet.Default.MarginAfter = new Point(0, 5);
+                bloomEnableButton.OverrideStyles.MarginBefore = new Point(0, 5);
+                bloomEnableButton.OverrideStyles.MarginAfter = new Point(0, 5);
                 bloomEnableButton.Events.OnClick = (Control control) =>
                 {
                     RenderMgr.BloomFX = !RenderMgr.BloomFX;
@@ -235,18 +235,21 @@ namespace MonoGo.Samples
                     {
                         Anchor = Anchor.AutoInlineLTR
                     };
-                    //panel.StyleSheet.Default.Padding = new Sides(1, 1, 1, 1);
+                    panel.OverrideStyles.Padding = new Sides(1, 1, 1, 1);
                     panel.Size.SetPixels((int)_postFXPanel.Size.X.Value, 64);
                     _postFXPanel.AddChild(panel);
 
-                    var logo = new Panel(panelImageStyle.DeepCopy())
+                    var logo = new Panel(null!)
                     {
                         Anchor = Anchor.AutoInlineLTR
                     };
                     var logoTexture = ResourceHub.GetResource<Sprite>("ParticleSprites", "Pixel")[0].Texture;
-                    logo.StyleSheet.Default.Icon.Texture = logoTexture;
+                    logo.OverrideStyles.Icon = new IconTexture
+                    {
+                        Texture = logoTexture,
+                        SourceRect = new Rectangle(0, 0, 64, 64)
+                    };
                     logo.Size.SetPixels(64, 64);
-                    logo.StyleSheet.Default.Icon.SourceRect = new Rectangle(0, 0, 64, 64);
                     logo.Offset.X.SetPixels(10);
 
                     var leftButton = new Button("P")
@@ -322,12 +325,12 @@ namespace MonoGo.Samples
                 panelHeight = 65;
             }
 
-            Panel bottomPanel = new(_isUIDemo ? null! : UISystem.DefaultStylesheets.Panels.DeepCopy())
+            Panel bottomPanel = new(_isUIDemo ? null! : UISystem.DefaultStylesheets.Panels)
             {
                 Anchor = Anchor.BottomCenter,
                 Identifier = "BottomPanel"
             };
-            if (!_isUIDemo) bottomPanel.StyleSheet.Default.Padding = Sides.Zero;
+            if (!_isUIDemo) bottomPanel.OverrideStyles.Padding = Sides.Zero;
             bottomPanel.Size.SetPixels((int)GameMgr.WindowManager.CanvasSize.X, panelHeight);
             UISystem.Add(bottomPanel);
 
