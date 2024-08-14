@@ -1,0 +1,36 @@
+﻿namespace MonoGo.Engine.UI.Defs
+{
+    /// <summary>
+    /// Define 4 sides values.
+    /// </summary>
+    public struct Sides
+    {
+        public int Left { get; set; }
+        public int Right { get; set; }
+        public int Top { get; set; }
+        public int Bottom { get; set; }
+
+        public Sides(int left, int right, int top, int bottom) 
+        {
+            Left = left;
+            Right = right;
+            Top = top; 
+            Bottom = bottom; 
+        }
+
+        public void TurnToZero()
+        {
+            Left = Right = Top = Bottom = 0;
+        }
+
+        public void Set(int left, int right, int top, int bottom)
+        {
+            Left = left;
+            Right = right;
+            Top = top;
+            Bottom = bottom;
+        }
+
+        public static readonly Sides Zero = new Sides(0, 0, 0, 0);
+    }
+}

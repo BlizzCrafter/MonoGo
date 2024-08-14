@@ -10,10 +10,14 @@ namespace MonoGo.Samples.Demos
 	public class ECDemo : Entity
 	{
 		public static readonly string Description =
-            "Move > {{YELLOW}}WASD{{DEFAULT}}" + Environment.NewLine +
-            "Bots > {{L_GREEN}}Update{{DEFAULT}}:{{YELLOW}}" + ToggleEnabledButton + " {{L_GREEN}}Draw{{DEFAULT}}:{{YELLOW}}" + ToggleVisibilityButton + " {{DEFAULT}}";
+			"Move > ${FC:FFDB5F}WASD${RESET}" + Environment.NewLine +
+			"Bots > ${FC:96FF5F}Update${RESET}: ${FC:FFDB5F}" + ToggleEnabledButton + " ${FC:96FF5F}Draw${RESET}: ${FC:FFDB5F}" + ToggleVisibilityButton + " ${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Move${RESET}: ${FC:FFDB5F}" + CameraController.UpButton + "${RESET} / ${FC:FFDB5F}" + CameraController.DownButton + "${RESET} / ${FC:FFDB5F}" + CameraController.LeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Rotate${RESET}: ${FC:FFDB5F}" + CameraController.RotateLeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RotateRightButton + "${RESET}" + Environment.NewLine +
+			"Camera > ${FC:96FF5F}Zoom${RESET}: ${FC:FFDB5F}" + CameraController.ZoomInButton + "${RESET} / ${FC:FFDB5F}" + CameraController.ZoomOutButton + "${RESET}" + Environment.NewLine;
 
-		public const Buttons ToggleVisibilityButton = Buttons.N;
+
+        public const Buttons ToggleVisibilityButton = Buttons.N;
 		public const Buttons ToggleEnabledButton = Buttons.M;
 
 		public ECDemo(Layer layer) : base(layer)

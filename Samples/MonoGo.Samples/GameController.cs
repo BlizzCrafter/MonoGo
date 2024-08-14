@@ -13,20 +13,18 @@ namespace MonoGo.Samples
 {
 	public class GameController : Entity
 	{
-		public Camera2D MainCamera = new Camera2D(new Vector2(1280, 720));
-
-		Layer _guiLayer;
+		public Camera2D MainCamera = new(new Vector2(1600, 900));
 
 		public static RasterizerState DefaultRasterizer;
 		public static RasterizerState WireframeRasterizer;
 
-        private Stopwatch _updateStopwatch = new Stopwatch();
-        private Stopwatch _drawStopwatch = new Stopwatch();
+        private readonly Stopwatch _updateStopwatch = new();
+        private readonly Stopwatch _drawStopwatch = new();
 		private double _elapsedUpdate, _elapsedDraw; 
 
-		public static RandomExt Random = new RandomExt();
+		public static RandomExt Random = new();
 
-		public GameController() : base(SceneMgr.GetScene("default")["default"])
+		public GameController() : base(SceneMgr.DefaultLayer)
 		{
 			GameMgr.MaxGameSpeed = 60;
 			GameMgr.MinGameSpeed = 60; // Fixing framerate on 60.
@@ -41,26 +39,24 @@ namespace MonoGo.Samples
 
 			GraphicsMgr.VertexBatch.SamplerState = SamplerState.PointWrap; // Will make textures repeat without interpolation.
 
-			DefaultRasterizer = new RasterizerState();
-			DefaultRasterizer.CullMode = CullMode.CullCounterClockwiseFace;
-			DefaultRasterizer.FillMode = FillMode.Solid;
-			DefaultRasterizer.MultiSampleAntiAlias = false;
+            DefaultRasterizer = new RasterizerState
+            {
+                CullMode = CullMode.CullCounterClockwiseFace,
+                FillMode = FillMode.Solid,
+                MultiSampleAntiAlias = false
+            };
 
-			WireframeRasterizer = new RasterizerState();
-			WireframeRasterizer.CullMode = CullMode.CullCounterClockwiseFace;
-			WireframeRasterizer.FillMode = FillMode.WireFrame;
-			WireframeRasterizer.MultiSampleAntiAlias = false;
+            WireframeRasterizer = new RasterizerState
+            {
+                CullMode = CullMode.CullCounterClockwiseFace,
+                FillMode = FillMode.WireFrame,
+                MultiSampleAntiAlias = false
+            };
 
-			GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
+            GraphicsMgr.VertexBatch.RasterizerState = DefaultRasterizer;
 
-			_guiLayer = Scene.CreateLayer("gui");
-			_guiLayer.IsGUI = true;
-
-			var cameraController = new CameraController(_guiLayer, MainCamera);
-
-			var switcher = new SceneSwitcher(_guiLayer, cameraController);
-			switcher.CurrentFactory.CreateScene();
-			switcher.CreateUI();
+			var cameraController = new CameraController(MainCamera);
+            var switcher = new SceneSwitcher(cameraController);
 
 			// Enabling applying postprocessing effects to separate layers.
 			// Note that this will create an additional surface.

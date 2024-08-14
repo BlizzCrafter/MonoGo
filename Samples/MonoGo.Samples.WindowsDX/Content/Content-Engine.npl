@@ -14,26 +14,6 @@
         "../../../Content/*"
       ]
     },
-    "styles": {
-      "path": "Engine/GUI/Styles/*.xml",
-      "recursive": "false",
-      "action": "copy",
-      "importer": "XmlImporter",
-      "processor": "PassThroughProcessor",
-      "watch": [
-        "Engine/GUI/Styles/*.xml"
-      ]
-    },
-    "GUIGroup": {
-      "path": "Engine/GUI.spritegroup",
-      "recursive": false,
-      "action": "build",
-      "importer": "SpriteGroupImporter",
-      "processor": "SpriteGroupProcessor",
-      "watch": [
-        "Engine/GUI/Textures/*.png"
-      ]
-    },
     "ParticlesGroup": {
       "path": "Engine/Particles.spritegroup",
       "recursive": "false",
@@ -67,6 +47,35 @@
       "watch": [
         "Engine/Effects/*.fx"
       ]
+    },
+    "GUIJSON": {
+      "path": "Engine/GUI/*.json",
+      "recursive": "true",
+      "action": "copy",
+      "importer": "NONE",
+      "processor": "NONE",
+      "watch": [
+        "Engine/GUI/*.json"
+      ]
+    },
+    "GUITextures": {
+      "path": "Engine/GUI/*.png",
+      "recursive": true,
+      "action": "build",
+      "importer": "TextureImporter",
+      "processor": "TextureProcessor",
+      "watch": [
+        "Engine/GUI/*.png"
+      ],
+      "processorParam": {
+        "ColorKeyColor": "255,0,255,255",
+        "ColorKeyEnabled": "True",
+        "GenerateMipmaps": "False",
+        "PremultiplyAlpha": "True",
+        "ResizeToPowerOfTwo": "False",
+        "MakeSquare": "False",
+        "TextureFormat": "Color"
+      }
     },
     "Fonts": {
       "path": "Engine/Fonts/*.spritefont",

@@ -4,14 +4,13 @@ using MonoGo.Engine.Cameras;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.Utils;
-using System.Diagnostics;
 
 namespace MonoGo.Samples
 {
-	/// <summary>
-	/// Controls the camera.
-	/// </summary>
-	public class CameraController : Entity
+    /// <summary>
+    /// Controls the camera.
+    /// </summary>
+    public class CameraController : Entity
 	{
 		Camera Camera;
 
@@ -33,8 +32,7 @@ namespace MonoGo.Samples
 		public const Buttons RotateRightButton = Buttons.NumPad7;
 		public const Buttons RotateLeftButton = Buttons.NumPad9;
 
-
-		public CameraController(Layer layer, Camera camera) : base(layer)
+		public CameraController(Camera camera) : base(SceneMgr.GUILayer)
 		{
 			Camera = camera;
 			Camera.Offset = Camera.Size.ToVector3() / 2;
@@ -79,8 +77,7 @@ namespace MonoGo.Samples
 			// Rotation.
 			var rotationDirection = Input.CheckButton(RotateLeftButton).ToInt() - Input.CheckButton(RotateRightButton).ToInt();
 			Camera.Rotation += TimeKeeper.Global.Time(_rotationSpeed) * rotationDirection;
-			// Rotation.
-			
+			// Rotation.			
 		}
 
 		public void Reset()

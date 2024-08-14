@@ -19,546 +19,6 @@
 /processor:PassThroughProcessor
 /build:Content-Engine.npl
 
-#begin ../../../Content/Engine/GUI/Styles/Button-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button-Default.xml;Engine/GUI/Styles/Button-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Button-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button-MouseDown.xml;Engine/GUI/Styles/Button-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Button-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button-MouseHover.xml;Engine/GUI/Styles/Button-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ButtonParagraph-Default.xml;Engine/GUI/Styles/ButtonParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ButtonParagraph-MouseDown.xml;Engine/GUI/Styles/ButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ButtonParagraph-MouseHover.xml;Engine/GUI/Styles/ButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Button_Alternative_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button_Alternative_md.xml;Engine/GUI/Styles/Button_Alternative_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Button_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button_Default_md.xml;Engine/GUI/Styles/Button_Default_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Button_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Button_Fancy_md.xml;Engine/GUI/Styles/Button_Fancy_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBox-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBox-Default.xml;Engine/GUI/Styles/CheckBox-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBox-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBox-MouseDown.xml;Engine/GUI/Styles/CheckBox-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBox-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBox-MouseHover.xml;Engine/GUI/Styles/CheckBox-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBoxParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBoxParagraph-Default.xml;Engine/GUI/Styles/CheckBoxParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBoxParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBoxParagraph-MouseDown.xml;Engine/GUI/Styles/CheckBoxParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/CheckBoxParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/CheckBoxParagraph-MouseHover.xml;Engine/GUI/Styles/CheckBoxParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ColoredRectangle-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ColoredRectangle-Default.xml;Engine/GUI/Styles/ColoredRectangle-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ColoredRectangle-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ColoredRectangle-MouseDown.xml;Engine/GUI/Styles/ColoredRectangle-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ColoredRectangle-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ColoredRectangle-MouseHover.xml;Engine/GUI/Styles/ColoredRectangle-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Cursor_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Cursor_Default_md.xml;Engine/GUI/Styles/Cursor_Default_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Cursor_Ibeam_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Cursor_Ibeam_md.xml;Engine/GUI/Styles/Cursor_Ibeam_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Cursor_Pointer_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Cursor_Pointer_md.xml;Engine/GUI/Styles/Cursor_Pointer_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDown-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDown-Default.xml;Engine/GUI/Styles/DropDown-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDown-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDown-MouseDown.xml;Engine/GUI/Styles/DropDown-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDown-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDown-MouseHover.xml;Engine/GUI/Styles/DropDown-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownParagraph-Default.xml;Engine/GUI/Styles/DropDownParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownParagraph-MouseDown.xml;Engine/GUI/Styles/DropDownParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownParagraph-MouseHover.xml;Engine/GUI/Styles/DropDownParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-Default.xml;Engine/GUI/Styles/DropDownSelectedPanel-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-MouseDown.xml;Engine/GUI/Styles/DropDownSelectedPanel-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedPanel-MouseHover.xml;Engine/GUI/Styles/DropDownSelectedPanel-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-Default.xml;Engine/GUI/Styles/DropDownSelectedParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml;Engine/GUI/Styles/DropDownSelectedParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml;Engine/GUI/Styles/DropDownSelectedParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Entity-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Entity-Default.xml;Engine/GUI/Styles/Entity-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Entity-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Entity-MouseDown.xml;Engine/GUI/Styles/Entity-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Entity-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Entity-MouseHover.xml;Engine/GUI/Styles/Entity-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/example.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/example.xml;Engine/GUI/Styles/example.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Header-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Header-Default.xml;Engine/GUI/Styles/Header-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Header-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Header-MouseDown.xml;Engine/GUI/Styles/Header-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Header-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Header-MouseHover.xml;Engine/GUI/Styles/Header-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/HorizontalLine-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/HorizontalLine-Default.xml;Engine/GUI/Styles/HorizontalLine-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/HorizontalLine-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/HorizontalLine-MouseDown.xml;Engine/GUI/Styles/HorizontalLine-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/HorizontalLine-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/HorizontalLine-MouseHover.xml;Engine/GUI/Styles/HorizontalLine-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Icon-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Icon-Default.xml;Engine/GUI/Styles/Icon-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Icon-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Icon-MouseDown.xml;Engine/GUI/Styles/Icon-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Icon-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Icon-MouseHover.xml;Engine/GUI/Styles/Icon-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Image-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Image-Default.xml;Engine/GUI/Styles/Image-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Image-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Image-MouseDown.xml;Engine/GUI/Styles/Image-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Image-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Image-MouseHover.xml;Engine/GUI/Styles/Image-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Label-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Label-Default.xml;Engine/GUI/Styles/Label-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Label-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Label-MouseDown.xml;Engine/GUI/Styles/Label-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Label-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Label-MouseHover.xml;Engine/GUI/Styles/Label-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel-Default.xml;Engine/GUI/Styles/Panel-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel-MouseDown.xml;Engine/GUI/Styles/Panel-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel-MouseHover.xml;Engine/GUI/Styles/Panel-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButton-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButton-Default.xml;Engine/GUI/Styles/PanelTabsButton-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButton-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButton-MouseDown.xml;Engine/GUI/Styles/PanelTabsButton-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButton-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButton-MouseHover.xml;Engine/GUI/Styles/PanelTabsButton-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-Default.xml;Engine/GUI/Styles/PanelTabsButtonParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml;Engine/GUI/Styles/PanelTabsButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml;Engine/GUI/Styles/PanelTabsButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel_Default_md.xml;Engine/GUI/Styles/Panel_Default_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel_Fancy_md.xml;Engine/GUI/Styles/Panel_Fancy_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel_Golden_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel_Golden_md.xml;Engine/GUI/Styles/Panel_Golden_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel_Listbackground_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel_Listbackground_md.xml;Engine/GUI/Styles/Panel_Listbackground_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Panel_Simple_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Panel_Simple_md.xml;Engine/GUI/Styles/Panel_Simple_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Paragraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Paragraph-Default.xml;Engine/GUI/Styles/Paragraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Paragraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Paragraph-MouseDown.xml;Engine/GUI/Styles/Paragraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Paragraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Paragraph-MouseHover.xml;Engine/GUI/Styles/Paragraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBar-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBar-Default.xml;Engine/GUI/Styles/ProgressBar-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBar-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBar-MouseDown.xml;Engine/GUI/Styles/ProgressBar-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBar-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBar-MouseHover.xml;Engine/GUI/Styles/ProgressBar-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBarFill-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBarFill-Default.xml;Engine/GUI/Styles/ProgressBarFill-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBarFill-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBarFill-MouseDown.xml;Engine/GUI/Styles/ProgressBarFill-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ProgressBarFill-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ProgressBarFill-MouseHover.xml;Engine/GUI/Styles/ProgressBarFill-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Progressbar_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Progressbar_md.xml;Engine/GUI/Styles/Progressbar_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButton-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButton-Default.xml;Engine/GUI/Styles/RadioButton-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButton-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButton-MouseDown.xml;Engine/GUI/Styles/RadioButton-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButton-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButton-MouseHover.xml;Engine/GUI/Styles/RadioButton-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButtonParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButtonParagraph-Default.xml;Engine/GUI/Styles/RadioButtonParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButtonParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButtonParagraph-MouseDown.xml;Engine/GUI/Styles/RadioButtonParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/RadioButtonParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/RadioButtonParagraph-MouseHover.xml;Engine/GUI/Styles/RadioButtonParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Scrollbar_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Scrollbar_md.xml;Engine/GUI/Styles/Scrollbar_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectList-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectList-Default.xml;Engine/GUI/Styles/SelectList-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectList-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectList-MouseDown.xml;Engine/GUI/Styles/SelectList-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectList-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectList-MouseHover.xml;Engine/GUI/Styles/SelectList-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectListParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectListParagraph-Default.xml;Engine/GUI/Styles/SelectListParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectListParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectListParagraph-MouseDown.xml;Engine/GUI/Styles/SelectListParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/SelectListParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/SelectListParagraph-MouseHover.xml;Engine/GUI/Styles/SelectListParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Slider-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Slider-Default.xml;Engine/GUI/Styles/Slider-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Slider-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Slider-MouseDown.xml;Engine/GUI/Styles/Slider-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Slider-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Slider-MouseHover.xml;Engine/GUI/Styles/Slider-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Slider_Default_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Slider_Default_md.xml;Engine/GUI/Styles/Slider_Default_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/Slider_Fancy_md.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/Slider_Fancy_md.xml;Engine/GUI/Styles/Slider_Fancy_md.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInput-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInput-Default.xml;Engine/GUI/Styles/TextInput-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInput-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInput-MouseDown.xml;Engine/GUI/Styles/TextInput-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInput-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInput-MouseHover.xml;Engine/GUI/Styles/TextInput-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputParagraph-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputParagraph-Default.xml;Engine/GUI/Styles/TextInputParagraph-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputParagraph-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputParagraph-MouseDown.xml;Engine/GUI/Styles/TextInputParagraph-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputParagraph-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputParagraph-MouseHover.xml;Engine/GUI/Styles/TextInputParagraph-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputPlaceholder-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputPlaceholder-Default.xml;Engine/GUI/Styles/TextInputPlaceholder-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputPlaceholder-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputPlaceholder-MouseDown.xml;Engine/GUI/Styles/TextInputPlaceholder-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/TextInputPlaceholder-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/TextInputPlaceholder-MouseHover.xml;Engine/GUI/Styles/TextInputPlaceholder-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI/Styles/ThemeData.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/ThemeData.xml;Engine/GUI/Styles/ThemeData.xml
-
-#begin ../../../Content/Engine/GUI/Styles/VerticalScrollbar-Default.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/VerticalScrollbar-Default.xml;Engine/GUI/Styles/VerticalScrollbar-Default.xml
-
-#begin ../../../Content/Engine/GUI/Styles/VerticalScrollbar-MouseDown.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/VerticalScrollbar-MouseDown.xml;Engine/GUI/Styles/VerticalScrollbar-MouseDown.xml
-
-#begin ../../../Content/Engine/GUI/Styles/VerticalScrollbar-MouseHover.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/copy:../../../Content/Engine/GUI/Styles/VerticalScrollbar-MouseHover.xml;Engine/GUI/Styles/VerticalScrollbar-MouseHover.xml
-
-#begin ../../../Content/Engine/GUI.spritegroup
-/importer:SpriteGroupImporter
-/processor:SpriteGroupProcessor
-/build:../../../Content/Engine/GUI.spritegroup;Engine/GUI.spritegroup
-
 #begin ../../../Content/Engine/Particles.spritegroup
 /importer:SpriteGroupImporter
 /processor:SpriteGroupProcessor
@@ -631,3 +91,391 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:../../../Content/Engine/Fonts/Regular.spritefont;Engine/Fonts/Regular.spritefont
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/system_style.json;Engine/GUI/DefaultTheme/system_style.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/system_style.json;Engine/GUI/MonoGoTheme/system_style.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/button.json;Engine/GUI/DefaultTheme/Styles/button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/checkbox.json;Engine/GUI/DefaultTheme/Styles/checkbox.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker.json;Engine/GUI/DefaultTheme/Styles/color_picker.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_picker_handle.json;Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json;Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/dropdown_icon.json;Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/horizontal_line.json;Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/label.json;Engine/GUI/DefaultTheme/Styles/label.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_item.json;Engine/GUI/DefaultTheme/Styles/list_item.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_item_centered.json;Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel.json;Engine/GUI/DefaultTheme/Styles/list_panel.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/list_panel_centered.json;Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json;Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input.json;Engine/GUI/DefaultTheme/Styles/numeric_input.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/numeric_input_button.json;Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel.json;Engine/GUI/DefaultTheme/Styles/panel.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_title.json;Engine/GUI/DefaultTheme/Styles/panel_title.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph.json;Engine/GUI/DefaultTheme/Styles/paragraph.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json;Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json;Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/radio_button.json;Engine/GUI/DefaultTheme/Styles/radio_button.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json;Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json;Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_handle.json;Engine/GUI/DefaultTheme/Styles/slider_handle.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_horizontal.json;Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/slider_vertical.json;Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/text_input.json;Engine/GUI/DefaultTheme/Styles/text_input.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/title.json;Engine/GUI/DefaultTheme/Styles/title.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/vertical_line.json;Engine/GUI/DefaultTheme/Styles/vertical_line.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/button.json;Engine/GUI/MonoGoTheme/Styles/button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/checkbox.json;Engine/GUI/MonoGoTheme/Styles/checkbox.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker.json;Engine/GUI/MonoGoTheme/Styles/color_picker.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json;Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json;Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json;Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json;Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/horizontal_line.json;Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/label.json;Engine/GUI/MonoGoTheme/Styles/label.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item.json;Engine/GUI/MonoGoTheme/Styles/list_item.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_item_centered.json;Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel.json;Engine/GUI/MonoGoTheme/Styles/list_panel.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json;Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json;Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input.json;Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json;Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel.json;Engine/GUI/MonoGoTheme/Styles/panel.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json;Engine/GUI/MonoGoTheme/Styles/panel_title.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph.json;Engine/GUI/MonoGoTheme/Styles/paragraph.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json;Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json;Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/radio_button.json;Engine/GUI/MonoGoTheme/Styles/radio_button.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json;Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json;Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_handle.json;Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json;Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/slider_vertical.json;Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/text_input.json;Engine/GUI/MonoGoTheme/Styles/text_input.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/title.json;Engine/GUI/MonoGoTheme/Styles/title.json
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/vertical_line.json;Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/DefaultTheme/Textures/Icons.png;Engine/GUI/DefaultTheme/Textures/Icons.png
+
+#begin ../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png;Engine/GUI/DefaultTheme/Textures/UI.png
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/Icons.png;Engine/GUI/MonoGoTheme/Textures/Icons.png
+
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/UI.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/UI.png;Engine/GUI/MonoGoTheme/Textures/UI.png

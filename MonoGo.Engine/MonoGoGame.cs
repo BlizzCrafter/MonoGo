@@ -5,6 +5,7 @@ using MonoGo.Engine.Resources;
 using MonoGo.Engine.UI;
 using MonoGo.Resources;
 using System;
+using System.IO;
 
 namespace MonoGo.Engine
 {
@@ -33,23 +34,21 @@ namespace MonoGo.Engine
                 DepthBufferWriteEnable = true
             };
             GraphicsMgr.Device.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8;
-
             GraphicsMgr.VertexBatch.DepthStencilState = depth;
         }
 
         protected override void LoadContent()
-        {
+        {            
             GraphicsMgr.Init(GraphicsDevice);
 
-            new SpriteGroupResourceBox("GUISprites", "Engine/GUI");
+            //var resourcePaths = ResourceInfoMgr.GetResourcePaths("**");
+
             new SpriteGroupResourceBox("ParticleSprites", "Engine/Particles");
             new SpriteGroupResourceBox("LUTSprites", "Engine/LUT");
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
-            UserInterface.Init("Engine/GUI/Styles");
-            UserInterface.Active.BlendState = BlendState.AlphaBlend;
-            UserInterface.Active.SamplerState = SamplerState.PointWrap;
+            UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "MonoGoTheme");
         }
 
         protected override void UnloadContent()
@@ -67,8 +66,6 @@ namespace MonoGo.Engine
         protected override void Draw(GameTime gameTime)
         {
             GameMgr.Draw(gameTime);
-
-            UserInterface.Active.DrawCursor();
 
             base.Draw(gameTime);
         }

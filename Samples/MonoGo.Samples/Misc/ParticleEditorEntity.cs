@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using MonoGo.Engine;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Particles;
 using MonoGo.Engine.Particles.Modifiers;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Engine.UI;
-using MonoGo.Engine.UI.Entities;
-using MonoGo.Engine.UI.Entities.TextValidators;
+using MonoGo.Engine.UI.Controls;
+using MonoGo.Engine.UI.Defs;
+using System.Linq;
 
 namespace MonoGo.Samples.Misc
 {
@@ -14,16 +15,12 @@ namespace MonoGo.Samples.Misc
     {
         public ParticleEffectComponent ParticleEffectComponent { get; set; }
 
-        private RichParagraph _activeParticlesParagraph;
+        private Paragraph _activeParticlesParagraph;
 
-        public ParticleEditorEntity(
-            Layer layer,
-            ParticleEffectComponent particleEffectComponent) 
+        public ParticleEditorEntity(Layer layer)
             : base(layer)
         {
             Visible = false;
-
-            ParticleEffectComponent = particleEffectComponent;
         }
 
         public override void Update()
@@ -32,94 +29,198 @@ namespace MonoGo.Samples.Misc
 
             if (_activeParticlesParagraph != null)
             {
-                _activeParticlesParagraph.Text = 
-                    "Active Particles:{{YELLOW}}" + ParticleEffectComponent.ParticleEffect.ActiveParticles + "{{DEFAULT}}";
+                _activeParticlesParagraph.Text =
+                    "Active Particles:${FC:FFDB5F} " + ParticleEffectComponent.ParticleEffect.ActiveParticles + "${RESET}";
             }
         }
 
         public void OffsetX(float value)
         {
-            var player = Layer.FindEntity<Player>();
-            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            ParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Offset = new Vector2(value, x.Offset.Y));
         }
 
         public void OffsetY(float value)
         {
-            var player = Layer.FindEntity<Player>();
-            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            ParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Offset = new Vector2(x.Offset.X, value));
         }
 
         public void Speed(float value)
         {
-            var player = Layer.FindEntity<Player>();
-            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+            ParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
                 .ForEach(x => x.Speed = value);
         }
 
         public void ToggleInside()
         {
             var player = Layer.FindEntity<Player>();
-            var particleEffectComponent = player.GetComponent<ParticleEffectComponent>();
-            particleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
-                .ForEach(x => x.Inside = !x.Inside);
+            player.InsideParticles = !player.InsideParticles;
+
+            ParticleEffectComponent.ParticleEffect.Modifiers<FollowPositionModifier>().ToList()
+                .ForEach(x => x.Inside = player.InsideParticles);
+        }
+
+        private void ToggleAttract()
+        {
+            var player = Layer.FindEntity<Player>();
+            player.AttractParticles = !player.AttractParticles;
+
+            CheckParticleAttraction(player);
+        }
+
+        private void CheckParticleAttraction(Player player)
+        {
+            if (player.AttractParticles)
+            {
+                ParticleEffectComponent.AttractParticlesTo(player.GetComponent<PositionComponent>());
+            }
+            else
+            {
+                ParticleEffectComponent.AttractParticlesTo(null);
+            }
         }
 
         public void CreateUI()
-        { 
-            var topPanel = new Panel(new Vector2(0, 60), PanelSkin.None, Anchor.TopCenter);
-            _activeParticlesParagraph = new RichParagraph("", Anchor.Center);
-            topPanel.ClickThrough = true;
+        {
+            var player = Layer.FindEntity<Player>();
+            ParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            CheckParticleAttraction(player);
+
+            var topPanel = new Panel(null!)
+            {
+                Anchor = Anchor.TopCenter,
+                IgnoreInteractions = true
+            };
+            topPanel.Size.Y.SetPixels(60);
+            UISystem.Add(topPanel);
+
+            _activeParticlesParagraph = new Paragraph("")
+            {
+                Anchor = Anchor.Center
+            };
             topPanel.AddChild(_activeParticlesParagraph);
 
-            UserInterface.Active.AddUIEntity(topPanel);
-
-            var bottomPanel = UserInterface.Active.Root.Find("BottomPanel", true);
-            bottomPanel.Size = new Vector2(0, 180);
-
-            var descriptionPanel = UserInterface.Active.Root.Find("DescriptionPanel", true);
+            // Controls
+            var firstPanel = new Panel(null!)
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:X=0";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                Anchor = Anchor.AutoLTR,
+                AutoHeight = false,
+                OverflowMode = OverflowMode.AllowOverflow
+            };
+            firstPanel.Size.X.SetPercents(100);
+            firstPanel.Size.Y.SetPixels(64);
+            SceneSwitcher.DescriptionPanel.AddChild(firstPanel);
+            {
+                var checkbox = new Checkbox("Enabled") { Anchor = Anchor.AutoLTR, Checked = ParticleEffectComponent.Enabled };
+                checkbox.Size.X.SetPercents(20);
+                checkbox.Events.OnValueChanged = (Control control) =>
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        OffsetX(value); 
-                    }
+                    ParticleEffectComponent.Enabled = !ParticleEffectComponent.Enabled;
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
+                firstPanel.AddChild(checkbox);
             }
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Offest:Y=0";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                var checkbox = new Checkbox("Visible") { Anchor = Anchor.AutoInlineLTR, Checked = ParticleEffectComponent.Visible };
+                checkbox.Size.X.SetPercents(20);
+                checkbox.Events.OnValueChanged = (Control control) =>
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        OffsetY(value);
-                    }
+                    ParticleEffectComponent.Visible = !ParticleEffectComponent.Visible;
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
+                firstPanel.AddChild(checkbox);
             }
             {
-                var textInput = new TextInput(false, new Vector2(170, 50), anchor: Anchor.AutoInline, skin: PanelSkin.ListBackground);
-                textInput.PlaceholderText = "Speed=1";
-                textInput.OnValueChange += (EntityUI entityUI) =>
+                var checkbox = new Checkbox("Follow") { Anchor = Anchor.AutoInlineLTR, Checked = ParticleEffectComponent.FollowOwner };
+                checkbox.Size.X.SetPercents(20);
+                checkbox.Events.OnValueChanged = (Control control) =>
                 {
-                    if (float.TryParse(entityUI.GetValue().ToString(), out float value))
-                    {
-                        Speed(value);
-                    }
+                    ParticleEffectComponent.ToggleFollowOwner();
                 };
-                textInput.Validators.Add(new NumbersOnly(true));
-                descriptionPanel.AddChild(textInput);
+                firstPanel.AddChild(checkbox);
+            }
+            {
+                var checkbox = new Checkbox("Attract") { Anchor = Anchor.AutoInlineLTR, Checked = player.AttractParticles };
+                checkbox.Size.X.SetPercents(20);
+                checkbox.Events.OnValueChanged = (Control control) =>
+                {
+                    ToggleAttract();
+                };
+                firstPanel.AddChild(checkbox);
+            }
+            {
+                var checkbox = new Checkbox("Inside") { Anchor = Anchor.AutoInlineLTR, Checked = player.InsideParticles };
+                checkbox.Size.X.SetPercents(20);
+                checkbox.Events.OnValueChanged = (Control control) =>
+                {
+                    ToggleInside();
+                };
+                firstPanel.AddChild(checkbox);
+            }
+
+            // OFFSET, SPEED
+            // left panel
+            {
+                var panel = new Panel(null!)
+                {
+                    Anchor = Anchor.AutoLTR
+                };
+                panel.OverrideStyles.MarginBefore = Point.Zero;
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput();
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    OffsetX((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Offset: X"));
+            }
+            // center panel
+            {
+                var panel = new Panel(null!)
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    OffsetY((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Offest:Y"));
+            }
+            // right panel
+            {
+                var panel = new Panel(null!)
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                panel.Size.Y.SetPixels(72);
+                panel.Size.X.SetPercents(33);
+                SceneSwitcher.DescriptionPanel.AddChild(panel);
+
+                var numinput = new NumericInput
+                {
+                    Anchor = Anchor.AutoInlineLTR
+                };
+                numinput.Size.Y.SetPixels(64);
+                numinput.Events.OnValueChanged = (Control control) =>
+                {
+                    Speed((float)numinput.NumericValue);
+                };
+                panel.AddChild(numinput);
+                panel.AddChild(new Label("Speed"));
             }
         }
     }

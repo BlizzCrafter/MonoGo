@@ -1,11 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using MonoGo.Engine.Cameras;
+﻿using MonoGo.Engine.Cameras;
 using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
 using MonoGo.Engine.Utils.CustomCollections;
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 
 namespace MonoGo.Engine.SceneSystem
 {
@@ -14,6 +13,7 @@ namespace MonoGo.Engine.SceneSystem
 	/// <summary>
 	/// Container for layers.
 	/// </summary>
+	[DebuggerDisplay("{Name, nq}")]
 	public class Scene : IEntityMethods
 	{
 		public readonly string Name;
@@ -61,10 +61,8 @@ namespace MonoGo.Engine.SceneSystem
 		/// </summary>
 		public static Layer CurrentLayer { get; private set; }
 
-
 		public Scene(string name) =>
 			Name = name;
-
 
 		internal void Destroy()
 		{
@@ -74,7 +72,6 @@ namespace MonoGo.Engine.SceneSystem
 			}
 			_layers.Clear(); // Also removes newly added layers from the list.
 		}
-
 
 		#region Layer methods.
 
@@ -137,7 +134,6 @@ namespace MonoGo.Engine.SceneSystem
 			}
 		}
 
-
 		/// <summary>
 		/// Returns layer with given name.
 		/// </summary>
@@ -173,8 +169,6 @@ namespace MonoGo.Engine.SceneSystem
 			return false;
 		}
 
-
-
 		/// <summary>
 		/// Returns true, if there is a layer with given name. 
 		/// </summary>
@@ -192,8 +186,6 @@ namespace MonoGo.Engine.SceneSystem
 
 		#endregion Layer methods.
 
-
-
 		#region Entity methods.
 
 		/// <summary>
@@ -210,7 +202,6 @@ namespace MonoGo.Engine.SceneSystem
 			return entities;
 		}
 
-
 		/// <summary>
 		/// Checks if any instances of an entity exist.
 		/// </summary>
@@ -225,7 +216,6 @@ namespace MonoGo.Engine.SceneSystem
 			}
 			return false;
 		}
-
 
 		/// <summary>
 		/// Finds first entity of given type.
@@ -243,7 +233,6 @@ namespace MonoGo.Engine.SceneSystem
 			return null;
 		}
 
-
 		/// <summary>
 		/// Returns list of entities on a scene, which have component of given type.
 		/// </summary>
@@ -256,7 +245,6 @@ namespace MonoGo.Engine.SceneSystem
 			}
 			return list;
 		}
-
 
 		/// <summary>
 		/// Finds first entity on a scene, which has component of given type.
@@ -274,8 +262,6 @@ namespace MonoGo.Engine.SceneSystem
 			return null;
 		}
 
-
-
 		/// <summary>
 		/// Returns list of all components on the scene - enabled and disabled - of given type.
 		/// </summary>
@@ -290,8 +276,6 @@ namespace MonoGo.Engine.SceneSystem
 		}
 
 		#endregion Entity methods.
-
-
 
 		#region Events.
 		
@@ -328,7 +312,6 @@ namespace MonoGo.Engine.SceneSystem
 		/// </summary>
 		public event SceneEventDelegate OnPostDrawGUI;
 
-
 		internal void FixedUpdate()
 		{
 			OnPreFixedUpdate?.Invoke(this);
@@ -358,7 +341,6 @@ namespace MonoGo.Engine.SceneSystem
 			}
 			OnPostUpdate?.Invoke(this);
 		}
-
 
 		internal void Draw()
 		{
@@ -395,6 +377,5 @@ namespace MonoGo.Engine.SceneSystem
 		}
 
 		#endregion Events.
-
 	}
 }
