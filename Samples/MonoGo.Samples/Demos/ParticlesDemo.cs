@@ -9,20 +9,12 @@ using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
 using MonoGo.Samples.Misc;
 using System;
-using System.IO;
 
 namespace MonoGo.Samples.Demos
 {
     public class ParticlesDemo : Entity
     {
         public static readonly string Description = "Move > ${FC:FFDB5F}WASD${RESET}";
-
-        #region DEBUG
-        public const Buttons SerializeButton = Buttons.K;
-        public const Buttons DeserializeButton = Buttons.L;
-        #endregion DEBUG
-
-        private Player _player;
 
         public ParticlesDemo(Layer layer) : base(layer)
         {
@@ -56,30 +48,11 @@ namespace MonoGo.Samples.Demos
                 Depth = 1 
             };
 
-            _player = new Player(layer, new Vector2(400, 300));
-            _player.AddComponentToTop(cParticleEffect);
-            cParticleEffect.AttractParticlesTo(_player.GetComponent<PositionComponent>());
+            var player = new Player(layer, new Vector2(400, 300));
+            player.AddComponentToTop(cParticleEffect);
+            cParticleEffect.AttractParticlesTo(player.GetComponent<PositionComponent>());
 
             new ParticleEditorEntity(layer);
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            #region DEBUG
-            if (Input.CheckButtonPress(SerializeButton))
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.Serialize(Path.Combine(AppContext.BaseDirectory, "Exports"));
-            }
-
-            if (Input.CheckButtonPress(DeserializeButton))
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.Deserialize(Path.Combine(AppContext.BaseDirectory, "Exports", "Potpourri"));
-            }
-            #endregion DEBUG
         }
     }
 }
