@@ -314,11 +314,6 @@
 /processorParam:TextureFormat=Color
 /build:../../../Content/Engine/GUI/DefaultTheme/Textures/UI.png;Engine/GUI/DefaultTheme/Textures/UI.png
 
-#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json;Engine/GUI/DefaultTheme/Styles/panel_image.json
-
 #begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
 /importer:NONE
 /processor:NONE

@@ -187,11 +187,6 @@
 /processor:NONE
 /copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel.json;Engine/GUI/DefaultTheme/Styles/panel.json
 
-#begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/DefaultTheme/Styles/panel_image.json;Engine/GUI/DefaultTheme/Styles/panel_image.json
-
 #begin ../../../Content/Engine/GUI/DefaultTheme/Styles/panel_title.json
 /importer:NONE
 /processor:NONE
@@ -357,11 +352,6 @@
 /processor:NONE
 /copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel.json;Engine/GUI/MonoGoTheme/Styles/panel.json
 
-#begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_image.json
-/importer:NONE
-/processor:NONE
-/copy:../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_image.json;Engine/GUI/MonoGoTheme/Styles/panel_image.json
-
 #begin ../../../Content/Engine/GUI/MonoGoTheme/Styles/panel_title.json
 /importer:NONE
 /processor:NONE
@@ -478,7 +468,7 @@
 /processorParam:TextureFormat=Color
 /build:../../../Content/Engine/GUI/MonoGoTheme/Textures/Icons.png;Engine/GUI/MonoGoTheme/Textures/Icons.png
 
-#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/Yellow.png
+#begin ../../../Content/Engine/GUI/MonoGoTheme/Textures/UI.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -488,4 +478,4 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/Yellow.png;Engine/GUI/MonoGoTheme/Textures/Yellow.png
+/build:../../../Content/Engine/GUI/MonoGoTheme/Textures/UI.png;Engine/GUI/MonoGoTheme/Textures/UI.png
