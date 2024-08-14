@@ -317,12 +317,12 @@ namespace MonoGo.Samples
             var hasDescription = CurrentFactory.Description != string.Empty;
             if (hasDescription) sceneDescription = CurrentFactory.Description;
 
-            int panelHeight = 250;
+            int panelHeight = 256;
             _isUIDemo = false;
             if (CurrentFactory?.Type == typeof(UIDemo))
             {
                 _isUIDemo = true;
-                panelHeight = 65;
+                panelHeight = 64;
             }
 
             Panel bottomPanel = new(_isUIDemo ? null! : UISystem.DefaultStylesheets.Panels)
