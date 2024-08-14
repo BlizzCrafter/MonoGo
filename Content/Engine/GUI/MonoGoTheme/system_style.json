@@ -1,22 +1,22 @@
 {
     "ThemeIdentifier": "MonoGo Theme",
     "CursorDefault": {
-        "TextureId": "Textures/Yellow.png",
+        "TextureId": "Textures/UI.png",
         "Scale": 3,
         "SourceRect": {"X": 0, "Y": 0, "Width": 16, "Height": 16}
     },
     "CursorDisabled": {
-        "TextureId": "Textures/Yellow.png",
+        "TextureId": "Textures/UI.png",
         "Scale": 3,
         "SourceRect": {"X": 0, "Y": 16, "Width": 16, "Height": 16}
     },
     "CursorLocked": {
-        "TextureId": "Textures/Yellow.png",
+        "TextureId": "Textures/UI.png",
         "Scale": 3,
         "SourceRect": {"X": 0, "Y": 16, "Width": 16, "Height": 16}
     },
     "CursorInteractable": {
-        "TextureId": "Textures/Yellow.png",
+        "TextureId": "Textures/UI.png",
         "Scale": 3,
         "SourceRect": {"X": 0, "Y": 32, "Width": 16, "Height": 16}
     },

@@ -1,7 +1,7 @@
 {
 	"Default": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/Yellow.png",
+			"TextureId": "Textures/UI.png",
 			"InternalSourceRect": {"X": 102, "Y": 144, "Width": 14, "Height": 12},
 			"ExternalSourceRect": {"X": 96, "Y": 144, "Width": 26, "Height": 12},
 			"TextureScale": 3
@@ -12,7 +12,7 @@
 	},
     "Targeted": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/Yellow.png",
+			"TextureId": "Textures/UI.png",
 			"InternalSourceRect": {"X": 102, "Y": 156, "Width": 14, "Height": 12},
 			"ExternalSourceRect": {"X": 96, "Y": 156, "Width": 26, "Height": 12},
 			"TextureScale": 3

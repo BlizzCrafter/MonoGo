@@ -1,7 +1,7 @@
 {
 	"Default": {
 		"FillTextureFramed": {
-			"TextureId": "Textures/Yellow.png",
+			"TextureId": "Textures/UI.png",
 			"InternalSourceRect": {"X": 3, "Y": 96, "Width": 74, "Height": 2},
 			"ExternalSourceRect": {"X": 0, "Y": 96, "Width": 80, "Height": 2},
 			"TextureScale": 3
