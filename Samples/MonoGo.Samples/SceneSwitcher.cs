@@ -121,7 +121,7 @@ namespace MonoGo.Samples
                 {
                     Anchor = Anchor.TopRight
                 };
-                _postFXButton.OverrideStyles.TintColor = new Color(150, 150, 250);
+                _postFXButton.OverrideStyles.TintColor = new Color(0.33f, 0.33f, 0.33f);
                 _postFXButton.Size.SetPixels(100, 50);
                 _postFXButton.Events.OnClick = (Control control) =>
                 {
