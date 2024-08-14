@@ -15,23 +15,14 @@ namespace MonoGo.Samples.Demos
 {
     public class ParticlesDemo : Entity
     {
-        public static readonly string Description =
-            "Move > ${FC:FFDB5F}WASD${RESET}" + Environment.NewLine +
-            "Emitter > ${FC:96FF5F}Update${RESET}: ${FC:FFDB5F}" + ToggleEnabledButton + " ${FC:96FF5F}Draw${RESET}: ${FC:FFDB5F}" + ToggleVisibilityButton + " ${RESET}" + "${FC:96FF5F}Follow${RESET}: ${FC:FFDB5F}" + ToggleFollowButton + " ${RESET}" + "${FC:96FF5F}Attract${RESET}: ${FC:FFDB5F}" + ToggleAttractButton + " ${RESET}" + "${FC:96FF5F}Inside${RESET}: ${FC:FFDB5F}" + ToggleInsideButton + " ${RESET}";
+        public static readonly string Description = "Move > ${FC:FFDB5F}WASD${RESET}";
 
-        public const Buttons ToggleVisibilityButton = Buttons.N;
-        public const Buttons ToggleEnabledButton = Buttons.M;
-        public const Buttons ToggleInsideButton = Buttons.I;
-        public const Buttons ToggleFollowButton = Buttons.F;
-        public const Buttons ToggleAttractButton = Buttons.G;
         #region DEBUG
         public const Buttons SerializeButton = Buttons.K;
         public const Buttons DeserializeButton = Buttons.L;
         #endregion DEBUG
 
         private Player _player;
-        private ParticleEditorEntity _particleEditorEntity;
-        private bool _playerAttractsParticles = true;
 
         public ParticlesDemo(Layer layer) : base(layer)
         {
@@ -66,44 +57,15 @@ namespace MonoGo.Samples.Demos
             };
 
             _player = new Player(layer, new Vector2(400, 300));
-            _player.AddComponentToTop(cParticleEffect);            
-            _particleEditorEntity = new ParticleEditorEntity(layer, cParticleEffect);
+            _player.AddComponentToTop(cParticleEffect);
+            cParticleEffect.AttractParticlesTo(_player.GetComponent<PositionComponent>());
 
-            CheckPlayerAttractsParticles();
+            new ParticleEditorEntity(layer);
         }
 
         public override void Update()
         {
             base.Update();
-
-            if (Input.CheckButtonPress(ToggleFollowButton))
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.ToggleFollowOwner();
-            }
-
-            if (Input.CheckButtonPress(ToggleAttractButton))
-            {
-                _playerAttractsParticles = !_playerAttractsParticles;
-                CheckPlayerAttractsParticles();
-            }
-
-            if (Input.CheckButtonPress(ToggleInsideButton))
-            {
-                _particleEditorEntity.ToggleInside();
-            }
-
-            if (Input.CheckButtonPress(ToggleVisibilityButton))
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.Visible = !cParticleEffect.Visible;
-            }
-
-            if (Input.CheckButtonPress(ToggleEnabledButton))
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.Enabled = !cParticleEffect.Enabled;
-            }
 
             #region DEBUG
             if (Input.CheckButtonPress(SerializeButton))
@@ -118,20 +80,6 @@ namespace MonoGo.Samples.Demos
                 cParticleEffect.Deserialize(Path.Combine(AppContext.BaseDirectory, "Exports", "Potpourri"));
             }
             #endregion DEBUG
-        }
-
-        private void CheckPlayerAttractsParticles()
-        {
-            if (_playerAttractsParticles)
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.AttractParticlesTo(_player.GetComponent<PositionComponent>());
-            }
-            else
-            {
-                var cParticleEffect = _player.GetComponent<ParticleEffectComponent>();
-                cParticleEffect.AttractParticlesTo(null);
-            }
         }
     }
 }

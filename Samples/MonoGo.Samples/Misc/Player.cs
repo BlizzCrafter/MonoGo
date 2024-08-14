@@ -14,6 +14,9 @@ namespace MonoGo.Samples.Misc
 		public const Buttons LeftButton = Buttons.A;
 		public const Buttons RightButton = Buttons.D;
 
+        public bool AttractParticles { get; set; } = true;
+        public bool InsideParticles { get; set; } = true;
+
         private Sprite _playerSprite;
 
         // The player uses hybrid EC - it's a derived entity with components inside.
@@ -25,7 +28,7 @@ namespace MonoGo.Samples.Misc
         private ActorComponent _actor;
         private PositionComponent _position;
 
-		public Player(Layer layer, Vector2 position) : base(layer)
+        public Player(Layer layer, Vector2 position) : base(layer)
 		{
 			_playerSprite = ResourceHub.GetResource<Sprite>("DemoSprites", "Player");
 			
