@@ -16,9 +16,9 @@ namespace MonoGo.Engine.UI
         private static string _assetsRoot;
         private static Texture2D _whiteTexture;
 
-        private static Dictionary<string, SpriteFont> _fonts = new();
-        private static Dictionary<string, Texture2D> _textures = new();
-        private static Dictionary<string, Sprite> _sprites = new();
+        private static Dictionary<string, Texture2D> _textures;
+        private static Dictionary<string, Sprite> _sprites;
+        private static Dictionary<string, SpriteFont> _fonts;
 
         public static float GlobalTextScale = 1f;
 
@@ -29,6 +29,9 @@ namespace MonoGo.Engine.UI
         public static void Init(string assetsPath)
         {
             _assetsRoot = assetsPath;
+            _textures = new Dictionary<string, Texture2D>();
+            _sprites = new Dictionary<string, Sprite>();
+            _fonts = new Dictionary<string, SpriteFont>();
 
             _spriteBatch = new SpriteBatch(GraphicsMgr.Device);
             _content = new ContentManager(GameMgr.Game.Services, _assetsRoot);
