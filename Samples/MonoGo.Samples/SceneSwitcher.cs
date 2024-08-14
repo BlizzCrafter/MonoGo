@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoGo.Engine;
+using MonoGo.Engine.Drawing;
 using MonoGo.Engine.EC;
+using MonoGo.Engine.PostProcessing;
+using MonoGo.Engine.Resources;
 using MonoGo.Engine.SceneSystem;
-using MonoGo.Samples.Demos;
 using MonoGo.Engine.UI;
 using MonoGo.Engine.UI.Controls;
-using MonoGo.Engine.PostProcessing;
-using MonoGo.Engine.Drawing;
-using MonoGo.Engine.Resources;
-using MonoGo.Engine.Utils;
 using MonoGo.Engine.UI.Defs;
-using System.IO;
+using MonoGo.Engine.Utils;
+using MonoGo.Samples.Demos;
+using System;
+using System.Collections.Generic;
 
 namespace MonoGo.Samples
 {
-	public class SceneSwitcher : Entity, IHaveGUI
+    public class SceneSwitcher : Entity, IHaveGUI
 	{
         public static readonly string Description =
             "Camera > ${FC:96FF5F}Move${RESET}: ${FC:FFDB5F}" + CameraController.UpButton + "${RESET} / ${FC:FFDB5F}" + CameraController.DownButton + "${RESET} / ${FC:FFDB5F}" + CameraController.LeftButton + "${RESET} / ${FC:FFDB5F}" + CameraController.RightButton + "${RESET}" + Environment.NewLine +
