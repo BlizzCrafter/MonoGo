@@ -1,7 +1,7 @@
 {
-  "root": "../../../Content/",
+  "root": "../../../MonoGo.Content/Content/",
   "references": [
-    "../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
+    "../../../MonoGo.Content/bin/MonoGo.Pipeline.dll"
   ],
   "content": {
     "contentList": {
@@ -11,7 +11,7 @@
       "importer": "ResourceInfoImporter",
       "processor": "PassThroughProcessor",
       "watch": [
-        "../../../Content/*"
+        "../../../MonoGo.Content/Content/Engine/*"
       ]
     },
     "ParticlesGroup": {

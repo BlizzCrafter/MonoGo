@@ -1,17 +1,17 @@
 {
-  "root": "../../MonoGo.Samples.Content/Content/",
+  "root": "../../../MonoGo.Content/Content/",
   "references": [
-    "../../MonoGo.Samples.Content/bin/MonoGo.Pipeline.dll"
+    "../../../MonoGo.Content/bin/MonoGo.Pipeline.dll"
   ],
   "content": {
     "contentList": {
-      "path": "$Content.npl",
+      "path": "$Content-Demo.npl",
       "recursive": "False",
       "action": "build",
       "importer": "ResourceInfoImporter",
       "processor": "PassThroughProcessor",
       "watch": [
-        "../../MonoGo.Samples.Content/Content/*"
+        "../../../MonoGo.Content/Content/Demo/*"
       ]
     },
     "defaultSpriteGroup": {

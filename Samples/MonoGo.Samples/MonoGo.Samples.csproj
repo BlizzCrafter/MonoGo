@@ -1,4 +1,4 @@
-﻿<Project InitialTargets="BuildContentProject" Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -12,8 +12,4 @@
 	  <ProjectReference Include="..\..\MonoGo.Engine\MonoGo.Engine.csproj" />
 	  <ProjectReference Include="..\..\Modules\MonoGo.Tiled\MonoGo.Tiled.csproj" />
 	</ItemGroup>
-
-	<Target Name="BuildContentProject">
-		<Exec Command="dotnet build &quot;../MonoGo.Samples.Content/MonoGo.Samples.Content.csproj&quot;" />
-	</Target>
 </Project>

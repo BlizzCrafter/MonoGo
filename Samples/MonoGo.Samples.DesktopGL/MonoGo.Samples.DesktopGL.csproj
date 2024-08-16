@@ -26,9 +26,6 @@
 		<PackageReference Include="Nopipeline.Task" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<MonoGameContentReference Include="Content\Content.mgcb" />
-	</ItemGroup>
-	<ItemGroup>
 	  <ProjectReference Include="..\..\MonoGo.Engine.DesktopGL\MonoGo.Engine.DesktopGL.csproj" />
 	  <ProjectReference Include="..\..\MonoGo.Engine\MonoGo.Engine.csproj" />
 	  <ProjectReference Include="..\..\Modules\MonoGo.Tiled\MonoGo.Tiled.csproj" />
