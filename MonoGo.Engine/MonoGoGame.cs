@@ -70,7 +70,7 @@ namespace MonoGo.Engine
             base.Draw(gameTime);
         }
 
-        protected override void OnExiting(object sender, EventArgs args)
+        protected override void OnExiting(object sender, ExitingEventArgs args)
         {
             RenderMgr.Dispose();
 
