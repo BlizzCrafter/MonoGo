@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+    "author": "BlizzCrafter",
+    "classifications": [
+        "MonoGo", "MonoGame", "Games", "Engine", "Desktop", "Windows", "OpenGL"
+    ],
+    "name": "MonoGo Cross-Platform Desktop Application",
+    "identity": "MonoGo",
+	"precedence": 999,
+    "shortName": "mgogl",
+	"description": "MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended functionalities like a GUI-System.",
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "primaryOutputs": [
+        {
+            "path": "MGNamespace.csproj"
+        }
+    ],
+	"sourceName": "MGNamespace",
+	"postActions": [{
+    "description": "Restore NuGet packages required by this project.",
+    "manualInstructions": [{
+      "text": "Run 'dotnet restore'"
+    }],
+    "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+    "continueOnError": true
+  }],
+    "preferNameDirectory": "true"
+}

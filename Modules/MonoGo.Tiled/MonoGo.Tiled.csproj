@@ -5,7 +5,6 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<Description>Tiled Map Editor integration for MonoGo.</Description>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<OutputPath>..\..\bin\</OutputPath>
 		<DocumentationFile>..\..\bin\$(AssemblyName).xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>

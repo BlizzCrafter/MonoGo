@@ -459,23 +459,9 @@
 /processorParam:TextureFormat=Color
 /build:../../../MonoGo.Content/Content/Engine/GUI/MonoGoTheme/Textures/UI.png;Engine/GUI/MonoGoTheme/Textures/UI.png
 
-#begin ../../../MonoGo.Content/Content/Engine/Fonts/Bold.spritefont
+#begin ../../../MonoGo.Content/Content/Engine/Fonts/Default.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:../../../MonoGo.Content/Content/Engine/Fonts/Bold.spritefont;Engine/Fonts/Bold.spritefont
-
-#begin ../../../MonoGo.Content/Content/Engine/Fonts/Italic.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:../../../MonoGo.Content/Content/Engine/Fonts/Italic.spritefont;Engine/Fonts/Italic.spritefont
-
-#begin ../../../MonoGo.Content/Content/Engine/Fonts/Regular.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:../../../MonoGo.Content/Content/Engine/Fonts/Regular.spritefont;Engine/Fonts/Regular.spritefont
+/build:../../../MonoGo.Content/Content/Engine/Fonts/Default.spritefont;Engine/Fonts/Default.spritefont

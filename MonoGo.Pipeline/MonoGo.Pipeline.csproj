@@ -2,12 +2,13 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<OutputPath>..\bin\</OutputPath>
 		<NoWarn>NU5100</NoWarn>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<Import Project="..\Modules\MonoGo.Tiled.MapStructure\MonoGo.Tiled.MapStructure.projitems" Label="Shared" />
+	
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.2.1105">
 			<PrivateAssets>All</PrivateAssets>

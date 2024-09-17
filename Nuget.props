@@ -4,8 +4,8 @@
 		<Authors>Marcel Härtel</Authors>
 		<Product>MonoGo Engine</Product>
 		<Description>MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended funtionalities like a GUI-System.</Description>
-		<PackageProjectUrl>https://github.com/Martenfur/Monofoxe/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Martenfur/Monofoxe/</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/BlizzCrafter/MonoGo</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/BlizzCrafter/MonoGo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>Logo_BG_x192.png</PackageIcon>
 	</PropertyGroup>

@@ -1,0 +1,466 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:MonoGo.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Content-Engine.npl
+/importer:ResourceInfoImporter
+/processor:PassThroughProcessor
+/build:Content-Engine.npl
+#begin Engine/Particles.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:Engine/Particles.spritegroup
+
+#begin Engine/LUT.spritegroup
+/importer:SpriteGroupImporter
+/processor:SpriteGroupProcessor
+/build:Engine/LUT.spritegroup
+
+#begin Engine/Effects/Bloom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/Bloom.fx
+
+#begin Engine/Effects/ColorGrading.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/ColorGrading.fx
+
+#begin Engine/Effects/Disabled.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/Disabled.fx
+
+#begin Engine/Effects/Grayscale.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/Grayscale.fx
+
+#begin Engine/Effects/Seizure.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/Seizure.fx
+
+#begin Engine/Effects/Silhouette.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Defines=
+/build:Engine/Effects/Silhouette.fx
+
+#begin Engine/GUI/DefaultTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/system_style.json
+
+#begin Engine/GUI/MonoGoTheme/system_style.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/system_style.json
+
+#begin Engine/GUI/DefaultTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/button.json
+
+#begin Engine/GUI/DefaultTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/checkbox.json
+
+#begin Engine/GUI/DefaultTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/color_picker.json
+
+#begin Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/color_picker_handle.json
+
+#begin Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/color_slider_horizontal.json
+
+#begin Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/color_slider_horizontal_handle.json
+
+#begin Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/dropdown_icon.json
+
+#begin Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/horizontal_line.json
+
+#begin Engine/GUI/DefaultTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/label.json
+
+#begin Engine/GUI/DefaultTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/list_item.json
+
+#begin Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/list_item_centered.json
+
+#begin Engine/GUI/DefaultTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/list_panel.json
+
+#begin Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/list_panel_centered.json
+
+#begin Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/message_box_backdrop.json
+
+#begin Engine/GUI/DefaultTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/numeric_input.json
+
+#begin Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/numeric_input_button.json
+
+#begin Engine/GUI/DefaultTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/panel.json
+
+#begin Engine/GUI/DefaultTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/panel_title.json
+
+#begin Engine/GUI/DefaultTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/paragraph.json
+
+#begin Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/paragraph_base_style.json
+
+#begin Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal.json
+
+#begin Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin Engine/GUI/DefaultTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/radio_button.json
+
+#begin Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/scrollbar_vertical.json
+
+#begin Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/scrollbar_vertical_handle.json
+
+#begin Engine/GUI/DefaultTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/slider_handle.json
+
+#begin Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/slider_horizontal.json
+
+#begin Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/slider_vertical.json
+
+#begin Engine/GUI/DefaultTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/text_input.json
+
+#begin Engine/GUI/DefaultTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/title.json
+
+#begin Engine/GUI/DefaultTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/DefaultTheme/Styles/vertical_line.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/button.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/checkbox.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/checkbox.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/color_picker.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/color_picker.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/color_picker_handle.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/color_slider_horizontal_handle.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/dropdown_icon.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/horizontal_line.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/label.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/label.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/list_item.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/list_item.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/list_item_centered.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/list_panel.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/list_panel.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/list_panel_centered.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/message_box_backdrop.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/numeric_input.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/numeric_input_button.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/panel.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/panel.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/panel_title.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/panel_title.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/paragraph.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/paragraph.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/paragraph_base_style.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_alt_fill.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/progress_bar_horizontal_fill.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/radio_button.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/radio_button.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/scrollbar_vertical_handle.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/slider_handle.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/slider_horizontal.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/slider_vertical.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/text_input.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/text_input.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/title.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/title.json
+
+#begin Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+/importer:NONE
+/processor:NONE
+/copy:Engine/GUI/MonoGoTheme/Styles/vertical_line.json
+
+#begin Engine/GUI/DefaultTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Engine/GUI/DefaultTheme/Textures/Icons.png
+
+#begin Engine/GUI/DefaultTheme/Textures/UI.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Engine/GUI/DefaultTheme/Textures/UI.png
+
+#begin Engine/GUI/MonoGoTheme/Textures/Icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Engine/GUI/MonoGoTheme/Textures/Icons.png
+
+#begin Engine/GUI/MonoGoTheme/Textures/UI.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Engine/GUI/MonoGoTheme/Textures/UI.png
+
+#begin Engine/Fonts/Default.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Engine/Fonts/Default.spritefont

@@ -45,7 +45,7 @@ namespace MonoGo.Engine.UI
         /// </summary>
         public static SpriteFont GetFont(string? fontName)
         {
-            var fontNameOrDefault = !string.IsNullOrEmpty(fontName) ? fontName : "Regular";
+            var fontNameOrDefault = !string.IsNullOrEmpty(fontName) ? fontName : "Default";
             if (_fonts.TryGetValue(fontNameOrDefault, out var font)) 
             { 
                 return font; 

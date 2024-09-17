@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows7.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<OutputPath>..\bin\</OutputPath>
 		<DocumentationFile>..\bin\$(AssemblyName).xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>

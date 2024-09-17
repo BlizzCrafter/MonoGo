@@ -1,0 +1,8 @@
+{
+    "InheritFrom": "text_input.json",
+	"Default": {
+        "TextAlignment": "Center",
+        "Padding": {"Left": 5, "Right": 5, "Top": 10, "Bottom": 10}
+	},
+    "DefaultTextAnchor": "Center"
+}

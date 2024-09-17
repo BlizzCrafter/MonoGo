@@ -48,6 +48,8 @@ namespace MonoGo.Engine
             new DirectoryResourceBox<Effect>("Effects", "Engine/Effects");
             new FontResourceBox("Fonts", "Engine/Fonts");
 
+            Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Default");
+
             UISystem.Init(Path.Combine(ResourceInfoMgr.ContentDir, "Engine/GUI"), "MonoGoTheme");
         }
 

@@ -63,7 +63,7 @@ namespace MonoGo.Samples
 			MainCamera.PostprocessingMode = PostprocessingMode.CameraAndLayers;
 
 			// Setting a default Font to avoid crashes when skipping the samples backwards.
-            Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Regular");
+            Text.CurrentFont = ResourceHub.GetResource<IFont>("Fonts", "Default");
 
             SceneMgr.OnPreUpdate += OnPreUpdate;
             SceneMgr.OnPostUpdate += OnPostUpdate;

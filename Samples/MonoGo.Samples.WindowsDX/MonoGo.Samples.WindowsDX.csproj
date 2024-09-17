@@ -5,6 +5,7 @@
 		<PublishReadyToRun>false</PublishReadyToRun>
 		<TieredCompilation>false</TieredCompilation>
 		<UseWindowsForms>true</UseWindowsForms>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ApplicationManifest>app.manifest</ApplicationManifest>

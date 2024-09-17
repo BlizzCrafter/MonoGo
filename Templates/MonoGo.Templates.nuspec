@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>MonoGo.Templates</id>
+    <version>1.0.0.0</version>
+    <title>MonoGo Engine Templates</title>
+    <authors>Marcel Härtel</authors>
+    <owners>Marcel Härtel</owners>
+    <projectUrl>https://github.com/BlizzCrafter/MonoGo</projectUrl>
+	<repository type="git" url="https://github.com/BlizzCrafter/MonoGo.git" />
+    <description>MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended functionalities like a GUI-System</description>
+    <copyright>Copyright (c) 2024 BlizzCrafter</copyright>
+    <tags>MonoGame WindowsForms Engine GameDev</tags>	
+	<license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;**\.vs;" />
+  </files>
+</package>

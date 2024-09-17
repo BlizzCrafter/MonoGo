@@ -1,0 +1,95 @@
+{
+  "root": "",
+  "references": [
+    "MonoGo.Pipeline.dll"
+  ],
+  "content": {
+    "contentList": {
+      "path": "$Content-Engine.npl",
+      "recursive": "False",
+      "action": "build",
+      "importer": "ResourceInfoImporter",
+      "processor": "PassThroughProcessor",
+      "watch": [
+        "Engine/*"
+      ]
+    },
+    "ParticlesGroup": {
+      "path": "Engine/Particles.spritegroup",
+      "recursive": "false",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "Engine/Particles/Textures/*.png"
+      ]
+    },
+    "LUTGroup": {
+      "path": "Engine/LUT.spritegroup",
+      "recursive": "false",
+      "action": "build",
+      "importer": "SpriteGroupImporter",
+      "processor": "SpriteGroupProcessor",
+      "watch": [
+        "Engine/Effects/LUT/*.png"
+      ]
+    },
+    "Effects": {
+      "path": "Engine/Effects/*.fx",
+      "recursive": "false",
+      "action": "build",
+      "importer": "EffectImporter",
+      "processor": "EffectProcessor",
+      "processorParam": {
+        "DebugMode": "Auto",
+        "Defines": ""
+      },
+      "watch": [
+        "Engine/Effects/*.fx"
+      ]
+    },
+    "GUIJSON": {
+      "path": "Engine/GUI/*.json",
+      "recursive": "true",
+      "action": "copy",
+      "importer": "NONE",
+      "processor": "NONE",
+      "watch": [
+        "Engine/GUI/*.json"
+      ]
+    },
+    "GUITextures": {
+      "path": "Engine/GUI/*.png",
+      "recursive": true,
+      "action": "build",
+      "importer": "TextureImporter",
+      "processor": "TextureProcessor",
+      "watch": [
+        "Engine/GUI/*.png"
+      ],
+      "processorParam": {
+        "ColorKeyColor": "255,0,255,255",
+        "ColorKeyEnabled": "True",
+        "GenerateMipmaps": "False",
+        "PremultiplyAlpha": "True",
+        "ResizeToPowerOfTwo": "False",
+        "MakeSquare": "False",
+        "TextureFormat": "Color"
+      }
+    },
+    "Fonts": {
+      "path": "Engine/Fonts/*.spritefont",
+      "recursive": "false",
+      "action": "build",
+      "importer": "FontDescriptionImporter",
+      "processor": "FontDescriptionProcessor",
+      "processorParam": {
+        "PremultiplyAlpha": "True",
+        "TextureFormat": "Compressed"
+      },
+      "watch": [
+        "Engine/Fonts/*.spritefont"
+      ]
+    }
+  }
+}
