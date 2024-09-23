@@ -153,14 +153,13 @@ namespace MonoGo.Samples.Demos
                     // add title and text
                     var panel = CreateDemoContainer(null, new Point(1200, -1));
                     panel.StyleSheet = new StyleSheet(); // Empty StyleSheet to hide the panel.
-                    var welcomeText = new Paragraph(@$"Welcome!
+                    var welcomeText = new Paragraph(@$"Welcome to ${{FC:FFDB5F}}Mono${{FC:e60000}}Go${{RESET}}!
 
-This special game engine is built ontop of ${{FC:e60000}}MonoGame${{RESET}},the powerfull gamedev framework which is running under the hood of many fantastic games like ${{FC:e64600}}Stardew Valley${{RESET}} and ${{FC:6e00e6}}Celeste${{RESET}}.
-
-Stay tuned for more things to come! (probably ${{FC:f8c102}}{smileyIcon}${{RESET}} )
+A Cross-Platform .NET 8 C# 2D game engine build ontop of ${{FC:e60000}}MonoGame${{RESET}} and ${{FC:e64600}}Monofoxe${{RESET}}.
 
 Please click the ${{FC:df00e6}}GUI.Next${{RESET}} button at the top to see more GUI-DEMOS or the ${{FC:FFDB5F}}Next${{RESET}} button below to see more SAMPLE-DEMOS of the engine.
 
+Stay tuned for more things to come! (probably ${{FC:f8c102}}{smileyIcon}${{RESET}} )
 ") { TextOverflowMode = TextOverflowMode.WrapWords };
                     welcomeText.OverrideStyles.FontSize = 28;
                     panel.AddChild(logo);
