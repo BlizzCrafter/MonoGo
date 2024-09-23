@@ -8,7 +8,7 @@
     <owners>Marcel Härtel</owners>
     <projectUrl>https://github.com/BlizzCrafter/MonoGo</projectUrl>
 	<repository type="git" url="https://github.com/BlizzCrafter/MonoGo.git" />
-    <description>MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended functionalities like a GUI-System</description>
+    <description>Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.</description>
     <copyright>Copyright (c) 2024 BlizzCrafter</copyright>
     <tags>MonoGame WindowsForms Engine GameDev</tags>	
 	<license type="expression">MIT</license>
@@ -18,6 +18,8 @@
     </packageTypes>
   </metadata>
   <files>
-    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;**\.vs;" />
+    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;" />
+	<file src="..\LICENSE.txt" target="docs\" />
+	<file src="..\README.md" target="docs\" />
   </files>
 </package>

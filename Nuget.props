@@ -1,9 +1,10 @@
 <Project>
 	<PropertyGroup>
+		<id>MonoGo.Engine</id>
 		<Version>$(MonoGoVersion)</Version>
 		<Authors>Marcel Härtel</Authors>
 		<Product>MonoGo Engine</Product>
-		<Description>MonoGo is a game engine build ontop of the MonoGame.Framework. It's based on the Monofoxe engine, but it contains extended funtionalities like a GUI-System.</Description>
+		<Description>Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.</Description>
 		<PackageProjectUrl>https://github.com/BlizzCrafter/MonoGo</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/BlizzCrafter/MonoGo</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -12,5 +13,7 @@
 
 	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)\Logos\Logo_BG_x192.png" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
