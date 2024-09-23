@@ -1,0 +1,6 @@
+{
+	"InheritFrom": "paragraph_base_style.json",
+    "Default": {
+        "MarginAfter": {"X": 0, "Y": 6}
+    }
+}

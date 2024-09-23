@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+    "author": "BlizzCrafter",
+    "classifications": [
+        "MonoGo", "MonoGame", "Games", "Engine", "Desktop", "Windows", "DirectX"
+    ],
+    "name": "MonoGo Windows Desktop Application",
+    "identity": "MonoGo",
+	"precedence": 999,
+    "shortName": "mgogl",
+	"description": "Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.",
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "primaryOutputs": [
+        {
+            "path": "MGNamespace.csproj"
+        }
+    ],
+	"sourceName": "MGNamespace",
+	"postActions": [{
+    "description": "Restore NuGet packages required by this project.",
+    "manualInstructions": [{
+      "text": "Run 'dotnet restore'"
+    }],
+    "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+    "continueOnError": true
+  }],
+    "preferNameDirectory": "true"
+}
