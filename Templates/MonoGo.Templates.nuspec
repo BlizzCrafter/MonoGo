@@ -19,7 +19,5 @@
   </metadata>
   <files>
     <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;" />
-	<file src="..\LICENSE.txt" target="docs\" />
-	<file src="..\README.md" target="docs\" />
   </files>
 </package>

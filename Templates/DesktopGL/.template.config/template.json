@@ -5,7 +5,7 @@
         "MonoGo", "MonoGame", "Games", "Engine", "Desktop", "Windows", "OpenGL"
     ],
     "name": "MonoGo Cross-Platform Desktop Application",
-    "identity": "MonoGo",
+    "identity": "MonoGoGL",
 	"precedence": 999,
     "shortName": "mgogl",
 	"description": "Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.",
