@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)\Logos\Logo_BG_x192.png" Pack="true" PackagePath="\" />
-		<None Include="$(MSBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="\" />
-		<None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="\" />
+		<None Include="$(MSBuildThisFileDirectory)\LICENSE.txt" Pack="true" PackagePath="docs\" />
+		<None Include="$(MSBuildThisFileDirectory)\README.md" Pack="true" PackagePath="docs\" />
 	</ItemGroup>
 </Project>
