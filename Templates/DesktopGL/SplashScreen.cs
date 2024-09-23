@@ -27,7 +27,7 @@ namespace MGNamespace
             };
             UISystem.Add(panel);
 
-            var welcomeText = new Paragraph(@$"MonoGo Engine ${{FC:FFDB5F}}v{Assembly.GetAssembly(typeof(Entity)).GetName().Version}${{RESET}}");
+            var welcomeText = new Paragraph(@$"MonoGo Engine ${{FC:FFDB5F}}v.{Assembly.GetAssembly(typeof(Entity)).GetName().Version}${{RESET}}");
             welcomeText.OverrideStyles.FontSize = 28;
             panel.AddChild(welcomeText);
         }
