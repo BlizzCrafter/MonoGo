@@ -1,6 +1,7 @@
 ![Banner](https://raw.githubusercontent.com/BlizzCrafter/MonoGo/master/logos/Social.png)
 
 # Welcome to MonoGo!
+[![NuGet](https://img.shields.io/badge/NuGet-MonoGo.Engine-blue.svg?style=flat-square&logo=NuGet&colorA=262626&colorB=e63b00)](https://www.nuget.org/packages/MonoGo.Engine/) [![NuGet](https://img.shields.io/badge/NuGet-MonoGo.Templates-blue.svg?style=flat-square&logo=NuGet&colorA=262626&colorB=e63b00)](https://www.nuget.org/packages/MonoGo.Templates)
 
 Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.
 
@@ -40,3 +41,5 @@ Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.
 ![Sample](https://raw.githubusercontent.com/BlizzCrafter/MonoGo/master/doc/sample.png)
 
 # Now Have Fun with MonoGo!
+
+![Logo](https://raw.githubusercontent.com/BlizzCrafter/MonoGo/master/Logos/Logo_Text_BG_x256.png)
