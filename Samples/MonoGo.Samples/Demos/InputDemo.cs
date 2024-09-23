@@ -28,7 +28,7 @@ namespace MonoGo.Samples.Demos
 
 		public InputDemo(Layer layer) : base(layer)
 		{
-		}
+        }
 
 		public override void Update()
 		{
