@@ -5,7 +5,7 @@
 
 Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.
 
-# Setup MonoGame.Forms
+# Setup
 ### Options:
 - Build from source (this repo)
 - Install Packages:
