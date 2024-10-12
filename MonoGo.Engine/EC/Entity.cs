@@ -43,18 +43,50 @@ namespace MonoGo.Engine.EC
 		/// If false, Update and Destroy events won't be executed.
 		/// NOTE: This also applies to entity's components.
 		/// </summary>
-		public bool Enabled = true;
-		
-		/// <summary>
-		/// If false, Draw events won't be executed.
-		/// NOTE: This also applies to entity's components.
-		/// </summary>
-		public bool Visible = true;
-		
-		/// <summary>
-		/// Layer that entity is currently on.
-		/// </summary>
-		public Layer Layer
+		public bool Enabled 
+		{
+			get { return _enabled; }
+			set
+			{
+				_enabled = value;
+				GUIEnable(value);
+            }
+		}
+		private bool _enabled = true;
+
+        /// <summary>
+        /// If false, Draw events won't be executed.
+        /// NOTE: This also applies to entity's components.
+        /// </summary>
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+                GUIVisible(value);
+            }
+        }
+        private bool _visible = true;
+
+		internal void GUIEnable(bool enabled)
+		{
+            if (this is IHaveGUI GUI) GUI.Enabled(enabled);
+
+            GetAllComponents().ToList().ForEach(component => component.GUIEnable(enabled));
+        }
+
+        internal void GUIVisible(bool visible)
+        {
+            if (this is IHaveGUI GUI) GUI.Visible(visible);
+
+            GetAllComponents().ToList().ForEach(component => component.GUIVisible(visible));
+        }
+
+        /// <summary>
+        /// Layer that entity is currently on.
+        /// </summary>
+        public Layer Layer
 		{
 			get => _layer;
 			set
@@ -181,6 +213,8 @@ namespace MonoGo.Engine.EC
 			component.Initialized = true;
             _depthListComponentsOutdated = true;
 
+            if (component is IHaveGUI GUI) GUI.Init();
+
             return component; // Doing a passthrough for nicer syntax.	
 		}
 
@@ -293,6 +327,8 @@ namespace MonoGo.Engine.EC
 				_componentList.Remove(component);
 				component.Owner = null;
                 _depthListComponentsOutdated = true;
+
+                if (component is IHaveGUI GUI) GUI.Clear();
 
                 return component;
 			}

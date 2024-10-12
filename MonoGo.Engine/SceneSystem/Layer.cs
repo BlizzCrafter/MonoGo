@@ -29,19 +29,45 @@ namespace MonoGo.Engine.SceneSystem
 		/// </summary>
 		public readonly string Name;
 
-		/// <summary>
-		/// If false, layer won't be rendered.
-		/// </summary>
-		public bool Visible = true;
+        /// <summary>
+        /// If false, layer won't be updated.
+        /// </summary>
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                _enabled = value;
+                GUIEnable(value);
+            }
+        }
+        private bool _enabled = true;
 
-		/// <summary>
-		/// If false, layer won't be updated.
-		/// </summary>
-		public bool Enabled = true;
+        /// <summary>
+        /// If false, layer won't be rendered.
+        /// </summary>
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+				GUIVisible(value);
+            }
+        }
+        private bool _visible = true;
 
+		internal void GUIEnable(bool enabled)
+		{
+            _entities.ToList().ForEach(entity => entity.GUIEnable(enabled));
+        }
 
-		internal bool _depthListEntitiesOutdated = false;
+        internal void GUIVisible(bool visible)
+        {
+            _entities.ToList().ForEach(entity => entity.GUIVisible(visible));
+        }
 
+        internal bool _depthListEntitiesOutdated = false;
 
 		/// <summary>
 		/// Priority of a layer. Layers with highest priority are processed first.

@@ -22,19 +22,47 @@
         /// </summary>
         public bool Initialized {get; internal set;} = false;
 
-		/// <summary>
-		/// If component is enabled, it will be processed by Create and Update methods.
-		/// </summary>
-		public bool Enabled = true;
+        /// <summary>
+        /// If component is enabled, it will be processed by Create and Update methods.
+        /// </summary>
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                _enabled = value;
+                GUIEnable(value);
+            }
+        }
+        private bool _enabled = true;
 
-		/// <summary>
-		/// If component is visible, it will be processed by Draw method.
-		/// 
-		/// NOTE: components are NOT visible by default!
-		/// </summary>
-		public bool Visible = false;
+        /// <summary>
+        /// If component is visible, it will be processed by Draw method.
+        /// 
+        /// NOTE: components are NOT visible by default!
+        /// </summary>
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+                GUIVisible(value);
+            }
+        }
+        private bool _visible = true;
 
-		public Component(string key = default) 
+        internal void GUIEnable(bool enabled)
+        {
+            if (this is IHaveGUI GUI) GUI.Enabled(enabled);
+        }
+
+        internal void GUIVisible(bool visible)
+        {
+            if (this is IHaveGUI GUI) GUI.Visible(visible);
+        }
+
+        public Component(string key = default) 
 		{ 
 			Key = key;
 		}
@@ -90,10 +118,13 @@
 		/// </summary>
 		public virtual void Draw() { }
 
-		/// <summary>
-		///	Triggers right before destruction.
-		/// </summary>
-		public virtual void Destroy() { }
+        /// <summary>
+        ///	Triggers right before destruction.
+        /// </summary>
+        public virtual void Destroy()
+        {
+            if (this is IHaveGUI GUI) GUI.Clear();
+        }
 
 		#endregion Events.
 

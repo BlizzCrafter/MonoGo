@@ -43,8 +43,8 @@ namespace MonoGo.Samples.Demos
                 }
             };
 
-            var cParticleEffect = new ParticleEffectComponent(particleEffect, GameMgr.WindowManager.CanvasCenter) 
-            { 
+            var cParticleEffect = new CustomParticleEffectComponent(particleEffect, GameMgr.WindowManager.CanvasCenter) 
+            {
                 Depth = 1 
             };
 

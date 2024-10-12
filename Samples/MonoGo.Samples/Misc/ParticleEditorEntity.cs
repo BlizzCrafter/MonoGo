@@ -15,23 +15,9 @@ namespace MonoGo.Samples.Misc
     {
         public ParticleEffectComponent ParticleEffectComponent { get; set; }
 
-        private Paragraph _activeParticlesParagraph;
-
-        public ParticleEditorEntity(Layer layer)
-            : base(layer)
+        public ParticleEditorEntity(Layer layer) : base(layer) 
         {
             Visible = false;
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            if (_activeParticlesParagraph != null)
-            {
-                _activeParticlesParagraph.Text =
-                    "Active Particles:${FC:FFDB5F} " + ParticleEffectComponent.ParticleEffect.ActiveParticles + "${RESET}";
-            }
         }
 
         public void OffsetX(float value)
@@ -84,22 +70,8 @@ namespace MonoGo.Samples.Misc
         public void CreateUI()
         {
             var player = Layer.FindEntity<Player>();
-            ParticleEffectComponent = player.GetComponent<ParticleEffectComponent>();
+            ParticleEffectComponent = player.GetComponent<CustomParticleEffectComponent>();
             CheckParticleAttraction(player);
-
-            var topPanel = new Panel(null!)
-            {
-                Anchor = Anchor.TopCenter,
-                IgnoreInteractions = true
-            };
-            topPanel.Size.Y.SetPixels(60);
-            UISystem.Add(topPanel);
-
-            _activeParticlesParagraph = new Paragraph("")
-            {
-                Anchor = Anchor.Center
-            };
-            topPanel.AddChild(_activeParticlesParagraph);
 
             // Controls
             var firstPanel = new Panel(null!)

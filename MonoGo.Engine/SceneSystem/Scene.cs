@@ -24,20 +24,38 @@ namespace MonoGo.Engine.SceneSystem
 		public List<Layer> Layers => _layers.ToList();
 		internal SafeSortedList<Layer> _layers = new SafeSortedList<Layer>(x => x.Priority);
 
-		/// <summary>
-		/// If false, scene won't be rendered.
-		/// </summary>
-		public bool Visible = true;
+        /// <summary>
+        /// If false, scene won't be updated.
+        /// </summary>
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                _enabled = value;
+                _layers.ToList().ForEach(layer => layer.GUIEnable(value));
+            }
+        }
+        private bool _enabled = true;
 
-		/// <summary>
-		/// If false, scene won't be updated.
-		/// </summary>
-		public bool Enabled = true;
+        /// <summary>
+        /// If false, scene won't be rendered.
+        /// </summary>
+        public bool Visible
+        {
+            get { return _visible; }
+            set
+            {
+                _visible = value;
+				_layers.ToList().ForEach(layer => layer.GUIVisible(value));
+            }
+        }
+        private bool _visible = true;
 
-		/// <summary>
-		/// Priority of a scene. Scenes with highest priority are processed first.
-		/// </summary>
-		public int Priority
+        /// <summary>
+        /// Priority of a scene. Scenes with highest priority are processed first.
+        /// </summary>
+        public int Priority
 		{
 			get => _priority;
 

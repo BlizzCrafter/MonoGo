@@ -19,6 +19,18 @@ namespace MonoGo.Engine
             UISystem._ownerStack.Pop();
         }
 
+        void Enabled(bool enabled)
+        {
+            var rootOwner = UISystem.FindRootOwner(this);
+            if (rootOwner != null) rootOwner.Enabled = enabled;
+        }
+
+        void Visible(bool visible)
+        {
+            var rootOwner = UISystem.FindRootOwner(this);
+            if (rootOwner != null) rootOwner.Visible = visible;
+        }
+
         void Clear()
         {
             UISystem.FindRootOwner(this)?.RemoveSelf(true);
