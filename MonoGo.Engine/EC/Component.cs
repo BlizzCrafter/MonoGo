@@ -31,10 +31,24 @@
             set
             {
                 _enabled = value;
-                GUIEnable(value);
+                _GUIEnable(value);
             }
         }
         private bool _enabled = true;
+
+        /// <summary>
+        /// Enable or Disable all GUI controls of this component.
+        /// </summary>
+        public bool GUIEnabled
+        {
+            get { return _guiEnabled; }
+            set
+            {
+                _guiEnabled = value;
+                _GUIEnable(value);
+            }
+        }
+        private bool _guiEnabled = true;
 
         /// <summary>
         /// If component is visible, it will be processed by Draw method.
@@ -47,17 +61,31 @@
             set
             {
                 _visible = value;
-                GUIVisible(value);
+                _GUIVisible(value);
             }
         }
         private bool _visible = true;
 
-        internal void GUIEnable(bool enable)
+        /// <summary>
+        /// Hide or Show all GUI controls of this component.
+        /// </summary>
+        public bool GUIVisible
+        {
+            get { return _guiVisible; }
+            set
+            {
+                _guiVisible = value;
+                _GUIVisible(value);
+            }
+        }
+        private bool _guiVisible = true;
+
+        internal void _GUIEnable(bool enable)
         {
             if (this is IHaveGUI GUI) GUI.Enable(enable);
         }
 
-        internal void GUIVisible(bool visible)
+        internal void _GUIVisible(bool visible)
         {
             if (this is IHaveGUI GUI) GUI.Visible(visible);
         }

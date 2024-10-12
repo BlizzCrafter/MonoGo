@@ -38,10 +38,25 @@ namespace MonoGo.Engine.SceneSystem
             set
             {
                 _enabled = value;
-                GUIEnable(value);
+                _GUIEnable(value);
             }
         }
         private bool _enabled = true;
+
+        /// <summary>
+        /// Enable or Disable all GUI controls of the entities of this layer.
+        /// NOTE: This also applies to entity's components!
+        /// </summary>
+        public bool GUIEnabled
+        {
+            get { return _guiEnabled; }
+            set
+            {
+                _guiEnabled = value;
+                _GUIEnable(value);
+            }
+        }
+        private bool _guiEnabled = true;
 
         /// <summary>
         /// If false, layer won't be rendered.
@@ -52,19 +67,34 @@ namespace MonoGo.Engine.SceneSystem
             set
             {
                 _visible = value;
-				GUIVisible(value);
+				_GUIVisible(value);
             }
         }
         private bool _visible = true;
 
-		internal void GUIEnable(bool enable)
+        /// <summary>
+        /// Hide or Show all GUI controls of the entities of this layer.
+        /// NOTE: This also applies to entity's components!
+        /// </summary>
+        public bool GUIVisible
+        {
+            get { return _guiVisible; }
+            set
+            {
+                _guiVisible = value;
+                _GUIVisible(value);
+            }
+        }
+        private bool _guiVisible = true;
+
+        internal void _GUIEnable(bool enable)
 		{
-            _entities.ToList().ForEach(entity => entity.GUIEnable(enable));
+            _entities.ToList().ForEach(entity => entity._GUIEnable(enable));
         }
 
-        internal void GUIVisible(bool visible)
+        internal void _GUIVisible(bool visible)
         {
-            _entities.ToList().ForEach(entity => entity.GUIVisible(visible));
+            _entities.ToList().ForEach(entity => entity._GUIVisible(visible));
         }
 
         internal bool _depthListEntitiesOutdated = false;

@@ -33,10 +33,25 @@ namespace MonoGo.Engine.SceneSystem
             set
             {
                 _enabled = value;
-                _layers.ToList().ForEach(layer => layer.GUIEnable(value));
+                _GUIEnable(value);
             }
         }
         private bool _enabled = true;
+
+        /// <summary>
+        /// Enable or Disable all GUI controls of this scene.
+        /// NOTE: This also applies to layers, entities and their components!
+        /// </summary>
+        public bool GUIEnabled
+        {
+            get { return _guiEnabled; }
+            set
+            {
+                _guiEnabled = value;
+                _GUIEnable(value);
+            }
+        }
+        private bool _guiEnabled = true;
 
         /// <summary>
         /// If false, scene won't be rendered.
@@ -47,10 +62,35 @@ namespace MonoGo.Engine.SceneSystem
             set
             {
                 _visible = value;
-				_layers.ToList().ForEach(layer => layer.GUIVisible(value));
+				_GUIVisible(value);
             }
         }
         private bool _visible = true;
+
+        /// <summary>
+        /// Hide or Show all GUI controls of this scene.
+        /// NOTE: This also applies to layers, entities and their components!
+        /// </summary>
+        public bool GUIVisible
+        {
+            get { return _guiVisible; }
+            set
+            {
+                _guiVisible = value;
+                _GUIVisible(value);
+            }
+        }
+        private bool _guiVisible = true;
+
+        internal void _GUIEnable(bool enable)
+        {
+            _layers.ToList().ForEach(layer => layer._GUIEnable(enable));
+        }
+
+        internal void _GUIVisible(bool visible)
+        {
+            _layers.ToList().ForEach(layer => layer._GUIVisible(visible));
+        }
 
         /// <summary>
         /// Priority of a scene. Scenes with highest priority are processed first.
