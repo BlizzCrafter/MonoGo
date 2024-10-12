@@ -150,32 +150,64 @@ namespace MonoGo.Engine.UI
         internal static Stack<IHaveGUI> _ownerStack = new();
 
         /// <summary>
+        /// Adds a control to the current owner or the root itself if there is no other UI owner.
+        /// </summary>
+        /// <param name="control">Control to add.</param>
+        public static void Add(Control control)
+        {
+            var rootOwner = FindRootOwner(_ownerStack.Peek()) ?? Root;
+            rootOwner.AddChild(control);
+        }
+
+        /// <summary>
+        /// Adds a control to the current owner, a different owner or the root itself if there is no other UI owner.
+        /// </summary>
+        /// <param name="control">Control to add.</param>
+        /// <param name="otherOwner">Add this control to a different owner.</param>
+        public static void Add(Control control, string? otherOwner = null)
+        {
+            var rootOwner = FindRootOwner(otherOwner) ?? FindRootOwner(_ownerStack.Peek()) ?? Root;            
+            rootOwner.AddChild(control);
+        }
+
+        /// <summary>
         /// Adds a control to the current owner, a different owner or the root itself if there is no other UI owner.
         /// </summary>
         /// <param name="control">Control to add.</param>
         /// <param name="otherOwner">Add this control to a different owner.</param>
         public static void Add(Control control, IHaveGUI? otherOwner = null)
         {
-            var owner = otherOwner ?? _ownerStack.Peek();
-            var rootOwner = FindRootOwner(owner);
-
-            if (rootOwner == null) Root.AddChild(control);
-            else rootOwner.AddChild(control);
+            var rootOwner = FindRootOwner(otherOwner) ?? FindRootOwner(_ownerStack.Peek()) ?? Root;
+            rootOwner.AddChild(control);
         }
 
         /// <summary>
-        /// Find the root owner of an <see cref="IHaveGUI"/> object.
+        /// Adds a control to the current owner, a different owner or the root itself if there is no other UI owner.
         /// </summary>
-        /// <param name="owner">The owner object.</param>
-        /// <returns>The root control of the owner.</returns>
-        public static Panel? FindRootOwner(IHaveGUI owner)
+        /// <param name="control">Control to add.</param>
+        /// <param name="otherOwner">Add this control to a different owner.</param>
+        public static void Add<T>(Control control, T? otherOwner = default)
         {
+            var rootOwner = FindRootOwner(otherOwner) ?? FindRootOwner(_ownerStack.Peek()) ?? Root;
+
+            rootOwner.AddChild(control);
+        }
+
+        /// <summary>
+        /// Find the root owner by its type name.
+        /// </summary>
+        /// <param name="owner">The type name of the owner.</param>
+        /// <returns>The root control of the owner.</returns>
+        public static Panel? FindRootOwner(string? owner)
+        {
+            if (string.IsNullOrEmpty(owner)) return null;
+
             Panel? rootOwner = null;
             Root.IterateChildren(
                 control =>
                 {
                     var identifier = control.Identifier?.Split(':').Last();
-                    if (identifier != null && identifier == owner.GetType().Name)
+                    if (identifier != null && identifier == owner)
                     {
                         rootOwner = control as Panel;
                         return false;
@@ -183,6 +215,27 @@ namespace MonoGo.Engine.UI
                     return true;
                 });
             return rootOwner;
+        }
+
+        /// <summary>
+        /// Find the root owner of a <see cref="IHaveGUI"/> object.
+        /// </summary>
+        /// <param name="owner">The owner object.</param>
+        /// <returns>The root control of the owner.</returns>
+        public static Panel? FindRootOwner(IHaveGUI? owner)
+        {
+            return FindRootOwner(owner?.GetType().Name);
+        }
+
+        /// <summary>
+        /// Find the root owner of a <see cref="Type"/> object.
+        /// </summary>
+        /// <param name="owner">The owner object.</param>
+        /// <returns>The root control of the owner.</returns>
+        public static Panel? FindRootOwner<T>(T? owner)
+        {
+            if (owner != null) return FindRootOwner(((dynamic)owner).Name);
+            return null;
         }
 
         /// <summary>

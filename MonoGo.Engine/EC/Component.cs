@@ -52,9 +52,9 @@
         }
         private bool _visible = true;
 
-        internal void GUIEnable(bool enabled)
+        internal void GUIEnable(bool enable)
         {
-            if (this is IHaveGUI GUI) GUI.Enabled(enabled);
+            if (this is IHaveGUI GUI) GUI.Enable(enable);
         }
 
         internal void GUIVisible(bool visible)

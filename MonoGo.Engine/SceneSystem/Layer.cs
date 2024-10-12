@@ -57,9 +57,9 @@ namespace MonoGo.Engine.SceneSystem
         }
         private bool _visible = true;
 
-		internal void GUIEnable(bool enabled)
+		internal void GUIEnable(bool enable)
 		{
-            _entities.ToList().ForEach(entity => entity.GUIEnable(enabled));
+            _entities.ToList().ForEach(entity => entity.GUIEnable(enable));
         }
 
         internal void GUIVisible(bool visible)
