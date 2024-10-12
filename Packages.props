@@ -1,5 +1,5 @@
 <Project>
 	<PropertyGroup>
-		<MonoGoVersion>1.0.0</MonoGoVersion>
+		<MonoGoVersion>1.1.0</MonoGoVersion>
 	</PropertyGroup>
 </Project>
