@@ -8,7 +8,7 @@
     "identity": "MonoGoGL",
 	"precedence": 999,
     "shortName": "mgogl",
-	"description": "Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame and Monofoxe.",
+	"description": "Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame.",
     "tags": {
         "language": "C#",
         "type": "solution"
