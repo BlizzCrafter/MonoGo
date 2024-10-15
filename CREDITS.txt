@@ -1,0 +1,30 @@
+Additional to the LICENSE.txt file I want to mention a couple of more awesome persons in this CREDITS.txt file:
+
+-------------------------------------------------------------------------------
+
+Huge thanks to Roman Shapiro for the Public Domain library "StbImageSharp"!
+
+https://github.com/StbSharp/StbImageSharp
+
+-------------------------------------------------------------------------------
+
+Huge thanks to RigzSoft for the awesome royalty-free Particle Collection!
+
+You can find it here:
+https://www.rigzsoft.co.uk/portfolio/particle-collection-1/
+
+Visit the homepage:
+https://www.rigzsoft.co.uk/
+
+Try their Particle Effect Editor 'TimelineFX':
+https://www.rigzsoft.co.uk/timelinefx-alpha-version/
+
+-------------------------------------------------------------------------------
+
+Huge thanks to XNA, the MonoGame developers and the MonoGame community for beeing a big part of my life since 2010!
+
+-------------------------------------------------------------------------------
+
+Have a nice day and happy coding! 😎
+
+:: BlizzCrafter ✨

@@ -175,16 +175,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
--------------------------------------------------------------------------------
-
-Huge thanks to RigzSoft for the awesome royalty-free Particle Collection!
-
-You can find it here:
-https://www.rigzsoft.co.uk/portfolio/particle-collection-1/
-
-Visit the homepage:
-https://www.rigzsoft.co.uk/
-
-Try their Particle Effect Editor 'TimelineFX':
-https://www.rigzsoft.co.uk/timelinefx-alpha-version/
