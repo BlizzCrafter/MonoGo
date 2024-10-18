@@ -8,7 +8,7 @@
     "identity": "MonoGoDX",
 	"precedence": 999,
     "shortName": "mgodx",
-	"description": "Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame.",
+	"description": "MonoGo Windows Desktop Application",
     "tags": {
         "language": "C#",
         "type": "solution"
