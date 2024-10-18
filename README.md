@@ -36,7 +36,9 @@ Cross-Platform .NET 8 C# 2D game engine build ontop of MonoGame.
 ### Modules:
 * Tiled Map Support via [Tiled](https://www.mapeditor.org/).
 
-# Sample Pic
+# Sample Project
+
+[https://github.com/MonoGo-Engine/MonoGo.Samples](https://github.com/MonoGo-Engine/MonoGo.Samples)
 
 ![Sample](https://raw.githubusercontent.com/BlizzCrafter/MonoGo/refs/heads/master/doc/sample.png)
 
