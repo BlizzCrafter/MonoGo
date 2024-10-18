@@ -5,6 +5,7 @@
 		<OutputPath>..\bin\</OutputPath>
 		<NoWarn>NU5100</NoWarn>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
@@ -20,12 +21,12 @@
 			<IncludeAssets>compile</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="StbImageSharp" Version="2.27.11" />
-	</ItemGroup>	
-	
+	</ItemGroup>
+
 	<ItemGroup Label="ContentBuildFiles">
 		<Content Include="MonoGo.Pipeline.targets" PackagePath="build/MonoGo.Pipeline.targets" />
 		<Content Include="$(OutputPath)MonoGo.Pipeline.dll" Pack="true" PackagePath="contentFiles\" />
 		<Content Include="$(OutputPath)StbImageSharp.dll" Pack="true" PackagePath="contentFiles\" />
 	</ItemGroup>
-
+	
 </Project>
