@@ -1,8 +1,0 @@
-{
-    "InheritFrom": "paragraph_base_style.json",
-	"Default": {
-		"TextFillColor": {"R": 220, "G": 220, "B": 220, "A": 255},
-        "TextScale": 0.85,
-        "MarginAfter": {"X": 0, "Y": 2}
-	}
-}
